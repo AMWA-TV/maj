@@ -1,0 +1,94 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.1 2011/02/14 22:32:49 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.1  2011/02/14 22:32:49  vizigoth
+ First commit after major sourceforge outage.
+
+ Revision 1.2  2008/10/16 16:52:01  vizigoth
+ First early release 0.1.
+
+ Revision 1.1  2008/10/15 14:16:08  vizigoth
+ Documentation improved to an early release level.
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Example code demonstrating an extension built with the 
+{@linkplain tv.amwa.maj.util.AutoGeneration auto generator}.</p>
+
+<p>The input to the auto generator was the "<code>SimpleExtension.xml</code>" file. 
+The "<code>Main.java</code>" class produces the output in "<code>MainOut.xml</code>". These are
+both shown below:</p>
+
+<p>Cut down <code>Main.java</code>:</p>
+
+<pre>
+public static void main(String[] args) {
+		
+    EgFactory.initialize();
+    SimpleDescription description = EgFactory.make("SimpleDescription",
+            "Title", "Test Description",
+            "Identifier", "123/456/789/000",
+            "DateAccepted", "2011-01-13",
+            "Creator", EgFactory.make("Person", 
+                    "Name", "Richard Cartwright",
+                    "DOB", Forge.makeDate((byte) 11, (byte) 10, (short) 2003)));
+    System.out.println(description.toString());
+}
+</pre>
+
+<p>Running the above produces:</p>
+
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;eg:SimpleDescription xmlns:eg="http://amwa.tv/maj/extensions/example"&gt;
+  &lt;eg:Identifier&gt;123/456/789/000&lt;/eg:Identifier&gt;
+  &lt;eg:Title&gt;Test Description&lt;/eg:Title&gt;
+  &lt;eg:Creator&gt;
+    &lt;eg:Person&gt;
+      &lt;eg:Name&gt;Richard Cartwright&lt;/eg:Name&gt;
+      &lt;eg:DOB&gt;2003-10-11+0000&lt;/eg:DOB&gt;
+    &lt;/eg:Person&gt;
+  &lt;/eg:Creator&gt;
+  &lt;eg:DateAccepted&gt;2011-01-13+0000&lt;/eg:DateAccepted&gt;
+&lt;/eg:SimpleDescription&gt;
+</pre>
+
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+  
+@see tv.amwa.maj.util.AutoGeneration
+</body>
+</html>

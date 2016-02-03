@@ -1,0 +1,88 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.3 2011/02/14 22:33:03 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.3  2011/02/14 22:33:03  vizigoth
+ First commit after major sourceforge outage.
+
+ Revision 1.2  2007/12/04 20:14:03  vizigoth
+ Added and edited documentation.
+
+ Revision 1.1  2007/12/04 09:20:14  vizigoth
+ Adding package description for utilities.
+
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Static utility methods and generators used internally by the MAJ API that may also be useful to
+applications using the API. Also included in this package is a {@linkplain tv.amwa.maj.util.LookupTable
+lookup table} mapping AAF type names to their respective Java type names and a description of
+the four {@linkplain tv.amwa.maj.util.LookupTable.Strategy strategies} used to achieve this 
+mapping.</p>
+
+<h2>External generators</h2>
+
+<p>The auto and test generators are provided as bootstrap facilities for the MAJ API as independent
+code from the core API. This is deliberate so the code generation and testing is not polluted by
+implicit behaviour of the API being tested.</p>
+
+<h3>Auto generation</h3>
+
+<p>The {@linkplain tv.amwa.maj.util.AutoGeneration MAJ auto generator} takes the XML description of a 
+meta dictionary and generates source code for classes and interfaces that, when compiled, can be used 
+to extend the runtime data model supported by MAJ.</p>
+
+<h3>Test generation</h3>
+
+<p>The {@linkplain tv.amwa.maj.util.TestGeneration MAJ test generator} takes the XML description of a 
+meta dictionary and generates JUnit tests for all the expected classes and interfaces that it describes. 
+The test generator has been used to generate over 25,000 tests for the MAJ API baseline AAF data model.</p>
+
+<h2>Internal generators</h2>
+
+<p>Other generation capability is provided within the core API as it can be assumed that the 
+data model is clean and safe once the external tests have been run. These include:</p>
+
+<ul>
+ <li>Generation of a meta dictionary from in-memory definitions;</li>
+ <li>{@linkplain tv.amwa.maj.industry.JPAGenerator Generation of JPA-compliant persistent mappings}.</li>
+</ul>
+
+
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+  
+</body>
+</html>

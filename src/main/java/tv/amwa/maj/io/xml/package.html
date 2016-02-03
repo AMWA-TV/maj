@@ -1,0 +1,155 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.4 2011/07/27 17:07:21 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.4  2011/07/27 17:07:21  vizigoth
+ Additions and alterations coincidence with editing the Reg-XML document part 1.
+
+ Revision 1.3  2011/02/14 22:32:58  vizigoth
+ First commit after major sourceforge outage.
+
+ Revision 1.2  2008/10/16 16:52:01  vizigoth
+ First early release 0.1.
+
+ Revision 1.1  2008/10/15 14:16:08  vizigoth
+ Documentation improved to an early release level.
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Support for the input and output of {@linkplain tv.amwa.maj.industry.MetadataObject metadata objects} as XML fragments and 
+documents. The XML format is specified according to SMPTE 2001-1 and SMPTE 2001-2 
+<em>registered data XML</em>.</p>
+
+<p>MAJ uses a SAX-based parser for reading XML and creates DOM trees to write out XML. As such, 
+in this implementation of the MAJ API, parsing XML is less resource intensive than writing out to XML.</p>
+
+<h2>Serializing an object to XML fragments</h2>
+
+<p>To convert a single object and any of its contained strong referenced objects to XML, use method 
+{@link tv.amwa.maj.io.xml.XMLBuilder#toXML(tv.amwa.maj.industry.MetadataObject) toXML()} methods
+of the {@linkplain tv.amwa.maj.io.xml.XMLBuilder XML builder}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLBuilder;
+import tv.amwa.maj.iface.MaterialPackage;
+...
+
+MaterialPackage material = ...;
+String packageAsXML = XMLBuilder.toXML(material);
+</pre>
+
+<p>Any objects that implement {@link tv.amwa.maj.io.xml.XMLSerializable XMLSerializable} or
+{@link tv.amwa.maj.industry.MetadataObject MetadataObject} can be serialized to XML fragments.</p>
+
+<p>All <a href="../../model/package-summary.html">MAJ interchangeable classes</a> and
+<a href="../../meta/package-summary.html">meta-classes</a> can be serialized to the
+same XML format with their <code>toString()</code> method.</p>
+
+<h2>Creating objects from an XML fragment</h2>
+
+<p>To read the XML representation of an object in XML and create an instance in memory, 
+use either the {@link tv.amwa.maj.io.xml.XMLBuilder#createFromXML(InputSource) createFromXML()} or 
+{@link tv.amwa.maj.io.xml.XMLBuilder#createFromXMLString(String) createFromXMLString()} methods of the
+{@linkplain tv.amwa.maj.io.xml.XMLBuilder XML builder}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLBuilder;
+import tv.amwa.maj.iface.MaterialPackage;
+...
+
+MaterialPackage material = 
+        (MaterialPackage) XMLBulder.createFromXMLString(packageAsXML);
+</pre>
+
+<h2>Reading complete Reg XML files</h2>
+
+<p>Complete XML files have a root <code>&lt;AAF&gt;</code> root element, represented by
+the {@linkplain tv.amwa.maj.io.xml.AAFElement AAF element class}.
+To read a preface from an XML file, register all the required data types and then 
+use the {@link tv.amwa.maj.io.xml.XMLFactory#readPreface(String) readPreface()}
+static method of the {@link tv.amwa.maj.io.xml.XMLFactory XML factory}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLFactory;
+import tv.amwa.maj.model.Preface;
+....
+
+Preface preface = XMLFactory.readPreface("input_file.xml");
+</pre>
+
+<p>Catch {@linkplain java.io.IOException IO exceptions} to find out about any problems
+parsing the XML.</p>
+
+<p>Note that the automatic processing of extension metadata that is not registered
+with MAJ is not supported in the current version of the MAJ API.</p>
+
+<h2>Writing complete Reg XML files</h2>
+
+<p>Complete XML files have a root <code>&lt;AAF&gt;</code> root element, represented by
+the {@linkplain tv.amwa.maj.io.xml.AAFElement AAF element class}.
+To write a complete Reg XML file, use the 
+{@link tv.amwa.maj.io.xml.XMLFactory#writePreface(tv.amwa.maj.model.Preface, String) writePreface()} static method
+of the {@link tv.amwa.maj.io.xml.XMLFactory XML factory}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLFactory;
+....
+
+XMLFactory.writePreface(preface, "output_file.xml");
+</pre>
+
+<p>The {@linkplain tv.amwa.maj.model.Preface preface} will be automatically updated with a correct 
+{@linkplain tv.amwa.maj.model.Dictionary dictionary} and any extensions classes will
+be added to the output. Note that an application is expected to have added an appropriate 
+{@linkplain tv.amwa.maj.model.Identification identification} to the preface to identify the 
+current version of the file before calling this method.</p>
+
+<h2>Generating Meta Dictionaries</h2>
+
+<p>Use the {@linkplain tv.amwa.maj.io.xml.MetaDictionaryGenerator meta dictionary generator} to
+create an XML-format meta dictionary for the baseline AAF model or an extension data model.</p>
+
+<h2>Generating XSDs</h2>
+
+<p>Use the {@linkplain tv.amwa.maj.io.xml.XSDGenerator XML schema generator} to create an 
+XML schema that can be used to validate baseline and/or extension data models.</p>
+
+@see tv.amwa.maj.industry.MediaEngine#toString(tv.amwa.maj.industry.MetadataObject)
+
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+  
+</body>
+</html>

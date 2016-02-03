@@ -1,0 +1,100 @@
+package tv.amwa.maj.industry;
+
+import java.io.IOException;
+import java.net.URI;
+import java.nio.ByteBuffer;
+
+import tv.amwa.maj.enumeration.ByteOrder;
+import tv.amwa.maj.exception.EndOfDataException;
+
+/**
+ * <p>Provides access to stream data represented as a locally accessible file. The file is 
+ * assumed to be {@linkplain tv.amwa.maj.constant.ContainerConstant#External external}
+ * essence that is not wrapped in any way.</p>
+ * 
+ * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ * 
+ * @see MemoryResidentStream
+ * @see StreamResolver
+ * @see tv.amwa.maj.model.EssenceData#getEssenceStream()
+ */
+public class FileStream 
+	implements Stream, 
+		Cloneable {
+
+	/**
+	 * <p>Create a new file stream by file reference. If the file exists, it will be available 
+	 * for reading and writing. If the file does not yet exist, it will be created on the first
+	 * write operation.</p>
+	 * 
+	 * @param streamReference Identifier for the stream, which is a URL with a file scheme.
+	 */
+	public FileStream(
+			URI streamReference) {
+		
+		// TODO
+	}
+	
+	public void close() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public long getLength() throws IOException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public long getLimit() throws IOException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public long getPosition() throws IOException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public URI getStreamURI() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ByteBuffer read(int noOfBytes) throws EndOfDataException,
+			IOException, IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setLimit(long limit) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setPosition(long position) throws IllegalArgumentException,
+			IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public int write(ByteBuffer buffer) throws EndOfDataException, IOException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ByteOrder getByteOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public FileStream clone() {
+		
+		try {
+			return (FileStream) super.clone();
+		}
+		catch (CloneNotSupportedException cnse) {
+			throw new InternalError("FileStream is cloneable.");
+		}
+	}
+
+}

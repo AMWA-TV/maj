@@ -1,0 +1,152 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.1 2011/07/27 16:52:58 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.1  2011/07/27 16:52:58  vizigoth
+ Capable of reading and writing audio essence component files.
+
+
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Support for the serialization of AAF data to and from KLV format files and streams according 
+to the SMPTE MXF standards. The MXF file format is specified by SMPTE 0377-1-2009.</p>
+
+<p>This implementation supports clip-based wrapping of uni-track streams into a generic container 
+according to SMPTE ST 0385-2004. Future versions will support many more mapping and codecs, including
+the AMWA application specifications.</p>
+
+<h2>Reading MXF partitions</h2>
+
+<p>MXF files, also known as AAF-KLV files, consist of sequence of 
+{@linkplain tv.amwa.maj.io.mxf.Partition partitions}. Partitions contain 
+a partition description, known as a <em>{@link tv.amwa.maj.io.mxf.PartitionPack partition pack}</em>, 
+and may contain metadata, index tables and/or body essence streams.</p>
+
+<p>MXF files contain one or more partitions. The first step in reading an MXF file is to build an 
+in memory cache of the structure of those partitions as an {@link tv.amwa.maj.io.mxf.MXFFile MXFFile}. 
+To do this, use the {@link tv.amwa.maj.io.mxf.MXFFactory#readPartitions(String) readParitions()} 
+method of the {@linkplain tv.amwa.maj.io.mxf.MXFFactory MXF factory}. For example:</p>
+
+<pre>
+import tv.amwa.maj.industry.MediaEngine;
+import tv.amwa.maj.io.mxf.MXFFactory;
+import tv.amwa.maj.io.mxf.MXFFile;
+
+...
+
+  MXFFile mxfFile = MXFFactory.readPartitions("filename.mxf");
+</pre>
+
+<p>All MXF files contain a {@linkplain tv.amwa.maj.io.mxf.HeaderPartition header partition}. Most also 
+contain a {@linkplain tv.amwa.maj.io.mxf.FooterPartition footer partition}. To access these, use
+the {@link tv.amwa.maj.io.mxf.MXFFile#getHeaderPartition() getHeaderPartition()} and 
+{@link tv.amwa.maj.io.mxf.MXFFile#getFooterPartition() getFooterPartition()} methods. For example:</p>
+
+<pre>
+import tv.amwa.maj.io.mxf.HeaderPartition;
+import tv.amwa.maj.io.mxf.FooterPartition;
+
+...
+
+  HeaderPartition header = mxfFile.getHeaderPartition();
+  FooterPartition footer = mxfFile.getFooterPartition();
+</pre>
+
+<h2>Reading header metadata</h2>
+
+<p>Partitions can contain {@linkplain tv.amwa.maj.io.mxf.HeaderMetadata header metadata} 
+and this is split into a {@linkplain tv.amwa.maj.io.mxf.PrimerPack primer pack} and a 
+{@linkplain tv.amwa.maj.model.Preface preface}. The metadata can be read into memory from a
+file using the {@link tv.amwa.maj.io.mxf.Partition#readHeaderMetadata() readHeaderMetadata()} method.</p>
+
+<p>If a footer partition is present in an MXF file and it contains header metadata, this version 
+is often the most trusted source for metadata about the file as it was written once the rest of the 
+file is complete. If the footer partition is not present or does not contain header metadata, read 
+the header partition's header metadata instead. For example:</p>
+
+<pre>
+import tv.amwa.maj.model.Preface;
+import tv.amwa.maj.io.mxf.HeaderMetadata;
+
+...
+
+  HeaderMetadata headerMD = null;
+  if ((footer != null) && (footer.hasHeaderMetadata())
+    headerMD = footer.readHeaderMetadata();
+  else
+    headerMD = header.readHeaderMetadata();
+
+  Preface preface = headerMD.getPreface();
+</pre>
+
+<p>Methods of the {@linkplain tv.amwa.maj.model.Preface preface interface} can be used to 
+interrogate what is in the MXF file, or you can call <code>toString()</code> on the preface 
+to get an XML representation.</p>
+
+<h2>Writing header metadata</h2>
+
+<p>To follow.</p>
+
+<h2>Reading the index table</h2>
+
+<p>An {@linkplain tv.amwa.maj.io.mxf.IndexTable index table} maps edit unit indexes to stream offsets 
+in essence containers. This enables the data representing a specific frame of video or audio sample 
+to be located in the file, for example to generate a still frame or carry out a partial restore. Any 
+<em>long GOP</em> structure used to store the essence can also be 
+interrogated to work out a safe point to break a file, e.g. don't forget the preceding I-frame!</p>
+
+<p>Any partition may have an index table. To read the index table and find the stream offset to the 10th 
+frame 2nd element, measured in bytes from the beginning of its essence container, use the
+{@link tv.amwa.maj.io.mxf.Partition#readIndexTable() readIndexTable()} method. For example:</p>
+
+<pre>
+import tv.amwa.maj.io.mxf.IndexTable;
+
+...
+
+  IndexTable index = footer.readIndexTable();
+  long tenthFrameOffset = index.streamOffset(10, 2);
+</pre>
+
+<!-- <p>Note that in interleaved streams, the element number determines whether it is an edit unit worth of 
+video, audio or data track being referred to. You need to know your stream layout to insert the correct 
+element number.</p> -->
+
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+  
+</body>
+</html>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Extension xmlns="http://www.smpte-ra.org/schemas/2001-1/2007/metadict"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.smpte-ra.org/schemas/2001-1/2007/metadict metadict.xsd">
+	
+	<Identification>urn:smpte:ul:060e2b34.01040101.0f201101.00000000</Identification>
+	<Symbolspace>http://amwa.tv/maj/extensions/example</Symbolspace>
+	<PreferredPrefix>eg</PreferredPrefix>
+	<Description>A simple example of how to write an extension metadata set.</Description>
+	
+	<Definitions>
+	
+		<!-- SimpleDescription -->
+		<ClassDefinition>
+			<Symbol>SimpleDescription</Symbol>
+			<Name>SimpleDescription</Name>
+			<Identification>urn:smpte:ul:060e2b34.02530101.0f201101.01010000</Identification>
+			<Description>Very basic description of an item, based on a few Dublin Core terms.</Description>
+			<ParentClass>DescriptiveFramework</ParentClass>
+			<IsConcrete>true</IsConcrete>
+		</ClassDefinition>
+		<PropertyDefinition>
+			<Symbol>Title</Symbol>
+			<Name>Title</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01010100</Identification>
+			<Description>A name given to the resource.</Description>
+			<MemberOf>SimpleDescription</MemberOf>
+			<Type>UTF16String</Type>
+			<IsOptional>false</IsOptional>
+			<LocalIdentification>0</LocalIdentification> <!-- 0 = generate dynamic -->
+		</PropertyDefinition>
+		<PropertyDefinition>
+			<Symbol>DateAccepted</Symbol>
+			<Name>DateAccepted</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01010200</Identification>
+			<Description>Date of acceptance of the resource.</Description>
+			<MemberOf>SimpleDescription</MemberOf>
+			<Type>DateStruct</Type>
+			<IsOptional>true</IsOptional>
+			<LocalIdentification>0</LocalIdentification>
+		</PropertyDefinition>
+		<PropertyDefinition>
+			<Symbol>Identifier</Symbol>
+			<Name>Identifier</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01010300</Identification>
+			<Description>An unambiguous reference to the resource within a given context.</Description>
+			<MemberOf>SimpleDescription</MemberOf>
+			<Type>UTF16String</Type>
+			<IsOptional>false</IsOptional>
+			<LocalIdentification>0</LocalIdentification>
+		</PropertyDefinition>
+		<PropertyDefinition>
+			<Symbol>Type</Symbol>
+			<Name>Type</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01010400</Identification>
+			<Description>Identity of the genre of the resource.</Description>
+			<MemberOf>SimpleDescription</MemberOf>
+			<Type>DCMIType</Type>
+			<IsOptional>true</IsOptional>
+			<LocalIdentification>0</LocalIdentification>
+		</PropertyDefinition>
+		<PropertyDefinition>
+			<Symbol>Creator</Symbol>
+			<Name>Creator</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01010500</Identification>
+			<Description>An entity primarily responsible for making the resource.</Description>
+			<MemberOf>SimpleDescription</MemberOf>
+			<Type>ContributorStrongReference</Type>
+			<IsOptional>true</IsOptional>
+			<LocalIdentification>0</LocalIdentification>
+		</PropertyDefinition>
+
+		<!--  Contributor -->
+		<ClassDefinition>
+			<Symbol>Contributor</Symbol>
+			<Name>Contributor</Name>
+			<Identification>urn:smpte:ul:060e2b34.02530101.0f201101.01020000</Identification>
+			<Description>Entity that creates or contributes to a resource.</Description>
+			<ParentClass>DescriptiveObject</ParentClass>
+			<IsConcrete>false</IsConcrete>
+		</ClassDefinition>
+		<PropertyDefinition>
+			<Symbol>Name</Symbol>
+			<Name>Name</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01020100</Identification>
+			<Description>Name of the contributor.</Description>
+			<MemberOf>Contributor</MemberOf>
+			<Type>UTF16String</Type>
+			<IsOptional>false</IsOptional>
+			<LocalIdentification>0</LocalIdentification>		
+		</PropertyDefinition>
+
+		<!-- Person -->
+		<ClassDefinition>
+			<Symbol>Person</Symbol>
+			<Name>Person</Name>
+			<Identification>urn:smpte:ul:060e2b34.02530101.0f201101.01030000</Identification>
+			<Description>Person who makes and/or contributes a resource.</Description>
+			<ParentClass>Contributor</ParentClass>
+			<IsConcrete>true</IsConcrete>
+		</ClassDefinition>
+		<PropertyDefinition>
+			<Symbol>Email</Symbol>
+			<Name>Email</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01030100</Identification>
+			<Description>Contact e-mail address for the person.</Description>
+			<MemberOf>Person</MemberOf>
+			<Type>UTF16String</Type>
+			<IsOptional>true</IsOptional>
+			<LocalIdentification>0</LocalIdentification>		
+		</PropertyDefinition>
+		<PropertyDefinition>
+			<Symbol>DOB</Symbol>
+			<Name>DOB</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01030200</Identification>
+			<Description>Date of birth of the person.</Description>
+			<MemberOf>Person</MemberOf>
+			<Type>DateStruct</Type>
+			<IsOptional>true</IsOptional>
+			<LocalIdentification>0</LocalIdentification>		
+		</PropertyDefinition>
+		
+		<!-- Organisation -->
+		<ClassDefinition>
+			<Symbol>Organisation</Symbol>
+			<Name>Organisation</Name>
+			<Identification>urn:smpte:ul:060e2b34.02530101.0f201101.01040000</Identification>
+			<Description>Organisation that makes or contributes a resource.</Description>
+			<ParentClass>Contributor</ParentClass>
+			<IsConcrete>true</IsConcrete>
+		</ClassDefinition>
+		<PropertyDefinition>
+			<Symbol>CompanyNo</Symbol>
+			<Name>CompanyNo</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01040100</Identification>
+			<Description>Registered company number for the organisation.</Description>
+			<MemberOf>Organisation</MemberOf>
+			<Type>UInt64</Type>
+			<IsOptional>false</IsOptional>
+			<LocalIdentification>0</LocalIdentification>		
+		</PropertyDefinition>
+		<PropertyDefinition>
+			<Symbol>Contact</Symbol>
+			<Name>Contact</Name>
+			<Identification>urn:smpte:ul:060e2b34.01010101.0f201101.01040200</Identification>
+			<Description>Contact person at the organisation responsible for the contributed resource.</Description>
+			<MemberOf>Organisation</MemberOf>
+			<Type>PersonStrongReference</Type>
+			<IsOptional>true</IsOptional>
+			<LocalIdentification>0</LocalIdentification>		
+		</PropertyDefinition>
+		
+		<!-- Type definitions -->
+		<TypeDefinitionEnumeration>
+			<Symbol>DCMIType</Symbol>
+			<Name>DCMIType</Name>
+			<Identification>urn:smpte:ul:060e2b34.01040101.0f201101.01000000</Identification>
+			<Description>Different genres of resource.</Description>
+			<ElementType>UInt8</ElementType>
+			<Elements> 
+				<Name>MovingImage</Name>
+				<Value>1</Value>
+				<Name>StillImage</Name>
+				<Value>2</Value>
+				<Name>Sound</Name>
+				<Value>3</Value>
+				<Name>DataSet</Name>
+				<Value>4</Value>
+			</Elements>
+		</TypeDefinitionEnumeration>
+		
+		<TypeDefinitionStrongObjectReference>
+			<Symbol>ContributorStrongReference</Symbol>
+			<Name>ContributorStrongReference</Name>
+			<Identification>urn:smpte:ul:060e2b34.01040101.0f201101.02000000</Identification>
+			<Description>Strong reference to the value of a contributor.</Description>
+			<ReferencedType>Contributor</ReferencedType>
+		</TypeDefinitionStrongObjectReference>
+		
+		<TypeDefinitionStrongObjectReference>
+			<Symbol>PersonStrongReference</Symbol>
+			<Name>PersonStrongReference</Name>
+			<Identification>urn:smpte:ul:060e2b34.01040101.0f201101.03000000</Identification>
+			<Description>Strong reference to the value of a person used as a contact.</Description>
+			<ReferencedType>Person</ReferencedType>
+		</TypeDefinitionStrongObjectReference>
+	</Definitions>
+	
+</Extension>

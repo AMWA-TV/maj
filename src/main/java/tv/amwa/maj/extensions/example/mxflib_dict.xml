@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MXFDictionary>
+	<MXFClasses>
+		<SimpleDescription base="DM_Framework" 
+				detail="Very basic description of an item, based on a few Dublin Core terms."
+				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 01 00 00">
+			<Title detail="A name given to the resource." use="required" type="UTF16String"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 01 00"/>
+			<DateAccepted detail="Date of acceptance of the resource." use="optional" type="DateStruct"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 02 00"/>
+			<Identifier detail="An unambiguous reference to the resource within a given context." 
+					type="UTF16String" use="required" 
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 03 00"/>
+			<Type detail="Identity of the genre of the resource" use="optional"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 04 00"/>
+			<Creatpr detail="An entity primarily responsible for making the resource." use="optional"
+					type="UUID" ref="strong" target="Contributor" minLength="16" maxLength="16"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 05 00"/>
+		</SimpleDescription>
+		
+		<Contributor base="DM_Set" detail="Entity that creates or contributes to a resource."
+				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 02 00 00">
+			<Name detail="Name of the contributor." use="required" type="UTF16String"
+					key="00 00" globalSet="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 02 01 00"/>
+		</Contributor>
+		
+		<Person base="Contributor" detail="Person who makes and/or contributes a resource."
+				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 03 00 00">
+			<Email detail="Contact e-mail address for the person." use="optional" type="UTF16String"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 03 01 00"/>
+			<DOB detail="Date of birth of the person." use="optional" type="DateStruct"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 03 02 00"/>
+		</Person>
+		<Organisation base="Contributor" detail="Organisation that makes or contributes a resource."
+				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 04 00 00">
+			<CompanyNo detail="Registered company number for the organisation." 
+					use="required" type="UInt64"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 04 01 00"/>
+			<Contact detail="Contact person at the organisation responsible for the contributed resource."
+					use="optional" type="UUID" ref="strong" target="Person" minLength="16" maxLength="16"
+					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 04 02 00"/>
+		</Organisation>
+	</MXFClasses>
+	<MXFTypes>
+	    <Enumeration>
+			<DCMIType detail="Different genres of resource." type="UInt8">
+				<MovingImage detail="Moving image." value="1"/>
+				<StillImage detail="Still image." value="2"/>
+				<Sound detail="Sound." value="3"/>
+				<DataSet detail="Data set." value="4"/>
+			</DCMIType>
+		</Enumeration>
+	</MXFTypes>
+</MXFDictionary>

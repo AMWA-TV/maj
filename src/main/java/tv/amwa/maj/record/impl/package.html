@@ -1,0 +1,105 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.1 2011/01/04 10:42:32 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.1  2011/01/04 10:42:32  vizigoth
+ Refactor all package names to simpler forms more consistent with typical Java usage.
+
+ Revision 1.4  2009/05/14 16:15:30  vizigoth
+ Major refactor to remove dependency on JPA and introduce better interface and implementation separation. Removed all setPropertiesFromInterface and castFromInterface methods.
+
+ Revision 1.3  2009/03/30 09:05:03  vizigoth
+ Refactor to use SMPTE harmonized names and add early KLV file support.
+
+ Revision 1.2  2008/10/15 09:45:54  vizigoth
+ Edited documentation to release standard.
+
+ Revision 1.1  2008/03/07 08:08:12  vizigoth
+ Edited comments to release standard.
+
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Implementations of structured values that can be embedded as properties of 
+entity beans. Typically, the classes of this package are taken implementations of
+AAF record data types, as specified by the interfaces of the 
+<a href="../record/package-summary.html">record package</a>. </p>
+
+<p>The MAJ implementations of these classes are registered with the 
+{@linkplain tv.amwa.maj.meta.TypeDefinitionRecord record type definition} that
+represents them. This allows the values to be serialised to and from files and
+streams.</p>
+
+<h3>Memory management</h3>
+
+<p>Whenever a non-primitive value is requested from one of these classes, a copy
+is made to ensure no side effects occur to the internal representation of the value. Similarly,
+whenever a non-primitive value is passed to these classes, it is copied before storage
+internally to avoid side effects. Applications should take care to ensure that the repeated
+copying of values does not cause memory management issues.</p>
+
+<p>For an example of the memory management behaviour, see {@link tv.amwa.maj.embeddable.PackageID#getPackageIDValue()} and
+{@link tv.amwa.maj.embeddable.PackageID#setPackageIDValue(byte[])}.</p>
+
+<h3>String representation</h3>
+
+<p>Values that have a defined string representation, e.g. a rational
+representing a half can be written "1/2", will generate this when the 
+<code>toString()</code> method is called on them. Classes without an obvious
+simple representation, such as <em>Timecode</em>, will generate a pseudo XML
+representation similar that that which appears in Reg-XML.</p>
+
+<p>All classes in this package implement a <code>parseFactory(String)</code> method
+that parses the given string an creates an instance of the defining class. This is
+used when creating values from strings using the {@linkplain tv.amwa.maj.meta.TypeDefinitionRecord
+record type definition's} {@link tv.amwa.maj.meta.TypeDefinitionRecord#createValueFromString(String) 
+createValueFromString(String)} method.</p>
+
+<h3>Final classes and methods</h3>
+
+<p>The classes and methods of this package are declared <em>final</em> deliberately. Their specification
+was derived from C <em>struct</em> declarations and their behaviour is tightly
+specified. Extensions of these classes that introduce different behaviour or a
+different approach to MAJ API memory management will not be expected by any MAJ API 
+implementing classes.</p>   
+
+<p>This does not prevent another developer from creating their
+own implementation of the MAJ API interfaces. In this case, unexpected behaviour may
+result.</p>
+
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+</body>
+</html>

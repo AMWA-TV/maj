@@ -1,0 +1,149 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.6 2011/02/14 22:33:03 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.6  2011/02/14 22:33:03  vizigoth
+ First commit after major sourceforge outage.
+
+ Revision 1.5  2008/10/16 16:52:02  vizigoth
+ First early release 0.1.
+
+ Revision 1.4  2007/11/23 15:07:16  vizigoth
+ Minor documentation edits.
+
+ Revision 1.3  2007/11/22 12:41:39  vizigoth
+ Added AAF SDK PSL header.
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Provides annotations to label that a value of a Java primitive type in the current 
+context should be interpreted as a particular AAF integer data type. These annotations 
+are provided to guide a developer as to the interpretation they should make of an AAF 
+integer-type property. In particular, Java does not have unsigned integer data types and 
+the AAF does. From this additional information, a developer may decide to add additional 
+validation to prevent non-negative numbers from being stored in a signed value or to use 
+bitwise operators for arithmetic operations.</p>
+
+<h2>Integer annotation usage</h2>
+
+<p>To indicate that a method returns a value of AAF data type <code>UInt32</code>, the Java 
+<code>int</code> keyword is annotated with <code>@UInt32</code>. For example:</p>
+
+<pre>
+    public @UInt32 int countPropertyDefinitions();
+</pre>
+
+<p>To indicate that a method expects a value of AAF data type <code>UInt8</code> as a
+parameter, the Java <code>byte</code> keyword is annotated with <code>@UInt8</code>. The
+following example shows how the annotation can also be applied to arrays:</p>
+
+<pre>
+    public void setUniversalLabel(@UInt8 byte[] label);
+</pre>
+
+<h2 id="AAFIntegersInJava">AAF integer types in Java</h2>
+
+<p>In general, AAF <em>primitive</em> data types map well onto the Java primitive types.
+This is also the case for signed integer data types, such as <code>Int16</code> or 
+<code>Int32</code>. However, as Java does not have the concept of an unsigned integer
+data type, issues may arise when mapping AAF unsigned integer types, such as <code>UInt8</code>
+or <code>UInt32</code>, onto equivalent Java types.</p>
+
+<p>Without the annotations of this package, it would not be possible to discover the AAF data type
+of a value from its Java equivalent. This is illustrated in the following table that shows the 
+mappings from AAF integer data types to Java types:</p>
+
+<center>
+<table border="2" id="aafIntegerToJavaType">
+<thead>
+<tr><td>AAF type</td><td>Java type</td></tr>
+</thead>
+<tbody>
+<tr><td><code>Int8</code></td><td><code>byte</code></td></tr>
+<tr><td><code>Int16</code></td><td><code>short</code></td></tr>
+<tr><td><code>Int32</code></td><td><code>int</code></td></tr>
+<tr><td><code>Int64</code></td><td><code>long</code></td></tr>
+<tr><td><code>UInt8</code></td><td><code>byte</code></td></tr>
+<tr><td><code>UInt16</code></td><td><code>short</code></td></tr>
+<tr><td><code>UInt32</code></td><td><code>int</code></td></tr>
+<tr><td><code>UInt64</code></td><td><code>long</code></td></tr>
+</tbody>
+</table>
+</center>
+
+<p>All Java versions of AAF types use the same number of bits in their representation
+as specified for the AAF type. This provides an efficient on-disk and in memory representation
+of AAF values in Java applications based on this API. However, this efficiency comes at
+the cost of ambiguity arising from possible interpretations of the AAF unsigned integer data 
+types. The choice to use an unsigned value for an AAF property may have been made to:</p>
+
+<ul>
+<li>indicate that a value should be non-negative, e.g. property <code>DisplayWidth</code>
+on class <code>DigitalImageDescriptor</code> with type <code>UInt32</code>;</li>
+<li>represent a bit field, such as the <code>data1</code> part of the <code>AUID</code>
+structure.</li>
+</ul>
+
+<p>Wherever possible, the annotations provided in this package are used to indicate what the
+interpretation of a Java value as an AAF value should be. In the case of unsigned values, a
+developer should be aware that different interpretations of the signed bit may be important.
+In the <code>DisplayWidth</code> example given above, if a value of 2<sup>32</sup> provides enough 
+head room for a scalar value then a value of 2<sup>31</sup>, the Java maximum integer value, is 
+also likely to be fine. However, if a particular application uses 2<sup>32</sup> as an 
+AAF-legal application-specific flag, then this value may cause problems in the Java domain if 
+left unchecked.</p>
+
+<p>For bit fields, Java is capable of representing AAF values bit-for-bit and has bitwise operators
+that treat the sign bit of a 2's complement number as if it has no special significance (using right-shift
+'<code>&gt;&gt;&gt;</code>'). Also, for any Java integer type, casting an unsigned value for a value 
+larger than Java's maximum value preserves its bit pattern. For example, 
+<code>UInt8</code> value <code>254</code> is represented 
+by bit pattern <code>11111110</code>. The Java casting expression <code>(byte)&nbsp;254</code> casts unsigned 
+value <code>254</code> to <code>-2</code> as a signed Java byte, with corresponding bit pattern 
+<code>11111110</code>. As long as care is taken over the use of bitwise operators, it is possible to store 
+AAF unsigned integers for bit fields or byte sequences as Java primitive types.</p>
+
+<p>It would be useful for future versions of the AAF specification to include an indication of the
+reason for using an unsigned data type for a particular property. This could take the form of 
+informative notes in the specification or be more explicitly specified as <em>facets</em> as
+defined in the <a href="http://www.w3.org/TR/xmlschema-2/#facets">XML Schema Datatypes 
+specification</a>.</p>
+  
+@see tv.amwa.maj.meta.TypeDefinitionInteger
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+  
+</body>
+</html>

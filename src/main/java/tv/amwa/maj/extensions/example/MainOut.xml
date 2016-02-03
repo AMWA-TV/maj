@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eg:SimpleDescription xmlns:eg="http://amwa.tv/maj/extensions/example">
+  <eg:Identifier>123/456/789/000</eg:Identifier>
+  <eg:Title>Test Description</eg:Title>
+  <eg:Creator>
+    <eg:Person>
+      <eg:Name>Richard Cartwright</eg:Name>
+      <eg:DOB>2003-10-11+0000</eg:DOB>
+    </eg:Person>
+  </eg:Creator>
+  <eg:DateAccepted>2011-01-13+0000</eg:DateAccepted>
+</eg:SimpleDescription>

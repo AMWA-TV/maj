@@ -1,0 +1,124 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.3 2008/02/08 12:57:17 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.3  2008/02/08 12:57:17  vizigoth
+ Comment linking fix.
+
+ Revision 1.2  2007/12/04 09:26:30  vizigoth
+ Minor comment updates.
+
+ Revision 1.1  2007/11/27 20:37:47  vizigoth
+ Edited javadoc comments to release standard.
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Specific exceptions thrown due to exceptional behaviour during the execution of method calls 
+from the MAJ API. These exceptions are loosely based on the result codes in the 
+<a href="http://aaf.sourceforge.net/">C-based AAF SDK</a>.</p>
+
+<h2 id="exceptionDesign">Design approach</h2>
+
+<p>This API is designed to provide AAF support using a design similar to that used by other Java APIs.
+The methods in the <a href="../iface/package-summary.html">MAJ API interfaces package</a> are designed
+to be similar to the methods in the C-based AAF SDK COM interfaces, as specified in file
+"<code>AAF.idl</code>". Rather than using <em>in</em> and <em>out</em> arguments 
+with methods returning a result code, as defined in the COM interfaces, the MAJ API treats all method 
+arguments as inputs:</p>
+
+<ul>
+ <li>In cases where the C-based AAF SDK would return result code 
+<code>AAFRESULT_SUCCESS</code>, a value is returned as the method output.</li>
+ <li>In all other cases, a Java exception is thrown.</li>
+</ul>
+
+<p>The following sections describe the approach taken to implementing result codes in a Java style
+in the MAJ API.</p>
+
+<h3 id="javaExceptionReuse">Reuse of Java exceptions</h3>
+
+<p>Wherever possible in this API, Java's built in exceptions are used, such
+as those defined in the {@link java.lang} package. For example, instead of an <code>AAF_NULL_PARAM</code>
+result code being returned when an error due to a null pointer occurs within the execution of a method, the
+MAJ API throws a {@link java.lang.NullPointerException} instead.</p> 
+
+<p>Where an AAF result code is a special kind of an existing built in Java exception, an exception is
+included in this package that extends the built in exception. For example, 
+{@link tv.amwa.maj.exception.BadLengthException}
+extends {@link java.lang.IllegalArgumentException} as it represents the unexpected state where a 
+given length value is illegal for a particular method call.</p>
+
+<h3 id="aafSpecificExceptions">AAF-specific exceptions</h3>
+
+<p>If no direct link to an Java built in exception can be identified, an AAF-specific 
+exception is provided in this package that either directly extends 
+{@link java.lang.Exception} or {@link java.lang.RuntimeException}. All such exceptions
+implement the {@link tv.amwa.maj.exception.MAJException} interface. The choice for whether the exceptions
+are runtime exceptions or not is made as follows:</p>
+
+<ul>
+ <li>Extends {@link java.lang.Exception}: Exceptions that an application using this API
+ should be expected to catch, e.g. to handle a case where searching for an item
+ finds nothing or a file operation fails. An application or API is required by the Java
+ compiler to provide code to catch these exceptions or throw them to a higher level API.</li>
+ 
+ <li>Extends {@link java.lang.RuntimeException}: Exceptions that occur during normal
+ operation of a Java Virtual Machine at runtime, such as a call to a method with an
+ illegal value. An application may catch these exceptions but is not required to do
+ so by the Java compiler. Failure to catch these exceptions may result in the termination
+ of the current thread.</li>
+</ul>
+
+<p>Many of these exceptions can be linked to AAF SDK result codes, as listed in
+"<code>AAFResult.h</code>". Where this is the case, the description of the exception
+includes the equivalent result code.</p>
+
+<h3 id="majSpecificExceptions">MAJ-specific exceptions</h3>
+
+<p>Certain exceptions have been introduced for behaviour specific to the MAJ API. These
+exceptions implement the {@link tv.amwa.maj.exception.NewForMAJ} interface.</p>
+
+<h3 id="separatePackage">Separate package for exceptions</h3>
+
+<p>A separate package has been used for the exceptions of this API as they are class implementations
+rather than interfaces. At the same time, these exceptions form a core part of the 
+implementation-independent interfaces in the <a href="../iface/package-summary.html">interfaces package</a>. 
+So that the interfaces can be distributed and managed separately from the implementations provided in this
+API, this separate exceptions package has been created.</p>
+
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+</body>
+</html>

@@ -1,0 +1,1959 @@
+/* 
+ **********************************************************************
+ *
+ * $Id: MediaEngine.java,v 1.8 2010/05/20 18:53:23 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+ */
+
+/*
+ * $Log: MediaEngine.java,v $
+ * Revision 1.8  2010/05/20 18:53:23  vizigoth
+ * Adding support for Avid extensions means checking whether a property is an extension property or baseline.
+ *
+ * Revision 1.7  2010/04/13 07:20:53  vizigoth
+ * Ensured that the makeByName methods are correctly called using generics. Thanks to Leo Simons for pointing this out.
+ *
+ * Revision 1.6  2010/03/19 16:18:23  vizigoth
+ * Fixed bug in hashcode generation for uniquely identified classes.
+ *
+ * Revision 1.5  2010/03/19 09:51:53  vizigoth
+ * Added mechanism to determine if a meta definition is in the AAF baseline.
+ *
+ * Revision 1.4  2010/03/01 15:15:39  vizigoth
+ * Added a generic table for weak reference resolution. Helps with auto generated weak reference targets.
+ *
+ * Revision 1.3  2010/02/10 23:53:23  vizigoth
+ * Provided easier ways to make classes with an option to be less strict about checking for required properties. Now checks for initialize_PropertyName_ static methods in implementing classes.
+ *
+ * Revision 1.2  2009/12/18 17:56:00  vizigoth
+ * Interim check in to help with some training activities. Early support for reading Preface objects from MXF files.
+ *
+ * Revision 1.1  2009/05/14 16:15:34  vizigoth
+ * Major refactor to remove dependency on JPA and introduce better interface and implementation separation. Removed all setPropertiesFromInterface and castFromInterface methods.
+ *
+ * Revision 1.1  2009/03/30 09:05:02  vizigoth
+ * Refactor to use SMPTE harmonized names and add early KLV file support.
+ *
+ */
+
+package tv.amwa.maj.industry;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.Vector;
+
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
+import tv.amwa.maj.constant.CommonConstants;
+import tv.amwa.maj.enumeration.TypeCategory;
+import tv.amwa.maj.exception.BadParameterException;
+import tv.amwa.maj.exception.IllegalPropertyException;
+import tv.amwa.maj.exception.PropertyNotPresentException;
+import tv.amwa.maj.iface.ClassDefinition;
+import tv.amwa.maj.iface.InterchangeObject;
+import tv.amwa.maj.iface.MetaDefinition;
+import tv.amwa.maj.iface.PropertyDefinition;
+import tv.amwa.maj.iface.PropertyValue;
+import tv.amwa.maj.iface.TypeDefinition;
+import tv.amwa.maj.iface.TypeDefinitionCharacter;
+import tv.amwa.maj.iface.TypeDefinitionEnumeration;
+import tv.amwa.maj.iface.TypeDefinitionExtendibleEnumeration;
+import tv.amwa.maj.iface.TypeDefinitionFixedArray;
+import tv.amwa.maj.iface.TypeDefinitionIndirect;
+import tv.amwa.maj.iface.TypeDefinitionInteger;
+import tv.amwa.maj.iface.TypeDefinitionOpaque;
+import tv.amwa.maj.iface.TypeDefinitionRecord;
+import tv.amwa.maj.iface.TypeDefinitionRename;
+import tv.amwa.maj.iface.TypeDefinitionSet;
+import tv.amwa.maj.iface.TypeDefinitionStream;
+import tv.amwa.maj.iface.TypeDefinitionString;
+import tv.amwa.maj.iface.TypeDefinitionStrongObjectReference;
+import tv.amwa.maj.iface.TypeDefinitionVariableArray;
+import tv.amwa.maj.iface.TypeDefinitionWeakObjectReference;
+import tv.amwa.maj.io.xml.XMLBuilder;
+import tv.amwa.maj.meta.TypeDefinitionRecordImpl;
+import tv.amwa.maj.record.AUID;
+import tv.amwa.maj.util.Utilities;
+
+/**
+ * <p>An engine to allow the creation and manipulation of {@linkplain tv.amwa.maj.industry.MetadataObject metadata
+ * objects}. The engine provides a means to be able to:</p>
+ * 
+ * <ul> 
+ *  <li>{@linkplain #make(Class, Object...) create and initialize} a metadata object with all its required properties;</li>
+ *  <li>{@linkplain #getPropertyValue(MetadataObject, String) get} and {@linkplain #setPropertyValue(MetadataObject, String, Object) set}
+ *  property values by name and with a variety of different value representations;</li>
+ *  <li>test if two objects are {@linkplain #equals(MetadataObject, Object) equal}, both shallow and 
+ *  {@linkplain #deepEquals(MetadataObject, Object) deep};</li>
+ *  <li>generate a {@linkplain #hashCode(MetadataObject) hash code};</li>
+ *  <li>create a {@linkplain #toString(MetadataObject) string representation};</li>
+ *  <li>check if an object is {@linkplain #isInitialized(MetadataObject) initialized} with values for all of its 
+ *  required properties.</li>
+ * </ul>
+ * 
+ * <p>The utilities of this class depend on the given metadata objects being instances of Java classes that provide
+ * {@link MediaClass &#64;MediaClass}, {@link MediaProperty &#64;MediaProperty} and associated annotations. To
+ * create an extension to the specified classes or to implement your own media data model, use these annotations.</p>
+ * 
+ * <p>To read, write or manipulate Advanced Authoring Format (AAF) data, including AAF, MXF or Reg-XML
+ * files, call {@link #initializeAAF()} first.</p>
+ * 
+ * <p>As an additional feature, an JPA object relational mapping file (<code>orm.xml</code>) can be generated
+ * with the {@link #generateORM(List, String, String)} method.</p>
+ * 
+ * <p>All the methods of this class are static.</p>
+ * 
+ * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ * 
+ * @see MediaClass
+ * @see MediaProperty
+ * @see ClassDefinition
+ *
+ */
+public final class MediaEngine 
+	implements
+		CommonConstants {
+
+	
+	private static boolean aafInitialized = false;
+	
+	private static Set<AUID> baselineIDs = new HashSet<AUID>();
+	
+	// Class only contains static methods
+	private MediaEngine() { }
+
+	// TODO test if this registers the baseline extendible enumerations OK?
+	/**
+	 * <p>Initializes the {@linkplain ClassDefinitionWarehouse class definition warehouse} with all
+	 * the class definitions of the {@linkplain AAFSpecifiedClasses AAF specified classes}. Call this
+	 * before any code that needs to create, read, write or otherwise manipulate AAF data, including AAF
+	 * files, MXF files and Reg XML documents.</p>
+	 * 
+	 * @see AAFSpecifiedClasses
+	 */
+	public final static void initializeAAF() {
+		
+		if (aafInitialized) return;
+		
+		long startTime = System.currentTimeMillis();
+		for ( Class<?> aafClass : AAFSpecifiedClasses.interchangeable )
+			ClassDefinitionWarehouse.forClass(aafClass);
+		for ( Class<?> aafClass : AAFSpecifiedClasses.meta )
+			ClassDefinitionWarehouse.forClass(aafClass);
+		
+		TypeDefinitionWarehouse.addTypesFromClass(TypeDefinitions.class);
+		
+		buildBaselineClasses();
+		
+		long endTime = System.currentTimeMillis();
+		aafInitialized = true;
+		
+		System.out.println("INFO: AAF classes registered in " + (endTime - startTime) + "ms.");
+	}
+	
+	private final static void buildBaselineClasses() {
+		
+		for ( Class<?> baselineClass : AAFSpecifiedClasses.interchangeable )
+			addBaselineIDs(ClassDefinitionWarehouse.forClass(baselineClass));
+		for ( Class<?> baselineClass : AAFSpecifiedClasses.abstractInterchangeable )
+			addBaselineIDs(ClassDefinitionWarehouse.forClass(baselineClass));
+		for ( Class<?> baselineClass : AAFSpecifiedClasses.meta )
+			addBaselineIDs(ClassDefinitionWarehouse.forClass(baselineClass));
+		for ( Class<?> baselineClass : AAFSpecifiedClasses.abstractMeta )
+			addBaselineIDs(ClassDefinitionWarehouse.forClass(baselineClass));
+		
+		addBaselineTypeDefinitions();
+	}
+	
+	private final static void addBaselineIDs(
+			ClassDefinition aafClass) {
+		
+		baselineIDs.add(aafClass.getAUID());
+		for ( PropertyDefinition property : aafClass.getPropertyDefinitions()) {
+			if (property.getNamespace().equals(AAF_XML_NAMESPACE))
+					baselineIDs.add(property.getAUID());
+		}
+
+	}
+	
+	private final static void addBaselineTypeDefinitions() {
+		
+		for ( Field field : tv.amwa.maj.industry.TypeDefinitions.class.getDeclaredFields() ) {
+			
+			try {
+				TypeDefinition type = (TypeDefinition) field.get(null);
+				baselineIDs.add(type.getAUID());
+			}
+			catch (IllegalAccessException iae) { }
+		}
+	}
+	
+	/**
+	 * <p>Determines if the given {@linkplain tv.amwa.maj.iface.ClassDefinition class}, 
+	 * {@linkplain tv.amwa.maj.iface.PropertyDefinition property} or 
+	 * {@linkplain TypeDefinition type} definition that is part of the AAF baseline set.
+	 * All baseline types are registered by calling {@link #initializeAAF()}.
+	 * If it is not part of the baseline set, the definition is considered as an 
+	 * <em>extension</em>.</p>
+	 * 
+	 * <p>Note that this method only returns a correct result after calling 
+	 * {@link #initializeAAF()}.</p>
+	 * 
+	 * @param metaDefinition Meta definition to test to see if it is part of the AAF baseline. 
+	 * @return Is the given definition part of the AAF baseline set (returns <code>true</code>)
+	 * or an extension (returns <code>false</code>)?
+	 * 
+	 * @see #isBaseline(AUID)
+	 * @see MetaDefinition
+	 */
+	public final static boolean isBaseline(
+			MetaDefinition metaDefinition) {
+		
+		try {
+			return baselineIDs.contains(metaDefinition.getAUID());
+		}
+		catch (NullPointerException npe) {
+			return false;
+		}
+	}
+	
+	/**
+	 * <p>Determines if the given identifier identifies a {@linkplain tv.amwa.maj.iface.ClassDefinition class}, 
+	 * {@linkplain tv.amwa.maj.iface.PropertyDefinition property} or 
+	 * {@linkplain TypeDefinition type} definition that is part of the AAF baseline set.
+	 * All baseline types are registered by calling {@link #initializeAAF()}.
+	 * If it is not part of the baseline set, the definition is considered as an 
+	 * <em>extension</em>.</p>
+	 * 
+	 * <p>Note that this method only returns a correct result after calling 
+	 * {@link #initializeAAF()}.</p>
+	 * 
+	 * @param metaDefinition Meta definition to test to see if it is part of the AAF baseline. 
+	 * @return Is the given definition part of the AAF baseline set (returns <code>true</code>)
+	 * or an extension (returns <code>false</code>)?
+	 * 
+	 * @see #isBaseline(MetaDefinition)
+	 * @see MetaDefinition
+	 */	
+	public final static boolean isBaseline(
+			AUID metaDefinitionID) {
+		
+		if (metaDefinitionID == null) return false;
+		return baselineIDs.contains(metaDefinitionID);
+	}
+	
+	/**
+	 * <p>Test to see if the first metadata object is equal to the second object, accepting equality of 
+	 * unique identifiers where available. Equality is defined by the following rules:</p>
+	 * 
+	 * <ul>
+	 *  <li>Two <code>null</code> values are always equal.</li>
+	 *  <li>If only one of the values is <code>null</code>, the values are not equal.</li>
+	 *  <li>For non-null values, the {@linkplain ClassDefinition class definitions} of the values 
+	 *  are the same or one is an ancestor of the other in the class hierarchy.</li>
+	 *  <li>For non-null values and for values that both have a unique identifier property, the value of that 
+	 *  identifier property is equal in both objects.</li>
+	 *  <li>For non-null values with no unique identifiers:
+	 *  <ul>
+	 *   <li>every required property must be equal
+	 *  according to the property value's {@linkplain Object#equals(Object) equals} method;</li>
+	 *   <li>The same optional property values must be present and of equal value according to the
+	 *   property value's {@linkplain Object#equals(Object) equals} method.</li>
+	 *  </ul></li>
+	 * </ul>
+	 * 
+	 * <p>For {@linkplain MediaClass media classes}, developer's can use this method to provide an 
+	 * equality test in their own classes without having to write their own code. An example of how 
+	 * to do this is:</p>
+	 * 
+	 * <pre>
+	 *     &#64;Override
+	 *     public boolean equals(
+	 *             Object o) {
+	 *     
+	 *         return MetaEngine.equals(this, o);
+	 *     }
+	 * </pre>
+	 * 
+	 * <p>The equality test of this method is compatible with the media engines {@linkplain #hashCode()
+	 * hash code} method.</p>
+	 * 
+	 * @param first First object to test the equality of.
+	 * @param second Second object to test the equality of.
+	 * 
+	 * @return Are the two objects of equals value?
+	 * 
+	 * @see #deepEquals(MetadataObject, MetadataObject)
+	 * @see Object#equals(Object)
+	 */
+	public final static boolean equals(
+			MetadataObject first,
+			Object second) {
+		
+		if (!basicEqualityChecks(first, second)) return false;
+		
+		ClassDefinition firstClass = ClassDefinitionWarehouse.forClass(first.getClass());
+		ClassDefinition secondClass = ClassDefinitionWarehouse.forClass(second.getClass());
+		
+		// If uniquely identified, test for the equality of the identifiers
+		if (firstClass.isUniquelyIdentified() && secondClass.isUniquelyIdentified()) {
+			return firstClass.getUniqueIdentifierValue(first).getValue().equals(
+					secondClass.getUniqueIdentifierValue((MetadataObject) second).getValue());
+		}
+		
+		return propertyByPropertyEquality(firstClass, first, secondClass, (MetadataObject) second);
+		
+	}
+	
+	private final static boolean basicEqualityChecks(
+			MetadataObject first,
+			Object second) {
+		
+		if (first == null) return (second == null);
+		
+		// If here, first is not null
+		if (second == null) return false;
+		
+		// If the two objects are the same, they are equal!
+		if (first == second) return true;
+		
+		// Comparison is based on comparing metadata object properties
+		if (!(second instanceof MetadataObject)) return false;
+		
+		// One of the objects must by in the type hierarchy of the other
+		// TODO should this be done with MAJ metadata rather than using Java
+		if ((!first.getClass().isInstance(second)) && (!second.getClass().isInstance(first)))
+			return false;
+		
+		return true;
+	}
+	
+	private final static boolean propertyByPropertyEquality(
+			ClassDefinition firstClass,
+			MetadataObject first,
+			ClassDefinition secondClass,
+			MetadataObject second) {
+		
+		SortedMap<? extends PropertyDefinition, ? extends PropertyValue> firstValues =
+			firstClass.getProperties(first);
+		SortedMap<? extends PropertyDefinition, ? extends PropertyValue> secondValues =
+			secondClass.getProperties((MetadataObject) second);
+		
+		// The sets must contain the same number of present properties to be equals
+		if (firstValues.size() != secondValues.size()) return false;
+		
+		// Iterate through each property checking for that all the same properties are present
+		for ( PropertyDefinition firstProperty : firstValues.keySet() ) {
+			
+			// All properties present in the first must be present in the second.
+			if (!secondValues.containsKey(firstProperty)) return false;
+		}
+		
+		// Iterate through each property checking for equality
+		for ( PropertyDefinition firstProperty : firstValues.keySet() ) {
+			
+			PropertyValue firstValue = firstValues.get(firstProperty);
+			PropertyValue secondValue = secondValues.get(firstProperty);
+			if (!firstValue.getValue().equals(secondValue.getValue())) return false;
+		}
+		
+		return true;
+	}
+
+	/**
+	 * <p>Test to see if a metadata object is equal to another object by comparing the properties
+	 * of each object. Equality is defined by the following rules:</p>
+	 * 
+	 * <ul>
+	 *  <li>Two <code>null</code> values are always equal.</li>
+	 *  <li>If only one of the values is <code>null</code>, the values are not equal.</li>
+	 *  <li>For non-null values, the {@linkplain ClassDefinition class definitions} of the values 
+	 *  are the same or one is an ancestor of the other in the class hierarchy.</li>
+	 *  <li>For non-null values:
+	 *  <ul>
+	 *   <li>every required property must be equal
+	 *  according to the property value's {@linkplain Object#equals(Object) equals} method;</li>
+	 *   <li>The same optional property values must be present and of equal value according to the
+	 *   property value's {@linkplain Object#equals(Object) equals} method.</li>
+	 *  </ul></li>
+	 * </ul>
+	 * 
+	 * <p>Note that deep equals is only one level deep. Any comparison of child values that have
+	 * unique identifiers will use those identifiers.</p>
+	 * 
+	 * <p>For {@linkplain MediaClass media classes}, developer's can use this method to provide an 
+	 * equality test in their own classes without having to write their own code. An example of how 
+	 * to do this is:</p>
+	 * 
+	 * <pre>
+	 *     public boolean deepEquals(
+	 *             Object o) {
+	 *     
+	 *         return MetaEngine.equals(this, o);
+	 *     }
+	 * </pre>
+	 * 
+	 * @param first First object to test the equality of.
+	 * @param second Second object to test the equality of.
+	 * @return Are the two objects of equals value?
+	 * 
+	 * @see #equals(MetadataObject, Object)
+	 * @see Object#equals(Object)
+	 */
+	public final static boolean deepEquals(
+			MetadataObject first,
+			Object second) {
+
+		if (!basicEqualityChecks(first, second)) return false;
+
+		ClassDefinition firstClass = ClassDefinitionWarehouse.forClass(first.getClass());
+		ClassDefinition secondClass = ClassDefinitionWarehouse.forClass(second.getClass());
+
+		return propertyByPropertyEquality(firstClass, first, secondClass, (MetadataObject) second);
+	} 
+	
+	/**
+	 * <p>Create a hash code value for a metadata object using its present properties.</p>
+	 * 
+	 * <p>If two objects have equal value, they should have the same hash code. Objects that
+	 * are not equal values should have different hash codes but may occasionally clash.</p>
+	 * 
+	 * <p>Calling this method as a delegate within a {@linkplain MetadataObject metadata object's} 
+	 * {@linkplain Object#hashCode() hashCode()} method, overriding the default, will 
+	 * enable efficient storage and reference to metadata objects in {@linkplain HashSet hash
+	 * sets} and {@linkplain HashMap hash maps}. By using the media metadata associated with
+	 * a class to create the hash code, a developer does not have to implement their own
+	 * hash code calculation. An example of using this method is:</p>
+	 * 
+	 * <pre>
+	 *     &#64;Override
+	 *     public int hashCode() {
+	 *     
+	 *         MetaEngine.hashCode(this);
+	 *     }
+	 * </pre>
+	 * 
+	 * <p>Note that <code>null</code> values produce a&nbsp;<code>0</code> hash code rather than throwing an 
+	 * exception.
+	 * 
+	 * @param value Hashcode value for a metadata object using its present properties.
+	 * 
+	 * @return Hashcode value for a metadata object using its present properties.
+	 * 
+	 * @see Object#hashCode()
+	 */
+	public final static int hashCode(
+			MetadataObject value) {
+	
+		if (value == null) return 0;
+		
+		ClassDefinition metaClass = ClassDefinitionWarehouse.forClass(value.getClass());
+		
+		if (metaClass.isUniquelyIdentified()) {
+			PropertyDefinition uniqueIdentifierProperty = metaClass.getUniqueIdentifierProperty();
+			PropertyValue valueUniqueID = uniqueIdentifierProperty.getPropertyValue(value);
+			return valueUniqueID.getValue().hashCode();
+		}
+		
+		SortedMap<? extends PropertyDefinition, ? extends PropertyValue> propertyValues = 
+			metaClass.getProperties(value);
+		
+		int hashCode = 0;
+		for ( PropertyValue propertyValue : propertyValues.values() )
+			hashCode ^= propertyValue.getValue().hashCode();
+		
+		return hashCode;
+	}
+	
+	/* TODO
+	public final static MetadataObject deepClone(
+			MetadataObject metadataObject) {
+		
+		return null;
+	} */
+	
+	/**
+	 * <p>Returns the value of the named property from the given metadata object.</p>
+	 * 
+	 * <p>The type of the value that is returned will depend on the data type of the 
+	 * property. See the <a href="package-summary.html#typeMappingTable">type mapping table</a>
+	 * in the package documentation to determine the expected type of the return
+	 * value.</p>
+	 * 
+	 * @param <T> Default Java type for the property to retrieve.
+	 * @param target Metadata object instance to retrieve a property value from.
+	 * @param propertyName Name of the property value to retrieve.
+	 * @return Unwrapped value of the property.
+	 * 
+	 * @throws NullPointerException Cannot get a property value from a <code>null</code> value.
+	 * @throws IllegalPropertyException The given property name does not match a property
+	 * defined for the class of the given metadata object.
+	 * @throws ClassCastException Class cast exception when trying to cast the
+	 * returned value to the required type.
+	 * 
+	 * @see #getWrappedPropertyValue(MetadataObject, String)
+	 * @see #setPropertyValue(MetadataObject, String, Object)
+	 * @see PropertyDefinition#getPropertyValue(MetadataObject)
+	 */
+	@SuppressWarnings("unchecked")
+	public final static <T> T getPropertyValue(
+			MetadataObject target,
+			String propertyName) 
+		throws NullPointerException,
+			IllegalPropertyException,
+			ClassCastException {
+		
+		try {
+			return (T) getWrappedPropertyValue(target, propertyName).getValue();
+		}
+		catch (ClassCastException cce) {
+			throw new ClassCastException("Class cast exception when trying to convert property " + propertyName + 
+					" to a value of the required type: " + cce.getMessage());
+		}
+	}
+	
+	/**
+	 * <p>Returns the value of the named property from the given metadata object, wrapped
+	 * up with its type in a {@linkplain PropertyValue property value}.</p>
+	 * 
+	 * @param target Metadata object instance to retrieve a property value from.
+	 * @param propertyName Name of the property value to retrieve.
+	 * @return Wrapped value of the property.
+	 * 
+	 * @throws NullPointerException Cannot get a property value from a <code>null</code> value.
+	 * @throws IllegalPropertyException Cannot get a property value from the given 
+	 * metadata object using a <code>null</code> value.
+	 * 
+	 * @see #getPropertyValue(MetadataObject, String)
+	 * @see #setPropertyValue(MetadataObject, String, PropertyValue)
+	 */
+	public final static PropertyValue getWrappedPropertyValue(
+			MetadataObject target,
+			String propertyName) 
+		throws NullPointerException,
+			IllegalPropertyException {
+
+		if (target == null)
+			throw new NullPointerException("Cannot get a property value from a null value.");
+		
+		if (propertyName == null)
+			throw new IllegalPropertyException("Cannot get a property value from the given metadata object using a null value.");
+		
+		ClassDefinition targetClass = ClassDefinitionWarehouse.forClass(target.getClass());
+		try {
+			PropertyDefinition targetProperty = targetClass.lookupPropertyDefinition(propertyName);
+			return targetProperty.getPropertyValue(target);
+		}
+		catch (BadParameterException bpe) {
+			throw new IllegalPropertyException("The given property name does not match that of a known property for class " + 
+					targetClass.getName() + ".");
+		}
+	}
+
+	/**
+	 * <p>Returns the {@linkplain ClassDefinition class definition} that defines the type of
+	 * the given metadata object.</p>
+	 * 
+	 * @param target Object to retrieve the class definition for.
+	 * @return Class definition defining the type of the given object.
+	 * 
+	 * @throws NullPointerException Cannot retrieve a class definition for a <code>null</code>
+	 * value.
+	 * @throws IllegalArgumentException The given object is not annotated as a media class.
+	 * 
+	 * @see #getPropertyDefinition(MetadataObject, String)
+	 * @see MediaClass
+	 * @see ClassDefinition
+	 * @see InterchangeObject#getObjectClass()
+	 */
+	public final static ClassDefinition getClassDefinition(
+			MetadataObject target) 
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		return ClassDefinitionWarehouse.forClass(target.getClass());
+	}
+	
+	/**
+	 * <p>Returns the {@linkplain PropertyDefinition property definition} of the named property from given metadata
+	 * object.</p>
+	 * 
+	 * @param target Object to retrieve the property definition for.
+	 * @param propertyName Name of the property.
+	 * @return Property definition of the given name in the class defining the type of the given metadata object.
+	 * 
+	 * @throws NullPointerException Cannot retrieve a property definition from a <code>null</code> object or
+	 * with a <code>null</code> name.
+	 * @throws IllegalPropertyException The given metadata object does not have a property of the given name.
+	 * @throws IllegalArgumentException The given metadata object is not annotated as a media class.
+	 * 
+	 * @see #getClassDefinition(MetadataObject)
+	 * @see ClassDefinition#lookupPropertyDefinition(String)
+	 * @see MediaProperty
+	 * @see PropertyDefinition
+	 * @see #getPropertyValue(MetadataObject, String)
+	 */
+	public final static PropertyDefinition getPropertyDefinition(
+			MetadataObject target,
+			String propertyName) 
+		throws NullPointerException,
+			IllegalPropertyException,
+			IllegalArgumentException {
+		
+		if (target == null)
+			throw new NullPointerException("Cannot get a property definition from a null value.");
+		
+		if (propertyName == null)
+			throw new IllegalPropertyException("Cannot get a property definition from the given metadata object using a null value.");
+		
+		ClassDefinition targetClass = ClassDefinitionWarehouse.forClass(target.getClass());
+		try {
+			return targetClass.lookupPropertyDefinition(propertyName);
+		}
+		catch (BadParameterException bpe) {
+			throw new IllegalPropertyException("The given property name does not match that of a known property for class " + 
+					targetClass.getName() + ".");
+		}
+	}
+
+	/**
+	 * <p>Sets the value of the named property from the given metadata object to the given value.
+	 * The type of the value to set must match that of the {@linkplain PropertyDefinition#getTypeDefinition() property's 
+	 * type definition} as shown in the <a href="package-summary.html#typeMappingTable">type mapping table</a>.</p>
+	 * 
+	 * <p>All values will be set through the relevant set method of the metadata object, meaning that any semantic
+	 * checks implemented in that set method will be carried out.</p>
+	 * 
+	 * <p>Note that it is possible to set a <code>null</code> value to omit an optional property. Setting a 
+	 * <code>null</code> value for a required property will result in an exception.</p>
+	 * 
+	 * @param target Metadata object to set the value of a property for.
+	 * @param propertyName Name of the property value to set.
+	 * @param propertyValue Value to set for the property.
+	 * 
+	 * @throws NullPointerException Cannot set a property value on a <code>null</code> value or find a property
+	 * using a <code>null</code> name.
+	 * @throws IllegalPropertyException The given metadata object does not have a property of the given name.
+	 * @throws IllegalArgumentException An error occurred when trying to convert the value to the required type
+	 * or when calling the underlying classes set method.
+	 * 
+	 * @see #setPropertyValue(MetadataObject, String, PropertyValue)
+	 * @see #getPropertyValue(MetadataObject, String)
+	 * @see #getPropertyDefinition(MetadataObject, String)
+	 * @see PropertyDefinition#setPropertyValue(MetadataObject, PropertyValue)
+	 * @see TypeDefinition#createValue(Object)
+	 */
+	public final static void setPropertyValue(
+			MetadataObject target,
+			String propertyName,
+			Object propertyValue) 
+		throws NullPointerException,
+		 	IllegalPropertyException,
+		 	IllegalArgumentException {
+		
+		PropertyDefinition targetDefinition = getPropertyDefinition(target, propertyName);
+		targetDefinition.setPropertyValue(
+				target, 
+				targetDefinition.getTypeDefinition().createValue(propertyValue));
+	}
+	
+	/**
+	 * <p>Sets the value of the named property from the given metadata object to the given 
+	 * wrapped {@linkplain PropertyValue property value}.</p>
+	 * 
+	 * <p>All values will be set through the relevant set method of the metadata object, meaning that any semantic
+	 * checks implemented in that set method will be carried out.</p>
+	 * 
+	 * <p>Note that it is possible to set a <code>null</code> value to omit an optional property. Setting a 
+	 * <code>null</code> value for a required property will result in an exception.</p>
+	 * 
+	 * @param target Metadata object to set the value of a property for.
+	 * @param propertyName Name of the property value to set.
+	 * @param propertyValue Value to set for the property.
+	 * 
+	 * @throws NullPointerException Cannot set a property value on a <code>null</code> value or find a property
+	 * using a <code>null</code> name.
+	 * @throws IllegalPropertyException The given metadata object does not have a property of the given name.
+	 * @throws IllegalArgumentException An error occurred when trying to convert the value to the required type
+	 * or when calling the underlying classes set method.
+	 * 
+	 * @see #setPropertyValue(MetadataObject, String, Object)
+	 * @see #getWrappedPropertyValue(MetadataObject, String)
+	 * @see #getPropertyDefinition(MetadataObject, String)
+	 * @see PropertyDefinition#setPropertyValue(MetadataObject, PropertyValue)
+	 * @see TypeDefinition#createValue(Object)
+	 */
+	public final static void setPropertyValue(
+			MetadataObject target,
+			String propertyName,
+			PropertyValue propertyValue) 
+		throws NullPointerException,
+			IllegalPropertyException,
+			IllegalArgumentException {
+		
+		PropertyDefinition targetDefinition = getPropertyDefinition(target, propertyName);
+		targetDefinition.setPropertyValue(target, propertyValue); 
+	}
+
+	/**
+	 * <p>Checks if the given metadata object is initialized. An initialized object has non-null values for
+	 * all of its required properties that can be retrieved without causing an exception.</p>
+	 * 
+	 * <p>If an object is initialized, it should be safe to write it out to serialize it to a file, persistent store
+	 * or over a network connection. It is recommended that this method is called before any such serialization.</p>
+	 * 
+	 * <p>This method requires initialized required arrays or sets to have at least one element.</p> 
+	 * 
+	 * <p>Any object instantiated using the {@link ClassDefinition#createInstance()} method is likely to 
+	 * start in an uninitialized state. Most instances created with one of the 
+	 * {@linkplain #make(Class, Object...) make methods} of the media engine will required the 
+	 * caller to have provided enough information to safely initialize the object, with the 
+	 * exception of arrays and lists.</p>
+	 * 
+	 * @param unknownState Metadata object that may or may not be initialized.
+	 * @return Is the given metadata object initialized?
+	 * 
+	 * @throws NullPointerException Cannot check if an object is initialized using a <code>null</code> value.
+	 * @throws IllegalArgumentException The given metadata object is not of a type annotated as a media class.
+	 * 
+	 * @see #make(Class, Object...)
+	 * @see #makeByName(String, String, Object...)
+	 * @see PropertyNotPresentException
+	 */
+	public final static boolean isInitialized(
+			MetadataObject unknownState) 
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		// TODO
+		
+		return false;
+	}
+
+	/**
+	 * <p>Create a string representation of the given metadata object. The string representation
+	 * will be in an XML format similar to the one used for SMPTE Reg-XML. The symbol names of
+	 * the object's defining class and the properties will be used as XML element names.</p>
+	 * 
+	 * <p>Developer's can use this as a delegate method in a method that overrides
+	 * {@link Object#toString() the default to string method} in any class. This means they can 
+	 * get a XML form of a value at any time and this is often useful in debugging. An example of how 
+	 * to do this is:</p>
+	 * 
+	 * <pre>
+	 *     &#64;Override
+	 *     public String toString() {
+	 *     
+	 *         return MetaEngine.toString(this);
+	 *     }
+	 * </pre>
+	 * 
+	 * @param metadataOject Metadata object to create a string representation of.
+	 * @return String representation of the given metadata object.
+	 * 
+	 * @see Object#toString()
+	 * @see XMLBuilder#toXML(MetadataObject)
+	 */
+	public final static String toString(
+			MetadataObject metadataOject) {
+
+		return XMLBuilder.toXML(metadataOject);
+	}
+
+	/**
+	 * <p>Create new instances of metadata objects using the definition of its primary interface
+	 * and its initial property values. Property values must be provided for all required properties 
+	 * and may also be provided for optional values. This is with the exception of required
+	 * sets and arrays that are initialized to empty and will require at least one element to be
+	 * added to become {@linkplain #isInitialized(MetadataObject) initialized}.</p>
+	 * 
+	 * <p>The type of object to create is provided by its defining Java interface or class. The
+	 * property values are provided by a list of property identifier and value pairs, where each identifier
+	 * is followed by its value. The property identifier can by a name, {@linkplain AUID} or 
+	 * {@linkplain PropertyDefinition property definition}. The values are either instances of the
+	 * {@link PropertyValue} interface or Java values compatible with the type definition, as
+	 * defined in the <a href="package-summary.html#typeMappingTable">type mapping table</a>.</p>
+	 * 
+	 * <p>Here is an example of how to use this method:</p>
+	 * 
+	 * <pre>
+	 *     	TimelineTrack videoTrack = MediaEngine.make(
+	 *          TimelineTrack.class,
+	 *          "TrackID", 1, 
+	 *          "EditRate", "25/1", 
+	 *          "Origin", 0l,           
+	 *          "TrackSegment", videoSequence);
+	 * </pre>
+	 * 
+	 * <p>In the example, an instance of the timeline track type is created. Its track identifier is initialized
+	 * to&nbsp;1, edit rate to&nbsp;25/1 using a string representation of the value, origin to&nbsp;0 and track to a variable
+	 * called <code>videoSequence</code>.</p>
+	 * 
+	 * @param <T> Type of value to make and return.
+	 * @param type Java class representing the type to return.
+	 * @param strict Should the method be strict about required properties or use defaults provided by
+	 * the implementation?
+	 * @param properties List of pairs of property identifiers and property values to use to initialize the
+	 * newly made value.
+	 * @return New instance of the specified type initialized with the given property values.
+	 * 
+	 * @throws NullPointerException Cannot make a new value for a null class specification.
+	 * @throws IllegalArgumentException The list of properties must be a list of property identifier
+	 * and property value pairs, ie. divisible by&nbsp;2, or a summary of other errors encountered during
+	 * object creation.
+	 * 
+	 * @see #make(Class, Object...)
+	 * @see #makeByName(String, String, boolean, Object...)
+	 * @see #makeByName(String, String, Object...)
+	 * @see #makeAAF(String, Object...)
+	 * @see ClassDefinition#createInstance()
+	 */
+	@SuppressWarnings("unchecked")
+	public final static <T extends MetadataObject> T make(
+			Class<T> type,
+			boolean strict,
+			Object... properties) 
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		if (type == null)
+			throw new NullPointerException("Cannot make a new value for a null class specification.");
+		
+		ClassDefinition typeClass = ClassDefinitionWarehouse.forClass(type);
+		MetadataObject instance = typeClass.createInstance();
+		
+		if (instance == null)
+			throw new IllegalArgumentException("Unable to create an instance of class " + typeClass.getName() + ".");
+		
+		if ((properties.length % 2) != 0 )
+			throw new IllegalArgumentException("The list of properties and their values must be a list of pairs.");
+		
+		List<Exception> exceptions = new Vector<Exception>();
+		Set<PropertyDefinition> valuesSet = new HashSet<PropertyDefinition>();
+		
+		if (instance instanceof InterchangeObject) {
+			try {
+				valuesSet.add(typeClass.lookupPropertyDefinition("ObjectClass"));
+			}
+			catch (Exception e) { }
+		}
+		
+		for ( int u = 0 ; u < properties.length ; u += 2 ) {
+			
+			Object property = properties[u];
+			Object value = properties[u + 1];
+			
+			if (property == null) {
+				exceptions.add(new NullPointerException("Cannot set a property indentified by a null value."));
+				continue;
+			}
+			
+			PropertyDefinition propertyDefinition = null;
+			
+			try {
+				if (property instanceof PropertyDefinition) {
+					propertyDefinition = (PropertyDefinition) property;
+					typeClass.lookupPropertyDefinition(propertyDefinition.getAUID());
+				}
+				else if (property instanceof String) {
+					try {
+						propertyDefinition = typeClass.lookupPropertyDefinition(
+								tv.amwa.maj.embeddable.AUIDImpl.parseFactory((String) property));
+					}
+					catch (Exception e) {
+						propertyDefinition = typeClass.lookupPropertyDefinition((String) property);
+					}
+				}
+				else if (property instanceof AUID) {
+					propertyDefinition = typeClass.lookupPropertyDefinition((AUID) property);
+				}
+			}
+			catch (Exception e) {
+				exceptions.add(new Exception(e.getClass().getName() + " thrown when finding property definition " + property.toString() + ".",
+						e));
+				continue;
+			}
+			
+			if (propertyDefinition == null) {
+				exceptions.add(new IllegalPropertyException("Class " + typeClass.getName() + 
+						" does not define property " + property.toString() + "."));
+				continue;
+			}
+			
+			valuesSet.add(propertyDefinition);
+			
+			try {
+				propertyDefinition.setPropertyValue(
+					instance, 
+					propertyDefinition.getTypeDefinition().createValue(value));
+			}
+			catch (Exception e) {
+				exceptions.add(new Exception(e.getClass().getName() + " thrown when setting property " + propertyDefinition.getName() + ".",
+						e));
+			}
+		}
+		
+		for (PropertyDefinition requiredTest : typeClass.getAllPropertyDefinitions()) 
+			if (requiredTest.getIsOptional() == false)
+				if (!valuesSet.contains(requiredTest)) {
+					
+					if (!strict) {
+						try {
+							Method initMethod = 
+								requiredTest.getMemberOf().getJavaImplementation().getMethod(
+									"initialize" + requiredTest.getName());
+							
+							Object value = initMethod.invoke(null);
+							requiredTest.setPropertyValue(
+									instance, 
+									requiredTest.getTypeDefinition().createValue(value));
+						}
+						catch (Exception e) { 
+							// TODO consider removing this output - included for development
+							System.err.println("Info: Possible unsafe setting of property " + 
+									requiredTest.getMemberOf().getName() + "." + requiredTest.getName() + 
+									" due to a " + e.getClass().getName() + ": " + e.getMessage());
+							// Not being strict, so allow to continue
+						}
+						
+						continue;
+					}
+					
+					switch (requiredTest.getTypeDefinition().getTypeCategory()) {
+					
+					case Set: // Expect developer to add in, even if required and non-empty properties
+					case FixedArray:
+					case VariableArray:
+						break;
+					default:
+						exceptions.add(new Exception("Required property " + requiredTest.getName() + " has not been provided with a value."));
+					}
+				}
+					
+		
+		if (exceptions.size() > 0) {
+			StringBuffer exceptionDescription = new StringBuffer();
+			if (exceptions.size() == 1)
+				exceptionDescription.append("Error setting property values for class ");
+			else
+				exceptionDescription.append("Errors setting property values for class ");
+			exceptionDescription.append(typeClass.getName());
+			exceptionDescription.append(':');
+			
+			for (Exception e : exceptions ) {
+				exceptionDescription.append('\n');
+				exceptionDescription.append(" - ");
+				exceptionDescription.append(e.getMessage());
+				
+				if (e.getCause() == null) continue;
+				
+				exceptionDescription.append(' ');
+				exceptionDescription.append(e.getCause().getMessage());
+			}
+			
+			throw new IllegalArgumentException(exceptionDescription.toString());
+		}
+		
+		if (instance instanceof WeakReferenceTarget)
+			WeakReference.registerTarget((WeakReferenceTarget) instance);
+		
+		return (T) instance;
+	}
+	
+	/**
+	 * <p>Create new instances of metadata objects using the definition of its primary interface
+	 * and its initial property values without being strict about required properties. See the
+	 * description of {@link #make(Class, boolean, Object...)} for more details.</p>
+	 * 
+	 * @param <T> Type of value to make and return.
+	 * @param type Java class representing the type to return.
+	 * @param properties List of pairs of property identifiers and property values to use to initialize the
+	 * newly made value.
+	 * @return New instance of the specified type initialized with the given property values.
+	 * 
+	 * @throws NullPointerException Cannot make a new value for a null class specification.
+	 * @throws IllegalArgumentException The list of properties must be a list of property identifier
+	 * and property value pairs, ie. divisible by&nbsp;2, or a summary of other errors encountered during
+	 * object creation.
+	 * 
+	 * @see #make(Class, boolean, Object...)
+	 * @see #makeByName(String, String, Object...)
+	 * @see ClassDefinition#createInstance()
+	 */
+	public final static <T extends MetadataObject> T make(
+			Class<T> type,
+			Object... properties) 
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		return make(type, false, properties);
+	}
+
+	/**
+	 * <p>Create new instances of metadata objects using a fully qualified XML namespace name for
+	 * the type and its initial property values. Property values must be provided for all required properties 
+	 * and may also be provided for optional values. This is with the exception of required
+	 * sets and arrays that are initialized to empty and will require at least one element to be
+	 * added to become {@linkplain #isInitialized(MetadataObject) initialized}.</p>
+	 * 
+	 * <p>The type of object to create is provided by its defining Java interface or class. The
+	 * property values are provided by a list of property identifier and value pairs, where each identifier
+	 * is followed by its value. The property identifier can by a name, {@linkplain AUID} or 
+	 * {@linkplain PropertyDefinition property definition}. The values are either instances of the
+	 * {@link PropertyValue} interface or Java values compatible with the type definition, as
+	 * defined in the <a href="package-summary.html#typeMappingTable">type mapping table</a>.</p>
+	 * 
+	 * <p>Here is an example of how to use this method:</p>
+	 * 
+	 * <pre>
+	 *     	TimelineTrack videoTrack = MediaEngine.make(
+	 *          "http://www.smpte-ra.org/schemas/2001-2/2007/aaf", "TimelineTrack",
+	 *          "TrackID", 1, 
+	 *          "EditRate", "25/1", 
+	 *          "Origin", 0l,           
+	 *          "TrackSegment", videoSequence);
+	 * </pre>
+	 * 
+	 * <p>In the example, an instance of the timeline track type is created. Its track identifier is initialized
+	 * to&nbsp;1, edit rate to&nbsp;25/1 using a string representation of the value, origin to&nbsp;0 and track to a variable
+	 * called <code>videoSequence</code>. Note that the default AAF XML namespace is set as static string
+	 * {@link CommonConstants#AAF_XML_NAMESPACE}.</p>
+	 * 
+	 * @param <T> Type of value to make and return.
+	 * @param namespace Namespace in which the type for the new instance is defined.
+	 * @param typeName Name of the type of instance to create within the given namespace.
+	 * @param strict Should the method be strict about required properties or use defaults provided by
+	 * the implementation?
+	 * @param properties List of pairs of property identifiers and property values to use to initialize the
+	 * newly made value.
+	 * @return New instance of the specified type initialized with the given property values.
+	 * 
+	 * @throws NullPointerException Cannot make a new value for a null class specification.
+	 * @throws IllegalArgumentException The list of properties must be a list of property identifier
+	 * and property value pairs, ie. divisible by&nbsp;2, or a summary of other errors encountered during
+	 * object creation.
+	 * 
+	 * @see #make(Class, Object...)
+	 * @see ClassDefinition#createInstance()
+	 * @see MediaClass#namespace()
+	 * @see CommonConstants#AAF_XML_NAMESPACE
+	 */
+	@SuppressWarnings("unchecked")
+	public final static <T extends MetadataObject> T makeByName(
+			String namespace,
+			String typeName,
+			boolean strict,
+			Object... properties)
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		if (namespace == null)
+			throw new NullPointerException("Cannot make a new instance with a null namespace.");
+		
+		if (typeName == null)
+			throw new NullPointerException("Cannot make a new instance from a null name.");		
+		
+		String fullName = "{" + namespace + "}" + typeName;
+		
+		return make(
+				(Class<T>) ClassDefinitionWarehouse.forName(fullName).getJavaImplementation(),
+				properties);
+	}
+	
+	/**
+	 * <p>Create new instances of metadata objects using a fully qualified XML namespace name for
+	 * the type and its initial property values, and also without being strict about required properties.
+	 * For more details about this method, see the documentation for the {@link #makeByName(String, String, boolean, Object...)}
+	 * method.</p>
+	 * 
+	 * @param <T> Type of value to make and return.
+	 * @param namespace Namespace in which the type for the new instance is defined.
+	 * @param typeName Name of the type of instance to create within the given namespace.
+	 * @param properties List of pairs of property identifiers and property values to use to initialize the
+	 * newly made value.
+	 * @return New instance of the specified type initialized with the given property values.
+	 * 
+	 * @throws NullPointerException Cannot make a new value for a null class specification.
+	 * @throws IllegalArgumentException The list of properties must be a list of property identifier
+	 * and property value pairs, ie. divisible by&nbsp;2, or a summary of other errors encountered during
+	 * object creation.
+	 * 
+	 * @see #make(Class, Object...)
+	 * @see #make(Class, boolean, Object...)
+	 * @see #makeByName(String, String, boolean, Object...)
+	 * @see #makeAAF(String, Object...)
+	 * @see ClassDefinition#createInstance()
+	 * @see MediaClass#namespace()
+	 * @see CommonConstants#AAF_XML_NAMESPACE
+	 */
+	public final static <T extends MetadataObject> T makeByName(
+			String namespace,
+			String typeName,
+			Object... properties)
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		return MediaEngine.<T>makeByName(namespace, typeName, false, properties);
+
+	}
+	
+	/**
+	 * <p>Create new instances of AAF baseline metadata objects using the name of
+	 * the type and its initial property values, and also without being strict about required properties.</p>
+	 * 
+	 * <p>For more details about this method, see the documentation for the {@link #makeByName(String, String, boolean, Object...)}
+	 * method. This method is the same as calling that method with the namespace set to the 
+	 * {@linkplain CommonConstants#AAF_XML_NAMESPACE AAF namespace}.</p>
+	 * 
+	 * @param <T> Type of value to make and return.
+	 * @param typeName Name of the AAF baseline type of instance to create.
+	 * @param properties List of pairs of property identifiers and property values to use to initialize the
+	 * newly made value.
+	 * @return New instance of the specified type initialized with the given property values.
+	 * 
+	 * @throws NullPointerException Cannot make a new value for a null class specification.
+	 * @throws IllegalArgumentException The list of properties must be a list of property identifier
+	 * and property value pairs, ie. divisible by&nbsp;2, or a summary of other errors encountered during
+	 * object creation.
+	 * 
+	 * @see #make(Class, Object...)
+	 * @see #make(Class, boolean, Object...)
+	 * @see #makeByName(String, String, boolean, Object...)
+	 * @see #makeByName(String, String, Object...)
+	 * @see ClassDefinition#createInstance()
+	 * @see MediaClass#namespace()
+	 * @see CommonConstants#AAF_XML_NAMESPACE
+	 */
+	public final static <T extends MetadataObject> T makeAAF(
+			String typeName,
+			Object... properties)
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		initializeAAF();
+		return MediaEngine.<T>makeByName(CommonConstants.AAF_XML_NAMESPACE, typeName, false, properties);
+
+	}
+	
+	private final static String ORM_NAMESPACE = "http://java.sun.com/xml/ns/persistence/orm";
+	private final static String ORM_PREFIX = "orm";
+
+	/**
+	 * <p>Generate an object relational mapping 
+	 * <a href="http://en.wikipedia.org/wiki/Java_Persistence_API">Java Persistence API</a>
+	 * configuration file (<code>orm.xml</code>) from the given collection of classes and store 
+	 * it in the given file. Any embeddable objects or other utility class mappings will be 
+	 * included in the mapping if they are required.</p>
+	 * 
+	 * <p>The mapping file allows the given
+	 * {@linkplain MediaEntity media entities} to be persisted to a relational database
+	 * using a JPA implementation, such as <a href="http://openjpa.apache.org/">Open JPA</a>
+	 * or <a href="https://www.hibernate.org/">Hibernate</a>. By using this method, a developer
+	 * only needs to use one set of annotations to turn a class into both:</p>
+	 * 
+	 * <ul>
+	 *  <li>a media class that benefits from the facilities of this
+	 * media engine;</li>
+	 *  <li>a JPA persistent entity, also known as an <em>EJB3 entity bean</em>.</li>
+	 * </ul>
+	 *  
+	 * <p>Another benefit of using media annotations rather than JPA annotations is that
+	 * this code base can be compiled in Java SE without the need for JPA libraries to 
+	 * be present.</p> 
+	 * 
+	 * @param mediaClassList Collection of classes to create object relational mappings for.
+	 * @param schemaName Name of the database schema in which the relational tables
+	 * should be created.
+	 * @param fileName Name and path of the object relational mapping file to create.
+	 * @return Was an object-relational mapping file generated successfully?
+	 * 
+	 * @throws NullPointerException Cannot generate an object relational mapping if any
+	 * of the input values or classes is <code>null</code>.
+	 * @throws IllegalArgumentException One or more of the given classes is not
+	 * annotated as a media class.
+	 */
+	public final static boolean generateORM(
+			Collection<Class<? extends MediaEntity>> mediaClassList,
+			String schemaName,
+			String fileName) 
+		throws NullPointerException,
+			IllegalArgumentException {
+		
+		for ( Class<? extends MediaEntity> mediaEntity : mediaClassList )
+			if (mediaEntity == null)
+				throw new NullPointerException("Cannot generate an object relational mapping when one or more of the classes is a null value.");
+		
+		if (fileName == null)
+			throw new NullPointerException("The given output filename is null.");
+		
+		// TODO work out what to do when schema name is null?
+		
+		DocumentFragment root = XMLBuilder.createDocumentFragment();
+		
+		Set<TypeDefinitionRecordImpl> embeddables = new HashSet<TypeDefinitionRecordImpl>();
+		
+		Element entityMappings = XMLBuilder.createChild(root, ORM_NAMESPACE, ORM_PREFIX, "entity-mappings");
+		
+		Element attributes, attribute;
+		
+		boolean weakReferenceRequired = false;
+		boolean weakReferenceVectorRequired = false;
+		boolean streamRequired = false;
+		
+		for ( Class<? extends MetadataObject> mediaClass : mediaClassList ) {
+			
+			ClassDefinition classDefinition = ClassDefinitionWarehouse.forClass(mediaClass);
+			Element entity = XMLBuilder.createChild(entityMappings, ORM_NAMESPACE, ORM_PREFIX, 
+					classDefinition.isConcrete() ? "entity" : "mapped-superclass");
+				
+			XMLBuilder.setAttribute(entity, ORM_NAMESPACE, ORM_PREFIX, "class", 
+					classDefinition.getJavaImplementation().getCanonicalName());
+			XMLBuilder.setAttribute(entity, ORM_NAMESPACE, ORM_PREFIX, "access", "FIELD");
+			
+			if (classDefinition.isConcrete()) {
+				Element table = XMLBuilder.createChild(entity, ORM_NAMESPACE, ORM_PREFIX, "table");
+				XMLBuilder.setAttribute(table, ORM_NAMESPACE, ORM_PREFIX, "name", classDefinition.getSymbol());
+			
+				if (schemaName != null)
+					XMLBuilder.setAttribute(table, ORM_NAMESPACE, ORM_PREFIX, "schema", schemaName);
+			}
+
+			attributes = XMLBuilder.createChild(entity, ORM_NAMESPACE, ORM_PREFIX, "attributes");
+			
+			if ((classDefinition.isRoot()) && 
+					(MediaEntity.class.isAssignableFrom(classDefinition.getJavaImplementation()))) 
+				appendTopLevelAttributes(attributes, classDefinition);
+			
+			for ( PropertyDefinition property : classDefinition.getPropertyDefinitions() ) {
+				
+				TypeDefinition type = property.getTypeDefinition();
+				appendAttribute(attributes, property, type, embeddables);
+				
+				switch (type.getTypeCategory()) {
+				
+				case VariableArray:
+					if (((TypeDefinitionVariableArray) type).getType().getTypeCategory() == TypeCategory.WeakObjRef) {
+						weakReferenceRequired = true;
+						weakReferenceVectorRequired = true;
+					}
+					break;
+				case WeakObjRef:
+					weakReferenceRequired = true;
+					break;
+				case Set:
+					if (((TypeDefinitionSet) type).getElementType().getTypeCategory() == TypeCategory.WeakObjRef)
+						weakReferenceRequired = true;
+					break;
+				case Stream:
+					if (TypeDefinitions.Stream.equals(type))
+						streamRequired = true;
+				default:
+					break;
+				}
+			}
+			
+			/* if (listSortRequired) {
+				Element entityListener = XMLBuilder.createChild(entity, ORM_NAMESPACE, ORM_PREFIX, "entity-listener");
+				XMLBuilder.setAttribute(entityListener, ORM_NAMESPACE, ORM_PREFIX, "class", MediaEngine.class.getCanonicalName());
+				
+				Element prePersist = XMLBuilder.createChild(entityListener, ORM_NAMESPACE, ORM_PREFIX, "pre-persist");
+				XMLBuilder.setAttribute(prePersist, ORM_NAMESPACE, ORM_PREFIX, "name", "setListIndexValues");
+			} */
+		}
+		
+		if (weakReferenceVectorRequired) {
+			
+			DocumentFragment weakFragmentVector = entityMappings.getOwnerDocument().createDocumentFragment();
+			
+			WeakReferenceVector.generateWeakReferenceORM(weakFragmentVector, ORM_NAMESPACE, ORM_PREFIX);
+			entityMappings.insertBefore(weakFragmentVector, entityMappings.getFirstChild());
+		}
+		
+		if (weakReferenceRequired) {
+			
+			DocumentFragment weakFragment = entityMappings.getOwnerDocument().createDocumentFragment();
+			
+			WeakReference.generateWeakReferenceORM(weakFragment, ORM_NAMESPACE, ORM_PREFIX);
+			entityMappings.insertBefore(weakFragment, entityMappings.getFirstChild());
+		}
+		
+		if (streamRequired) {
+			
+			DocumentFragment streamFragment = entityMappings.getOwnerDocument().createDocumentFragment();
+			
+			MemoryResidentStream.generateStreamORM(streamFragment, ORM_NAMESPACE, ORM_PREFIX);
+			entityMappings.insertBefore(streamFragment, entityMappings.getFirstChild());
+		}
+		
+		DocumentFragment embeddableFragment = 
+			entityMappings.getOwnerDocument().createDocumentFragment();
+		
+		for ( TypeDefinitionRecordImpl embeddableType : embeddables ) {
+			
+			try {
+				Method embeddableORM = embeddableType.getImplementation().getMethod(
+						"generateEmbeddableORM", Node.class, String.class, String.class);
+				embeddableORM.invoke(null, embeddableFragment, ORM_NAMESPACE, ORM_PREFIX);
+				continue;
+			}
+			catch (Exception e) { /* If it fails, map what you can */ }
+			
+			Element embeddable = XMLBuilder.createChild(embeddableFragment, 
+					ORM_NAMESPACE, ORM_PREFIX, "embeddable");
+			
+			Class<?> implementingClass = embeddableType.getImplementation();
+			XMLBuilder.setAttribute(embeddable, 
+					ORM_NAMESPACE, ORM_PREFIX, "class", implementingClass.getCanonicalName());
+			XMLBuilder.setAttribute(embeddable, 
+					ORM_NAMESPACE, ORM_PREFIX, "access-type", "PROPERTY");
+			
+			attributes = XMLBuilder.createChild(embeddable, 
+					ORM_NAMESPACE, ORM_PREFIX, "attributes");
+			
+			for ( int u = 0 ; u < embeddableType.getCount() ; u++ ) {
+				
+				String memberName = embeddableType.getMemberName(u);
+				TypeDefinition memberType = embeddableType.getMemberType(u);
+
+				switch (memberType.getTypeCategory()) {
+				
+				case FixedArray:
+				case Int:
+					attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+					XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", memberName);
+					break;
+				case Enum:
+					attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+					XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", memberName);
+					XMLBuilder.appendElement(attribute, ORM_NAMESPACE, ORM_PREFIX, "enumerated", "STRING");
+					break;
+				case Record: // TODO fix this for package IDs
+					// Now we're in trouble!
+				default:
+					break;
+				}
+			}
+		}
+		
+		entityMappings.insertBefore(embeddableFragment, entityMappings.getFirstChild());
+		
+		System.out.println(XMLBuilder.transformNodeToString(root));
+		
+		return false;
+	}
+	
+	private final static void appendAttribute(
+			Element attributes,
+			PropertyDefinition property,
+			TypeDefinition type,
+			Set<TypeDefinitionRecordImpl> embeddables) {
+		
+		Element attribute, column, attributeOverride, joinTable, inverseJoinColumn;
+		
+		switch (type.getTypeCategory()) {
+		
+		// Anything that supports the basic mapping type, which includes serializable things
+		case FixedArray: 
+		case Indirect: 
+		case Int:
+		case String:
+			attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+			XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", 
+				Utilities.lowerFirstLetter(property.getName()));
+			
+			column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "column");
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", 
+					Boolean.toString(property.getIsOptional()));
+			//XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "unqiue", 
+			//		Boolean.toString(property.getIsUniqueIdentifier()));
+			break;
+			
+		case Enum:
+			attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+			XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", 
+					Utilities.lowerFirstLetter(property.getName()));
+			XMLBuilder.appendElement(attribute, ORM_NAMESPACE, ORM_PREFIX, "enumerated", "STRING");
+			break;
+			
+		case Record:
+			TypeDefinitionRecordImpl recordType = (TypeDefinitionRecordImpl) type;
+			embeddables.add(recordType);
+			
+			try {
+				Method embbededORM = recordType.getImplementation().getMethod(
+						"generateEmbeddedORM", Node.class, String.class, String.class, String.class);
+				embbededORM.invoke(null, attributes, property.getSymbol(), ORM_NAMESPACE, ORM_PREFIX);
+				break;
+			}
+			catch (Exception e) { /* If methods not found, do a default mapping. */ }
+			
+			attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "embedded");
+			XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+			for ( String memberName : recordType.getMemberNames() ) {
+				attributeOverride = XMLBuilder.createChild(attribute, 
+						ORM_NAMESPACE, ORM_PREFIX, "attribute-override");
+				XMLBuilder.setAttribute(attributeOverride, 
+						ORM_NAMESPACE, ORM_PREFIX, "name", memberName);
+				column = XMLBuilder.createChild(attributeOverride, 
+						ORM_NAMESPACE, ORM_PREFIX, "column");
+				XMLBuilder.setAttribute(column, 
+						ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol() + "_" + memberName);
+			}
+			break;
+			
+		case Rename:
+			appendAttribute(attributes, property, ((TypeDefinitionRename) type).getBaseType(), embeddables);
+			break;
+			
+		case ExtEnum:
+			appendAttribute(attributes, property, TypeDefinitions.AUID, embeddables);
+			break;
+			
+		case Set:
+			TypeDefinitionSet setType = (TypeDefinitionSet) type;
+			
+			switch (setType.getElementType().getTypeCategory()) {
+			
+			case StrongObjRef:
+				attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "one-to-many");
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", Utilities.lowerFirstLetter(property.getName()));
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "targetEntity", 
+						((TypeDefinitionStrongObjectReference) 
+								setType.getElementType()).getObjectType().getJavaImplementation().getCanonicalName());
+				
+				XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "cascade-all");
+				
+				joinTable = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "join-table");
+				XMLBuilder.setAttribute(joinTable, ORM_NAMESPACE, ORM_PREFIX, "name", 
+						property.getMemberOf().getName() + "_" + property.getName());
+				
+				column = XMLBuilder.createChild(joinTable, ORM_NAMESPACE, ORM_PREFIX, "join-column");
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getMemberOf().getSymbol());
+				
+				inverseJoinColumn = XMLBuilder.createChild(joinTable, ORM_NAMESPACE, ORM_PREFIX, "inverse-join-column");
+				XMLBuilder.setAttribute(inverseJoinColumn, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+				break;
+			
+			case WeakObjRef:
+				attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "one-to-one");
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", Utilities.lowerFirstLetter(property.getName()));
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "targetEntity", 
+						WeakReferenceSet.class.getCanonicalName());
+				
+				XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "cascade-all");
+			
+				column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "join-column");
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getMemberOf().getSymbol());
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", 
+						Boolean.toString(property.getIsOptional()));
+				break;
+				
+			default: // Use default serialization
+				attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", 
+						Utilities.lowerFirstLetter(property.getName()));
+			
+				column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "column");
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", 
+					Boolean.toString(property.getIsOptional()));
+				break;
+			}
+			break;
+			
+		case Stream:
+			if (TypeDefinitions.DataValue.equals(type)) {
+				attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", 
+							Utilities.lowerFirstLetter(property.getName()));
+			
+				column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "column");
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", 
+						Boolean.toString(property.getIsOptional()));
+			
+				XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "lob");
+				break;
+			}
+			
+			attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "one-to-one");
+			XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", 
+					Utilities.lowerFirstLetter(property.getName()));
+			XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "targetEntity", 
+					MemoryResidentStream.class.getCanonicalName());
+			XMLBuilder.setAttribute(attribute,
+					ORM_NAMESPACE, ORM_PREFIX, "optional", Boolean.toString(property.getIsOptional()));
+
+			XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "cascade-all");
+		
+			column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "join-column");
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", Boolean.toString(property.getIsOptional()));			
+			break;
+			
+		case StrongObjRef:
+			TypeDefinitionStrongObjectReference referenceType = (TypeDefinitionStrongObjectReference) type;
+			attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "one-to-one");
+			XMLBuilder.setAttribute(attribute, 
+					ORM_NAMESPACE, ORM_PREFIX, "name", Utilities.lowerFirstLetter(property.getName()));
+			XMLBuilder.setAttribute(attribute, 
+					ORM_NAMESPACE, ORM_PREFIX, "targetEntity",
+					referenceType.getObjectType().getJavaImplementation().getCanonicalName());
+			XMLBuilder.setAttribute(attribute,
+					ORM_NAMESPACE, ORM_PREFIX, "optional", Boolean.toString(property.getIsOptional()));
+			
+			XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "cascade-all");
+			
+			column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "join-column");
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", Boolean.toString(property.getIsOptional()));
+			break;
+			
+		case WeakObjRef:
+			attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "one-to-one");
+			XMLBuilder.setAttribute(attribute, 
+					ORM_NAMESPACE, ORM_PREFIX, "name", Utilities.lowerFirstLetter(property.getName()));
+			XMLBuilder.setAttribute(attribute, 
+					ORM_NAMESPACE, ORM_PREFIX, "targetEntity",
+					WeakReference.class.getCanonicalName());
+			XMLBuilder.setAttribute(attribute,
+					ORM_NAMESPACE, ORM_PREFIX, "optional", Boolean.toString(property.getIsOptional()));
+
+			XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "cascade-all");
+			
+			column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "join-column");
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+			XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", Boolean.toString(property.getIsOptional()));
+			break;
+			
+		case VariableArray:
+			TypeDefinitionVariableArray variableArrayType = (TypeDefinitionVariableArray) type;
+			
+			switch (variableArrayType.getType().getTypeCategory()) {
+			
+			case StrongObjRef:
+				attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "one-to-many");
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", Utilities.lowerFirstLetter(property.getName()));
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "targetEntity", 
+						((TypeDefinitionStrongObjectReference) 
+								variableArrayType.getType()).getObjectType().getJavaImplementation().getCanonicalName());
+				
+				XMLBuilder.appendElement(attribute, ORM_NAMESPACE, ORM_PREFIX, "order-by", "persistentIndex ASC");
+				
+				XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "cascade-all");
+				
+				joinTable = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "join-table");
+				XMLBuilder.setAttribute(joinTable, ORM_NAMESPACE, ORM_PREFIX, "name", 
+						property.getMemberOf().getName() + "_" + property.getName());
+				
+				column = XMLBuilder.createChild(joinTable, ORM_NAMESPACE, ORM_PREFIX, "join-column");
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getMemberOf().getSymbol());
+				
+				inverseJoinColumn = XMLBuilder.createChild(joinTable, ORM_NAMESPACE, ORM_PREFIX, "inverse-join-column");
+				XMLBuilder.setAttribute(inverseJoinColumn, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+				break;
+				
+			case WeakObjRef:
+				attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "one-to-one");
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", Utilities.lowerFirstLetter(property.getName()));
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "targetEntity", 
+						WeakReferenceVector.class.getCanonicalName());
+	
+				XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "cascade-all");
+
+				column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "join-column");
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getMemberOf().getSymbol());
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", 
+						Boolean.toString(property.getIsOptional()));
+				break;
+				
+			default: // Use default serialization
+				attribute = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+				XMLBuilder.setAttribute(attribute, ORM_NAMESPACE, ORM_PREFIX, "name", 
+						Utilities.lowerFirstLetter(property.getName()));
+		
+				column = XMLBuilder.createChild(attribute, ORM_NAMESPACE, ORM_PREFIX, "column");
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", property.getSymbol());
+				XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", 
+				Boolean.toString(property.getIsOptional()));
+				break;
+			}
+				
+		case Opaque:
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private final static void appendTopLevelAttributes(
+			Element attributes,
+			ClassDefinition topClass) {
+		
+		Element id = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "id");
+		XMLBuilder.setAttribute(id, ORM_NAMESPACE, ORM_PREFIX, "name", "persistentID");
+		
+		XMLBuilder.createChild(id, ORM_NAMESPACE, ORM_PREFIX, "generated-id");
+		
+		Element column = XMLBuilder.createChild(id, ORM_NAMESPACE, ORM_PREFIX, "column");
+		XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", "PersistentID");
+		
+		Element basic = XMLBuilder.createChild(attributes, ORM_NAMESPACE, ORM_PREFIX, "basic");
+		XMLBuilder.setAttribute(basic, ORM_NAMESPACE, ORM_PREFIX, "name", "persistentIndex");
+		
+		column = XMLBuilder.createChild(basic, ORM_NAMESPACE, ORM_PREFIX, "column");
+		XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "name", "PersistentIndex");
+		XMLBuilder.setAttribute(column, ORM_NAMESPACE, ORM_PREFIX, "nullable", "false");
+	}
+	
+	
+	/**
+	 * <p>Generates an XML meta dictionary description from the given set of 
+	 * baseline class definitions and extension class definitions. Each class
+	 * definition is searched to find the required property definitions and 
+	 * type definitions. Only required meta definitions for the given classes
+	 * are included.</p>
+	 * 
+	 * <p>The extension element will only include meta definitions that are not
+	 * already covered in the baseline set. The include baseline property 
+	 * will include the both the baseline and extensions in the result if 
+	 * set to <code>true</code> (AAF-style) or only the extensions if
+	 * set to <code>false</code> (MXF- and Registered Data XML-style).</p>
+	 * 
+	 * <p>Symbol space and description properties are optional for baseline and
+	 * extension sections. If no extensions are present, extension identification
+	 * and extension symbol space parameters are not required.</p> 
+	 * 
+	 * @param baselineClasses Collection of baseline classes.
+	 * @param extensionClasses Collection of extensions.
+	 * @param baselineIdentification Identification for the baseline meta dictionary.
+	 * @param baselineSymbolSpace Namespace for the symbols defined in the baseline meta dictionary.
+	 * @param baselinePreferredPrefix An optional preferred prefix to use for elements in the baseline
+	 * symbol space.
+	 * @param baselineDescription An optional description of the baseline meta dictionary.
+	 * @param extensionIdentification Extension classes to use to generate the extension section of the
+	 * meta dictionary.
+	 * @param extensionSymbolSpace Namespace for the symbols defined in the extension meta dictionary.
+	 * @param extensionPreferredPrefix An optional preferred prefix to use for elements in the extension
+	 * symbol space.
+	 * @param extensionDescription An optional description of the extension meta dictionary.
+	 * @param includeBaseline Should the baseline be assumed or included in the meta dictionary?
+	 * @return XML representation of a meta dictionary for the given classes.
+	 * 
+	 * @throws NullPointerException One or more of the required properties is <code>null</code>.
+	 * 
+	 * @see CommonConstants#AAF_METADICT_NAMESPACE
+	 * @see AAFSpecifiedClasses
+	 */
+	public final static String generateMetaDictionary(
+			Collection<ClassDefinition> baselineClasses,
+			Collection<ClassDefinition> extensionClasses,
+			AUID baselineIdentification,
+			String baselineSymbolSpace,
+			String baselinePreferredPrefix,
+			String baselineDescription,
+			AUID extensionIdentification,
+			String extensionSymbolSpace,
+			String extensionPreferredPrefix,
+			String extensionDescription,
+			boolean includeBaseline) 
+		throws NullPointerException {
+		
+		if (baselineClasses == null)
+			throw new NullPointerException("Cannot generate a meta dictionary from a null collection of basline classes.");
+		
+		if (baselineIdentification == null)
+			throw new NullPointerException("Cannot generate a meta dictionary with a null baseline identification.");
+		
+		if (baselineSymbolSpace == null)
+			throw new NullPointerException("Cannot generate a meta dictionary with a null symbol space.");
+		
+		if (extensionClasses != null) {
+			if (extensionIdentification == null)
+				throw new NullPointerException("Cannot generate a meta dictionary with extensions with a null extension identification.");
+			if (extensionSymbolSpace == null)
+				throw new NullPointerException("Cannot generate a meta dictionary with extensions with a null extension symbol space.");
+		}
+		
+		List<ClassDefinition> classList = new Vector<ClassDefinition>();
+		List<PropertyDefinition> propertyList = new Vector<PropertyDefinition>();
+		
+		List<TypeDefinitionInteger> integerList = new Vector<TypeDefinitionInteger>();
+		List<TypeDefinitionEnumeration> enumerationList = new Vector<TypeDefinitionEnumeration>();
+		List<TypeDefinitionCharacter> characterList = new Vector<TypeDefinitionCharacter>();
+		List<TypeDefinitionString> stringList = new Vector<TypeDefinitionString>();
+		List<TypeDefinitionExtendibleEnumeration> extEnumList = new Vector<TypeDefinitionExtendibleEnumeration>();
+		List<TypeDefinitionIndirect> indirectList = new Vector<TypeDefinitionIndirect>();
+		List<TypeDefinitionOpaque> opaqueList = new Vector<TypeDefinitionOpaque>();
+		List<TypeDefinitionStream> streamList = new Vector<TypeDefinitionStream>();
+		List<TypeDefinitionWeakObjectReference> weakRefList = new Vector<TypeDefinitionWeakObjectReference>();
+		List<TypeDefinitionStrongObjectReference> strongRefList = new Vector<TypeDefinitionStrongObjectReference>();
+		List<TypeDefinitionRecord> recordList = new Vector<TypeDefinitionRecord>();
+		List<TypeDefinitionFixedArray> fixedArrayList = new Vector<TypeDefinitionFixedArray>();
+		List<TypeDefinitionSet> setList = new Vector<TypeDefinitionSet>();
+		List<TypeDefinitionVariableArray> variableArrayList = new Vector<TypeDefinitionVariableArray>();
+		List<TypeDefinitionRename> renameList = new Vector<TypeDefinitionRename>();
+		
+		Set<MetaDefinition> baseline = new HashSet<MetaDefinition>();
+		
+		for ( ClassDefinition classItem : baselineClasses ) 
+			addPropertiesAndTypes(classItem, baseline, classList, propertyList);
+		
+		boolean allTypesChecked = false;
+		while (allTypesChecked == false) {
+
+			Set<MetaDefinition> newForBaseline = new HashSet<MetaDefinition>();
+			allTypesChecked = true;
+			
+			for ( MetaDefinition metaDefinition : baseline ) {
+
+				if (!(metaDefinition instanceof TypeDefinition)) continue;
+				TypeDefinition typeDefinition = (TypeDefinition) metaDefinition;
+
+				switch (typeDefinition.getTypeCategory()) {
+
+				case Int:
+					if (!integerList.contains(typeDefinition))
+						integerList.add((TypeDefinitionInteger) typeDefinition);
+					break;
+				case Enum:
+					if (!enumerationList.contains(typeDefinition))
+						enumerationList.add((TypeDefinitionEnumeration) typeDefinition);
+					
+					TypeDefinitionEnumeration enumerationType = (TypeDefinitionEnumeration) typeDefinition;
+					if (!baseline.contains(enumerationType.getElementType())) {
+						newForBaseline.add(enumerationType.getElementType());
+						allTypesChecked = false;
+					}
+					break;
+				case Character:
+					if (!characterList.contains(typeDefinition))
+						characterList.add((TypeDefinitionCharacter) typeDefinition);
+					break;
+				case String:
+					if (!stringList.contains(typeDefinition))
+						stringList.add((TypeDefinitionString) typeDefinition);
+					
+					TypeDefinitionString stringType = (TypeDefinitionString) typeDefinition;
+					if (!baseline.contains(stringType.getElementType())) {
+						newForBaseline.add(stringType.getElementType());
+						allTypesChecked = false;
+					}
+					break;
+				case ExtEnum:
+					if (!extEnumList.contains(typeDefinition))
+						extEnumList.add((TypeDefinitionExtendibleEnumeration) typeDefinition);
+					break;
+				case Indirect:
+					if (!indirectList.contains(typeDefinition))
+						indirectList.add((TypeDefinitionIndirect) typeDefinition);
+					break;
+				case Opaque:
+					if (!opaqueList.contains(typeDefinition))
+						opaqueList.add((TypeDefinitionOpaque) typeDefinition);
+					break;
+				case Stream:
+					if (!streamList.contains(typeDefinition))
+						streamList.add((TypeDefinitionStream) typeDefinition);
+					break;
+				case Record:
+					if (!recordList.contains(typeDefinition))
+						recordList.add((TypeDefinitionRecord) typeDefinition);
+					
+					TypeDefinitionRecord recordType = (TypeDefinitionRecord) typeDefinition;
+					for ( int u = 0 ; u < recordType.getCount() ; u++ )
+						if (!baseline.contains(recordType.getMemberType(u))) {
+							newForBaseline.add(recordType.getMemberType(u));
+							allTypesChecked = false;
+						}
+					break;
+				case WeakObjRef:
+					if (!weakRefList.contains(typeDefinition))
+						weakRefList.add((TypeDefinitionWeakObjectReference) typeDefinition);
+					
+					TypeDefinitionWeakObjectReference weakRefType = (TypeDefinitionWeakObjectReference) typeDefinition;
+					if (!classList.contains(weakRefType.getObjectType())) {
+						addPropertiesAndTypes(weakRefType.getObjectType(), newForBaseline, classList, propertyList);
+						allTypesChecked = false;
+					}
+					break;
+				case StrongObjRef:
+					if (!strongRefList.contains(typeDefinition))
+						strongRefList.add((TypeDefinitionStrongObjectReference) typeDefinition);
+					
+					TypeDefinitionStrongObjectReference strongRefType = (TypeDefinitionStrongObjectReference) typeDefinition;
+					if (!classList.contains(strongRefType.getObjectType())) {
+						addPropertiesAndTypes(strongRefType.getObjectType(), newForBaseline, classList, propertyList);
+						allTypesChecked = false;
+					}
+					break;
+				case FixedArray:
+					if (!fixedArrayList.contains(typeDefinition))
+						fixedArrayList.add((TypeDefinitionFixedArray) typeDefinition);
+					
+					TypeDefinitionFixedArray fixedArrayType = (TypeDefinitionFixedArray) typeDefinition;
+					if (!baseline.contains(fixedArrayType.getType())) {
+						newForBaseline.add(fixedArrayType.getType());
+						allTypesChecked = false;
+					}
+					break;
+				case Set:
+					if (!setList.contains(typeDefinition))
+						setList.add((TypeDefinitionSet) typeDefinition);
+					
+					TypeDefinitionSet setType = (TypeDefinitionSet) typeDefinition;
+					if (!baseline.contains(setType.getElementType())) {
+						newForBaseline.add(setType.getElementType());
+						allTypesChecked = false;
+					}
+					break;
+				case VariableArray:
+					if (!variableArrayList.contains(typeDefinition))
+						variableArrayList.add((TypeDefinitionVariableArray) typeDefinition);
+					
+					TypeDefinitionVariableArray variableArrayType = (TypeDefinitionVariableArray) typeDefinition;
+					if (!baseline.contains(variableArrayType.getType())) {
+						newForBaseline.add(variableArrayType.getType());
+						allTypesChecked = false;
+					}
+					break;
+				case Rename:
+					if (!renameList.contains(typeDefinition))
+						renameList.add((TypeDefinitionRename) typeDefinition);
+					
+					TypeDefinitionRename renameType = (TypeDefinitionRename) typeDefinition;
+					if (!baseline.contains(renameType.getBaseType())) {
+						newForBaseline.add(renameType.getBaseType());
+						allTypesChecked = false;
+					}
+					break;
+				default:
+					break;
+				}
+			} // For all meta definitions in the baseline.
+			
+			baseline.addAll(newForBaseline);
+		} // While allTypesChecked == false
+		 
+		DocumentFragment metadictFragment = XMLBuilder.createDocumentFragment();
+		Element dataModel = XMLBuilder.createChild(metadictFragment, AAF_METADICT_NAMESPACE, 
+				AAF_METADICT_PREFIX, "DataModel");
+		
+		Element baselineElement = XMLBuilder.createChild(dataModel, AAF_METADICT_NAMESPACE, 
+				AAF_METADICT_PREFIX, "Baseline");
+		
+		XMLBuilder.appendElement(baselineElement, AAF_METADICT_NAMESPACE, AAF_METADICT_PREFIX, 
+				"Identification", baselineIdentification.toString());
+		XMLBuilder.appendElement(baselineElement, AAF_METADICT_NAMESPACE, AAF_METADICT_PREFIX, 
+				"Symbolspace", baselineSymbolSpace);
+		if (baselinePreferredPrefix != null)
+			XMLBuilder.appendElement(baselineElement, AAF_METADICT_NAMESPACE, AAF_METADICT_PREFIX, 
+					"PreferredPrefix", baselinePreferredPrefix);
+		if (baselineDescription != null)
+			XMLBuilder.appendElement(baselineElement, AAF_METADICT_NAMESPACE, AAF_METADICT_PREFIX, 
+					"Description", baselineDescription);
+		
+		Element definitions = XMLBuilder.createChild(baselineElement, AAF_METADICT_NAMESPACE, 
+				AAF_METADICT_PREFIX, "Definitions");
+		
+		for ( ClassDefinition classItem : classList )
+			classItem.appendMetadictXML(definitions);
+		
+		for ( PropertyDefinition propertyItem : propertyList )
+			propertyItem.appendMetadictXML(definitions);
+		
+		for ( TypeDefinitionInteger integerType : integerList )
+			integerType.appendMetadictXML(definitions);
+		for ( TypeDefinitionEnumeration enumerationType : enumerationList )
+			enumerationType.appendMetadictXML(definitions);
+		for ( TypeDefinitionCharacter characterType : characterList )
+			characterType.appendMetadictXML(definitions);
+		for ( TypeDefinitionString stringType : stringList )
+			stringType.appendMetadictXML(definitions);
+		for ( TypeDefinitionExtendibleEnumeration extEnumType : extEnumList ) 
+			extEnumType.appendMetadictXML(definitions);
+		for ( TypeDefinitionIndirect indirectType : indirectList )
+			indirectType.appendMetadictXML(definitions);
+		for ( TypeDefinitionOpaque opaqueType : opaqueList )
+			opaqueType.appendMetadictXML(definitions);
+		for ( TypeDefinitionStream streamType : streamList )
+			streamType.appendMetadictXML(definitions);
+		for ( TypeDefinitionFixedArray fixedArrayType : fixedArrayList )
+			fixedArrayType.appendMetadictXML(definitions);
+		for ( TypeDefinitionRecord recordType : recordList )
+			recordType.appendMetadictXML(definitions);
+		for ( TypeDefinitionWeakObjectReference weakRefType : weakRefList )
+			weakRefType.appendMetadictXML(definitions);
+		for ( TypeDefinitionStrongObjectReference strongRefType : strongRefList)
+			strongRefType.appendMetadictXML(definitions);
+		for ( TypeDefinitionSet setType : setList )
+			setType.appendMetadictXML(definitions);
+		for ( TypeDefinitionVariableArray variableArrayType : variableArrayList )
+			variableArrayType.appendMetadictXML(definitions);
+		for ( TypeDefinitionRename renameType : renameList )
+			renameType.appendMetadictXML(definitions);
+		
+		// TODO generation of extensions
+		
+		return XMLBuilder.transformNodeToString(metadictFragment);
+	}
+			
+	private final static void addPropertiesAndTypes(
+			ClassDefinition classItem,
+			Set<MetaDefinition> baseline,
+			List<ClassDefinition> classList,
+			List<PropertyDefinition> propertyList) {
+		
+		baseline.add(classItem);
+		
+		if (!classList.contains(classItem)) {
+			
+			if (!classItem.isRoot()) 
+				addPropertiesAndTypes(classItem.getParent(), baseline, classList, propertyList);
+			
+			classList.add(classItem);
+		
+			for ( PropertyDefinition propertyItem : classItem.getPropertyDefinitions() ) {
+			
+				baseline.add(propertyItem);
+				if (!propertyList.contains(propertyItem))
+					propertyList.add(propertyItem);
+				TypeDefinition propertyType = propertyItem.getTypeDefinition();
+				baseline.add(propertyType);
+			}
+		}
+	}
+	
+		// TODO set and array methods!
+}

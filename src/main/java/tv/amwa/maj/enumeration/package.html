@@ -1,0 +1,165 @@
+<!-- 
+ *********************************************************************
+ *
+ * $Id: package.html,v 1.4 2011/02/14 22:32:58 vizigoth Exp $
+ *
+ * The contents of this file are subject to the AAF SDK Public
+ * Source License Agreement (the "License"); You may not use this file
+ * except in compliance with the License.  The License is available in
+ * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
+ * Association or its successor.
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
+ * the License for the specific language governing rights and 
+ * limitations under the License.
+ *
+ * The Original Code of this file is Copyright 2007, Licensor of the
+ * AAF Association.
+ *
+ * The Initial Developer of the Original Code of this file and the 
+ * Licensor of the AAF Association is Richard Cartwright.
+ * All rights reserved.
+ *
+ * Contributors and Additional Licensors of the AAF Association:
+ * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
+ *
+ **********************************************************************
+
+ $Log: package.html,v $
+ Revision 1.4  2011/02/14 22:32:58  vizigoth
+ First commit after major sourceforge outage.
+
+ Revision 1.3  2008/10/16 16:52:01  vizigoth
+ First early release 0.1.
+
+ Revision 1.2  2008/02/08 12:54:51  vizigoth
+ Comment linking fix.
+
+ Revision 1.1  2008/01/08 17:01:50  vizigoth
+ Edited Javadoc comments to release standard and removed unused enumerations.
+
+
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+</head>
+<body bgcolor="white">
+
+<p>Defines {@linkplain java.lang.Enum Java enumerations} representing the enumerations specified in the AAF object 
+specification and other enumerations used across the MAJ API. The enumerations in this package have a fixed
+number of defined elements, unlike extendible enumerations that can be extended at runtime.</p>
+
+<h2>Enumeration kinds</h2>
+
+<p>Section&nbsp;21.2 of the <a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object 
+specification v1.1</a> specifies a number of enumeration data types. Enumerations are made up of a fixed
+set of elements with each element represented by a name and an ordinal value. All of these enumerations 
+are represented in this package by a Java enumeration.</p>
+
+<p>As Java enumerations do not have to have an ordinal
+value associated with them, the AAF-specified ordinal value is provided through the 
+{@link tv.amwa.maj.industry.MediaEnumerationValue MediaEnumerationValue} interface that is implemented by all
+enumerations. The ordinal value of an element can be retrieved using the 
+{@link tv.amwa.maj.industry.MediaEnumerationValue#value() value()} method. Some of the enumerations
+also provide a static <code>fromOrdinal(int)</code> method that can be used to return an enumeration element 
+from its specified ordinal value.</p>
+
+<p>Other enumerations are defined for implementation-specific reasons, such as {@link tv.amwa.maj.enumeration.ByteOrder
+ByteOrder}. In general, these enumerations provide a convenient way to configure features the API or refer to property values
+in a user-friendly way.</p>
+
+<h2 id="extendibleEnumeration">Extendible enumeration</h2>
+
+<p>Extendible enumeration data types do not have a fixed set of specified elements, although a currently known set
+of built-in elements is provided in section&nbsp;23.1 of the 
+<a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object specification v1.1</a>. An
+extendible enumeration element consists of a name and {@linkplain tv.amwa.maj.record.AUID AUID}
+unique identifier pair, suitable for the representation of reference data sets. The built-in elements 
+are defined in the <a href="../constant/package-summary.html">constant 
+package</a> using the {@linkplain tv.amwa.maj.industry.ExtendibleEnumerationItem extendible enumeration annotation}.
+Additional elements can be registered with a JVM using the registration methods of the 
+{@linkplain tv.amwa.maj.industry.Warehouse warehouse}.</p>
+
+<h2>Heritage</h2>
+
+<p>The original versions of the enumerations of this package were derived from the <code>enum</code>
+type definitions in the 
+<a href="http://aaf.sourceforge.net/">existing C-based AAF reference implementation</a>, from file
+"<code>AAFTypes.h</code>". A typical source enum definition looks like the code below:</p>
+
+<pre>
+    typedef aafInt32 aafContentScanningType_t;
+    typedef enum _aafContentScanningType_e
+    {
+        kAAFContentScanning_NotKnown = 0,
+        kAAFContentScanning_Progressive = 1,
+        kAAFContentScanning_Interlace = 2,
+        kAAFContentScanning_Mixed = 3
+    } aafContentScanningType_e;
+</pre>
+
+<p>The following steps have been taken to convert the C-based enum type definitions into Java 
+enumerations, taking advantage of Java's class-based representation of enumerations wherever
+possible:</p>
+
+<ul>
+ <li>The name of the enumeration has had "<code>aaf</code>" removed from its start and "<code>_e</code>"
+ removed from the end. Where the enumeration is specified in the 
+ <a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object specification</a> then the
+ name has been matched to that. In the example above, the enumeration name becomes "<code>ContentScanningType</code>".</li>
+ 
+ <li>The characters "<code>kAAF</code>" have been removed from the start of each element name.</li>
+ 
+ <li>As the name of elements of Java enumerations are scoped by the enumeration they belong to and
+ so do not require a globally unique name, any enumeration-specific label used for each element
+ name has been removed. This should make code written to use the MAJ API easier to read. In the example 
+ above, the characters "<code>ContentScanning_</code>" have been
+ removed from the element names, for example "<code>Progressive</code>" instead of 
+ "<code>ContentScanning_Progressive</code>".</li>
+ 
+ <li>The constant ordinal value associated with each enumeration element has become a value passed
+ the the private constructor for each enumeration element. It is then stored within the enumeration
+ element ready to be retrieved with a call to the {@link tv.amwa.maj.industry.MediaEnumerationValue#value() 
+ value()} method.</li>
+</ul>
+
+<p>The resulting underlying Java code for the {@linkplain tv.amwa.maj.enumeration.ContentScanningType content
+scanning type} is:</p>
+
+<pre>
+    public enum ContentScanningType 
+        implements AAFEnumerationValue {
+        
+        NotKnown(0),
+        Progressive(1),
+        Interlace(2),
+        Mixed(3);
+        
+        private int value;
+        
+        private ContentScanningType(
+                int value) {
+                
+            this.value = value;
+        }
+        
+        &#64;Int64 public long value() {
+    
+            return (long) value;
+        }
+    }
+</pre>
+
+@see tv.amwa.maj.meta.TypeDefinitionEnumeration
+@see tv.amwa.maj.meta.TypeDefinitionExtendibleEnumeration
+
+@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+  
+</body>
+</html>

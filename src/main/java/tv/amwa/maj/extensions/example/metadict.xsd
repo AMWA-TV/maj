@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	 	targetNamespace="http://www.smpte-ra.org/schemas/2001-1/2007/metadict"
+	 	xmlns:tns="http://www.smpte-ra.org/schemas/2001-1/2007/metadict">
+	<xs:element name="Baseline" type="tns:mBaselineType"/>
+	<xs:element name="Extension" type="tns:mBaselineType"/>
+	<xs:complexType name="mBaselineType">
+		<xs:all>
+			<xs:element name="Identification" type="tns:mAUID"/>
+			<xs:element name="Symbolspace" type="xs:anyURI"/>
+			<xs:element name="PreferredPrefix" type="xs:NCName" minOccurs="0"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="Definitions">
+				<xs:complexType>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="ClassDefinition">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ParentClass" type="tns:mMetaDefRef" minOccurs="0"/>
+									<xs:element name="IsConcrete" type="xs:boolean"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PropertyDefinition">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="Type" type="tns:mMetaDefRef"/>
+									<xs:element name="IsOptional" type="xs:boolean"/>
+									<xs:element name="IsUniqueIdentifier" type="xs:boolean" minOccurs="0"/>
+									<xs:element name="LocalIdentification" type="tns:mLocalIdentificationType"/>
+									<xs:element name="MemberOf" type="tns:mMetaDefRef"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionCharacter">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionEnumeration">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ElementType" type="tns:mMetaDefRef"/>
+									<xs:element name="Elements">
+										<xs:complexType>
+											<xs:sequence minOccurs="0" maxOccurs="unbounded">
+												<xs:element name="Name" type="xs:token"/>
+												<xs:element name="Value" type="xs:long"/>
+												<xs:element name="Description" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+										<xs:unique name="mTypeDefEnumNamesUnique">
+											<xs:selector xpath="Name"/>
+											<xs:field xpath="."/>
+										</xs:unique>
+										<xs:unique name="mTypeDefEnumValuesUnique">
+											<xs:selector xpath="Value"/>
+											<xs:field xpath="."/>
+										</xs:unique>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionExtendibleEnumeration">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ExtendibleEnumerationElement">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="ElementOf" type="tns:mMetaDefRef"/>
+									<xs:element name="Name" type="xs:token"/>
+									<xs:element name="Value" type="tns:mAUID"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionFixedArray">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ElementType" type="tns:mMetaDefRef"/>
+									<xs:element name="ElementCount" type="xs:unsignedInt"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionIndirect">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionInteger">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="Size">
+										<xs:simpleType>
+											<xs:restriction base="xs:unsignedByte">
+												<xs:enumeration value="1"/>
+												<xs:enumeration value="2"/>
+												<xs:enumeration value="4"/>
+												<xs:enumeration value="8"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="IsSigned" type="xs:boolean"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionOpaque">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionRecord">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="Members">
+										<xs:complexType>
+											<xs:sequence minOccurs="0" maxOccurs="unbounded">
+												<xs:element name="Name" type="xs:NCName"/>
+												<xs:element name="Type" type="tns:mMetaDefRef"/>
+											</xs:sequence>
+										</xs:complexType>
+										<xs:unique name="mTypeDefRecordMemberNamesUnique">
+											<xs:selector xpath="Name"/>
+											<xs:field xpath="."/>
+										</xs:unique>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionRename">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="RenamedType" type="tns:mMetaDefRef"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionSet">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ElementType" type="tns:mMetaDefRef"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionStream">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionString">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ElementType" type="tns:mMetaDefRef"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionStrongObjectReference">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ReferencedType" type="tns:mMetaDefRef"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionVariableArray">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ElementType" type="tns:mMetaDefRef"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TypeDefinitionWeakObjectReference">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="Identification" type="tns:mAUID"/>
+									<xs:element name="Symbol" type="xs:NCName"/>
+									<xs:element name="Description" type="xs:string" minOccurs="0"/>
+									<xs:element name="Name" type="xs:string"/>
+									<xs:element name="ReferencedType" type="tns:mMetaDefRef"/>
+									<xs:element name="TargetSet" type="tns:mMetaDefRefArray"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+				<xs:unique name="mDefSymbolsUnique">
+					<xs:selector xpath="*"/>
+					<xs:field xpath="Symbol"/>
+				</xs:unique>
+				<xs:unique name="mDefIdentificationUnique">
+					<xs:selector xpath="*"/>
+					<xs:field xpath="Identification"/>
+				</xs:unique>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="mAUID">
+		<xs:restriction base="xs:anyURI">
+			<xs:pattern value="urn:smpte:ul:[0-9a-fA-F]{8}\.([0-9a-fA-F]){8}\.([0-9a-fA-F]){8}\.([0-9a-fA-F]){8}"/>
+			<xs:pattern value="urn:uuid:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mMetaDefRef">
+		<xs:union memberTypes="tns:mAUID xs:NCName">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[^ ]+ \i\c*"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:complexType name="mMetaDefRefArray">
+		<xs:sequence>
+			<xs:element name="MetaDefRef" type="tns:mMetaDefRef" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="mLocalIdentificationType">
+        <xs:union memberTypes="xs:unsignedShort">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="0x[0-9a-fA-F]{1,4}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+	</xs:simpleType>
+</xs:schema>
