@@ -54,4 +54,4 @@ The MAJ API was written by Richard Cartwright, with the help and support of Guil
 please raise an issue. The software is provided AS IS with no warranty whatsoever.
 
 This is an approved project of the [Advanced Media Workflow Assocation (AMWA)](http://www.amwa.tv/).  Contributions via fork and
-pull request are welcome according to the IPR policy of the association.
+pull request are welcome according to the [IPR policy of the association](http://www.amwa.tv/about/policies/AMWA_IPR_Policy_V3.0.pdf).
