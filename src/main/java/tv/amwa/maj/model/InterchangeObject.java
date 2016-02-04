@@ -85,7 +85,7 @@ import tv.amwa.maj.record.AUID;
  * 
  * <p>Note that generation tracking is not automatically supported by the MAJ API.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

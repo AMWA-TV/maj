@@ -35,7 +35,7 @@ package tv.amwa.maj.exception;
  *
  * <p>Equivalent C result code: <code>AAFRESULT_END_OF_DATA 0x801200CE</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class EndOfDataException 

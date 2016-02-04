@@ -64,7 +64,7 @@ import tv.amwa.maj.record.TimecodeValue;
  * timecode by specifying the single starting timecode value; other timecode values 
  * are calculated from the starting timecode and the time offset.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Segment#segmentOffsetToTC(long)
  * @see Segment#segmentTCToOffset(TimecodeValue, Rational)

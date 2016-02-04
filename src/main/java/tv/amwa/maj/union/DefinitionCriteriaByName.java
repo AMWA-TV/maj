@@ -33,7 +33,7 @@ package tv.amwa.maj.union;
  * 
  * @see tv.amwa.maj.model.DefinitionObject#getName()
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface DefinitionCriteriaByName 
 	extends DefinitionCriteria {

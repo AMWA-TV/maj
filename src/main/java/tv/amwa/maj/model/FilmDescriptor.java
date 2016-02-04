@@ -60,7 +60,7 @@ import tv.amwa.maj.record.Rational;
  * <p>Specifies the description of film media. A {@linkplain SourcePackage}
  * described by a film descriptor is known as a <em>film source package</em>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see SourcePackage#getEssenceDescriptor()
  */

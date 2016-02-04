@@ -194,8 +194,6 @@
 //	 * is capable of parsing. A parser descriptor list is a list of these pairs. In Java, I've chosen to
 //	 * represent this as Map<EssenceDescriptor, List<EssenceStreamDescriptor>>.
 //	 *
-//	 * Richard Cartwright, 9/2/2009
-//	 *
 //	 */
 //
 ////		//! Build a list of parsers with their descriptors for a given essence file

@@ -1,30 +1,17 @@
-<!-- 
- *********************************************************************
- *
- * $Id: package.html,v 1.4 2011/07/27 17:07:21 vizigoth Exp $
- *
- * The contents of this file are subject to the AAF SDK Public
- * Source License Agreement (the "License"); You may not use this file
- * except in compliance with the License.  The License is available in
- * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
- * Association or its successor.
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
- * the License for the specific language governing rights and 
- * limitations under the License.
- *
- * The Original Code of this file is Copyright 2007, Licensor of the
- * AAF Association.
- *
- * The Initial Developer of the Original Code of this file and the 
- * Licensor of the AAF Association is Richard Cartwright.
- * All rights reserved.
- *
- * Contributors and Additional Licensors of the AAF Association:
- * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
- *
- **********************************************************************
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
  $Log: package.html,v $
  Revision 1.4  2011/07/27 17:07:21  vizigoth
@@ -49,16 +36,16 @@
 </head>
 <body bgcolor="white">
 
-<p>Support for the input and output of {@linkplain tv.amwa.maj.industry.MetadataObject metadata objects} as XML fragments and 
-documents. The XML format is specified according to SMPTE 2001-1 and SMPTE 2001-2 
+<p>Support for the input and output of {@linkplain tv.amwa.maj.industry.MetadataObject metadata objects} as XML fragments and
+documents. The XML format is specified according to SMPTE 2001-1 and SMPTE 2001-2
 <em>registered data XML</em>.</p>
 
-<p>MAJ uses a SAX-based parser for reading XML and creates DOM trees to write out XML. As such, 
+<p>MAJ uses a SAX-based parser for reading XML and creates DOM trees to write out XML. As such,
 in this implementation of the MAJ API, parsing XML is less resource intensive than writing out to XML.</p>
 
 <h2>Serializing an object to XML fragments</h2>
 
-<p>To convert a single object and any of its contained strong referenced objects to XML, use method 
+<p>To convert a single object and any of its contained strong referenced objects to XML, use method
 {@link tv.amwa.maj.io.xml.XMLBuilder#toXML(tv.amwa.maj.industry.MetadataObject) toXML()} methods
 of the {@linkplain tv.amwa.maj.io.xml.XMLBuilder XML builder}.</p>
 
@@ -80,8 +67,8 @@ same XML format with their <code>toString()</code> method.</p>
 
 <h2>Creating objects from an XML fragment</h2>
 
-<p>To read the XML representation of an object in XML and create an instance in memory, 
-use either the {@link tv.amwa.maj.io.xml.XMLBuilder#createFromXML(InputSource) createFromXML()} or 
+<p>To read the XML representation of an object in XML and create an instance in memory,
+use either the {@link tv.amwa.maj.io.xml.XMLBuilder#createFromXML(InputSource) createFromXML()} or
 {@link tv.amwa.maj.io.xml.XMLBuilder#createFromXMLString(String) createFromXMLString()} methods of the
 {@linkplain tv.amwa.maj.io.xml.XMLBuilder XML builder}.</p>
 
@@ -90,7 +77,7 @@ import tv.amwa.maj.io.xml.XMLBuilder;
 import tv.amwa.maj.iface.MaterialPackage;
 ...
 
-MaterialPackage material = 
+MaterialPackage material =
         (MaterialPackage) XMLBulder.createFromXMLString(packageAsXML);
 </pre>
 
@@ -98,7 +85,7 @@ MaterialPackage material =
 
 <p>Complete XML files have a root <code>&lt;AAF&gt;</code> root element, represented by
 the {@linkplain tv.amwa.maj.io.xml.AAFElement AAF element class}.
-To read a preface from an XML file, register all the required data types and then 
+To read a preface from an XML file, register all the required data types and then
 use the {@link tv.amwa.maj.io.xml.XMLFactory#readPreface(String) readPreface()}
 static method of the {@link tv.amwa.maj.io.xml.XMLFactory XML factory}.</p>
 
@@ -120,7 +107,7 @@ with MAJ is not supported in the current version of the MAJ API.</p>
 
 <p>Complete XML files have a root <code>&lt;AAF&gt;</code> root element, represented by
 the {@linkplain tv.amwa.maj.io.xml.AAFElement AAF element class}.
-To write a complete Reg XML file, use the 
+To write a complete Reg XML file, use the
 {@link tv.amwa.maj.io.xml.XMLFactory#writePreface(tv.amwa.maj.model.Preface, String) writePreface()} static method
 of the {@link tv.amwa.maj.io.xml.XMLFactory XML factory}.</p>
 
@@ -131,10 +118,10 @@ import tv.amwa.maj.io.xml.XMLFactory;
 XMLFactory.writePreface(preface, "output_file.xml");
 </pre>
 
-<p>The {@linkplain tv.amwa.maj.model.Preface preface} will be automatically updated with a correct 
+<p>The {@linkplain tv.amwa.maj.model.Preface preface} will be automatically updated with a correct
 {@linkplain tv.amwa.maj.model.Dictionary dictionary} and any extensions classes will
-be added to the output. Note that an application is expected to have added an appropriate 
-{@linkplain tv.amwa.maj.model.Identification identification} to the preface to identify the 
+be added to the output. Note that an application is expected to have added an appropriate
+{@linkplain tv.amwa.maj.model.Identification identification} to the preface to identify the
 current version of the file before calling this method.</p>
 
 <h2>Generating Meta Dictionaries</h2>
@@ -144,12 +131,10 @@ create an XML-format meta dictionary for the baseline AAF model or an extension 
 
 <h2>Generating XSDs</h2>
 
-<p>Use the {@linkplain tv.amwa.maj.io.xml.XSDGenerator XML schema generator} to create an 
+<p>Use the {@linkplain tv.amwa.maj.io.xml.XSDGenerator XML schema generator} to create an
 XML schema that can be used to validate baseline and/or extension data models.</p>
 
 @see tv.amwa.maj.industry.MediaEngine#toString(tv.amwa.maj.industry.MetadataObject)
 
-@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
-  
 </body>
 </html>

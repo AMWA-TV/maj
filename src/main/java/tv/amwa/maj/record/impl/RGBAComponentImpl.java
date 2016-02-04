@@ -322,7 +322,7 @@ public final class RGBAComponentImpl
 	 * <p>XML parser event handler for converting RGBA component elements into RGBA component 
 	 * values.</p>
 	 * 
-	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+	 *
 	 * 
 	 * @see RGBAComponentImpl#toString()
 	 */

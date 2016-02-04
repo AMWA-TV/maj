@@ -33,7 +33,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>Equivalent C result code: <code>AAFRESULT_SINGLE_CHANNEL_OP 0x80120081</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class SingleChannelOpException 

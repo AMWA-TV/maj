@@ -32,7 +32,7 @@ package tv.amwa.maj.exception;
  * <p>Note that this exception can be traced back to AAF SDK documentation only
  * and does not appear to have a result code.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class BadParameterException 
 	extends Exception 

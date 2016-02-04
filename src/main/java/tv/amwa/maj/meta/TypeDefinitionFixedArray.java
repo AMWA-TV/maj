@@ -51,7 +51,7 @@ import tv.amwa.maj.integer.UInt32;
  * <p>Specifies the definition of a property type that has a fixed number of values 
  * of the underlying type. The order of the values is meaningful.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#FixedArray
  * @see TypeDefinitionVariableArray

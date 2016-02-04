@@ -60,7 +60,7 @@
 //	/**
 //	 * <p>Describes a stream of data within a generic container.</p>
 //	 *
-//	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+//	 *
 //	 *
 //	 */
 //	class GenericContainerStreamData {

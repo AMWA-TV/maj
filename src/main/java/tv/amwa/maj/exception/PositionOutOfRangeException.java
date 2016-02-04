@@ -41,7 +41,7 @@ package tv.amwa.maj.exception;
  * @see tv.amwa.maj.model.TimecodeStream
  * @see tv.amwa.maj.model.RIFFChunk
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class PositionOutOfRangeException 

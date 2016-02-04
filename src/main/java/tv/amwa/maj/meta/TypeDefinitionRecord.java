@@ -87,7 +87,7 @@ import tv.amwa.maj.misctype.AAFString;
  * {@link #getSpecification()} method. If an implementation is avaialble, this can be queried
  * with {@link #getImplementation()}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#Record
  */

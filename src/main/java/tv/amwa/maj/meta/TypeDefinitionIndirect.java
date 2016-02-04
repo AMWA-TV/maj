@@ -77,7 +77,7 @@ import tv.amwa.maj.model.TaggedValue;
  * The binary format created by the MAJ API is not compatible with that of other
  * AAF implementations.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#Indirect
  * @see tv.amwa.maj.model.TaggedValue

@@ -38,7 +38,7 @@ package tv.amwa.maj.union;
  * 
  * @see DefinitionCriteriaType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public abstract interface DefinitionCriteria {

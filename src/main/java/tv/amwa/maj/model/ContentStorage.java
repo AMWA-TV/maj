@@ -87,7 +87,7 @@ import tv.amwa.maj.union.SearchCriteria;
  * that if some essence data is stored in this content storage, its associated metadata 
  * file source package is also stored.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Preface#getContentStorageObject()
  * @see tv.amwa.maj.industry.TypeDefinitions#ContentStorageStrongReference

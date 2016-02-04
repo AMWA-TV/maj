@@ -32,7 +32,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>Equivalent C result code: <code>AAFRESULT_NOT_WRITEABLE 0x80120026</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class NotWriteableException 

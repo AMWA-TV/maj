@@ -41,7 +41,7 @@ package tv.amwa.maj.union;
  * 
  * @see tv.amwa.maj.model.Package#getPackageName()
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface SearchByName 
 	extends SearchCriteria {

@@ -84,7 +84,7 @@ import tv.amwa.maj.record.VersionType;
  * <p>Specifies a package, which can describe a composition, essence, or 
  * physical media. A package has a unique identifier and consists of metadata.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see ContentStorage#getPackages()
  * @see EssenceData#getFilePackage()

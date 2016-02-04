@@ -55,7 +55,7 @@ import tv.amwa.maj.misctype.JPEGTableIDType;
  * <p>For more information, see the <a href="http://en.wikipedia.org/wiki/TIFF">description of
  * TIFF on Wikipedia</a>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see SourcePackage#getEssenceDescriptor()
  */

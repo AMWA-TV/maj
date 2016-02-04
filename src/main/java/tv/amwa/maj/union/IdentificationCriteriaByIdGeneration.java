@@ -43,7 +43,7 @@ import tv.amwa.maj.record.AUID;
  * @see tv.amwa.maj.model.Identification#getLinkedGenerationID()
  * @see tv.amwa.maj.record.AUID
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface IdentificationCriteriaByIdGeneration extends IdentificationCriteria {
 

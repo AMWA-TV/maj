@@ -676,7 +676,7 @@ public final class TimecodeValueImpl
 	/**
 	 * <p>Component parts of a timecode value, represented as hours, minutes, seconds and frames in a second.</p>
 	 *
-	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+	 *
 	 *
 	 */
 	public class TimeComponents {

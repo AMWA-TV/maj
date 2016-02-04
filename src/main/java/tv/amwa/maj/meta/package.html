@@ -1,30 +1,17 @@
-<!-- 
- *********************************************************************
- *
- * $Id: package.html,v 1.5 2011/02/14 22:32:50 vizigoth Exp $
- *
- * The contents of this file are subject to the AAF SDK Public
- * Source License Agreement (the "License"); You may not use this file
- * except in compliance with the License.  The License is available in
- * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
- * Association or its successor.
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
- * the License for the specific language governing rights and 
- * limitations under the License.
- *
- * The Original Code of this file is Copyright 2007, Licensor of the
- * AAF Association.
- *
- * The Initial Developer of the Original Code of this file and the 
- * Licensor of the AAF Association is Richard Cartwright.
- * All rights reserved.
- *
- * Contributors and Additional Licensors of the AAF Association:
- * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
- *
- **********************************************************************
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
  $Log: package.html,v $
  Revision 1.5  2011/02/14 22:32:50  vizigoth
@@ -52,17 +39,17 @@
 </head>
 <body bgcolor="white">
 
-<p>Specifications of all the meta-classes of AAF that provides meta-information about classes, properties 
-and data types. The classes described may be <a href="../model/package-summary.html">AAF interchangeable classes</a>, 
-extension metadata classes or entirely unrelated. AAF meta-classes are specified in section&nbsp;27 of the 
+<p>Specifications of all the meta-classes of AAF that provides meta-information about classes, properties
+and data types. The classes described may be <a href="../model/package-summary.html">AAF interchangeable classes</a>,
+extension metadata classes or entirely unrelated. AAF meta-classes are specified in section&nbsp;27 of the
 <a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object
-specification v1.1</a>. The root class for 
+specification v1.1</a>. The root class for
 the definition of meta-classes is {@link tv.amwa.maj.meta.MetaDefinition MetaDefinition}, which can also be
 serialized to an AAF file used as part of a {@linkplain tv.amwa.maj.meta.MetaDictionary meta dictionary}.</p>
 
-<p>The interfaces defined in this package are fundamental to the features of the 
-<a href="../industry/package-summary.html">industry package</a>, including the runtime 
-{@linkplain tv.amwa.maj.industry.MediaEngine media engine}, 
+<p>The interfaces defined in this package are fundamental to the features of the
+<a href="../industry/package-summary.html">industry package</a>, including the runtime
+{@linkplain tv.amwa.maj.industry.MediaEngine media engine},
 {@linkplain tv.amwa.maj.industry.Warehouse warehouse} and
 {@linkplain tv.amwa.maj.industry.Forge forge}.</p>
 
@@ -71,32 +58,32 @@ serialized to an AAF file used as part of a {@linkplain tv.amwa.maj.meta.MetaDic
 <p>Every class is defined by a {@linkplain tv.amwa.maj.meta.ClassDefinition class definition} that
 includes its position in a class hierarchy (single inheritance), name, identifier and whether it is
 concrete or abstract. Class definitions in MAJ are generated automatically by registering a Java class
-with the {@linkplain tv.amwa.maj.industry.Warehouse warehouse} using the 
+with the {@linkplain tv.amwa.maj.industry.Warehouse warehouse} using the
 {@link tv.amwa.maj.industry.Warehouse#lookForClass(Class) lookForClass(Class)} method. The class
 must be annotated with the {@link tv.amwa.maj.industry.MediaClass media class annotation}. This
 allows dynamic runtime extension of the classes supported.</p>
 
-<p>Classes have properties that are defined by {@linkplain tv.amwa.maj.meta.PropertyDefinition property 
-definitions}. To access the property definitions for a class, use the 
+<p>Classes have properties that are defined by {@linkplain tv.amwa.maj.meta.PropertyDefinition property
+definitions}. To access the property definitions for a class, use the
 {@link tv.amwa.maj.meta.ClassDefinition#getPropertyDefinitions()} and
-{@link tv.amwa.maj.meta.ClassDefinition#getAllPropertyDefinitions()} methods. To get the 
-values of the properties for a given class, call 
+{@link tv.amwa.maj.meta.ClassDefinition#getAllPropertyDefinitions()} methods. To get the
+values of the properties for a given class, call
 {@link tv.amwa.maj.meta.ClassDefinition#getProperties(tv.amwa.maj.industry.MetadataObject) getProperties(MetadataObject)},
 where the metadata object is the instance to be queried.</p>
 
 <h2>TypeDefinitions</h2>
 
-<p>Every property has a data type and the supported data types are defined by 
+<p>Every property has a data type and the supported data types are defined by
 {@linkplain tv.amwa.maj.meta.TypeDefinition type definitions}. All type definitions have a
-name and identifier. Other parameters are type-specific, with over 150 
-{@linkplain tv.amwa.maj.industry.TypeDefinitions pre-defined for AAF} and the ability to 
+name and identifier. Other parameters are type-specific, with over 150
+{@linkplain tv.amwa.maj.industry.TypeDefinitions pre-defined for AAF} and the ability to
 {@linkplain tv.amwa.maj.industry.Warehouse#register(tv.amwa.maj.meta.TypeDefinition, String, String) add new type definitions}
 to the warehouse.</p>
 
 <p>Every type definition provides methods for mapping from the Java representation of a value to
-a form suitable for representation as AAF or MXF. In particular, the 
+a form suitable for representation as AAF or MXF. In particular, the
 {@linkplain tv.amwa.maj.meta.TypeDefinition#createValue(Object) createValue(Object)} method of
-every type definition is used extensively in the factory methods of the 
+every type definition is used extensively in the factory methods of the
 {@linkplain tv.amwa.maj.industry.Forge forge}. The type mappings supported are described in the
 documentation for the <a href="../industry/package-summary.html">industry package</a>.</p>
 
@@ -104,7 +91,7 @@ documentation for the <a href="../industry/package-summary.html">industry packag
 
 <p>A {@linkplain tv.amwa.maj.industry.PropertyValue property value} is a representation of a value
 with its type. Many of the methods of the {@linkplain tv.amwa.maj.meta.TypeDefinition type definitions}
-manipulate property values and will throw a 
+manipulate property values and will throw a
 {@link tv.amwa.maj.exception.IllegalPropertyValueException IllegalPropertyValueException} if an
 attempt is made to use the methods for a value of the wrong type.</p>
 
@@ -112,15 +99,15 @@ attempt is made to use the methods for a value of the wrong type.</p>
 
 <p>In the C-based API, the class, property and type definitions are available in a file called
 "<code>AAFMetaDictionary.h</code>". This is extracted from a spreadsheet containing equivalent
-information. The same extraction process is used to generate a large number of header files, 
+information. The same extraction process is used to generate a large number of header files,
 such as "<code>AAFProeprtyDefs.h</code>". This approach has been replaced in the MAJ API through
-the use of the {@link tv.amwa.maj.industry.MediaClass MediaClass} and 
+the use of the {@link tv.amwa.maj.industry.MediaClass MediaClass} and
 {@link tv.amwa.maj.industry.MediaProperty MediaProperty} annotations. These annotations have
-been tested against the same AAF meta dictionary to ensure that they contain the same 
+been tested against the same AAF meta dictionary to ensure that they contain the same
 values, which is what makes the C-based implementation and the MAJ API interoperable.</p>
 
 <p>Many of the methods of the meta-classes were originally specified for the C-based reference
-implementation and have been translated using the 
+implementation and have been translated using the
 <a href="../model/package-summary.html">same process described for the interchangeable
 classes</a>.</p>
 
@@ -129,7 +116,5 @@ classes</a>.</p>
 @see tv.amwa.maj.industry.Warehouse
 @see tv.amwa.maj.industry.PropertyValue
 
-@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
-  
 </body>
 </html>

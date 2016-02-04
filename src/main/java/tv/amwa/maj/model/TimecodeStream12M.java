@@ -37,7 +37,7 @@ import tv.amwa.maj.misctype.Bool;
 /**
  * <p>Specifies a stream of timecode data in the SMPTE&nbsp;12M format.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

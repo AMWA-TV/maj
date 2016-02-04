@@ -42,7 +42,7 @@ import tv.amwa.maj.misctype.AAFString;
  * <p>Specifies information to help find a file that contains the essence or to help 
  * find the physical media.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see EssenceDescriptor#getLocators()
  * @see tv.amwa.maj.industry.TypeDefinitions#LocatorStrongReference

@@ -50,7 +50,7 @@ import tv.amwa.maj.misctype.TrackID;
  * <p>Specifies a search for source information of a {@linkplain Track track}
  * in a {@linkplain MaterialPackage material package} or {@linkplain SourcePackage source package}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

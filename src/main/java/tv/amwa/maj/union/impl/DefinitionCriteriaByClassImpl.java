@@ -41,7 +41,7 @@ import tv.amwa.maj.union.DefinitionCriteriaType;
  * <p>Implementation of a criteria for matching a {@linkplain tv.amwa.maj.model.DefinitionObject definition} determined 
  * by reference to the unique identifier of a {@linkplain tv.amwa.maj.meta.ClassDefinition class definition}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class DefinitionCriteriaByClassImpl 
 	extends DefinitionCriteriaImpl

@@ -42,7 +42,7 @@ package tv.amwa.maj.model;
  * as a static image. As a static track has not relationship with time, it does
  * not specify an edit rate.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see MaterialPackage#createStaticEssence(int, DataDefinition, tv.amwa.maj.record.AUID, tv.amwa.maj.enumeration.CompressEnable, Locator, tv.amwa.maj.record.AUID) MaterialPackage.createStaticEssence()
  * @see tv.amwa.maj.constant.DataDefinitionConstant#Auxiliary

@@ -63,7 +63,7 @@ import tv.amwa.maj.record.RGBAComponent;
  * alpha), pixel structure (sizes of the various components), palette, palette layout,
  * and palette structure.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see SourcePackage#getEssenceDescriptor()
  * @see tv.amwa.maj.constant.CodecConstant#RGBA

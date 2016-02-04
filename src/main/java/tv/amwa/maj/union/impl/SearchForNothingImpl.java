@@ -41,7 +41,7 @@ import tv.amwa.maj.union.SearchTag;
  * <p>Implementation of a search criteria for matching {@linkplain tv.amwa.maj.model.Package packages} 
  * that does not match anything.</p> 
  *  
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class SearchForNothingImpl 
 	extends SearchCriteriaImpl

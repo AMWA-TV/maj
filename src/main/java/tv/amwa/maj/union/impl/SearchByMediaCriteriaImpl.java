@@ -45,7 +45,7 @@ import tv.amwa.maj.union.SearchTag;
  * 
  * @see tv.amwa.maj.enumeration.CriteriaType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class SearchByMediaCriteriaImpl 
 	extends SearchCriteriaImpl 

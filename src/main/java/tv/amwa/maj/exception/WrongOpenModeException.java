@@ -33,7 +33,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>Equivalent C result code: <code>AAFRESULT_WRONG_OPENMODE 0x8012001F</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class WrongOpenModeException 

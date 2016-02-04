@@ -47,7 +47,7 @@ import tv.amwa.maj.misctype.PositionType;
  * for a sequence. The {@linkplain OperationGroup operation} that they specify must be appropriate
  * for use in a transition, which means that it has two inputs and a <em>level</em> parameter.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Sequence
  * @see OperationDefinition

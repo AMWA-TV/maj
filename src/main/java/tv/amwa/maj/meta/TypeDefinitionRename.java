@@ -52,7 +52,7 @@ import tv.amwa.maj.industry.PropertyValue;
  * position type}, which is used as another name for a 64-bit signed integer value 
  * ({@link tv.amwa.maj.integer.Int64 Int64}).</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#Rename
  */

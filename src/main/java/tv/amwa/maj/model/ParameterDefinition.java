@@ -48,7 +48,7 @@ import tv.amwa.maj.misctype.AAFString;
  * <p>Specifies the definition of a kind of {@linkplain Parameter parameter} required to control 
  * an effect.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Parameter
  * @see tv.amwa.maj.constant.ParameterConstant

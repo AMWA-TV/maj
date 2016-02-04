@@ -86,7 +86,7 @@ import tv.amwa.maj.record.PackageID;
  * {@link CodecDefinition codec}, which is provided by an implementation of 
  * {@link EssenceAccess} or {@link EssenceMultiAccess}.</p> 
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see EssenceAccess
  * @see EssenceMultiAccess

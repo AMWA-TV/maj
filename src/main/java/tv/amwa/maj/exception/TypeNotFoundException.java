@@ -38,7 +38,7 @@ package tv.amwa.maj.exception;
  * 
  * @see tv.amwa.maj.meta.TypeDefinitionIndirect
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class TypeNotFoundException 

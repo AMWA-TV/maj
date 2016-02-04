@@ -68,7 +68,7 @@ import tv.amwa.maj.record.AUID;
 /**
  * <p>Specifies the definition of a class, type, or property in an AAF file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

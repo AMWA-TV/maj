@@ -38,7 +38,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>No equivalent C result code.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class DuplicateEssenceKindException 

@@ -437,7 +437,7 @@ public final class ProductVersionImpl
 	 * <p>XML parser event handler for converting product version elements into product version
 	 * values.</p>
 	 *  
-	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+	 *
 	 *
 	 */
 	public static class XMLHandler 

@@ -52,7 +52,7 @@ import tv.amwa.maj.misctype.LengthType;
  * @see tv.amwa.maj.enumeration.FadeType
  * @see tv.amwa.maj.model.SourceClip
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

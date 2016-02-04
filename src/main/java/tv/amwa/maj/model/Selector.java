@@ -60,7 +60,7 @@ import tv.amwa.maj.integer.Int32;
  * Note that the collection of alternates does not contain the selected item. When the selected segment
  * is changed, the segment that has been replaced is automatically added to the collection of alternates.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see EssenceGroup
  * @see tv.amwa.maj.industry.TypeDefinitions#SegmentStrongReference

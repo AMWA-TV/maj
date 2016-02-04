@@ -33,7 +33,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>Equivalent C result code: <code>AAFRESULT_OBJECT_ALREADY_ATTACHED 0x80120132</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class ObjectAlreadyAttachedException 

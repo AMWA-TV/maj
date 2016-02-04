@@ -72,7 +72,7 @@ import tv.amwa.maj.record.AUID;
  * {@linkplain OperationGroup operation group} specifies specific parameters 
  * and input segments for a particular operation invocation.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.constant.OperationConstant
  * @see tv.amwa.maj.industry.Warehouse#lookup(Class, String)

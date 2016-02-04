@@ -41,7 +41,7 @@ import tv.amwa.maj.enumeration.DefinitionKind;
  * @see tv.amwa.maj.enumeration.DefinitionKind
  * @see tv.amwa.maj.model.Dictionary
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface DefinitionCriteriaByKind 

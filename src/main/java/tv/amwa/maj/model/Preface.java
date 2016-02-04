@@ -98,7 +98,7 @@ import tv.amwa.maj.union.SearchCriteria;
  * <p>Note that the <em>preface</em> of an AAF file was preciously known as the 
  * <em>header</em>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface Preface 

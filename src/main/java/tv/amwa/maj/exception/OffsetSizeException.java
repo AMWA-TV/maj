@@ -33,7 +33,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>Equivalent C result code: <code>AAFRESULT_OFFSET_SIZE 0x8012015F</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class OffsetSizeException 

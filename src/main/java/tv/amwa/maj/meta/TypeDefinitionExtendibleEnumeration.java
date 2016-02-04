@@ -65,7 +65,7 @@ import tv.amwa.maj.record.AUID;
  * class containing static {@linkplain tv.amwa.maj.record.AUID AUID} values an annotating these 
  * as {@linkplain tv.amwa.maj.industry.ExtendibleEnumerationItem extendible enumeration items}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#ExtEnum
  * @see tv.amwa.maj.industry.Warehouse#registerExtendibleEnumerationElements(Class)

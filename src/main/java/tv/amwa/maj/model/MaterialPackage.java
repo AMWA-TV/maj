@@ -82,7 +82,7 @@ import tv.amwa.maj.union.SourceReferenceValue;
  * <p>This interface provides a number of methods that are useful for the management 
  * of tracks.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface MaterialPackage 

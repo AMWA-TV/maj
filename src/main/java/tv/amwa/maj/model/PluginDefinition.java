@@ -69,7 +69,7 @@ import tv.amwa.maj.record.VersionType;
  * <p>Note that the mechanism of supporting plugins has yet to be determined for the 
  * current implementation of the MAJ API.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.constant.PluginIdentifiers
  * @see Dictionary#getPluginDefinitions()

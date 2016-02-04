@@ -135,11 +135,11 @@ import tv.amwa.maj.record.impl.TimeStampImpl;
 import tv.amwa.maj.record.impl.TimecodeValueImpl;
 
 
-/** 
- * <p>Implements a package, which can describe a composition, essence, or 
+/**
+ * <p>Implements a package, which can describe a composition, essence, or
  * physical media. A package has a unique identifier and consists of metadata.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#PackageWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#PackageStrongReference
@@ -162,10 +162,10 @@ public class PackageImpl
 		Cloneable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -1772171014938118040L;
-	
+
 	private PackageID packageID;
 	private String packageName = null;
 	private List<Track> packageTracks = Collections.synchronizedList(new Vector<Track>());
@@ -175,7 +175,7 @@ public class PackageImpl
 	private List<TaggedValue> packageAttributes = Collections.synchronizedList(new Vector<TaggedValue>());
 	private List<KLVData> packageKLVData = Collections.synchronizedList(new Vector<KLVData>());
 	private AUID packageUsage = null;
-	
+
 	@MediaProperty(uuid1 = 0x03010210, uuid2 = (short) 0x0700, uuid3 = (short) 0x0000,
 			uuid4 = {0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x07},
 			definedName = "PackageAttributes",
@@ -185,15 +185,15 @@ public class PackageImpl
 			uniqueIdentifier = false,
 			pid = 0x4409,
 			symbol = "PackageAttributes")
-	public List<TaggedValue> getPackageAttributes() 
+	public List<TaggedValue> getPackageAttributes()
 		throws PropertyNotPresentException {
 
 		if (packageAttributes.size() == 0)
 			throw new PropertyNotPresentException("The optional attributes property is not present in this package.");
-		
+
 		return StrongReferenceVector.getOptionalList(packageAttributes);
 	}
-	
+
 	public void appendPackageAttribute(
 			String name,
 			String value)
@@ -203,33 +203,33 @@ public class PackageImpl
 			throw new NullPointerException("Cannot create and append a new attribute to the list of attributes for this package with a null name value.");
 		if (value == null)
 			throw new NullPointerException("Cannot create and append a new attribute to the list of attributes for this package with a null value.");
-		
+
 		TaggedValue taggedValue = new TaggedValueImpl(
-				name, 
-				TypeDefinitions.UTF16String, 
-				value); 
+				name,
+				TypeDefinitions.UTF16String,
+				value);
 		StrongReferenceVector.appendNoClone(packageAttributes, taggedValue);
 	}
 
 	@MediaListAppend("PackageAttributes")
 	public void appendPackageAttribute(
-			TaggedValue packageAttribute) 
+			TaggedValue packageAttribute)
 		throws NullPointerException {
-		
+
 		if (packageAttribute == null)
 			throw new NullPointerException("Cannot append a null attribute to the attributes of this package.");
-		
+
 		StrongReferenceVector.append(packageAttributes, packageAttribute);
 	}
-	
+
 	@MediaListPrepend("PackageAttributes")
 	public void prependPackageAttribute(
-			TaggedValue packageAttribute) 
+			TaggedValue packageAttribute)
 		throws NullPointerException {
-		
+
 		if (packageAttribute == null)
 			throw new NullPointerException("Cannot prepend a null attribute to the attributes of this package.");
-		
+
 		StrongReferenceVector.prepend(packageAttributes, packageAttribute);
 	}
 
@@ -241,10 +241,10 @@ public class PackageImpl
 
 	@MediaPropertyClear("PackageAttributes")
 	public void clearPackageAttributes() {
-		
+
 		packageAttributes = Collections.synchronizedList(new Vector<TaggedValue>());
 	}
-	
+
 	@MediaPropertyRemove("PackageAttributes")
 	public void removePackageAttribute(
 			TaggedValue packageAttribute)
@@ -254,13 +254,13 @@ public class PackageImpl
 
 		if (packageAttribute == null)
 			throw new NullPointerException("Cannot remove an attribute from the list of attributes of this package using a null value.");
-		
+
 		if (packageAttributes.size() == 0)
 			throw new PropertyNotPresentException("The optional attributes property is not present in this package.");
-		
-		if (!(packageAttributes.contains(packageAttribute))) 
+
+		if (!(packageAttributes.contains(packageAttribute)))
 			throw new ObjectNotFoundException("Canoot remove the given attribute from the list of attributes of this package as it is not currently contained.");
-		
+
 		StrongReferenceVector.remove(packageAttributes, packageAttribute);
 	}
 
@@ -273,12 +273,12 @@ public class PackageImpl
 			uniqueIdentifier = false,
 			pid = 0x4406,
 			symbol = "PackageUserComments")
-	public List<TaggedValue> getPackageUserComments() 
+	public List<TaggedValue> getPackageUserComments()
 		throws PropertyNotPresentException {
 
 		if (packageUserComments.size() == 0)
 			throw new PropertyNotPresentException("The optional user comments property is not present in this package.");
-		
+
 		return StrongReferenceVector.getOptionalList(packageUserComments);
 	}
 
@@ -293,31 +293,31 @@ public class PackageImpl
 			throw new NullPointerException("Cannot create and append a new user comment for this package with a null comment value.");
 
 		TaggedValue taggedValue = new TaggedValueImpl(
-				category, 
-				TypeDefinitions.UTF16String, 
-				comment); 
+				category,
+				TypeDefinitions.UTF16String,
+				comment);
 		StrongReferenceVector.appendNoClone(packageUserComments, taggedValue);
 	}
 
 	@MediaListAppend("PackageUserComments")
 	public void appendPackageUserComment(
-			TaggedValue packageUserComment) 
+			TaggedValue packageUserComment)
 		throws NullPointerException {
-		
+
 		if (packageUserComment == null)
 			throw new NullPointerException("Cannot append a new user comment with a null tagged value to this package.");
-		
+
 		StrongReferenceVector.append(packageUserComments, packageUserComment);
 	}
-	
+
 	@MediaListPrepend("PackageUserComments")
 	public void prependPackageUserComment(
-			TaggedValue comment) 
+			TaggedValue comment)
 		throws NullPointerException {
-		
+
 		if (comment == null)
 			throw new NullPointerException("Cannot prepend a new user comment with a null tagged value to this package.");
-		
+
 		StrongReferenceVector.prepend(packageUserComments, comment);
 	}
 
@@ -326,10 +326,10 @@ public class PackageImpl
 
 		return packageUserComments.size();
 	}
-	
+
 	@MediaPropertyClear("PackageUserComments")
 	public void clearPackageUserComments() {
-		
+
 		packageUserComments = Collections.synchronizedList(new Vector<TaggedValue>());
 	}
 
@@ -342,13 +342,13 @@ public class PackageImpl
 
 		if (packageUserComment == null)
 			throw new NullPointerException("Cannot remove the given comment from the user comments of this package as it is null.");
-		
+
 		if (packageUserComments.size() == 0)
 			throw new PropertyNotPresentException("The optional user comments property is not present in this package.");
-		
-		if (!(packageUserComments.contains(packageUserComment))) 
+
+		if (!(packageUserComments.contains(packageUserComment)))
 			throw new ObjectNotFoundException("Cannot remove the given comment for the user comments of this package as it is not currently contained.");
-		
+
 		StrongReferenceVector.remove(packageUserComments, packageUserComment);
 	}
 
@@ -356,20 +356,20 @@ public class PackageImpl
 			uuid4 = {0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x02},
 			definedName = "PackageKLVData",
 			aliases = { "MobKLVData", "KLVData" },
-			typeName = "KLVDataStrongReferenceVector", 
+			typeName = "KLVDataStrongReferenceVector",
 			optional = true,
 			uniqueIdentifier = false,
 			pid = 0x4407,
 			symbol = "PackageKLVData")
-	public List<KLVData> getPackageKLVData() 
+	public List<KLVData> getPackageKLVData()
 		throws PropertyNotPresentException {
-		
+
 		if (packageKLVData.size() == 0)
 			throw new PropertyNotPresentException("No KLV data values are present in this package.");
-		
+
 		return StrongReferenceVector.getOptionalList(packageKLVData);
 	}
-	
+
 	@MediaListAppend("PackageKLVData")
 	public void appendPackageKLVData(
 			KLVData packageKLVdata)
@@ -377,7 +377,7 @@ public class PackageImpl
 
 		if (packageKLVdata == null)
 			throw new NullPointerException("Cannot append a null klv data item to the list of klv data items of this package.");
-		
+
 		StrongReferenceVector.append(this.packageKLVData, packageKLVdata);
 	}
 
@@ -388,7 +388,7 @@ public class PackageImpl
 
 		if (packageKLVdata == null)
 			throw new NullPointerException("Cannot prepend a null klv data item to the list of klv data items of this package.");
-		
+
 		StrongReferenceVector.prepend(this.packageKLVData, packageKLVdata);
 	}
 
@@ -400,10 +400,10 @@ public class PackageImpl
 
 	@MediaPropertyClear("PackageKLVData")
 	public void clearPackageKLVData() {
-		
+
 		packageKLVData = Collections.synchronizedList(new Vector<KLVData>());
 	}
-	
+
 	@MediaPropertyRemove("PackageKLVData")
 	public void removePackageKLVData(
 			KLVData packageKLVdata)
@@ -412,10 +412,10 @@ public class PackageImpl
 
 		if (packageKLVdata == null)
 			throw new NullPointerException("Cannot remove a null value from the list of klv data items of this package.");
-		
-		if (!(packageKLVData.contains(packageKLVdata))) 
+
+		if (!(packageKLVData.contains(packageKLVdata)))
 			throw new ObjectNotFoundException("Cannot remove the given klv data item from the list of klv data items of this package as it is not currently contained.");
-		
+
 		StrongReferenceVector.remove(this.packageKLVData, packageKLVdata);
 	}
 
@@ -434,14 +434,14 @@ public class PackageImpl
 	}
 
 	public final static List<Track> initializePackageTracks() {
-		
+
 		List<Track> initialTracks = new ArrayList<Track>(1);
 		Segment filler = new FillerImpl(DataDefinitionImpl.forName("Unknown"), 0l);
 		TimelineTrack firstTrack = new TimelineTrackImpl(1, filler, new RationalImpl(1, 1), 0l);
 		initialTracks.add(firstTrack);
 		return initialTracks;
 	}
-	
+
 	public EventTrackImpl appendNewEventTrack(
 			tv.amwa.maj.record.Rational editRate,
 			tv.amwa.maj.model.Segment segment,
@@ -462,13 +462,13 @@ public class PackageImpl
 			tv.amwa.maj.model.Segment segment,
 			int trackID,
 			String trackName)
-		throws NullPointerException, 
+		throws NullPointerException,
 			IllegalArgumentException,
 			TrackExistsException {
 
 		StaticTrackImpl createdTrack = new StaticTrackImpl(trackID, segment);
 		createdTrack.setTrackName(trackName);
-		
+
 		appendPackageTrack(createdTrack);
 		return createdTrack;
 	}
@@ -485,7 +485,7 @@ public class PackageImpl
 
 		TimelineTrackImpl createdTrack = new TimelineTrackImpl(trackID, segment, editRate, origin);
 		createdTrack.setTrackName(trackName);
-		
+
 		appendPackageTrack(createdTrack);
 		return createdTrack;
 	}
@@ -498,19 +498,19 @@ public class PackageImpl
 
 		if (track == null)
 			throw new NullPointerException("Cannot append a null track to the list of tracks for this package.");
-		
-		// Clear the default value out of the way 
-		if ((packageTracks.size() == 1) && 
+
+		// Clear the default value out of the way
+		if ((packageTracks.size() == 1) &&
 				(packageTracks.get(0) instanceof TimelineTrackImpl) &&
 					(((TimelineTrack) packageTracks.get(0)).getDataDefinition().equals(DataDefinitionImpl.forAUID(DataDefinitionConstant.Unknown))) &&
 						(((TimelineTrack) packageTracks.get(0)).getEditRate().equals(new RationalImpl(1, 1))))
 			clearPackageTracks();
-		
+
 		int givenTrackID = track.getTrackID();
 		for ( Track trackItem : packageTracks )
 			if (trackItem.getTrackID() == givenTrackID)
 				throw new TrackExistsException("A track with track id " + givenTrackID + " is already contained in this package.");
-		
+
 		StrongReferenceVector.append(packageTracks, track);
 	}
 
@@ -538,19 +538,19 @@ public class PackageImpl
 
 		if (track == null)
 			throw new NullPointerException("Cannot insert a null-valued track into the list of tracks of this package.");
-		
-		// Clear the default value out of the way 
-		if ((packageTracks.size() == 1) && 
+
+		// Clear the default value out of the way
+		if ((packageTracks.size() == 1) &&
 				(packageTracks.get(0) instanceof TimelineTrackImpl) &&
 					(((TimelineTrack) packageTracks.get(0)).getDataDefinition().equals(DataDefinitionImpl.forAUID(DataDefinitionConstant.Unknown))) &&
 						(((TimelineTrack) packageTracks.get(0)).getEditRate().equals(new RationalImpl(1, 1))))
 			clearPackageTracks();
-		
+
 		int givenTrackId = track.getTrackID();
 		for ( Track trackItem : packageTracks )
 			if (trackItem.getTrackID() == givenTrackId)
 				throw new TrackExistsException("The given track id of " + givenTrackId + " is already used to identify a track contained in this package.");
-		
+
 		StrongReferenceVector.insert(packageTracks, index, track);
 	}
 
@@ -560,7 +560,7 @@ public class PackageImpl
 
 		if (trackID < 0)
 			throw new TrackNotFoundException("Cannot lookup a track with a negative track number from the list of tracks of this package.");
-		
+
 		for ( Track track : packageTracks) {
 			if (track.getTrackID() == trackID)
 				return track;
@@ -577,19 +577,19 @@ public class PackageImpl
 
 		if (track == null)
 			throw new NullPointerException("Cannot prepend a null track to the list of tracks for this package.");
-		
-		// Clear the default value out of the way 
-		if ((packageTracks.size() == 1) && 
+
+		// Clear the default value out of the way
+		if ((packageTracks.size() == 1) &&
 				(packageTracks.get(0) instanceof TimelineTrackImpl) &&
 					(((TimelineTrack) packageTracks.get(0)).getDataDefinition().equals(DataDefinitionImpl.forAUID(DataDefinitionConstant.Unknown))) &&
 						(((TimelineTrack) packageTracks.get(0)).getEditRate().equals(new RationalImpl(1, 1))))
 			clearPackageTracks();
-		
+
 		int givenTrackId = track.getTrackID();
 		for ( Track trackItem : packageTracks )
 			if (trackItem.getTrackID() == givenTrackId)
 				throw new TrackExistsException("The given track id of " + givenTrackId + " is already used to identify a track contained in this package.");
-		
+
 		StrongReferenceVector.prepend(packageTracks, track);
 	}
 
@@ -600,10 +600,10 @@ public class PackageImpl
 
 		StrongReferenceVector.remove(packageTracks, index);
 	}
-	
+
 	@MediaPropertyClear("PackageTracks")
 	public void clearPackageTracks() {
-		
+
 		packageTracks = Collections.synchronizedList(new Vector<Track>());
 	}
 
@@ -623,20 +623,20 @@ public class PackageImpl
 
 	@MediaPropertySetter("CreationTime")
 	public void setCreationTime(
-			TimeStamp createTime) 
+			TimeStamp createTime)
 		throws NullPointerException {
 
 		if (createTime == null)
 			throw new NullPointerException("Cannot set the required creation time property of this package with a null value.");
-		
+
 		this.creationTime = createTime.clone();
 	}
 
 	public final static TimeStamp initializeCreationTime() {
-		
+
 		return new TimeStampImpl();
 	}
-	
+
 	@MediaProperty(uuid1 = 0x01011510, uuid2 = (short) 0x0000, uuid3 = (short) 0x0000,
 			uuid4 = {0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x01},
 			definedName = "PackageID",
@@ -658,7 +658,7 @@ public class PackageImpl
 
 		if (packageID == null)
 			throw new NullPointerException("Canoot set the package id of this package using a null value.");
-		
+
 		this.packageID = packageID.clone();
 
 		// mobCache.put(this.mobId, this);
@@ -667,12 +667,12 @@ public class PackageImpl
 	public final static PackageID initializePackageID() {
 
 		return PackageIDImpl.umidFactory(
-				tv.amwa.maj.enumeration.MaterialType.NotIdentified, 
-			    tv.amwa.maj.record.MaterialNumberGeneration.UUID_UL, 
-			    tv.amwa.maj.record.InstanceNumberGeneration.NotDefined, 
+				tv.amwa.maj.enumeration.MaterialType.NotIdentified,
+			    tv.amwa.maj.record.MaterialNumberGeneration.UUID_UL,
+			    tv.amwa.maj.record.InstanceNumberGeneration.NotDefined,
 			    AUIDImpl.randomAUID().getAUIDValue());
 	}
-	
+
 	@MediaProperty(uuid1 = 0x07020110, uuid2 = (short) 0x0205, uuid3 = (short) 0x0000,
 			uuid4 = {0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x02},
 			definedName = "PackageLastModified",
@@ -689,17 +689,17 @@ public class PackageImpl
 
 	@MediaPropertySetter("PackageLastModified")
 	public void setPackageLastModified(
-			tv.amwa.maj.record.TimeStamp modTime) 
+			tv.amwa.maj.record.TimeStamp modTime)
 		throws NullPointerException {
 
 		if (modTime == null)
 			throw new NullPointerException("Cannot set the last modificaiton value of this package with a null value.");
-		
+
 		this.packageLastModified = modTime.clone();
 	}
-	
+
 	public final static TimeStamp initializePackageLastModified() {
-		
+
 		return new TimeStampImpl();
 	}
 
@@ -712,12 +712,12 @@ public class PackageImpl
 			uniqueIdentifier = false,
 			pid = 0x4402,
 			symbol = "PackageName")
-	public String getPackageName() 
+	public String getPackageName()
 		throws PropertyNotPresentException {
-		
+
 		if (packageName == null)
 			throw new PropertyNotPresentException("The optional name property is not present in this package.");
-		
+
 		return packageName;
 	}
 
@@ -737,12 +737,12 @@ public class PackageImpl
 			uniqueIdentifier = false,
 			pid = 0x4408,
 			symbol = "PackageUsage")
-	public AUID getPackageUsage() 
+	public AUID getPackageUsage()
 		throws PropertyNotPresentException {
 
 		if (packageUsage == null)
 			throw new PropertyNotPresentException("The optional package usage property is not present in this package.");
-		
+
 		return packageUsage;
 	}
 
@@ -770,7 +770,7 @@ public class PackageImpl
 			tv.amwa.maj.record.PackageID newPackageID)
 		throws NullPointerException {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 	public tv.amwa.maj.model.Package cloneExternal(
@@ -794,12 +794,12 @@ public class PackageImpl
 			int trackId,
 			tv.amwa.maj.model.DataDefinition essenceKind,
 			tv.amwa.maj.union.SourceReferenceValue reference,
-			long sourceReferenceLength) 
+			long sourceReferenceLength)
 		throws NullPointerException,
 			InvalidDataDefinitionException,
 			BadLengthException,
 			TrackExistsException {
-		
+
 		SourceClip sourceClip = new SourceClipImpl(essenceKind, sourceReferenceLength, reference);
 		Track track = null;
 		try {
@@ -808,12 +808,12 @@ public class PackageImpl
 		catch (TrackNotFoundException snfe) {
 			/* Use mobSlot == null to represent slot not found. */
 		}
-		
+
 		if (track != null) {
-			
+
 			switch (addType) {
-			
-			case ForceOverwrite: 
+
+			case ForceOverwrite:
 				track.setTrackSegment(sourceClip);
 				break;
 			case Append:
@@ -846,9 +846,9 @@ public class PackageImpl
 		}
 		else {
 			appendNewTimelineTrack(editRate, sourceClip, trackId, null, 0l);
-		}			
+		}
 	}
-//	
+//
 //	@SuppressWarnings("unused")
 //	protected List<tv.amwa.maj.iface.FindSourceInformation> internalSearchSource(
 //			int trackID,
@@ -859,10 +859,10 @@ public class PackageImpl
 //		throws NullPointerException,
 //			InvalidPackageTypeException,
 //			TraversalNotPossibleException {
-//		
-//		List<tv.amwa.maj.iface.FindSourceInformation> sourceList = 
+//
+//		List<tv.amwa.maj.iface.FindSourceInformation> sourceList =
 //			new Vector<tv.amwa.maj.iface.FindSourceInformation>();
-//		
+//
 //		Track track = null;
 //		try {
 //			track = lookupPackageTrack(trackID);
@@ -870,7 +870,7 @@ public class PackageImpl
 //			long componentLength = foundSegment.rootObject.getComponentLength();
 //			FindSourceInformation sourceInfo = new FindSourceInformation(
 //					null, 0, 0l, null, 0l, foundSegment.rootObject);
-//			
+//
 //			MobFindLeafArguments arguments = new MobFindLeafArguments(
 //					track,
 //					mediaCriteria,
@@ -882,37 +882,35 @@ public class PackageImpl
 //					null,
 //					null,
 //					0l);
-//			
+//
 //			// TODO implementation halted until its relevance has been determined
 //		}
 //		catch (Exception e) { }
-//		
-//		
+//
+//
 //		return null;
 //	}
-//	
+//
 //	/** TODO implementation, comments and test
 //	 *
 //	 * <p></p>
 //	 *
-//	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 //	 *
 //	 */
 //	static class ScopeStack {
-//		
+//
 //		// TODO does this actually exist? Cannot find it in the C version.
 //	}
-//	
+//
 //	/** TODO implementation, comments and test
 //	 *
 //	 * <p></p>
 //	 *
-//	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 //	 *
 //	 */
-//	static class MobFindLeafArguments 
+//	static class MobFindLeafArguments
 //		implements Cloneable {
-//		
+//
 //		Track track;
 //		CriteriaType mediaCriteria;
 //		OperationChoice operationChoice;
@@ -930,7 +928,7 @@ public class PackageImpl
 //		@Int32 int nestDepth = 0;
 //		@PositionType long differencePosition = 0l;
 //		PackageImpl mob = null;
-//		
+//
 //		MobFindLeafArguments(
 //				Track track,
 //				CriteriaType mediaCriteria,
@@ -942,7 +940,7 @@ public class PackageImpl
 //				ComponentImpl nextObject,
 //				ScopeStack scopeStack,
 //				@PositionType long currentObjectPosition) {
-//			
+//
 //			this.track = track;
 //			this.mediaCriteria = mediaCriteria;
 //			this.operationChoice = operationChoice;
@@ -954,9 +952,9 @@ public class PackageImpl
 //			this.scopeStack = scopeStack;
 //			this.currentObjectPosition = currentObjectPosition;
 //		}
-//		
+//
 //		public MobFindLeafArguments clone() {
-//			
+//
 //			try {
 //				return (MobFindLeafArguments) super.clone();
 //			}
@@ -969,28 +967,28 @@ public class PackageImpl
 //	}
 //
 //	void mobFindLeaf(
-//			MobFindLeafArguments arguments) 
+//			MobFindLeafArguments arguments)
 //		throws TraversalNotPossibleException {
-//		
+//
 //		arguments.mob = this;
-//		
+//
 //		arguments.rootObject.getMinimumBounds(arguments);
 //	}
 
 	public Package clone() {
-		
+
 		return (Package) super.clone();
 	}
 
 	/* public final void forget() {
-		
+
 		mobCache.remove(this.mobId);
 	} */
-	
+
 	// AVID extension properties - start
-	
+
 	private Boolean convertFrameRate = null;
-	
+
 	@MediaProperty(uuid1 = 0xd4243bd4, uuid2 = (short) 0x0142, uuid3 = (short) 0x4595,
 			uuid4 = { (byte) 0xa8, (byte) 0xf3, (byte) 0xf2, (byte) 0xeb, (byte) 0xa5, (byte) 0x42, (byte) 0x44, (byte) 0xde },
 			definedName = "ConvertFrameRate",
@@ -1001,25 +999,25 @@ public class PackageImpl
 			symbol = "ConvertFrameRate",
 			namespace = AvidConstants.AVID_NAMESPACE,
 			prefix = AvidConstants.AVID_PREFIX)
-	public boolean getConvertFrameRate() 
+	public boolean getConvertFrameRate()
 		throws PropertyNotPresentException {
-		
+
 		if (convertFrameRate == null)
 			throw new PropertyNotPresentException("The optional convert frame rate property is not present for this package.");
-		
+
 		return convertFrameRate;
 	}
-	
+
 	@MediaPropertySetter("ConvertFrameRate")
 	public void setConvertFrameRate(
 			Boolean convertFrameRate) {
-		
+
 		this.convertFrameRate = convertFrameRate;
 	}
-	
+
 	private List<TaggedValue> mobAttributeList =
 		Collections.synchronizedList(new Vector<TaggedValue>());
-	
+
 	@MediaProperty(uuid1 = 0x60958183, uuid2 = (short) 0x47b1, uuid3 = (short) 0x11d4,
 			uuid4 = { (byte) 0xa0, 0x1c, 0x00, 0x04, (byte) 0xac, (byte) 0x96, (byte) 0x9f, 0x50 },
 			definedName = "MobAttributeList",
@@ -1030,80 +1028,80 @@ public class PackageImpl
 			symbol = "MobAttributeList",
 			namespace = AvidConstants.AVID_NAMESPACE,
 			prefix = AvidConstants.AVID_PREFIX)
-	public List<TaggedValue> getMobAttributeList() 
+	public List<TaggedValue> getMobAttributeList()
 		throws PropertyNotPresentException {
-		
+
 		if (mobAttributeList.size() == 0)
 			throw new PropertyNotPresentException("The optional mob attribute list property is not present for this package.");
-		
+
 		return StrongReferenceVector.getOptionalList(mobAttributeList);
 	}
-	
+
 	@MediaListAppend("MobAttributeList")
 	public void appendMobAttributeItem(
-			TaggedValue mobAttributeItem) 
+			TaggedValue mobAttributeItem)
 		throws NullPointerException {
-		
+
 		if (mobAttributeItem == null)
 			throw new NullPointerException("Cannot append to the mob attribute list of this package using a null value.");
-		
+
 		StrongReferenceVector.append(mobAttributeList, mobAttributeItem);
 	}
-	
+
 	@MediaListPrepend("MobAttributeList")
 	public void prependMobAttributeItem(
-			TaggedValue mobAttributeItem) 
+			TaggedValue mobAttributeItem)
 		throws NullPointerException {
-		
+
 		if (mobAttributeItem == null)
 			throw new NullPointerException("Cannot prepend to the mob attribute list of this package using a null value.");
-	
+
 		StrongReferenceVector.prepend(mobAttributeList, mobAttributeItem);
 	}
-	
+
 	@MediaListInsertAt("MobAttributeList")
 	public void insertMobAttributeItem(
 			int index,
 			TaggedValue mobAttributeItem)
 		throws NullPointerException,
 			IndexOutOfBoundsException {
-			
+
 		if (mobAttributeItem == null)
 			throw new NullPointerException("Cannot insert into the mob attribute list of this package using a null value.");
-		
+
 		StrongReferenceVector.insert(mobAttributeList, index, mobAttributeItem);
 	}
-	
+
 	@MediaPropertyCount("MobAttributeList")
 	public int countMobAttributeList() {
-		
+
 		return mobAttributeList.size();
 	}
-	
+
 	@MediaPropertyClear("MobAttributeList")
 	public void clearMobAttributeList() {
-		
+
 		mobAttributeList.clear();
 	}
-	
+
 	@MediaListGetAt("MobAttributeList")
 	public TaggedValue getMobAttributeItemAt(
-			int index) 
+			int index)
 		throws IndexOutOfBoundsException {
-		
+
 		return StrongReferenceVector.getAt(mobAttributeList, index);
 	}
-	
+
 	@MediaListRemoveAt("MobAttributeList")
 	public void removeMobAttributeItemAt(
-			int index) 
+			int index)
 		throws IndexOutOfBoundsException {
-		
+
 		StrongReferenceVector.remove(mobAttributeList, index);
 	}
-		
+
 	private @Int64 Long subclipFullLength = null;
-	
+
 	@MediaProperty(uuid1 = 0x1262bf7b, uuid2 = (short) 0xfce2, uuid3 = (short) 0x4dfe,
 			uuid4 = { (byte) 0xa0, (byte) 0xf6, (byte) 0xce, (byte) 0xec, 0x04, 0x7c, (byte) 0x80, (byte) 0xaa },
 			definedName = "SubclipFullLength",
@@ -1114,24 +1112,24 @@ public class PackageImpl
 			symbol = "SubclipFullLength1",
 			namespace = AvidConstants.AVID_NAMESPACE,
 			prefix = AvidConstants.AVID_PREFIX)
-	public @Int64 long getSubclipFullLength() 
+	public @Int64 long getSubclipFullLength()
 		throws PropertyNotPresentException {
-		
+
 		if (subclipFullLength == null)
 			throw new PropertyNotPresentException("The optional subclip full length property is not present for this package.");
-		
+
 		return subclipFullLength;
 	}
-	
+
 	@MediaPropertySetter("SubclipFullLength")
 	public void setSubclipFullLength(
 			@Int64 Long subclipFullLength) {
-		
+
 		this.subclipFullLength = subclipFullLength;
 	}
-	
+
 	private @Int64 Long subclipBegin= null;
-	
+
 	@MediaProperty(uuid1 = 0xaa24b657, uuid2 = (short) 0xfcbb, uuid3 = (short) 0x4921,
 			uuid4 = { (byte) 0x95, 0x1d, 0x3a, 0x20, 0x38, 0x39, 0x67, 0x22 },
 			definedName = "SubclipBegin",
@@ -1142,72 +1140,72 @@ public class PackageImpl
 			symbol = "SubclipBegin",
 			namespace = AvidConstants.AVID_NAMESPACE,
 			prefix = AvidConstants.AVID_PREFIX)
-	public @Int64 long getSubclipBegin() 
+	public @Int64 long getSubclipBegin()
 		throws PropertyNotPresentException {
-		
+
 		if (subclipBegin== null)
 			throw new PropertyNotPresentException("The optional subclip begin property is not present for this package.");
-		
+
 		return subclipBegin;
 	}
-	
+
 	@MediaPropertySetter("SubclipBegin")
 	public void setSubclipBegin(
 			@Int64 Long subclipBegin) {
-		
+
 		this.subclipBegin = subclipBegin;
 	}
-	
+
 	// AVID extension properties - end
-	
+
 	public String getPackageUsageString() {
-		
+
 		return AUIDImpl.toPersistentForm(packageUsage);
 	}
-	
+
 	public void setPackageUsageString(
 			String packageUsage) {
-				
+
 		this.packageUsage = AUIDImpl.fromPersistentForm(packageUsage);
 	}
-	
+
 	public String getPackageLastModifiedString() {
-		
+
 		return TimeStampImpl.toPersistentForm(packageLastModified);
 	}
-	
+
 	public void setPackageLastModifiedString(
 			String packageLastModified) {
-		
+
 		this.packageLastModified = TimeStampImpl.fromPersistentForm(packageLastModified);
 	}
-	
+
 	public String getCreationTimeString() {
-		
+
 		return TimeStampImpl.toPersistentForm(creationTime);
 	}
-	
+
 	public void setCreationTimeString(
 			String creationTime) {
-		
+
 		this.creationTime = TimeStampImpl.fromPersistentForm(creationTime);
 	}
-	
+
 	public String getPackageIDString() {
-		
+
 		return PackageIDImpl.toPersistentForm(packageID);
 	}
-	
+
 	public void setPackageIDString(
 			String packageID) {
-		
+
 		this.packageID = PackageIDImpl.fromPersistentForm(packageID);
 	}
-	
+
 	public String getWeakTargetReference(){
 		return "PackageWeakReference";
 	}
-	
+
 	/** TODO
 	 * <p>Is this the right AUID?</p>
 	 */

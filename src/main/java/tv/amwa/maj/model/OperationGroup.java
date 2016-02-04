@@ -67,7 +67,7 @@ import tv.amwa.maj.record.AUID;
  * <p>In an operation group that is itself in a {@linkplain Transition transition}, the input segments 
  * are provided by the transition and so the optional input segments property shall be omitted.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see OperationDefinition
  * @see CompositionPackage

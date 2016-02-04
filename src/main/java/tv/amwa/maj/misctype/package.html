@@ -1,30 +1,17 @@
-<!-- 
- *********************************************************************
- *
- * $Id: package.html,v 1.3 2011/02/14 22:33:03 vizigoth Exp $
- *
- * The contents of this file are subject to the AAF SDK Public
- * Source License Agreement (the "License"); You may not use this file
- * except in compliance with the License.  The License is available in
- * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
- * Association or its successor.
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
- * the License for the specific language governing rights and 
- * limitations under the License.
- *
- * The Original Code of this file is Copyright 2007, Licensor of the
- * AAF Association.
- *
- * The Initial Developer of the Original Code of this file and the 
- * Licensor of the AAF Association is Richard Cartwright.
- * All rights reserved.
- *
- * Contributors and Additional Licensors of the AAF Association:
- * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
- *
- **********************************************************************
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
  $Log: package.html,v $
  Revision 1.3  2011/02/14 22:33:03  vizigoth
@@ -47,7 +34,7 @@
 </head>
 <body bgcolor="white">
 
-<p>Provides annotations that describe the mapping of miscellaneous 
+<p>Provides annotations that describe the mapping of miscellaneous
 AAF data types to Java data types. These annotations are designed to assist
 a developer by providing additional information about to interprete a value
 over and above the value's generic type definition.</p>
@@ -55,7 +42,7 @@ over and above the value's generic type definition.</p>
 <h2>Annotation usage</h2>
 
 <p>These annotations are primarily used to label methods in the <a href="../iface/package-summary.html">MAJ
-API interfaces package</a> and <a href="../record/package-summary.html">record packages</a>. For example, 
+API interfaces package</a> and <a href="../record/package-summary.html">record packages</a>. For example,
 the get and set methods for the video line map property of a {@linkplain tv.amwa.maj.model.PictureDescriptor picture
 descriptor} are:</p>
 
@@ -68,7 +55,7 @@ descriptor} are:</p>
         throws NullPointerException;
 </pre>
 
-<p>These annotations are provided for source code use only and are not available 
+<p>These annotations are provided for source code use only and are not available
 via the Java reflection API at runtime.</p>
 
 <h2>Heritage</h2>
@@ -77,14 +64,13 @@ via the Java reflection API at runtime.</p>
 
 <ul>
  <li>the renamed type definitions of the standard AAF meta dictionary;</li>
- <li>type name aliases defined in the <a href="http://aaf.sourceforge.net/">C-based 
+ <li>type name aliases defined in the <a href="http://aaf.sourceforge.net/">C-based
  AAF SDK</a> in file "<code>AAFTypes.h</code>".
 </ul>
 
-<p>To look up the Java type used to represent a C data type in the AAF SDK, or 
+<p>To look up the Java type used to represent a C data type in the AAF SDK, or
 vice versa, use the utility {@linkplain tv.amwa.maj.util.LookupTable type lookup table}.</p>
 
 @see tv.amwa.maj.meta.TypeDefinitionRename
-@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 </body>
 </html>

@@ -39,7 +39,7 @@ package tv.amwa.maj.union;
  * <p>Specifies a search criteria for matching {@linkplain tv.amwa.maj.model.Package packages} that does 
  * not match anything.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface SearchForNothing 
 	extends SearchCriteria {

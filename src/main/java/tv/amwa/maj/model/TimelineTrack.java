@@ -62,7 +62,7 @@ import tv.amwa.maj.union.MultiCreateItem;
  * {@linkplain Segment segment} specifies its length in the edit rate set by the timeline track.
  * The segment also specifies its own {@linkplain Component#getComponentDataDefinition() data kind}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see MaterialPackage#createEssence(int, DataDefinition, AUID, Rational, Rational, tv.amwa.maj.enumeration.CompressEnable, Locator, AUID) MaterialPackage.createEssence()
  * @see MaterialPackage#createMultiEssence(AUID, MultiCreateItem[], tv.amwa.maj.enumeration.CompressEnable, Locator, AUID) MaterialPackage.createMultiEssence()

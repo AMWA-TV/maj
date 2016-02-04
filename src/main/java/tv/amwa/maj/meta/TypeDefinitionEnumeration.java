@@ -55,7 +55,7 @@ import tv.amwa.maj.misctype.AAFString;
  * integer values. Every element in the set has both an integer value and a string label. The 
  * enumeration type is equivalent to the Java {@link java.lang.Enum} type.</p></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#Enum
  * @see java.lang.Enum

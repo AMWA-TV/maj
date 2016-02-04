@@ -43,7 +43,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>Equivalent C result code: <code>AAFRESULT_PROP_ALREADY_PRESENT 0x801200DE</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class PropertyAlreadyPresentException 

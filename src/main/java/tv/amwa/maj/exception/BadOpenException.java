@@ -34,7 +34,7 @@ package tv.amwa.maj.exception;
  * <p>Equivalent C result code: <code>AAFRESULT_OPEN_FAILURE 0x80120017</code><br>
  * which is aliased to: <code>AAFRESULT_BADOPEN</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class BadOpenException 

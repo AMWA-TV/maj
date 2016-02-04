@@ -47,7 +47,7 @@ import tv.amwa.maj.record.AUID;
  * {@linkplain tv.amwa.maj.record.AUID AUID} value. The type of search represented by this 
  * criteria must be set using method {@link #setTag(SearchTag)}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface SearchByAUID extends SearchCriteria {

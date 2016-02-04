@@ -43,7 +43,7 @@ package tv.amwa.maj.union;
  * @see tv.amwa.maj.model.Preface#getPackages(SearchCriteria)
  * @see SearchTag
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public abstract interface SearchCriteria {

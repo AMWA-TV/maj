@@ -45,7 +45,7 @@ package tv.amwa.maj.exception;
  *
  * @see tv.amwa.maj.model.PictureDescriptor
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class IllegalPropertyValueException 

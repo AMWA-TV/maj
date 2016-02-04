@@ -51,7 +51,7 @@ import tv.amwa.maj.misctype.DataValue;
  * <p>For more information, see the <a href="http://en.wikipedia.org/wiki/WAV">description of 
  * WAVE on Wikipedia</a>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.constant.CodecConstant#WAVE
  * @see SourcePackage#getEssenceDescriptor()

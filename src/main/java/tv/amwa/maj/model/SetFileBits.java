@@ -46,7 +46,7 @@ import tv.amwa.maj.misctype.DataBuffer;
  * these are provided by the toolkit to provide read OR write (but not both
  * simultaneously) access to the raw bits.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

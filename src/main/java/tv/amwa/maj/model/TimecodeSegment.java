@@ -54,7 +54,7 @@ import tv.amwa.maj.misctype.FrameOffset;
  * <p>See the <a href="package-summary.html#namingConflicts">section on naming conflicts in the package 
  * documentation</a>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.record.TimecodeValue
  */

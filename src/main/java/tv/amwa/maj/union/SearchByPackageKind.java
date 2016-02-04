@@ -42,7 +42,7 @@ import tv.amwa.maj.enumeration.PackageKind;
  * 
  * @see tv.amwa.maj.enumeration.PackageKind 
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface SearchByPackageKind 

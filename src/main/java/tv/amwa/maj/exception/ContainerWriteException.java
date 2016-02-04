@@ -47,7 +47,7 @@ import java.nio.ByteBuffer;
  *
  * @see tv.amwa.maj.model.WAVEPCMDescriptor
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class ContainerWriteException 

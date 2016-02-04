@@ -49,7 +49,7 @@ import tv.amwa.maj.union.SearchTag;
  * @see tv.amwa.maj.model.ContentStorage#getPackages(tv.amwa.maj.union.SearchCriteria)
  * @see tv.amwa.maj.model.Preface#getPackages(tv.amwa.maj.union.SearchCriteria)
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class SearchByAUIDImpl 
 	extends SearchCriteriaImpl

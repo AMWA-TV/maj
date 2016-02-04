@@ -54,7 +54,7 @@ import tv.amwa.maj.record.AUID;
 /**
  * <p>Implement this interface to access constant values used across the MAJ API.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface CommonConstants {

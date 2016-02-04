@@ -56,7 +56,7 @@ import tv.amwa.maj.record.TimecodeValue;
  * object. Contrast this to a {@linkplain Transition transition} which is a component that
  * depends on other components to establish its value.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Track#getTrackSegment()
  * @see Pulldown#getInputSegment()

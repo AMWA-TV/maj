@@ -45,7 +45,7 @@ import tv.amwa.maj.misctype.Bool;
  * "triggers" a video mixer or title generator to perform a previously programmed function 
  * such as a transition, effect, or title.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 

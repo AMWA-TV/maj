@@ -32,7 +32,7 @@ package tv.amwa.maj.exception;
  *
  * <p>Equivalent C result code: <code>AAFRESULT_ALREADY_OPEN 0x8012002A</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class AlreadyOpenException 
 	extends Exception 

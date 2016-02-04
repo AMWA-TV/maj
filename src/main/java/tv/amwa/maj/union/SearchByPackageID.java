@@ -40,7 +40,7 @@ import tv.amwa.maj.record.PackageID;
  * <p>Specifies a search criteria for matching {@linkplain tv.amwa.maj.model.Package packages} 
  * defined by a {@linkplain tv.amwa.maj.record.PackageID package id}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface SearchByPackageID 
 	extends SearchCriteria {

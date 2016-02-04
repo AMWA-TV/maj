@@ -45,7 +45,7 @@ import tv.amwa.maj.union.SearchTag;
  * <p>Implementation of a search criteria for matching {@linkplain tv.amwa.maj.model.Package packages} 
  * defined by a {@linkplain tv.amwa.maj.record.PackageID package id}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class SearchByPackageIDImpl 

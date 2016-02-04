@@ -55,7 +55,7 @@ import tv.amwa.maj.misctype.DataBuffer;
  *  <li>{@link RawStorage}</li>
  * </ul></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

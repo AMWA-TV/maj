@@ -43,7 +43,7 @@ package tv.amwa.maj.model;
  * {@linkplain VaryingValue varying value} using the specified {@linkplain ControlPoint
  * control points}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.constant.InterpolationConstant
  * @see Dictionary#getInterpolationDefinitions()

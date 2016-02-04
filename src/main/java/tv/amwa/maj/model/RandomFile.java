@@ -53,7 +53,7 @@ import tv.amwa.maj.exception.NotWriteableException;
  * @see GetFileBits
  * @see SetFileBits
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

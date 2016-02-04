@@ -62,7 +62,7 @@ import tv.amwa.maj.misctype.Bool;
  * <p>Note that the element type for a set must be a {@linkplain TypeDefinitionObjectReference reference
  * type}. For example and as a result, it is not possible to define a set of integer values.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#Set
  * @see TypeDefinitionFixedArray

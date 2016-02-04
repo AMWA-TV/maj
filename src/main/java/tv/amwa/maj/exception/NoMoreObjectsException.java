@@ -38,7 +38,7 @@ package tv.amwa.maj.exception;
  *
  * <p>Equivalent C result code: <code>AAFRESULT_NO_MORE_OBJECTS 0x80120111</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class NoMoreObjectsException 

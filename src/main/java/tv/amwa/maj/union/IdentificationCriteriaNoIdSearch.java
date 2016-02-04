@@ -35,7 +35,7 @@ package tv.amwa.maj.union;
  * <p>Specifies a criteria for matching an {@linkplain tv.amwa.maj.model.Identification identification}
  * that matches nothing.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface IdentificationCriteriaNoIdSearch 

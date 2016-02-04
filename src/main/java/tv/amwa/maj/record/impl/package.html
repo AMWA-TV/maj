@@ -1,30 +1,17 @@
-<!-- 
- *********************************************************************
- *
- * $Id: package.html,v 1.1 2011/01/04 10:42:32 vizigoth Exp $
- *
- * The contents of this file are subject to the AAF SDK Public
- * Source License Agreement (the "License"); You may not use this file
- * except in compliance with the License.  The License is available in
- * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
- * Association or its successor.
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
- * the License for the specific language governing rights and 
- * limitations under the License.
- *
- * The Original Code of this file is Copyright 2007, Licensor of the
- * AAF Association.
- *
- * The Initial Developer of the Original Code of this file and the 
- * Licensor of the AAF Association is Richard Cartwright.
- * All rights reserved.
- *
- * Contributors and Additional Licensors of the AAF Association:
- * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
- *
- **********************************************************************
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
  $Log: package.html,v $
  Revision 1.1  2011/01/04 10:42:32  vizigoth
@@ -53,12 +40,12 @@
 </head>
 <body bgcolor="white">
 
-<p>Implementations of structured values that can be embedded as properties of 
+<p>Implementations of structured values that can be embedded as properties of
 entity beans. Typically, the classes of this package are taken implementations of
-AAF record data types, as specified by the interfaces of the 
+AAF record data types, as specified by the interfaces of the
 <a href="../record/package-summary.html">record package</a>. </p>
 
-<p>The MAJ implementations of these classes are registered with the 
+<p>The MAJ implementations of these classes are registered with the
 {@linkplain tv.amwa.maj.meta.TypeDefinitionRecord record type definition} that
 represents them. This allows the values to be serialised to and from files and
 streams.</p>
@@ -77,7 +64,7 @@ copying of values does not cause memory management issues.</p>
 <h3>String representation</h3>
 
 <p>Values that have a defined string representation, e.g. a rational
-representing a half can be written "1/2", will generate this when the 
+representing a half can be written "1/2", will generate this when the
 <code>toString()</code> method is called on them. Classes without an obvious
 simple representation, such as <em>Timecode</em>, will generate a pseudo XML
 representation similar that that which appears in Reg-XML.</p>
@@ -85,7 +72,7 @@ representation similar that that which appears in Reg-XML.</p>
 <p>All classes in this package implement a <code>parseFactory(String)</code> method
 that parses the given string an creates an instance of the defining class. This is
 used when creating values from strings using the {@linkplain tv.amwa.maj.meta.TypeDefinitionRecord
-record type definition's} {@link tv.amwa.maj.meta.TypeDefinitionRecord#createValueFromString(String) 
+record type definition's} {@link tv.amwa.maj.meta.TypeDefinitionRecord#createValueFromString(String)
 createValueFromString(String)} method.</p>
 
 <h3>Final classes and methods</h3>
@@ -93,13 +80,12 @@ createValueFromString(String)} method.</p>
 <p>The classes and methods of this package are declared <em>final</em> deliberately. Their specification
 was derived from C <em>struct</em> declarations and their behaviour is tightly
 specified. Extensions of these classes that introduce different behaviour or a
-different approach to MAJ API memory management will not be expected by any MAJ API 
-implementing classes.</p>   
+different approach to MAJ API memory management will not be expected by any MAJ API
+implementing classes.</p>
 
 <p>This does not prevent another developer from creating their
 own implementation of the MAJ API interfaces. In this case, unexpected behaviour may
 result.</p>
 
-@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 </body>
 </html>

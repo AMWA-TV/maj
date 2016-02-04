@@ -42,7 +42,7 @@ package tv.amwa.maj.exception;
  *
  * <p>Equivalent C result code: <code>AAFRESULT_BADRATE 0x801200FD</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class BadRateException 

@@ -43,7 +43,7 @@ import tv.amwa.maj.union.SearchTag;
  * 
  * @see tv.amwa.maj.model.Package#getPackageName()
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class SearchByNameImpl 
 	extends SearchCriteriaImpl

@@ -45,7 +45,7 @@ import tv.amwa.maj.industry.PropertyValue;
  * The AAF character type is equivalent to the Java <code>char</code> primitive type and a value
  * of {@link java.lang.Character}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#Character 
  * @see java.lang.Character

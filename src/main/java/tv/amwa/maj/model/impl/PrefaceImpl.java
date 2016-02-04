@@ -129,7 +129,7 @@ import tv.amwa.maj.record.impl.VersionTypeImpl;
  * <p>Implements file-wide information and indexes. An {@linkplain tv.amwa.maj.model.AAFFile AAF file} shall 
  * have exactly one header object.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

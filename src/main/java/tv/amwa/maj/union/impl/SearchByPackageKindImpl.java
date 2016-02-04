@@ -42,7 +42,7 @@ import tv.amwa.maj.union.SearchTag;
  * <p>Implementaiton of a earch criteria for matching {@linkplain tv.amwa.maj.model.Package packages} defined by a 
  * {@linkplain tv.amwa.maj.enumeration.PackageKind kind of package}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class SearchByPackageKindImpl 
 	extends SearchCriteriaImpl

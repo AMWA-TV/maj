@@ -61,7 +61,7 @@ import tv.amwa.maj.record.Rational;
  * <p>A {@linkplain SourcePackage source package} that contains a file descriptor is also
  * known as an MXF <em>file package</em> or a <em>file source package</em>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see EssenceDescriptor
  * @see SourcePackage#getEssenceDescriptor()

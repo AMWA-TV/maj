@@ -55,7 +55,7 @@ import tv.amwa.maj.misctype.Bool;
  * v1.1</a> lists the built-in data definitions of the AAF. These can be retrieved by name via the
  * {@link tv.amwa.maj.industry.Warehouse#lookup(Class, String)} method of the MAJ warehouse.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.constant.DataDefinitionConstant
  * @see tv.amwa.maj.industry.Warehouse#lookup(Class, String)

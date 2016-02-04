@@ -47,7 +47,7 @@ package tv.amwa.maj.exception;
  * @see tv.amwa.maj.meta.TypeDefinitionString
  * @see tv.amwa.maj.meta.TypeDefinitionVariableArray
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class BadTypeException 

@@ -43,7 +43,7 @@ import tv.amwa.maj.enumeration.CriteriaType;
  * 
  * @see tv.amwa.maj.enumeration.CriteriaType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface SearchByMediaCriteria 
 	extends SearchCriteria {

@@ -42,7 +42,7 @@ package tv.amwa.maj.exception;
  * @see tv.amwa.maj.model.InterchangeObject
  * @see tv.amwa.maj.model.Preface
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class ObjectNotAttachedException 

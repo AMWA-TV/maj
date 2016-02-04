@@ -106,7 +106,7 @@ import tv.amwa.maj.model.OperationDefinition;
  * <p>Type names as shown in the examples above can be used to retrieve variable array type
  * definitions with a call to {@link tv.amwa.maj.industry.Warehouse#lookForType(String)}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#VariableArray
  * @see TypeDefinitionFixedArray

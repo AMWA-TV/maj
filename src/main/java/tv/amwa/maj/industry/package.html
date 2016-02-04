@@ -1,30 +1,17 @@
-<!-- 
- *********************************************************************
- *
- * $Id: package.html,v 1.4 2011/02/14 22:32:49 vizigoth Exp $
- *
- * The contents of this file are subject to the AAF SDK Public
- * Source License Agreement (the "License"); You may not use this file
- * except in compliance with the License.  The License is available in
- * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
- * Association or its successor.
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
- * the License for the specific language governing rights and 
- * limitations under the License.
- *
- * The Original Code of this file is Copyright 2007, Licensor of the
- * AAF Association.
- *
- * The Initial Developer of the Original Code of this file and the 
- * Licensor of the AAF Association is Richard Cartwright.
- * All rights reserved.
- *
- * Contributors and Additional Licensors of the AAF Association:
- * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
- *
- **********************************************************************
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
  $Log: package.html,v $
  Revision 1.4  2011/02/14 22:32:49  vizigoth
@@ -51,8 +38,8 @@
 </head>
 <body bgcolor="white">
 
-<p>Industry for manufacturing, storing and making instances of classes and meta-classes, 
-referenced by names and registered identifiers. This package includes the tools required to 
+<p>Industry for manufacturing, storing and making instances of classes and meta-classes,
+referenced by names and registered identifiers. This package includes the tools required to
 carry out the runtime linkage between the Java programming language and media-specific standards
 from AMWA and SMPTE. Also included are tools to generate database mappings and schema.</p>
 
@@ -69,13 +56,13 @@ the following three classes:</p>
 <ul>
  <li>New instances of objects and values can be made using the {@linkplain tv.amwa.maj.industry.Forge forge}.</li>
  <li>Existing objects can be manipulated using the {@linkplain tv.amwa.maj.industry.MediaEngine media engine}.</li>
- <li>An registration and search capability for shared definitions, including all classes and types known 
+ <li>An registration and search capability for shared definitions, including all classes and types known
  to the running virtual machine, are stored in the runtime-dynamic {@linkplain tv.amwa.maj.industry.Warehouse warehouse}.</li>
 </ul>
 
-<p>Every virtual machine needs to have a warehouse full of all classes, types, enumerations elements etc. 
-before useful applications can be written Most applications will need to start by registering all the 
-AAF classes and types etc. using the convenience static method 
+<p>Every virtual machine needs to have a warehouse full of all classes, types, enumerations elements etc.
+before useful applications can be written Most applications will need to start by registering all the
+AAF classes and types etc. using the convenience static method
 {@link tv.amwa.maj.industry.MediaEngine#initializeAAF() MediaEngine.initializeAAF()} method. User defined
 types are then registered.</p>
 
@@ -88,10 +75,10 @@ and serialized to and from files must implement the {@link tv.amwa.maj.industry.
 interface. This is an empty interface with no additional requirements and is used to signal to MAJ that
 you want to permit the object to be treated as an item of media metadata.</p>
 
-<p>Any classes that are also to be treated as persistent entities should instead implement the 
-{@link tv.amwa.maj.industry.MediaEntity MediaEntity} interface, which extends the 
+<p>Any classes that are also to be treated as persistent entities should instead implement the
+{@link tv.amwa.maj.industry.MediaEntity MediaEntity} interface, which extends the
 {@link tv.amwa.maj.industry.MetadataObject MetadataObject} interface. A media interface gas a
-unique persistent identifier for its type for the database where it is to be stored. It also has a 
+unique persistent identifier for its type for the database where it is to be stored. It also has a
 list index value for occasions when the entity is part of an ordered list and that list needs to be
 persisted in the correct order in a database.</p>
 
@@ -99,17 +86,17 @@ persisted in the correct order in a database.</p>
 
 <p>This package defines a number of Java annotations that can be used to enhance a Java class and provide
 additional information that is required to use the class for representing media data. The annotations are
-read at runtime and used to plumb the class into the capabilities of the media engine and input/output 
+read at runtime and used to plumb the class into the capabilities of the media engine and input/output
 libraries. The annotations provide missing information, such as SMPTE universal labels and AAF type names
 that cannot be extracted directly from the Java class itself. Specifically:</p>
 
 <ul>
  <li>A Java class can become the specification of an AAF {@linkplain tv.amwa.maj.meta.ClassDefinition class definition}
  by annotating it as a {@linkplain tv.amwa.maj.industry.MediaClass media class}.</li>
- <li>The set and get methods of a class can become {@linkplain tv.amwa.maj.meta.PropertyDefinition properties} of a 
- class by annotating methods with {@linkplain tv.amwa.maj.industry.MediaProperty media property getter} and 
+ <li>The set and get methods of a class can become {@linkplain tv.amwa.maj.meta.PropertyDefinition properties} of a
+ class by annotating methods with {@linkplain tv.amwa.maj.industry.MediaProperty media property getter} and
  {@linkplain tv.amwa.maj.industry.MediaPropertySetter media property setter} annotations.</li>
- <li>For methods relating to properties of a collection, additional annotations are defined, including: 
+ <li>For methods relating to properties of a collection, additional annotations are defined, including:
   <ul>
    <li>{@linkplain tv.amwa.maj.industry.MediaPropertyContains collection contains};</li>
    <li>{@linkplain tv.amwa.maj.industry.MediaPropertyCount count the number of elements};</li>
@@ -117,7 +104,7 @@ that cannot be extracted directly from the Java class itself. Specifically:</p>
    <li>{@linkplain tv.amwa.maj.industry.MediaPropertyRemove remove an element}.</li>
   </ul>
  </li>
- <li>To label a method used to add elements to a set, the specific 
+ <li>To label a method used to add elements to a set, the specific
  {@linkplain tv.amwa.maj.industry.MediaSetAdd add to set} annotation is provided;</li>
  <li>For methods relating to elements of a list, the following annotations should be used:
   <ul>
@@ -131,7 +118,7 @@ that cannot be extracted directly from the Java class itself. Specifically:</p>
 </ul>
 
 <p>In general, the inheritance class hierarchy of the Java classes is mirrored in the media class
-definitions. However, sometimes the mechanics of an application require more classes in the Java class 
+definitions. However, sometimes the mechanics of an application require more classes in the Java class
 hierarchy than are represented in the media class hierarchy. The <em>extra</em> Java classes should
 be annotated as {@linkplain tv.amwa.maj.industry.HiddenClass hidden classes}.</p>
 
@@ -147,18 +134,18 @@ package. Some special case mappings not covered elsewhere are described in this 
 interface. Static reference can be made to these types and the interface can be implemented to provide
 localised access.</p>
 
-<p>All baseline classes of the AAF object model to the version currently supported by MAJ are listed 
+<p>All baseline classes of the AAF object model to the version currently supported by MAJ are listed
 in the static fields of the {@link tv.amwa.maj.industry.AAFSpecifiedClasses AAFSpecifiedClasses} interface.</p>
 
 <h3>Weak references</h3>
 
 <p>Some references between objects in an AAF-based meta model are weak, allowing the target of the reference to
 be shared by many sources. The reference is made by using the unique identifier of the targeted item. All
-potential targets of weak references are required to implement the 
-{@link tv.amwa.maj.industry.WeakReferenceTarget WeakReferenceTarget} interface, which provides a 
+potential targets of weak references are required to implement the
+{@link tv.amwa.maj.industry.WeakReferenceTarget WeakReferenceTarget} interface, which provides a
 unique name and identifier by which the item can be referenced.</p>
 
-<p>The source of the reference should be implemented as a field within a class as the generic class 
+<p>The source of the reference should be implemented as a field within a class as the generic class
 {@link tv.amwa.maj.industry.WeakReference WeakReference}. This provides mechanisms within a specific
 Java virtual machine for resolving and persisting weak references. However, the get and set methods
 for the property should use the target object itself.</p>
@@ -187,9 +174,9 @@ type properties with the same instance of a class.</p>
 
 <h3>Strong reference collections</h3>
 
-<p>Sets of strong references are represented as a field of their owning class by a 
-{@link java.util.Set java.util.Set}, parameterized by the type of element in the set. 
-Static, generic methods for manipulating the set are provided in the 
+<p>Sets of strong references are represented as a field of their owning class by a
+{@link java.util.Set java.util.Set}, parameterized by the type of element in the set.
+Static, generic methods for manipulating the set are provided in the
 {@link tv.amwa.maj.industry.StrongReferenceSet StrongReferenceSet} class and these can
 be used as a basis the methods that manipulate the value of the set property.</p>
 
@@ -198,34 +185,34 @@ class by a {@link java.util.List java.util.List}, parameterized by the type of t
 element in the list. Static, generic methods for manipulating the list are provided
 in the {@link tv.amwa.maj.industry.StrongReferenceVector StrongReferenceVector} class
 and these can be used as a basic for the methods that manipulate the value of the list
-property. For lists, this has the specific advantage that list order indexes used when 
+property. For lists, this has the specific advantage that list order indexes used when
 persisting the list to a database are maintained for you.</p>
 
-<p>It is recommended that synchronized sets and lists are used in implementation to 
+<p>It is recommended that synchronized sets and lists are used in implementation to
 avoid runtime clashes.</p>
 
 <h3>Streams</h3>
 
 <p>A value of {@linkplain tv.amwa.maj.meta.TypeDefinitionStream stream type} is represented
-by an implementation of the {@link tv.amwa.maj.industry.Stream Stream} interface. This interface 
+by an implementation of the {@link tv.amwa.maj.industry.Stream Stream} interface. This interface
 provides a means to seek, read and write bytes to and from an underlying stream. A
 {@linkplain tv.amwa.maj.industry.MemoryResidentStream memory resident stream} and a
-{@linkplain tv.amwa.maj.industry.FileStream basic file stream for raw essence access} are provided 
+{@linkplain tv.amwa.maj.industry.FileStream basic file stream for raw essence access} are provided
 in this package. File-type-specific stream access is provided by implementations of this
-class for, for example for {@linkplain tv.amwa.maj.io.aaf.AAFStream streams in structured 
+class for, for example for {@linkplain tv.amwa.maj.io.aaf.AAFStream streams in structured
 storage containers (AAF)} or {@linkplain tv.amwa.maj.io.aaf.MXFStream wrapped in KLV streams (MXF)}.</p>
 
 <p>A mechanism is also provided to resolve a stream identifier reference to a specific stream
 location using the {@linkplain tv.amwa.maj.industry.StreamResolver stream resolver}. A default
-{@linkplain tv.amwa.maj.industry.LocalFileResolver local file resolver} provides access to 
+{@linkplain tv.amwa.maj.industry.LocalFileResolver local file resolver} provides access to
 local streams through the relevant methods of the {@linkplain tv.amwa.maj.industry.MediaEngine media engine}.
 Alternative stream resolvers can be implemented and used in place of the default one.</p>
 
 <h2 id="typeMappingTable">Property type mapping table</h2>
 
-<p>The table below describes the data type mappings carried out by MAJ when 
-{@linkplain tv.amwa.maj.industry.MediaEngine#getPropertyValue(tv.amwa.maj.industry.MetadataObject, java.lang.String) getting} and 
-{@linkplain tv.amwa.maj.industry.MediaEngine#setPropertyValue(tv.amwa.maj.industry.MetadataObject, java.lang.String, java.lang.Object) setting} 
+<p>The table below describes the data type mappings carried out by MAJ when
+{@linkplain tv.amwa.maj.industry.MediaEngine#getPropertyValue(tv.amwa.maj.industry.MetadataObject, java.lang.String) getting} and
+{@linkplain tv.amwa.maj.industry.MediaEngine#setPropertyValue(tv.amwa.maj.industry.MetadataObject, java.lang.String, java.lang.Object) setting}
 properties using the generic methods of the {@linkplain tv.amwa.maj.industry.MediaEngine media engine} and
 creating objects using the {@linkplain tv.amwa.maj.industry.Forge forge}. For generic handling of individual property
 values, the {@linkplain tv.amwa.maj.industry.PropertyValue PropertyValue} interface is provided as a container
@@ -297,17 +284,17 @@ value.</p>
 <tr>
 <td>{@linkplain tv.amwa.maj.meta.TypeDefinitionRecord Record}</td>
 <td><ul>
-<li>Value implementing the {@linkplain tv.amwa.maj.meta.TypeDefinitionRecord#getSpecification() 
-associated interface specification}, e.g. the interfaces in the 
+<li>Value implementing the {@linkplain tv.amwa.maj.meta.TypeDefinitionRecord#getSpecification()
+associated interface specification}, e.g. the interfaces in the
 <code><a href="../record/package.html">tv.amwa.maj.record</a></code> package.</li>
-<li>String representation of the value, e.g. "<code>3/4</code>" for a 
+<li>String representation of the value, e.g. "<code>3/4</code>" for a
 {@linkplain tv.amwa.maj.record.Rational rational value}.</li>
-<li>An array of {@linkplain tv.amwa.maj.industry.PropertyValue property values} in the 
+<li>An array of {@linkplain tv.amwa.maj.industry.PropertyValue property values} in the
 property order of the record.</li>
 <li><code>byte[]</code> or {@linkplain java.nio.ByteBuffer} representation of the record value.</li>
 </ul></td>
-<td>Value implementing the {@linkplain tv.amwa.maj.meta.TypeDefinitionRecord#getSpecification() 
-associated interface specification}, e.g. the interfaces in the 
+<td>Value implementing the {@linkplain tv.amwa.maj.meta.TypeDefinitionRecord#getSpecification()
+associated interface specification}, e.g. the interfaces in the
 <code><a href="../record/package.html">tv.amwa.maj.record</a></code> package.</td>
 </tr>
 
@@ -346,7 +333,7 @@ of elements of the array's underlying type.</li>
 <td>{@linkplain tv.amwa.maj.meta.TypeDefinitionStrongObjectReference Strong Object Reference}</td>
 <td><ul>
 <li>Referenced object of the referenced type.</li>
-<li>{@linkplain tv.amwa.maj.industry.PropertyValue property value} containing 
+<li>{@linkplain tv.amwa.maj.industry.PropertyValue property value} containing
 the referenced value.</li>
 </ul></td>
 <td>Referenced object of the referenced type.</td>
@@ -356,7 +343,7 @@ the referenced value.</li>
 <td>{@linkplain tv.amwa.maj.meta.TypeDefinitionWeakObjectReference Weak Object Reference}</td>
 <td><ul>
 <li>Referenced object of the referenced type.</li>
-<li>{@linkplain tv.amwa.maj.industry.PropertyValue property value} containing 
+<li>{@linkplain tv.amwa.maj.industry.PropertyValue property value} containing
 the referenced value.</li>
 <li>Name of target of the reference to be looked up and resolved in the warehouse.</li>
 </ul></td>
@@ -366,8 +353,8 @@ the referenced value.</li>
 <tr>
 <td>{@linkplain tv.amwa.maj.meta.TypeDefinitionSet Set}</td>
 <td><ul>
-<li>{@linkplain java.util.Collection Collection} of objects of the referenced type or a 
-{@linkplain java.util.Collection collection} of {@linkplain tv.amwa.maj.industry.PropertyValue property values} 
+<li>{@linkplain java.util.Collection Collection} of objects of the referenced type or a
+{@linkplain java.util.Collection collection} of {@linkplain tv.amwa.maj.industry.PropertyValue property values}
 containing the referenced values.</li>
 <li>Array of objects of the referenced type or an array
 of {@linkplain tv.amwa.maj.industry.PropertyValue property values} containing the referenced values.</li>
@@ -380,8 +367,8 @@ to make a set of size one from.</li>
 <tr>
 <td>{@linkplain tv.amwa.maj.meta.TypeDefinitionVariableArray Variable Array}</td>
 <td><ul>
-<li>{@linkplain java.util.Collection Collection} of objects of the referenced type or a 
-{@linkplain java.util.Collection collection} of {@linkplain tv.amwa.maj.industry.PropertyValue property values} 
+<li>{@linkplain java.util.Collection Collection} of objects of the referenced type or a
+{@linkplain java.util.Collection collection} of {@linkplain tv.amwa.maj.industry.PropertyValue property values}
 containing the referenced values.</li>
 <li>Array of objects of the referenced type or an array
 of {@linkplain tv.amwa.maj.industry.PropertyValue property values} containing the referenced values.</li>
@@ -403,6 +390,5 @@ to persist AAF, pass in the lists of {@linkplain tv.amwa.maj.industry.AAFSpecifi
 
 @see tv.amwa.maj.util.AutoGeneration
 
-@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 </body>
 </html>

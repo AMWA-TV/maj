@@ -131,7 +131,7 @@ import tv.amwa.maj.record.Rational;
  * the sampled view and the display view also have offsets relative to
  * the top left corner of the stored view.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

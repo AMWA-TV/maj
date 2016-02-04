@@ -79,7 +79,7 @@ import tv.amwa.maj.record.Rational;
  * <p>Note that the current version of the MAJ API has no built-in codec support, large 
  * essence is not supported and the methods of this interface do nothing.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see EssenceFormat
  * @see EssenceData

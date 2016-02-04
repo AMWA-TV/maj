@@ -49,7 +49,7 @@ import tv.amwa.maj.misctype.AAFString;
  * <p>Specifies the description of audio tape or video tape media. A {@linkplain SourcePackage
  * source package} described by a tape descriptor is known as a <em>tape source package</em>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see SourcePackage#setEssenceDescriptor(EssenceDescriptor)
  */

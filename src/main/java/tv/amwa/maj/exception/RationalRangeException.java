@@ -46,7 +46,7 @@ package tv.amwa.maj.exception;
  * @see tv.amwa.maj.record.Rational
  * @see tv.amwa.maj.model.ControlPoint#setControlPointTime(tv.amwa.maj.record.Rational)
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class RationalRangeException 

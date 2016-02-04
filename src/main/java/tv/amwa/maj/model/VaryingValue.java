@@ -53,7 +53,7 @@ import tv.amwa.maj.record.Rational;
 /**
  * <p>Specifies a changing data value for an effect control value.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see OperationGroup#addParameter(Parameter)
  */

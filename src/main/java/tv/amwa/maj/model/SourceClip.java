@@ -70,7 +70,7 @@ import tv.amwa.maj.misctype.PositionType;
  * information, see the {@link tv.amwa.maj.industry.Forge#originalSource()} and
  * {@link tv.amwa.maj.industry.Forge#inContextReference(int, Long)} methods.</p> 
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.union.SourceReferenceValue
  */

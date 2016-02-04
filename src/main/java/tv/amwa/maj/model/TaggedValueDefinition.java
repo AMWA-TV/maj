@@ -61,7 +61,7 @@ import tv.amwa.maj.meta.PropertyDefinition;
  * <p>The extended optional <em>parent properties</em> property is available to assist applications
  * but is not a built-in property that is persistent in files.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Dictionary#getTaggedValueDefinitions()
  * @see DefinitionObject#setDescription(String)

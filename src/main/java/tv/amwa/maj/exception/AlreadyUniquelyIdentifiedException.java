@@ -40,7 +40,7 @@ package tv.amwa.maj.exception;
  * 
  * @see tv.amwa.maj.meta.ClassDefinition
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class AlreadyUniquelyIdentifiedException 

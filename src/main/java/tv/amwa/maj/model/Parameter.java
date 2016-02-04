@@ -52,7 +52,7 @@ import tv.amwa.maj.record.AUID;
  * one of the {@linkplain ControlPoint control points} inside of a
  * {@linkplain VaryingValue varying value}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see ParameterDefinition
  * @see tv.amwa.maj.constant.ParameterConstant

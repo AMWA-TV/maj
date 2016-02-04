@@ -42,7 +42,7 @@ import tv.amwa.maj.union.DefinitionCriteriaType;
  * 
  * @see tv.amwa.maj.model.DefinitionObject
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public class DefinitionCriteriaByKindImpl 

@@ -1,30 +1,17 @@
-<!-- 
- *********************************************************************
- *
- * $Id: package.html,v 1.5 2011/02/14 22:32:58 vizigoth Exp $
- *
- * The contents of this file are subject to the AAF SDK Public
- * Source License Agreement (the "License"); You may not use this file
- * except in compliance with the License.  The License is available in
- * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
- * Association or its successor.
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
- * the License for the specific language governing rights and 
- * limitations under the License.
- *
- * The Original Code of this file is Copyright 2007, Licensor of the
- * AAF Association.
- *
- * The Initial Developer of the Original Code of this file and the 
- * Licensor of the AAF Association is Richard Cartwright.
- * All rights reserved.
- *
- * Contributors and Additional Licensors of the AAF Association:
- * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
- *
- **********************************************************************
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
  $Log: package.html,v $
  Revision 1.5  2011/02/14 22:32:58  vizigoth
@@ -64,7 +51,7 @@ are unique identifiers defined by an {@linkplain tv.amwa.maj.record.AUID AUID} t
 </ol>
 
 <p>The constants are all implemented within interfaces in useful groupings. For example, all the constants
-uniquely identifying container types are <code>public final static</code> fields within the 
+uniquely identifying container types are <code>public final static</code> fields within the
 {@link tv.amwa.maj.constant.ContainerConstant} interface. To make these constants available within a class, simply implement the
 interface. None of the interfaces in this package have methods so no requirement is placed on the implementor
 to write implementations for additional methods.</p>
@@ -72,15 +59,15 @@ to write implementations for additional methods.</p>
 <h2 id="heritage">Heritage</h2>
 
 <p>Due to package and interface names providing a scope for constant names in Java, the preceding scope part
-of a definition's name in the MAJ API has been removed from the equivalent C name. For example, the codec 
-definition identified as "<code>CodecDef_JPEG</code>" in the C-based AAF SDK (file "<code>CodecDefs.h</code>") 
-is represented in the MAJ API by "{@link tv.amwa.maj.constant.CodecConstant#JPEG}". However, 
+of a definition's name in the MAJ API has been removed from the equivalent C name. For example, the codec
+definition identified as "<code>CodecDef_JPEG</code>" in the C-based AAF SDK (file "<code>CodecDefs.h</code>")
+is represented in the MAJ API by "{@link tv.amwa.maj.constant.CodecConstant#JPEG}". However,
 <code>forName()</code> methods of the various definition classes will accept both the MAJ API name
-and the C name.</p> 
+and the C name.</p>
 
 <h2 id="managingDefinitions">Managing definitions dynamically</h2>
 
-<p>Every AAF file contains a {@linkplain tv.amwa.maj.model.Dictionary dictionary} holding a number of 
+<p>Every AAF file contains a {@linkplain tv.amwa.maj.model.Dictionary dictionary} holding a number of
 {@linkplain tv.amwa.maj.model.DefinitionObject definitions} for items used to specify instances of AAF
 classes. A number of definitions are specified by the <a href="http://www.smpte-ra.org/">SMPTE registries<a>,
 other SMPTE specifications and more proprietary definitions. The interfaces of this package contain
@@ -88,7 +75,7 @@ many of the specified or soon to be specified definitions. This section describe
 definitions can be turned into {@linkplain tv.amwa.maj.model.DefinitionObject definition object} instances
 and how extension definitions can be specified in the same way.</p>
 
-<p>From this point onwards, {@linkplain tv.amwa.maj.model.CodecDefinition codec definitions} will be discussed 
+<p>From this point onwards, {@linkplain tv.amwa.maj.model.CodecDefinition codec definitions} will be discussed
 as an example. However, everything said here about codec definitions applies equally to other kinds of definition
 objects. The table below shows the relationship between: the interface describing a classification of definition type;
 the interface containing unique identifiers for that class of definition; the annotation that provides additional
@@ -160,18 +147,18 @@ for example:</p>
 <p>The registration takes place at runtime so that the range of definitions supported can be dynamically extended.
 Note that such a registration remains local within a virtual machine.</p>
 
-<p>To lookup and use a registered definition, use the {@link tv.amwa.maj.industry.Warehouse#lookup(Class, String)} or 
+<p>To lookup and use a registered definition, use the {@link tv.amwa.maj.industry.Warehouse#lookup(Class, String)} or
 {@linkplain tv.amwa.maj.industry.Warehouse#lookup(Class, tv.amwa.maj.record.AUID)} mehods. For example:</p>
 
 <pre>
-    ContainerDefinition external = 
+    ContainerDefinition external =
         Warehouse.lookup(ContainerDefinition.class, "External");
 </pre>
 
 <h3>Registering a group of definition instances</h3>
 
-<p>All of the unique identifiers of this package related to definitions are annotated with additional metadata 
-so that they can be used to instaciate definitions. For example, the {@linkplain tv.amwa.maj.constant.CodecConstant#JPEG 
+<p>All of the unique identifiers of this package related to definitions are annotated with additional metadata
+so that they can be used to instaciate definitions. For example, the {@linkplain tv.amwa.maj.constant.CodecConstant#JPEG
 JPEG codec} is defined with a {@linkplain tv.amwa.maj.constant.CodecDescription codec description annotation}
 as follows:</p>
 
@@ -180,9 +167,9 @@ as follows:</p>
         dataDefinitions = { "DataDef_Picture", "DataDef_LegacyPicture" },
         description = "Supports a constrained form of ISO/IEC 10918-1 JPEG images ...")
     public final static AUID JPEG = new tv.amwa.maj.embeddable.AUID(
-            0x18634f8c, (short) 0x3bab, (short) 0x11d3, 
+            0x18634f8c, (short) 0x3bab, (short) 0x11d3,
             new byte[] { (byte) 0xbf, (byte) 0xd6, 0x00, 0x10, 0x4b, (byte) 0xc9, 0x15, 0x6d} );
-</pre> 
+</pre>
 
 <p>The annotation has all the additional parameters required to construct a codec definition over and above
 just its name and unique identifier. To avoid duplication, the name and identifier are not repeated in the annotation</p>
@@ -190,7 +177,7 @@ just its name and unique identifier. To avoid duplication, the name and identifi
 <p>To register all the annotated constants defined in any interface or class, internally the {@linkplain java.lang.Class Java class}
 of an interface containing such annotated constants is passed to the <code>register<em>X</em>FromClass()</code>
 method of a definitions implementation, replacing <code><em>X</em></code> with the name of the definition kind.
-For example, to register all of the codec definitions with unique identifiers in 
+For example, to register all of the codec definitions with unique identifiers in
 {@link tv.amwa.maj.model.CodecDefinition}:</p>
 
 <pre>
@@ -198,7 +185,7 @@ For example, to register all of the codec definitions with unique identifiers in
 </pre>
 
 <p>In fact, any class containing an {@linkplain tv.amwa.maj.record.AUID AUID} constant annotated with a definition
-description can be passed to the appropriate registration method. The registration method looks through the class 
+description can be passed to the appropriate registration method. The registration method looks through the class
 for the relevant annotations and registers any constants that it finds. There should never be a need to use
 the exact line above as it is executed automatically when the codec definition implementation class is loaded.
 This registration process is provided to enable dynamic runtime extension of the supported range of
@@ -212,27 +199,25 @@ version of the MAJ API will expose this capability through the warehouse.</p>
 <p>The range of supported definitions can be extended beyond those provided as part of the MAJ API. To do this:</p>
 
 <ol>
- <li>Create an interface (or class) containing <code>public static final</code> fields of 
+ <li>Create an interface (or class) containing <code>public static final</code> fields of
  {@linkplain tv.amwa.maj.record.AUID AUID} values, with the name of the Java static field being
  the same as the name of the required definition. Take care to define an AUID so that it does not
  conflict with an existing SMPTE UL or UUID scheme used on your systems.</li>
  <li>Annotate the fields with the appropriate description, such as {@link tv.amwa.maj.constant.CodecDescription}.
  Some elements of the annotation are required and so values must be provided.</li>
  <li>Compile the interface (or class) and make sure it is available in the same classpath as the MAJ API.</li>
- <li>Register all of the definitions in your interface (or class) by calling the 
+ <li>Register all of the definitions in your interface (or class) by calling the
  appropriate <code>register<em>X</em>FromClass()</code> methods. For example:<br>
- 
+
  <pre>
     CodecDefinitionImpl.registerCodecsFromClass(<em>my_package.MyCodecs</em>.class);
  </pre></li>
 </ol>
 
 <p>Note that registering a definition within a Java local machine has no direct impact on the creation or
-management of {@linkplain tv.amwa.maj.model.Dictionary dictionaries}. The calls of the MAJ API described 
-here are provided to help with dictionary management and to ensure consistent representation of definitions 
-across dictionaries. The way that a dictionary is managed and interpreted is an application-specific issue.</p> 
+management of {@linkplain tv.amwa.maj.model.Dictionary dictionaries}. The calls of the MAJ API described
+here are provided to help with dictionary management and to ensure consistent representation of definitions
+across dictionaries. The way that a dictionary is managed and interpreted is an application-specific issue.</p>
 
-@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
-  
 </body>
 </html>

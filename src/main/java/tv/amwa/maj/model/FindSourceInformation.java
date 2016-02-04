@@ -54,7 +54,7 @@ import tv.amwa.maj.union.SourceReferenceValue;
  * type value could return a <code>null</code> pointer to indicate that a value 
  * is not present.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see SearchSource#searchSource(int, long, tv.amwa.maj.enumeration.PackageKind, tv.amwa.maj.enumeration.CriteriaType, tv.amwa.maj.enumeration.OperationChoice)
  */

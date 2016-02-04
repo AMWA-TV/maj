@@ -40,7 +40,7 @@ package tv.amwa.maj.exception;
  *
  * <p>Equivalent C result code: <code>AAFRESULT_TIMECODE_NOT_FOUND 0x801200FF</code></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class TimecodeNotFoundException 

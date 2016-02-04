@@ -55,7 +55,7 @@ import tv.amwa.maj.record.Rational;
  * <p>Specifies the description of a file {@linkplain SourcePackage source package} that 
  * is associated with audio essence.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.constant.DataDefinitionConstant#Sound
  * @see SourcePackage#getEssenceDescriptor()

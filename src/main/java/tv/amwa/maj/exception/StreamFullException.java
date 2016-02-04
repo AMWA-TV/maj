@@ -33,7 +33,7 @@ package tv.amwa.maj.exception;
  * 
  * <p>No equivalent C result code could be found.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class StreamFullException 

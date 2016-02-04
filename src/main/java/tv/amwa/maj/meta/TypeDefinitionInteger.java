@@ -58,7 +58,7 @@ import tv.amwa.maj.misctype.Bool;
  * The methods here are specified in such a way that rounding or truncations errors should
  * be avoidable</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.enumeration.TypeCategory#Int
  * @see tv.amwa.maj.integer.Int32

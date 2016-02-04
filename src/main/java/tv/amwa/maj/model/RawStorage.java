@@ -56,7 +56,7 @@ import tv.amwa.maj.misctype.DataBuffer;
  * <p>This method assumes that the storage has at least sequential access
  * capability.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

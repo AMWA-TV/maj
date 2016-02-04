@@ -40,7 +40,7 @@ import tv.amwa.maj.union.DefinitionCriteriaType;
  * <p>Implementation of a criteria for matching a {@linkplain tv.amwa.maj.model.DefinitionObject definition} as 
  * determined by class, kind, name etc..</p>
  * 
- *  @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public abstract class DefinitionCriteriaImpl 

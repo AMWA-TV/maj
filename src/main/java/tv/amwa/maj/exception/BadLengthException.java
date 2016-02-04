@@ -39,7 +39,7 @@ package tv.amwa.maj.exception;
  * @see tv.amwa.maj.model.Component
  * @see tv.amwa.maj.union.Fade
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class BadLengthException 

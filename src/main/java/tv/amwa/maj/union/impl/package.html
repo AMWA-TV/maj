@@ -1,30 +1,17 @@
-<!-- 
- *********************************************************************
- *
- * $Id: package.html,v 1.2 2011/02/14 22:33:04 vizigoth Exp $
- *
- * The contents of this file are subject to the AAF SDK Public
- * Source License Agreement (the "License"); You may not use this file
- * except in compliance with the License.  The License is available in
- * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
- * Association or its successor.
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
- * the License for the specific language governing rights and 
- * limitations under the License.
- *
- * The Original Code of this file is Copyright 2007, Licensor of the
- * AAF Association.
- *
- * The Initial Developer of the Original Code of this file and the 
- * Licensor of the AAF Association is Richard Cartwright.
- * All rights reserved.
- *
- * Contributors and Additional Licensors of the AAF Association:
- * Avid Technology, Metaglue Corporation, British Broadcasting Corporation
- *
- **********************************************************************
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
  $Log: package.html,v $
  Revision 1.2  2011/02/14 22:33:04  vizigoth
@@ -42,7 +29,7 @@
  Revision 1.1  2008/01/14 20:17:38  vizigoth
  Edited comments to a release standard and implemented 4 core object methods. Also, moved DefaultFade into this package.
 
- 
+
 -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
@@ -52,9 +39,9 @@
 </head>
 <body bgcolor="white">
 
-<p>Implementations of classes used to package up collections of values as an argument to 
+<p>Implementations of classes used to package up collections of values as an argument to
 a method of the MAJ API. These classes are not themselves persistent objects. Packaging up
-property values into classes allows related values to be managed together. This approach 
+property values into classes allows related values to be managed together. This approach
 is useful when:</p>
 
 <ul>
@@ -62,7 +49,7 @@ is useful when:</p>
  <li>enabling a method to return a collection of related values.</li>
 </ul>
 
-<p>All classes in this package override the {@link java.lang.Object#equals(Object)}, 
+<p>All classes in this package override the {@link java.lang.Object#equals(Object)},
 {@link java.lang.Object#clone()}, {@link java.lang.Object#toString()} and
 {@link java.lang.Object#hashCode()} methods. They are all {@linkplain java.lang.Cloneable
 cloneable} and {@linkplain java.lang.Serializable serializable}.</p>
@@ -73,21 +60,19 @@ cloneable} and {@linkplain java.lang.Serializable serializable}.</p>
 <a href="../union/package-summary.html">union package</a>. For more information on their heritage, see
 <a href="../union/package-summary.html#heritage">the heritage of the union package</a>.</p>
 
-<p>Classes starting with the word <em>multi</em> are used to manage interleaved 
+<p>Classes starting with the word <em>multi</em> are used to manage interleaved
 essence and these classes are used as array elements in the method signatures
 of {@link tv.amwa.maj.model.EssenceMultiAccess}.</p>
 
-<p>The {@link tv.amwa.maj.argument.Fade Fade} class collects together and manages 
+<p>The {@link tv.amwa.maj.argument.Fade Fade} class collects together and manages
 {@linkplain tv.amwa.maj.model.SourceClip source clip} fade properties as a single item.</p>
 
-<p>The {@link tv.amwa.maj.argument.DefaultFade DefaultFade} and {@link tv.amwa.maj.argument.SourceReferenceValue} 
-classes implement interfaces specified to ensure rules of the 
-<a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object specification v1.1</a> are met. Similar 
+<p>The {@link tv.amwa.maj.argument.DefaultFade DefaultFade} and {@link tv.amwa.maj.argument.SourceReferenceValue}
+classes implement interfaces specified to ensure rules of the
+<a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object specification v1.1</a> are met. Similar
 structures were defined in the <a href="http://aaf.sourceforge.net/">existing C-based reference implementation</a>
 in file "<code>AAFTypes.h</code>" and used to ensure specified rules are complied with as indicated in the methods
 in "<code>AAF.idl</code>".</p>
 
-@author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
-  
 </body>
 </html>

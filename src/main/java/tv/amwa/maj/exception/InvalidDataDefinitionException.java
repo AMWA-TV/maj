@@ -42,7 +42,7 @@ package tv.amwa.maj.exception;
  * @see tv.amwa.maj.model.DataDefinition
  * @see tv.amwa.maj.constant.DataDefinitionConstant
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class InvalidDataDefinitionException 

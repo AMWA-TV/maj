@@ -232,7 +232,7 @@ public class TrackImpl
 	 * <p>Class containing the results of an operation to find a segment in a track from its
 	 * given offset position.</p>
 	 *
-	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+	 *
 	 *
 	 */
 	static class FoundSegment {

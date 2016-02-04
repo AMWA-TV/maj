@@ -46,7 +46,7 @@ import tv.amwa.maj.industry.MetadataObject;
  * 
  * @see tv.amwa.maj.meta.PropertyDefinition
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class IllegalPropertyException 

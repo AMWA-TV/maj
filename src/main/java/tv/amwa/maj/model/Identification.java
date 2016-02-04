@@ -75,7 +75,7 @@ import tv.amwa.maj.record.TimeStamp;
  * used to tell which changes to the file were made by a particular
  * application.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Preface#getLastIdentification()
  */
