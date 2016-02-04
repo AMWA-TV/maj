@@ -1,31 +1,18 @@
-///* 
-// **********************************************************************
-// *
-// * $Id: EssenceSubParser.java,v 1.5 2010/01/19 14:44:23 vizigoth Exp $
-// *
-// * The contents of this file are subject to the AAF SDK Public
-// * Source License Agreement (the "License"); You may not use this file
-// * except in compliance with the License.  The License is available in
-// * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
-// * Association or its successor.
-// *
-// * Software distributed under the License is distributed on an "AS IS"
-// * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
-// * the License for the specific language governing rights and 
-// * limitations under the License.
-// *
-// * The Original Code of this file is Copyright 2007, Licensor of the
-// * AAF Association.
-// *
-// * The Initial Developer of the Original Code of this file and the 
-// * Licensor of the AAF Association is Richard Cartwright.
-// * All rights reserved.
-// *
-// * Contributors and Additional Licensors of the AAF Association:
-// * Matt Beard, Metaglue Corporation
-// *
-// **********************************************************************
-// */
+/*
+ * Copyright 2016 Advanced Media Workflow Assocation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 ///*
 // * $Log: EssenceSubParser.java,v $
@@ -63,7 +50,7 @@
 //
 ///**
 // * <p>Base class for all essence parsers.</p>
-// * 
+// *
 // * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 // *
 // */
@@ -86,44 +73,44 @@
 //		//! This essence stream's stream ID in the index manager
 //
 //		// int	ManagedStreamID;
-//	
+//
 //	private int managedStreamID;
-//	
+//
 //	public abstract class SubParserEssenceSource
 //		extends EssenceSource {
-//	
+//
 ////	protected:
 ////
 ////		EssenceSubParserPtr Caller;
-//		
+//
 //		private EssenceSubParser caller;
-//		
+//
 ////		FileHandle File;
 //
 //		private File file;
-//		
+//
 ////		UInt32 Stream;
-//		
+//
 //		private @UInt32 int stream;
 ////
 ////		UInt64 RequestedCount;
 //
 //		private @UInt64 long requestedCount;
-//		
+//
 ////		IndexTablePtr Index;
 //
 //		private IndexTable index;
-//		
+//
 ////		DataChunkPtr RemainingData;
 //
-//		private ByteBuffer remainingData; 
-//		
+//		private ByteBuffer remainingData;
+//
 ////		bool AtEndOfData;
 //
 //		private boolean atEndOfData = false;
-//		
+//
 ////		bool Started;
-////	
+////
 //		private boolean started = false;
 ////
 ////	public:
@@ -153,7 +140,7 @@
 //				File file,
 //				@UInt32 int stream,
 //				@UInt64 long count) {
-//			
+//
 //			this.caller = caller;
 //			this.file = file;
 //			this.stream = stream;
@@ -168,7 +155,7 @@
 ////
 ////		 *  the first wrapping unit end encountered before Size. On no account will portions of two or more different wrapping
 ////
-////		 *  units be returned together. The mechanism for selecting a type of wrapping (e.g. frame, line or clip) is not 
+////		 *  units be returned together. The mechanism for selecting a type of wrapping (e.g. frame, line or clip) is not
 ////
 ////		 *  (currently) part of the common EssenceSource interface.
 ////
@@ -188,17 +175,17 @@
 //		public ByteBuffer getEssenceData(
 //				int size,
 //				int maxSize) {
-//			
+//
 //			return baseGetEssenceData(size, maxSize);
 //		}
 ////
 ////		//! Non-virtual basic version of GetEssenceData() that can be called by derived classes
 ////
-////		/*! DRAGONS: This implementation always reads whole wrapping units, so it NOT SAFE if these could be too large to fit in memory 
+////		/*! DRAGONS: This implementation always reads whole wrapping units, so it NOT SAFE if these could be too large to fit in memory
 ////
 ////		 */
 ////
-//	
+//
 ////		DataChunkPtr BaseGetEssenceData(size_t Size = 0, size_t MaxSize = 0)
 ////
 ////		{
@@ -270,21 +257,21 @@
 //		public ByteBuffer baseGetEssenceData(
 //				int size,
 //				int maxSize) {
-//	
+//
 //			if (!started)
 //				started = true;
-//			
+//
 //			ByteBuffer data;
-//			
+//
 //			if (remainingData != null) {
 //				data = remainingData;
 //				remainingData = null;
 //			}
-//			
+//
 //			// TODO finish this
-//			
+//
 //			return null;
-//			
+//
 //		}
 ////
 ////		//! Did the last call to GetEssenceData() return the end of a wrapping item
@@ -301,9 +288,9 @@
 ////
 ////		 */
 ////
-////		virtual bool EndOfItem(void) 
+////		virtual bool EndOfItem(void)
 ////
-////		{ 
+////		{
 ////
 ////			// If we are clip wrapping then we only end when no more data
 ////
@@ -319,11 +306,11 @@
 ////
 //		@Override
 //		public boolean endOfItem() {
-//			
+//
 //			// If we are clip wrapping then we only end when no more data
 //			if (caller.getWrapType() == WrappingOption.WrapType.Clip)
 //				return atEndOfData;
-//			
+//
 //			// Otherwise items end when there is no data remaining from the last read
 //			// TODO work out what to return here
 //			//return !remainingData;
@@ -340,7 +327,7 @@
 ////
 //		@Override
 //		public boolean endOfData() {
-//			
+//
 //			return atEndOfData;
 //		}
 ////
@@ -350,7 +337,7 @@
 ////
 //		@Override
 //		public @UInt8 byte getGenericContainerEssenceType() {
-//			
+//
 //			return caller.getGenericContainerEssenceType();
 //		}
 ////
@@ -360,7 +347,7 @@
 ////
 //		@Override
 //		public @UInt8 byte getGenericContainerElementType() {
-//			
+//
 //			return caller.getGenericContainerElementType();
 //		}
 ////
@@ -370,7 +357,7 @@
 ////
 //		@Override
 //		public boolean isEditPoint() {
-//			
+//
 //			return true;
 //		}
 ////
@@ -378,7 +365,7 @@
 ////
 ////		/*! \note This may not be the same as the original "native" edit rate of the
 ////
-////		 *        essence if this EssenceSource is wrapping to a different edit rate 
+////		 *        essence if this EssenceSource is wrapping to a different edit rate
 ////
 ////		 */
 ////
@@ -386,7 +373,7 @@
 ////
 //		@Override
 //		public RationalImpl getEditRate() {
-//			
+//
 //			return caller.getEditRate();
 //		}
 ////
@@ -394,7 +381,7 @@
 ////
 ////		/*! This is relative to the start of the stream, so the first edit unit is always 0.
 ////
-////		 *  This is the same as the number of edit units read so far, so when the essence is 
+////		 *  This is the same as the number of edit units read so far, so when the essence is
 ////
 ////		 *  exhausted the value returned shall be the size of the essence
 ////
@@ -404,7 +391,7 @@
 //
 //		@Override
 //		public @MXFPosition long getCurrentPosition() {
-//			
+//
 //			return caller.getCurrentPosition();
 //		}
 ////
@@ -419,7 +406,7 @@
 //		public boolean setOption(
 //				String option,
 //				@Int64 long parameter) {
-//			
+//
 //			return caller.setOption(option, parameter);
 //		}
 ////
@@ -430,11 +417,11 @@
 ////		 */
 ////
 ////		virtual UInt32 GetBytesPerEditUnit(UInt32 KAGSize = 1) { return Caller->GetBytesPerEditUnit(KAGSize); }
-//		
+//
 //		@Override
 //		public @UInt32 int getBytesPerEditUnit(
 //				@UInt32 int kagSize) {
-//			
+//
 //			return caller.getBytesPerEditUnit(kagSize);
 //		}
 ////
@@ -449,7 +436,7 @@
 ////
 //		@Override
 //		public boolean canIndex() {
-//			
+//
 //			// TODO
 //			return false;
 //		}
@@ -468,12 +455,12 @@
 ////		public void setIndexManager(
 ////				IndexManager manager,
 ////				int streamID) {
-////			
+////
 ////			caller.setIndexManager(manager, streamID);
 ////		}
-////	
+////
 ////	}
-//	
+//
 ////	public:
 ////
 //
@@ -482,14 +469,14 @@
 ////		virtual StringList HandledExtensions(void) { StringList Ret; return Ret; };
 ////
 //	public List<String> handledExtensions() {
-//	
+//
 //		// TODO
 //		return null;
 //	}
 ////
 ////		//! Examine the open file and return a list of essence descriptors
 ////
-////		/*! This function should fail as fast as possible if the essence if not identifyable by this object 
+////		/*! This function should fail as fast as possible if the essence if not identifyable by this object
 ////
 ////		 *	\return A list of EssenceStreamDescriptors where each essence stream identified in the input file has
 ////
@@ -509,10 +496,10 @@
 ////
 //	public List<EssenceStreamDescriptor> identifyEssence(
 //			File file) {
-//		
+//
 //		// TODO
 //		return null;
-//		
+//
 //	}
 ////
 ////		//! Examine the open file and return the wrapping options known by this parser
@@ -540,7 +527,7 @@
 //	public List<WrappingOption> identifyWrappingOptions(
 //			File file,
 //			EssenceStreamDescriptor descriptor) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -560,18 +547,18 @@
 //	public void useWrappingOption(
 //			@UInt32 int stream,
 //			WrappingOption wrapping) {
-//		
+//
 //		// TODO why is the stream required?
 //		selectedWrapping = wrapping;
 //	}
-//	
+//
 ////
 ////		//! Does this essence parser support ReValidate()
 ////
 ////		virtual bool CanReValidate(void) { return false; }
 ////
 //	public boolean canReValidate() {
-//		
+//
 //		return false;
 //	}
 ////
@@ -600,7 +587,7 @@
 //			@UInt32 int stream,
 //			EssenceDescriptorImpl descriptor,
 //			WrappingOption wrapping) {
-//		
+//
 //		return false;
 //	}
 ////
@@ -617,12 +604,12 @@
 ////			return SelectedWrapping->ThisWrapType;
 ////
 ////		}
-//	
+//
 //	public WrappingOption.WrapType getWrapType() {
-//		
+//
 //		if (selectedWrapping == null)
 //			return WrappingOption.WrapType.None;
-//		
+//
 //		return selectedWrapping.getWrapType();
 //	}
 ////
@@ -644,7 +631,7 @@
 ////
 //	public boolean setEditRate(
 //			RationalImpl editRate) {
-//		
+//
 //		return (editRate == getEditRate());
 //	}
 ////
@@ -671,7 +658,7 @@
 ////		}
 ////
 //	public RationalImpl getPreferredEditRate() {
-//		
+//
 //		return new RationalImpl(0, 0);
 //	}
 ////
@@ -683,22 +670,22 @@
 ////
 //	public @UInt32 int getBytesPerEditUnit(
 //			@UInt32 int kagSize) {
-//		
+//
 //		// TODO check this!
 //		return kagSize * 0;
 //	}
-//	
+//
 //	public @UInt32 int getBytesPerEditUnit() {
-//		
+//
 //		return getBytesPerEditUnit(1);
 //	}
-//	
+//
 ////
 ////		//! Get the current position in SetEditRate() sized edit units
 ////
 ////		/*! This is relative to the start of the stream, so the first edit unit is always 0.
 ////
-////		 *  This is the same as the number of edit units read so far, so when the essence is 
+////		 *  This is the same as the number of edit units read so far, so when the essence is
 ////
 ////		 *  exhausted the value returned shall be the size of the essence
 ////
@@ -723,24 +710,24 @@
 //	public void setIndexManager(
 //			IndexManager manager,
 //			int streamID) {
-//		
+//
 //		this.manager = manager;
 //		this.managedStreamID = streamID;
 //	}
-//	
+//
 //	public void setIndexManager(
 //			IndexManager manager) {
-//		
+//
 //		setIndexManager(manager, 0);
 //	}
-//	
+//
 ////
 ////		//! Get the IndexManager for this essence stream
 ////
 ////		virtual IndexManagerPtr &GetIndexManager(void) { return Manager; };
 ////
 //	public IndexManager getIndexManager() {
-//		
+//
 //		return manager;
 //	}
 ////
@@ -749,7 +736,7 @@
 ////		virtual int GetIndexStreamID(void) { return ManagedStreamID; };
 ////
 //	public int getIndexStreamID() {
-//		
+//
 //		return managedStreamID;
 //	}
 ////
@@ -766,7 +753,7 @@
 //	public void setStreamOffset(
 //			@MXFPosition long editUnit,
 //			@UInt64 long offset) {
-//		
+//
 //		if (manager != null)
 //			manager.setOffset(managedStreamID, editUnit, offset);
 //	}
@@ -786,10 +773,10 @@
 //	public boolean offerStreamOffset(
 //			@MXFPosition long editUnit,
 //			@UInt64 long offset) {
-//		
+//
 //		if (manager == null)
 //			return false;
-//		
+//
 //		return manager.offerOffset(managedStreamID, editUnit, offset);
 //	}
 ////
@@ -804,7 +791,7 @@
 ////		}
 ////
 //	public void indexNext() {
-//		
+//
 //		if (manager != null)
 //			manager.acceptNext();
 //	}
@@ -822,10 +809,10 @@
 ////		}
 ////
 //	public int indexLogNext() {
-//		
+//
 //		if (manager != null)
 //			return manager.acceptLogNext();
-//		
+//
 //		return -1;
 //	}
 ////
@@ -842,10 +829,10 @@
 ////		}
 ////
 //	public int logNext() {
-//		
+//
 //		if (manager != null)
 //			return manager.logNext();
-//		
+//
 //		return -1;
 //	}
 ////
@@ -863,10 +850,10 @@
 ////
 //	public @MXFPosition long readLog(
 //			int logID) {
-//		
+//
 //		if (manager != null)
 //			return manager.readLog(logID);
-//		
+//
 //		return IndexTable.indexLowest;
 //	}
 ////
@@ -885,18 +872,18 @@
 ////		}
 ////
 //	public @MXFPosition long acceptProvisional() {
-//		
+//
 //		if (manager != null)
 //			return manager.accecptProvisional();
-//		
+//
 //		return IndexTable.indexLowest;
 //	}
 ////
 ////		//! Read the edit unit of the last entry added via the index manager (or IndexLowest if none added)
 ////
-////		Position GetLastNewEditUnit(void) 
+////		Position GetLastNewEditUnit(void)
 ////
-////		{ 
+////		{
 ////
 ////			if(Manager) return Manager->GetLastNewEditUnit();
 ////
@@ -905,19 +892,19 @@
 ////		}
 ////
 //	public @MXFPosition long getLastNewEditUnit() {
-//		
+//
 //		if (manager != null)
 //			return manager.getLastNewEditUnit();
-//		
+//
 //		return IndexTable.indexLowest;
 //	}
 ////
 ////		//! Get the GCEssenceType to use when wrapping this essence in a Generic Container
 ////
 ////		virtual UInt8 GetGCEssenceType(void) { return SelectedWrapping->GCEssenceType; }
-//	
+//
 //	public @UInt8 byte getGenericContainerEssenceType() {
-//		
+//
 //		// TODO
 //		return 0;
 //	}
@@ -927,7 +914,7 @@
 ////		virtual UInt8 GetGCElementType(void) { return SelectedWrapping->GCElementType; }
 ////
 //	public @UInt8 byte getGenericContainerElementType() {
-//		
+//
 //		// TODO
 //		return 0;
 //	}
@@ -944,7 +931,7 @@
 ////
 ////		 *  not be the frame rate of this essence
 ////
-////		 *	\note This is going to take a lot of memory in clip wrapping! 
+////		 *	\note This is going to take a lot of memory in clip wrapping!
 ////
 ////		 */
 ////
@@ -954,11 +941,11 @@
 //			File file,
 //			@UInt32 int stream,
 //			@UInt64 long count);
-//	
+//
 //	public ByteBuffer read(
 //			File file,
 //			@UInt32 int stream) {
-//		
+//
 //		return read(file, stream, 1);
 //	}
 ////
@@ -970,11 +957,11 @@
 //			File file,
 //			@UInt32 int stream,
 //			@UInt64 long count);
-//	
+//
 //	public EssenceSource getEssenceSource(
 //			File file,
 //			@UInt32 int stream) {
-//		
+//
 //		return getEssenceSource(file, stream, 1);
 //	}
 ////
@@ -1001,12 +988,12 @@
 //			@UInt32 int stream,
 //			MXFFileImpl outFile,
 //			@UInt64 long count);
-//	
+//
 //	public @MXFLength long write(
 //			File inFile,
 //			@UInt32 int stream,
 //			MXFFileImpl outFile) {
-//		
+//
 //		return write(inFile, stream, outFile, 1);
 //	}
 ////
@@ -1019,13 +1006,13 @@
 //	public boolean setOption(
 //			String option,
 //			@Int64 long param) {
-//		
+//
 //		return false;
 //	}
-//	
+//
 //	public boolean setOption(
 //			String option) {
-//		
+//
 //		return false;
 //	}
 //
@@ -1043,7 +1030,7 @@
 ////		virtual std::string GetParserName(void) const { return ""; }
 ////
 //	public String getParserName() {
-//		
+//
 //		return "";
 //	}
 ////

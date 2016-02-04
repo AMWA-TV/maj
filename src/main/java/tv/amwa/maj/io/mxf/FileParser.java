@@ -1,31 +1,18 @@
-///* 
-// **********************************************************************
-// *
-// * $Id: FileParser.java,v 1.5 2010/01/19 14:44:22 vizigoth Exp $
-// *
-// * The contents of this file are subject to the AAF SDK Public
-// * Source License Agreement (the "License"); You may not use this file
-// * except in compliance with the License.  The License is available in
-// * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
-// * Association or its successor.
-// *
-// * Software distributed under the License is distributed on an "AS IS"
-// * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
-// * the License for the specific language governing rights and 
-// * limitations under the License.
-// *
-// * The Original Code of this file is Copyright 2007, Licensor of the
-// * AAF Association.
-// *
-// * The Initial Developer of the Original Code of this file and the 
-// * Licensor of the AAF Association is Richard Cartwright.
-// * All rights reserved.
-// *
-// * Contributors and Additional Licensors of the AAF Association:
-// * Matt Beard, Metaglue Corporation
-// *
-// **********************************************************************
-// */
+/*
+ * Copyright 2016 Advanced Media Workflow Assocation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 ///*
 // * $Log: FileParser.java,v $
@@ -64,50 +51,50 @@
 //
 ///**
 // * <p>Parse essence from a list of files.</p>
-// * 
+// *
 // * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 // *
 // */
-//public class FileParser 
+//public class FileParser
 //	extends ListOfFiles {
-//	
+//
 //	class SubStreamInformation {
-//		
+//
 ////		UInt32 StreamID;					//!< The ID of this sub-stream
 //
 //		public @UInt32 int streamID;
-//		
+//
 ////					EssenceSourcePtr Source;			//!< The source for the sub-stream data
 //
 //		public EssenceSource source;
 //	}
-//	
+//
 ////	protected:
 ////
 ////		bool CurrentFileOpen;					//!< True if we have a file open for processing
 //
 //	private boolean currentFileOpen;
-//	
+//
 ////		FileHandle CurrentFile;					//!< The current file being processed
 //
 //	private File currentFile;
-//	
+//
 ////		EssenceSubParserPtr SubParser;			//!< The sub-parser selected for parsing this sourceessence
 //
 //	private EssenceSubParser subParser;
-//	
+//
 ////		UInt32 CurrentStream;					//!< The currently selected stream in the source essence
 //
 //	private @UInt32 int currentStream;
-//	
+//
 ////		MDObjectPtr CurrentDescriptor;			//!< Pointer to the essence descriptor for the currently selected stream
 //
 //	private EssenceDescriptorImpl currentDescriptor;
-//	
+//
 ////		WrappingOptionPtr CurrentWrapping;		//!< The currently selected wrapping options
 //
 //	private WrappingOption currentWrapping;
-//	
+//
 ////		EssenceSourceParent SeqSource;			//!< This parser's sequential source - which perversely owns the parser!
 ////
 //	private EssenceSource sequentialSource;
@@ -144,26 +131,26 @@
 ////
 //	public FileParser(
 //			String fileName) {
-//		
+//
 //		super(fileName);
 //		sequentialSource = new SequentialEssenceSource(this);
 //		currentFileOpen = false;
 //	}
 //
 //	public FileParser() {
-//		
+//
 //		super();
 //		sequentialSource = new SequentialEssenceSource(this);
 //		currentFileOpen = false;
-//	
+//
 //	}
-//	
+//
 ////		//! Identify the essence type in the first file in the set of possible files
 ////
 ////		ParserDescriptorListPtr IdentifyEssence(void);
 ////
 //	public Map<EssenceSubParser, List<EssenceStreamDescriptor>> identifyEssence() {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -184,14 +171,14 @@
 //			boolean allowMultiples,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return listWrappingOptions(allowMultiples, parserDescriptorList, new RationalImpl(0, 0), forceWrap);
 //	}
-//	
+//
 //	public List<EssenceParser.WrappingConfig> listWrappingOptions(
 //			boolean allowMultiples,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList) {
-//		
+//
 //		return listWrappingOptions(allowMultiples, parserDescriptorList, new RationalImpl(0, 0), WrappingOption.WrapType.None);
 //	}
 //
@@ -211,13 +198,13 @@
 //	public List<EssenceParser.WrappingConfig> listWrappingOptions(
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return listWrappingOptions(false, parserDescriptorList, new RationalImpl(0, 0), forceWrap);
 //	}
 //
 //	public List<EssenceParser.WrappingConfig> listWrappingOptions(
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList) {
-//		
+//
 //		return listWrappingOptions(false, parserDescriptorList, new RationalImpl(0, 0), WrappingOption.WrapType.None);
 //	}
 ////
@@ -230,19 +217,19 @@
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
-//	
+//
 //	public List<EssenceParser.WrappingConfig> listWrappingOptions(
 //			boolean allowMultiples,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate) {
-//		
+//
 //		return listWrappingOptions(allowMultiples, parserDescriptorList, forceEditRate, WrappingOption.WrapType.None);
 //	}
-//	
+//
 ////
 ////		//! Produce a list of available wrapping options
 ////
@@ -258,17 +245,17 @@
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return listWrappingOptions(false, parserDescriptorList, forceEditRate, forceWrap);
 //	}
-//	
+//
 //	public List<EssenceParser.WrappingConfig> listWrappingOptions(
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate) {
-//		
+//
 //		return listWrappingOptions(false, parserDescriptorList, forceEditRate, WrappingOption.WrapType.None);
 //	}
-//	
+//
 ////
 ////		//! Select the best wrapping option without a forced edit rate
 ////
@@ -285,13 +272,13 @@
 //	public EssenceParser.WrappingConfig selectWrappingOption(
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return selectWrappingOption(false, parserDescriptorList, new RationalImpl(0, 0), forceWrap);
 //	}
-//	
+//
 //	public EssenceParser.WrappingConfig selectWrappingOption(
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList) {
-//		
+//
 //		return selectWrappingOption(false, parserDescriptorList, new RationalImpl(0, 0), WrappingOption.WrapType.None);
 //	}
 //
@@ -310,17 +297,17 @@
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return selectWrappingOption(false, parserDescriptorList, forceEditRate, forceWrap);
 //	}
-//	
+//
 //	public EssenceParser.WrappingConfig selectWrappingOption(
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate) {
-//		
+//
 //		return selectWrappingOption(false, parserDescriptorList, forceEditRate, WrappingOption.WrapType.None);
 //	}
-//	
+//
 ////
 ////		//! Select the best wrapping option without a forced edit rate
 ////
@@ -338,16 +325,16 @@
 //			boolean allowMultiples,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return selectWrappingOption(allowMultiples, parserDescriptorList, new RationalImpl(0, 0), forceWrap);
-//	}			
+//	}
 //
 //	public EssenceParser.WrappingConfig selectWrappingOption(
 //			boolean allowMultiples,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList) {
-//		
+//
 //		return selectWrappingOption(allowMultiples, parserDescriptorList, new RationalImpl(0, 0), WrappingOption.WrapType.None);
-//	}				
+//	}
 ////
 ////		//! Select the best wrapping option with a forced edit rate
 ////
@@ -358,11 +345,11 @@
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
-//	
+//
 //	public EssenceParser.WrappingConfig selectWrappingOption(
 //			boolean allowMultiples,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
@@ -370,7 +357,7 @@
 //
 //		return selectWrappingOption(allowMultiples, parserDescriptorList, forceEditRate, WrappingOption.WrapType.None);
 //	}
-//	
+//
 ////
 ////		//! Select the specified wrapping options
 ////
@@ -378,7 +365,7 @@
 ////
 //	public void selectWrappingOption(
 //			EssenceParser.WrappingConfig wrappingConfig) {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -393,7 +380,7 @@
 //	public void useWrapping(
 //			@UInt32 int stream,
 //			WrappingOption wrapping) {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -403,7 +390,7 @@
 ////
 //	public EssenceSource getEssenceSource(
 //			@UInt32 int stream) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -414,7 +401,7 @@
 ////
 //	public EssenceSource getSubSource(
 //			@UInt32 int stream) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -440,7 +427,7 @@
 ////		}
 ////
 //	public boolean openFile() {
-//		
+//
 //		// TODO
 //		return false;
 //	}
@@ -460,7 +447,7 @@
 ////		}
 ////
 //	public void closeFile() {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -471,7 +458,7 @@
 ////		bool IsFileOpen(void) { return CurrentFileOpen; }
 ////
 //	public boolean isFileOpen() {
-//		
+//
 //		return currentFileOpen;
 //	}
 ////
@@ -486,7 +473,7 @@
 ////		bool GetFirstSource(void);
 ////
 //	boolean getFirstSource() {
-//		
+//
 //		// TODO
 //		return false;
 //	}
@@ -500,13 +487,13 @@
 ////		bool GetNextSource(void);
 ////
 //	boolean getNextSource() {
-//		
+//
 //		// TODO
 //		return false;
 //	}
 ////
 ////		//! Essence Source that manages a sequence of essence sources from a list of file patterns
-//	class SequentialEssenceSource 
+//	class SequentialEssenceSource
 //		extends EssenceSource {
 ////
 ////		protected:
@@ -514,11 +501,11 @@
 ////			EssenceSourcePtr CurrentSource;				//!< An EssenceSource for the current source file
 //
 //		private EssenceSource currentSource;
-//		
+//
 ////			FileParserPtr Outer;						//!< The outer file parser which is owned by us to prevent it being released until be are done
 //
 //		private FileParser outer;
-//		
+//
 ////			Length PreviousLength;						//!< The total size of all previously read essence sources for this set
 ////
 //		private @MXFLength long previousLength = 0l;
@@ -527,7 +514,7 @@
 ////
 ////			typedef std::pair<std::string, Int64> OptionPair;
 ////
-////			
+////
 ////
 ////			//! List of all options set for this source
 ////
@@ -549,15 +536,15 @@
 ////
 //		public SequentialEssenceSource(
 //				FileParser outer) {
-//			
+//
 //			this.outer = outer;
 //		}
 ////
 ////			//! Set the new source to use
 ////
-////			void SetSource(EssenceSourcePtr NewSource) 
+////			void SetSource(EssenceSourcePtr NewSource)
 ////
-////			{ 
+////			{
 ////
 ////				CurrentSource = NewSource;
 ////
@@ -587,20 +574,20 @@
 ////
 //		public void setSource(
 //				EssenceSource source) {
-//			
+//
 //			currentSource = source;
-//			
+//
 //			for ( String option : optionList.keySet() )
 //				source.setOption(option, optionList.get(option));
-//			
+//
 //			if (indexManager != null)
 //				source.setIndexManager(indexManager, indexStreamID);
 //		}
 ////
 ////			//! Get the size of the essence data in bytes
 ////
-////			virtual size_t GetEssenceDataSize(void) 
-////			{ 
+////			virtual size_t GetEssenceDataSize(void)
+////			{
 ////				if(!ValidSource()) return 0;
 //
 ////				// If we have emptied all files then exit now
@@ -609,7 +596,7 @@
 ////				size_t Ret = CurrentSource->GetEssenceDataSize();
 //
 ////				// If no more data move to the next source file
-//		
+//
 ////				if(!Ret) {
 ////
 ////					// Work out how much was read from this file
@@ -629,30 +616,30 @@
 ////			}
 ////
 //		public int getEssenceDataSize() {
-//			
+//
 //			if (!validSource()) return 0;
-//			
+//
 //			// If all files are emptied, exit now
 //			if (outer.atEOF()) return 0;
-//			
+//
 //			int essenceDataSize = currentSource.getEssenceDataSize();
-//			
+//
 //			// If no more data, move to the next source file
 //			if (essenceDataSize > 0) {
-//				
+//
 //				// Work out how much was read from this file
-//				long currentSize = 
+//				long currentSize =
 //					currentSource.getCurrentPosition();
-//				
+//
 //				if (outer.getNextSource()) {
-//					
+//
 //					// Add this length to the previous lengths
 //					previousLength += currentSize;
-//					
+//
 //					return getEssenceDataSize();
 //				}
 //			}
-//			
+//
 //			return essenceDataSize;
 //		}
 ////
@@ -663,7 +650,7 @@
 //		public ByteBuffer getEssenceData(
 //				int size,
 //				int maxSize) {
-//			
+//
 //			// TODO
 //			return null;
 //		}
@@ -673,7 +660,7 @@
 ////			virtual bool EndOfItem(void) { if(ValidSource()) return CurrentSource->EndOfItem(); else return true; }
 ////
 //		public boolean endOfItem() {
-//			
+//
 //			if (validSource())
 //				return currentSource.endOfItem();
 //			else
@@ -685,7 +672,7 @@
 ////			virtual bool EndOfData(void) { if(ValidSource()) return CurrentSource->EndOfItem(); else return true; }
 ////
 //		public boolean endOfData() {
-//			
+//
 //			if (validSource())
 //				return currentSource.endOfItem();
 //			else
@@ -697,7 +684,7 @@
 ////			virtual UInt8 GetGCEssenceType(void) { if(ValidSource()) return CurrentSource->GetGCEssenceType(); else return 0; }
 ////
 //		public @UInt8 byte getGenericContainerEssenceType() {
-//			
+//
 //			if (validSource())
 //				return currentSource.getGenericContainerEssenceType();
 //			else
@@ -709,7 +696,7 @@
 ////			virtual UInt8 GetGCElementType(void) { if(ValidSource()) return CurrentSource->GetGCElementType(); else return 0; }
 ////
 //		public @UInt8 byte getGenericContainerElementType() {
-//			
+//
 //			if (validSource())
 //				return currentSource.getGenericContainerElementType();
 //			else
@@ -722,7 +709,7 @@
 ////
 //		@Override
 //		public boolean isEditPoint() {
-//			
+//
 //			if (validSource())
 //				return currentSource.isEditPoint();
 //			else
@@ -735,7 +722,7 @@
 ////
 //		@Override
 //		public RationalImpl getEditRate() {
-//			
+//
 //			if (validSource())
 //				return currentSource.getEditRate();
 //			else
@@ -746,7 +733,7 @@
 ////
 ////			virtual Position GetCurrentPosition(void)
 ////
-////			{ 
+////			{
 ////
 ////				if(!ValidSource()) return 0;
 ////
@@ -757,16 +744,16 @@
 ////			}
 ////
 //		public @MXFPosition long getCurrentPosition() {
-//			
+//
 //			if (!validSource()) return 0;
 //			return currentSource.getCurrentPosition() + previousLength;
 //		}
 ////
 ////			//! Get the preferred BER length size for essence KLVs written from this source, 0 for auto
 ////
-////			virtual int GetBERSize(void) 
+////			virtual int GetBERSize(void)
 ////
-////			{ 
+////			{
 ////
 ////				if(!ValidSource()) return 0;
 ////
@@ -777,17 +764,17 @@
 ////			}
 ////
 //		public int getBERSize() {
-//			
+//
 //			if (!validSource()) return 0;
-//			
+//
 //			return currentSource.getBERSize();
 //		}
 ////
 ////			//! Set a source type or parser specific option
 ////
-////			virtual bool SetOption(std::string Option, Int64 Param = 0) 
+////			virtual bool SetOption(std::string Option, Int64 Param = 0)
 ////
-////			{ 
+////			{
 ////
 ////				if(!ValidSource()) return false;
 ////
@@ -806,11 +793,11 @@
 //		public boolean setOption(
 //				String option,
 //				@Int64 long param) {
-//			
+//
 //			if (!validSource()) return false;
-//			
+//
 //			optionList.put(option, param);
-//			
+//
 //			return currentSource.setOption(option, param);
 //		}
 ////
@@ -820,7 +807,7 @@
 ////
 //		public @UInt32 int getBytesPerEditUnit(
 //				@UInt32 int kagSize) {
-//			
+//
 //			if (validSource())
 //				return currentSource.getBytesPerEditUnit(kagSize);
 //			else
@@ -832,18 +819,18 @@
 ////			virtual bool CanIndex() { if(ValidSource()) return CurrentSource->CanIndex(); else return false; }
 ////
 //		public boolean canIndex() {
-//			
+//
 //			if (validSource())
 //				return currentSource.canIndex();
-//			else 
+//			else
 //				return false;
 //		}
 ////
 ////			//! Set the index manager to use for building index tables for this essence
 ////
-////			virtual void SetIndexManager(IndexManagerPtr &Manager, int StreamID) 
+////			virtual void SetIndexManager(IndexManagerPtr &Manager, int StreamID)
 ////
-////			{ 
+////			{
 ////
 ////				IndexMan = Manager;
 ////
@@ -851,14 +838,14 @@
 ////
 ////
 ////
-////				if(ValidSource()) CurrentSource->SetIndexManager(Manager, StreamID); 
+////				if(ValidSource()) CurrentSource->SetIndexManager(Manager, StreamID);
 ////
 ////			}
 ////
 //		public void setIndexManager(
 //				IndexManager indexManager,
 //				int streamID) {
-//			
+//
 //			this.indexManager = indexManager;
 //			this.indexStreamID = streamID;
 //		}
@@ -868,7 +855,7 @@
 ////			virtual IndexManagerPtr &GetIndexManager(void) { return IndexMan; }
 ////
 //		public IndexManager getIndexManager() {
-//			
+//
 //			return indexManager;
 //		}
 ////
@@ -877,7 +864,7 @@
 ////			virtual int GetIndexStreamID(void) { return IndexStreamID; }
 ////
 //		public int getIndexStreamID() {
-//			
+//
 //			return indexStreamID;
 //		}
 ////
@@ -887,9 +874,9 @@
 ////
 ////			*/
 ////
-////			virtual Length GetPrechargeSize(void) 
+////			virtual Length GetPrechargeSize(void)
 ////
-////			{ 
+////			{
 ////
 ////				if(!ValidSource()) return 0;
 ////
@@ -900,10 +887,10 @@
 ////			}
 ////
 //		public @MXFLength long getPrechargeSize() {
-//			
-//			if (!validSource()) 
+//
+//			if (!validSource())
 //					return 0;
-//			
+//
 //			return currentSource.getPrechargeSize();
 //		}
 ////
@@ -912,7 +899,7 @@
 ////			virtual Position GetRangeStart(void) { return Outer->GetRangeStart(); }
 ////
 //		public @MXFPosition long getRangeStart() {
-//			
+//
 //			return outer.getRangeStart();
 //		}
 ////
@@ -921,7 +908,7 @@
 ////			virtual Position GetRangeEnd(void) { return Outer->GetRangeEnd(); }
 ////
 //		public @MXFPosition long getRangeEnd() {
-//			
+//
 //			return outer.getRangeEnd();
 //		}
 ////
@@ -930,7 +917,7 @@
 ////			virtual Length GetRangeDuration(void) { return Outer->GetRangeDuration(); }
 ////
 //		public @MXFPosition long getRangeDuration() {
-//			
+//
 //			return outer.getRangeDuration();
 //		}
 ////
@@ -954,25 +941,25 @@
 ////
 ////				// If this is the first time through when we will have a file open but no source set to get current not text source
 ////
-////				if(Outer->CurrentFileOpen) return Outer->GetFirstSource(); 
+////				if(Outer->CurrentFileOpen) return Outer->GetFirstSource();
 ////
-////				
+////
 ////
 ////				return Outer->GetNextSource();
 ////
 ////			}
 //
 //		boolean validSource() {
-//			
-//			if (currentSource != null) 
+//
+//			if (currentSource != null)
 //				return true;
-//			
-//			if (outer.currentFileOpen) 
+//
+//			if (outer.currentFileOpen)
 //				return outer.getFirstSource();
-//			
+//
 //			return outer.getNextSource();
 //		}
-//		
+//
 //	} // End SequentialEssenceSource
 //
 //} // End FileParser

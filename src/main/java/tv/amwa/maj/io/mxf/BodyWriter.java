@@ -1,31 +1,18 @@
-///* 
-// **********************************************************************
-// *
-// * $Id: BodyWriter.java,v 1.4 2010/01/19 14:44:23 vizigoth Exp $
-// *
-// * The contents of this file are subject to the AAF SDK Public
-// * Source License Agreement (the "License"); You may not use this file
-// * except in compliance with the License.  The License is available in
-// * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
-// * Association or its successor.
-// *
-// * Software distributed under the License is distributed on an "AS IS"
-// * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
-// * the License for the specific language governing rights and 
-// * limitations under the License.
-// *
-// * The Original Code of this file is Copyright 2007, Licensor of the
-// * AAF Association.
-// *
-// * The Initial Developer of the Original Code of this file and the 
-// * Licensor of the AAF Association is Richard Cartwright.
-// * All rights reserved.
-// *
-// * Contributors and Additional Licensors of the AAF Association:
-// * Matt Beard, Metaglue Corporation
-// *
-// **********************************************************************
-// */
+/*
+ * Copyright 2016 Advanced Media Workflow Assocation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 ///*
 // * $Log: BodyWriter.java,v $
@@ -57,7 +44,7 @@
 //
 ///**
 // * <p>Manages the multiplexing of essence when writing an MXF file.</p>
-// * 
+// *
 // * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 // *
 // */
@@ -84,7 +71,7 @@
 ////		};
 ////
 //	private enum BodyState {
-//		
+//
 //		Start,
 //		Header,
 //		Body,
@@ -113,7 +100,7 @@
 ////		 */
 //
 //	class StreamInformation {
-//	
+//
 ////		class StreamInfo : public RefCount<StreamInfo>
 ////
 ////		{
@@ -121,13 +108,13 @@
 ////		public:
 ////
 ////			bool Active;											//!< True if active - set false once finished
-//	
+//
 //		public boolean active;
-//	
+//
 ////			BodyStreamPtr Stream;									//!< The stream in question
 //
 //		public BodyStream stream;
-//		
+//
 ////			Length StopAfter;										//!< Number of edit units to output (or zero for no limit). Decremented each time data is written (unless zero).
 ////
 //		public @MXFLength long stopAfter;
@@ -139,7 +126,7 @@
 ////			StreamInfo() { Active = false; }
 ////
 //		public StreamInformation() {
-//			
+//
 //			active = false;
 //		}
 ////
@@ -159,7 +146,7 @@
 ////
 //			public StreamInformation(
 //					StreamInformation original) {
-//				
+//
 //				this.active = original.active;
 //				this.stream = original.stream;
 //				this.stopAfter = original.stopAfter;
@@ -209,7 +196,7 @@
 ////		UInt32 MinPartitionSize;								//!< The minimum size of the non-essence part of the next partition
 //
 //	private @UInt32 int minParitionSize = 0;
-//	
+//
 ////		UInt32 MinPartitionFiller;								//!< The minimum size of filler before the essence part of the next partition
 ////
 //	private @UInt32 int minPartitionFiller = 0;
@@ -217,7 +204,7 @@
 ////		bool IndexSharesWithMetadata;							//!< If true index tables may exist in the same partition as metadata
 //
 //	private boolean indexSharesWithMetadata = true;
-//	
+//
 ////		bool EssenceSharesWithMetadata;							//!< If true essence may exist in the same partition as metadata
 ////
 //	private boolean essenceSharesWithMetadata = false;
@@ -357,7 +344,7 @@
 ////
 //	public BodyWriter(
 //			MXFFileImpl file) {
-//		
+//
 //		// TODO check for null?
 //		this.file = file;
 //	}
@@ -371,7 +358,7 @@
 ////		void ClearStreams(void) { StreamList.clear(); CurrentBodySID = 0; }
 ////
 //	public void clearStreams() {
-//		
+//
 //		streamList.clear();
 //		currentBodySID = 0;
 //	}
@@ -393,43 +380,43 @@
 //	public boolean addStream(
 //			BodyStream stream,
 //			@MXFLength long stopAfter) {
-//		
+//
 //		// TODO
 //		return false;
 //	}
 //
 //	public boolean addStream(
 //			BodyStream stream) {
-//		
+//
 //		return addStream(stream, 0l);
 //	}
 //
-//	
+//
 ////
 ////		//! Set the KLV Alignment Grid
 ////
-////		void SetKAG(UInt32 NewKAG) 
+////		void SetKAG(UInt32 NewKAG)
 ////
-////		{ 
+////		{
 ////
 ////			// TODO: This is probably not the best way - but is the only way to currently ensure correct CBR indexing!
 ////
 ////			if(StreamList.size()) warning("KAG size changed after adding streams - CBR indexing may be incorrect\n");
 ////
-////			KAG = NewKAG; 
+////			KAG = NewKAG;
 ////
 ////		}
 ////
 //	public void setKAG(
-//			@UInt32 int kag) 
+//			@UInt32 int kag)
 //		throws IllegalArgumentException {
-//		
+//
 //		if (kag < 0)
 //			throw new IllegalArgumentException("Cannot set the kay alignment grid size to a negative value.");
-//		
+//
 //		if (streamList.size() > 0)
 //			System.err.println("KAG size changed after adding streams. CBR indexing may be incorrect as a result.");
-//		
+//
 //		this.kag = kag;
 //	}
 ////
@@ -438,7 +425,7 @@
 ////		UInt32 GetKAG(void) { return KAG; }
 ////
 //	public @UInt32 int getKAG() {
-//		
+//
 //		return kag;
 //	}
 ////
@@ -448,7 +435,7 @@
 ////
 //	public void setForceBER4(
 //			boolean forceBER4) {
-//		
+//
 //		this.forceBER4 = forceBER4;
 //	}
 ////
@@ -457,7 +444,7 @@
 ////		bool GetForceBER4(void) { return ForceBER4; }
 ////
 //	public boolean getForceBER4() {
-//		
+//
 //		return forceBER4;
 //	}
 ////
@@ -476,13 +463,13 @@
 //	public void setMetadataSharing(
 //			boolean indexMayShare,
 //			boolean essenceMayShare) {
-//		
+//
 //		this.indexSharesWithMetadata = indexMayShare;
 //		this.essenceSharesWithMetadata = essenceMayShare;
 //	}
-//	
+//
 //	public void setMetadataSharing() {
-//		
+//
 //		setMetadataSharing(true, true);
 //	}
 //
@@ -503,7 +490,7 @@
 ////
 //	public void setPartition(
 //			PartitionImpl partition) {
-//		
+//
 //		this.basePartition = partition;
 //	}
 ////
@@ -512,7 +499,7 @@
 ////		PartitionPtr GetPartition(void) { return BasePartition; }
 ////
 //	public PartitionImpl getPartition() {
-//		
+//
 //		return basePartition;
 //	}
 ////
@@ -531,7 +518,7 @@
 //	public void writeHeader(
 //			boolean isClosed,
 //			boolean isComplete) {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -548,7 +535,7 @@
 ////		void EndPartition(void);
 ////
 //	public void endPartition() {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -567,18 +554,18 @@
 //	public void writeBody(
 //			@MXFLength long duration,
 //			@MXFLength long maxPartitionSize) {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 //	public void writeBody(
 //			@MXFLength long duration) {
-//		
+//
 //		writeBody(duration, 0l);
 //	}
-//	
+//
 //	public void writeBody() {
-//		
+//
 //		writeBody(0l, 0l);
 //	}
 ////
@@ -593,19 +580,19 @@
 //	public @MXFLength long writePartition(
 //			@MXFLength long duration,
 //			@MXFLength long maxPartitionSize) {
-//		
+//
 //		// TODO
 //		return 0l;
 //	}
-//	
+//
 //	public @MXFLength long writePartition(
 //			@MXFLength long duration) {
-//		
+//
 //		return writePartition(duration, 0l);
 //	}
-//	
+//
 //	public @MXFLength long writePartition() {
-//		
+//
 //		return writePartition(0l, 0l);
 //	}
 //
@@ -620,7 +607,7 @@
 ////		bool BodyDone(void) { return (State == BodyStateFooter) || (State == BodyStateDone); }
 ////
 //	public boolean bodyDone() {
-//		
+//
 //		return ((state == BodyState.Footer) || (state == BodyState.Done));
 //	}
 ////
@@ -635,18 +622,18 @@
 //	public void writeFooter(
 //			boolean writeMetadata,
 //			boolean isComplete) {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 //	public void writeFooter(
 //			boolean writeMetadata) {
-//		
+//
 //		writeFooter(writeMetadata, true);
 //	}
-//	
+//
 //	public void writeFooter() {
-//		
+//
 //		writeFooter(false, true);
 //	}
 ////
@@ -660,11 +647,11 @@
 ////
 //	public void setPartitionHandler(
 //			BodyWriterHandler bodyHandler) {
-//		
+//
 //		partitionHandler = bodyHandler;
 //	}
-//	
-//		
+//
+//
 ////
 ////		//! Set the minumum size of the non-essence part of the next partition
 ////
@@ -689,12 +676,12 @@
 ////		void SetPartitionSize(UInt32 PartitionSize) { MinPartitionSize = PartitionSize; }
 ////
 //	public void setPartitionSize(
-//			@UInt32 int partitionSize) 
+//			@UInt32 int partitionSize)
 //		throws IllegalArgumentException {
-//		
+//
 //		if (partitionSize < 0)
 //			throw new IllegalArgumentException("Cannot set the partition size to a negative value.");
-//		
+//
 //		this.minParitionSize = partitionSize;
 //	}
 ////
@@ -721,12 +708,12 @@
 ////		void SetPartitionFiller(UInt32 PartitionFiller) { MinPartitionFiller = PartitionFiller; }
 ////
 //	public void setPartitionFiller(
-//			@UInt32 int partitionFiller) 
+//			@UInt32 int partitionFiller)
 //		throws IllegalArgumentException {
-//		
+//
 //		if (partitionFiller < 0)
 //			throw new IllegalArgumentException("Cannot set the minimum partition filler using a negative value.");
-//		
+//
 //		this.minPartitionFiller = partitionFiller;
 //	}
 ////
@@ -735,7 +722,7 @@
 ////		void InitIndexManagers(void);
 ////
 //	public void initializeIndexManagers() {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -748,9 +735,9 @@
 ////		 */
 ////
 ////		void SetNextStream(void);
-////	
+////
 //	void setNextStream() {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -765,31 +752,31 @@
 ////		 */
 ////
 ////		Length WriteEssence(StreamInfoPtr &Info, Length Duration = 0, Length MaxPartitionSize = 0);
-//	
+//
 //	@MXFLength long writeEssence(
 //			StreamInformation information,
 //			@MXFLength long duration,
 //			@MXFLength long maxPartitionSize) {
-//		
+//
 //		// TODO
 //		return 0l;
 //	}
-//	
+//
 //	@MXFLength long writeEssence(
 //			StreamInformation information,
 //			@MXFLength long duration) {
-//		
+//
 //		return writeEssence(information, duration, 0l);
 //	}
 //
 //	@MXFLength long writeEssence(
 //			StreamInformation information) {
-//		
+//
 //		return writeEssence(information, 0l, 0l);
 //	}
-//	
+//
 //	public abstract class BodyWriterHandler {
-//		
+//
 ////		public:
 ////
 ////			//! Virtual destructor to allow polymorphism
@@ -822,6 +809,6 @@
 //				BodyWriter caller,
 //				@UInt32 int bodySID,
 //				@UInt32 int indexSID);
-//		
+//
 //	}
 //}

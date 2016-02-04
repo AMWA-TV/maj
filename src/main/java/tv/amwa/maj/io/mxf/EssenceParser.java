@@ -1,31 +1,18 @@
-///* 
-// **********************************************************************
-// *
-// * $Id: EssenceParser.java,v 1.6 2010/01/19 14:44:23 vizigoth Exp $
-// *
-// * The contents of this file are subject to the AAF SDK Public
-// * Source License Agreement (the "License"); You may not use this file
-// * except in compliance with the License.  The License is available in
-// * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
-// * Association or its successor.
-// *
-// * Software distributed under the License is distributed on an "AS IS"
-// * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
-// * the License for the specific language governing rights and 
-// * limitations under the License.
-// *
-// * The Original Code of this file is Copyright 2007, Licensor of the
-// * AAF Association.
-// *
-// * The Initial Developer of the Original Code of this file and the 
-// * Licensor of the AAF Association is Richard Cartwright.
-// * All rights reserved.
-// *
-// * Contributors and Additional Licensors of the AAF Association:
-// * Matt Beard, Metaglue Corporation
-// *
-// **********************************************************************
-// */
+/*
+ * Copyright 2016 Advanced Media Workflow Assocation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 ///*
 // * $Log: EssenceParser.java,v $
@@ -63,11 +50,11 @@
 //
 //
 ///**
-// * <p>Manages the parsing of essence through a collection of {@linkplain EssenceSubParser essence 
+// * <p>Manages the parsing of essence through a collection of {@linkplain EssenceSubParser essence
 // * sub parsers}.</p>
-// * 
+// *
 // * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
-// * 
+// *
 // * @see EssenceSubParser
 // *
 // */
@@ -79,38 +66,38 @@
 //	/*! \note No parser may contain one of these that includes a pointer to that parser otherwise it will never be deleted (circular reference)
 //
 //	 */
-//	
+//
 //	// TODO Probably need to make safely public - see FileParser listWrappingOptions()
 //	class WrappingConfig {
-//		
+//
 ////		public:
 ////
 ////			EssenceSubParserPtr Parser;					//!< The parser that parses this essence - true smart pointer not a parent pointer to keep parser alive
 //
 ////		public EssenceSubParser parser;
-//		
+//
 ////			WrappingOptionPtr WrapOpt;					//!< The wrapping options
 //
 //		public WrappingOption wrappingOption;
-//		
+//
 ////			MDObjectPtr EssenceDescriptor;				//!< The essence descriptior for the essence as parsed
 //
 //		public EssenceDescriptorImpl essenceDescriptor;
-//		
+//
 ////			UInt32 Stream;								//!< The stream ID of this stream from the parser
 //
 //		public @UInt32 int stream;
-//		
+//
 ////			Rational EditRate;							//!< The selected edit rate for this wrapping
 //
 //		public RationalImpl editRate;
-//		
+//
 ////			WrappingConfigList SubStreams;				//!< A list of wrapping options available for sub-streams extracted from the same essence source. See \ref SubStreamNotes
 //
 //		public List<WrappingConfig> subStreams;
-//		
+//
 //	}
-//	
+//
 ////	public:
 ////
 ////		//! A list of parser factory functions
@@ -122,9 +109,9 @@
 ////
 ////		//! List of pointers to known parsers
 ////
-////		/*! Used only for building parsers to parse essence - the parses 
+////		/*! Used only for building parsers to parse essence - the parses
 ////
-////		 *  in this list must not themselves be used for essence parsing 
+////		 *  in this list must not themselves be used for essence parsing
 ////
 ////		 */
 ////
@@ -167,7 +154,7 @@
 ////
 //	public static void addNewSubParserType(
 //			EssenceSubParserFactory factory) {
-//		
+//
 //		essenceParserFactories.add(factory);
 //	}
 ////
@@ -195,29 +182,29 @@
 ////
 //	public static void addNewSubParserType(
 //			EssenceSubParser subParser) {
-//		
+//
 //		if (!(subParser instanceof EssenceSubParserFactory))
 //			throw new IllegalArgumentException("The given essence sub-parser must be a self-factory by implementing EssenceSubParserFactory.");
-//		
+//
 //		essenceParserFactories.add((EssenceSubParserFactory) subParser);
 //	}
 //
 //	/*
-//	 * A ParserDescriptor is defined as a pair of an essence sub parser and the list of essence descriptors that it 
+//	 * A ParserDescriptor is defined as a pair of an essence sub parser and the list of essence descriptors that it
 //	 * is capable of parsing. A parser descriptor list is a list of these pairs. In Java, I've chosen to
 //	 * represent this as Map<EssenceDescriptor, List<EssenceStreamDescriptor>>.
-//	 * 
+//	 *
 //	 * Richard Cartwright, 9/2/2009
-//	 * 
+//	 *
 //	 */
-//	
+//
 ////		//! Build a list of parsers with their descriptors for a given essence file
 ////
 ////		static ParserDescriptorListPtr IdentifyEssence(FileHandle InFile);
 ////
 //	public static Map<EssenceSubParser, List<EssenceStreamDescriptor>> identifyEssence(
 //			File file) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -232,19 +219,19 @@
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
-//	
+//
 //	public List<WrappingConfig> listWrappingOptions(
 //			boolean allowMultiples,
 //			File file,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate) {
-//		
 //
-//		return listWrappingOptions(allowMultiples, file, parserDescriptorList, 
+//
+//		return listWrappingOptions(allowMultiples, file, parserDescriptorList,
 //				forceEditRate, WrappingOption.WrapType.None);
 //	}
 //
@@ -264,20 +251,20 @@
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return listWrappingOptions(false, file, parserDescriptorList, forceEditRate, forceWrap);
 //	}
-//	
+//
 //	public List<WrappingConfig> listWrappingOptions(
 //			File file,
 //			Map<EssenceSubParser, List<EssenceStreamDescriptor>> parserDescriptorList,
 //			RationalImpl forceEditRate) {
-//		
-//		return listWrappingOptions(false, file, parserDescriptorList, forceEditRate, 
+//
+//		return listWrappingOptions(false, file, parserDescriptorList, forceEditRate,
 //				WrappingOption.WrapType.None);
 //	}
 //
-//	
+//
 ////
 ////	//! Produce a list of available wrapping options
 ////
@@ -288,7 +275,7 @@
 //			File file,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -297,11 +284,11 @@
 //			boolean allowMultiples,
 //			File file,
 //			RationalImpl forceEditRate) {
-//		
+//
 //		return listWrappingOptions(allowMultiples, file, forceEditRate, WrappingOption.WrapType.None);
 //	}
 //
-//	
+//
 ////
 ////	//! Produce a list of available wrapping options
 ////
@@ -317,18 +304,18 @@
 //			File file,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		return listWrappingOptions(false, file, forceEditRate, forceWrap);
 //	}
 //
 //	public List<WrappingConfig> listWrappingOptions(
 //			File file,
 //			RationalImpl forceEditRate) {
-//		
+//
 //		return listWrappingOptions(false, file, forceEditRate, WrappingOption.WrapType.None);
 //	}
 //
-//	
+//
 ////
 ////	//! Produce a list of available wrapping options
 ////
@@ -439,7 +426,7 @@
 //			File file,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -448,8 +435,8 @@
 //			boolean allowMultiples,
 //			File file,
 //			RationalImpl forceEditRate) {
-//		
-//		return selectWrappingOption(allowMultiples, file, 
+//
+//		return selectWrappingOption(allowMultiples, file,
 //				forceEditRate, WrappingOption.WrapType.None);
 //	}
 //
@@ -474,7 +461,7 @@
 ////
 //	public static void selectWrappingOption(
 //			EssenceParser.WrappingConfig config) {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -499,7 +486,7 @@
 //			File file,
 //			String wrappingName,
 //			RationalImpl forceEditRate) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -524,8 +511,8 @@
 //	public static WrappingConfig selectWrappingOption(
 //			File file,
 //			List<String> wrappingNameList,
-//			RationalImpl forceEditRate) { 
-//		
+//			RationalImpl forceEditRate) {
+//
 //		// TODO
 //		return null;
 //	}
@@ -552,7 +539,7 @@
 //			File file,
 //			UL wrappingID,
 //			RationalImpl forceEditRate) {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -575,14 +562,14 @@
 ////
 ////	static WrappingConfigPtr SelectWrappingOption(FileHandle InFile, ULList &WrappingIDList, Rational ForceEditRate);
 ////
-//	
-//	/* 
+//
+//	/*
 //	 * TODO work out how to avoid method signature clash - Lis<UL> vs List<String>
 //	 * public static WrappingConfig selectWrappingOption(
 //			File file,
 //			List<UL> wrappingIDList,
-//			Rational forceEditRate) { 
-//		
+//			Rational forceEditRate) {
+//
 //		// TODO
 //		return null;
 //		} */
@@ -620,18 +607,18 @@
 //			List<WrappingOption> wrappingOptions,
 //			RationalImpl forceEditRate,
 //			WrappingOption.WrapType forceWrap) {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 //	static void extractValidWrappingOptions(
 //			List<WrappingConfig> ret,
 //			File file,
 //			EssenceStreamDescriptor essenceStreamDescriptor,
 //			List<WrappingOption> wrappingOptions,
 //			RationalImpl forceEditRate) {
-//		
-//		extractValidWrappingOptions(ret, file, essenceStreamDescriptor, 
+//
+//		extractValidWrappingOptions(ret, file, essenceStreamDescriptor,
 //				wrappingOptions, forceEditRate, WrappingOption.WrapType.None);
 //	}
 //
@@ -646,7 +633,7 @@
 ////
 //
 //	static {
-//		
+//
 //		// TODO initialize the sub-parser list
 //	}
 //

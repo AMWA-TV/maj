@@ -1,31 +1,18 @@
-///* 
-// **********************************************************************
-// *
-// * $Id: BodyStream.java,v 1.4 2010/01/19 14:44:24 vizigoth Exp $
-// *
-// * The contents of this file are subject to the AAF SDK Public
-// * Source License Agreement (the "License"); You may not use this file
-// * except in compliance with the License.  The License is available in
-// * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
-// * Association or its successor.
-// *
-// * Software distributed under the License is distributed on an "AS IS"
-// * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
-// * the License for the specific language governing rights and 
-// * limitations under the License.
-// *
-// * The Original Code of this file is Copyright 2007, Licensor of the
-// * AAF Association.
-// *
-// * The Initial Developer of the Original Code of this file and the 
-// * Licensor of the AAF Association is Richard Cartwright.
-// * All rights reserved.
-// *
-// * Contributors and Additional Licensors of the AAF Association:
-// * Matt Beard, Metaglue Corporation
-// *
-// **********************************************************************
-// */
+/*
+ * Copyright 2016 Advanced Media Workflow Assocation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 ///*
 // * $Log: BodyStream.java,v $
@@ -60,16 +47,16 @@
 //
 //// Implements a list of essence sources.
 ///**
-// * <p>A stream to be written by a {@linkplain BodyWriter body writer}. Sub-streams can be added via pointers 
-// * to their {@linkplain EssenceSource essence sources} as this class implements a generic essence source list. 
-// * Sub-streams will be written in the same generic container as this stream. This stream's essence source will 
+// * <p>A stream to be written by a {@linkplain BodyWriter body writer}. Sub-streams can be added via pointers
+// * to their {@linkplain EssenceSource essence sources} as this class implements a generic essence source list.
+// * Sub-streams will be written in the same generic container as this stream. This stream's essence source will
 // * appear as the first <em>child</em> when the essence source list is scanned.</p>
-// * 
+// *
 // * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
-// * 
+// *
 // * @see BodyWriter
 // */
-//public class BodyStream 
+//public class BodyStream
 //	implements List<EssenceSource> {
 //
 //	private List<EssenceSource> essenceSources =
@@ -102,7 +89,7 @@
 ////		};
 ////
 //	public enum State {
-//		
+//
 //		Start,
 //		HeadIndex,
 //		PreBodyIndex,
@@ -144,7 +131,7 @@
 ////		};
 ////
 //	public enum IndexType {
-//		
+//
 //		None(0),
 //		FullFooter(1),
 //		SparseFooter(2),
@@ -156,23 +143,23 @@
 //		CBRBody(128),
 //		CBRIsolated(256),
 //		CBRPreIsolated(512);
-//		
+//
 //		private final int bitFieldValue;
-//		
+//
 //		private IndexType(
 //				int bitFieldValue) {
-//			
+//
 //			this.bitFieldValue = bitFieldValue;
 //		}
 //
 //		public int getBitFieldValue() {
-//			
+//
 //			return bitFieldValue;
 //		}
 //
 //		public boolean inStreamIndex(
 //				int streamIndex) {
-//			
+//
 //			return ((bitFieldValue & streamIndex) != 0);
 //		}
 //	}
@@ -192,7 +179,7 @@
 ////		};
 ////
 //	public enum Wrap {
-//		
+//
 //		Other,
 //		Frame,
 //		Clip;
@@ -203,15 +190,15 @@
 ////		EssenceSourcePtr Source;									//!< The essence source for this stream
 //
 //	private EssenceSource source;
-//	
+//
 ////		EssenceSourceList SubStreams;								//!< Sources for each sub-stream
 //
 //	private List<EssenceSource> subStreams;
-//	
+//
 ////		EssenceSourceList::iterator SubStream_it;					//!< Current sub-stream
-//	
+//
 //	private Iterator<EssenceSource> subStreamIterator;
-//	
+//
 ////		bool SubStreamRestart;										//!< Flag true when the sub-stream iterator needs moving to the top of the list next time
 ////
 //	private boolean subStreamRestart = true;
@@ -223,7 +210,7 @@
 ////		IndexType StreamIndex;										//!< The index type(s) of this stream
 //
 //	private int streamIndex = IndexType.None.getBitFieldValue();
-//	
+//
 ////		IndexType FooterIndexFlags;									//!< Set of flags for tracking footer index tables
 ////
 //	private IndexType footerIndexFlags = IndexType.None;
@@ -231,7 +218,7 @@
 ////		UInt32 BodySID;												//!< BodySID to use for this stream
 //
 //	private @UInt32 int bodySID;
-//	
+//
 ////		UInt32 IndexSID;											//!< IndexSID to use for indexing this stream
 ////
 //	private @UInt32 int indexSID = 0;
@@ -392,33 +379,33 @@
 //			EssenceSource essenceSource,
 //			ByteBuffer key,
 //			boolean nonGenericContainer) {
-//		
+//
 //		this.bodySID = bodySID;
 //		this.source = essenceSource;
-//		
+//
 //		if (key != null)
 //			essenceSource.setKey(key, nonGenericContainer);
-//		
+//
 //		essenceSources.add(source);
 //	}
 //
 //	public BodyStream(
 //			@UInt32 int bodySID,
 //			EssenceSource essenceSource) {
-//		
+//
 //		this.bodySID = bodySID;
 //		this.source = essenceSource;
 //
 //		essenceSources.add(source);
 //	}
-//	
-//	
+//
+//
 ////		//! Get the essence source for this stream
 ////
 ////		EssenceSourcePtr &GetSource(void) { return Source; }
 ////
 //	public EssenceSource getSource() {
-//		
+//
 //		return source;
 //	}
 ////
@@ -427,7 +414,7 @@
 ////		size_type SubStreamCount(void) { return size(); }
 ////
 //	public int subStreamCount() {
-//		
+//
 //		return essenceSources.size();
 //	}
 ////
@@ -439,22 +426,22 @@
 //			EssenceSource subSource,
 //			ByteBuffer key,
 //			boolean nonGenericContainer) {
-//		
+//
 //		// TODO
 //	}
 //
 //	public void addSubStream(
 //			EssenceSource subSource) {
-//		
+//
 //		addSubStream(subSource, null, false);
 //	}
-//	
+//
 ////		//! Get this stream's BodySID
 ////
 ////		UInt32 GetBodySID(void) { return BodySID; }
 ////
 //	public @UInt32 int getBodySID() {
-//		
+//
 //		return bodySID;
 //	}
 ////
@@ -464,7 +451,7 @@
 ////
 //	public void setIndexSID(
 //			@UInt32 int indexSID) {
-//		
+//
 //		this.indexSID = indexSID;
 //	}
 ////
@@ -473,7 +460,7 @@
 ////		UInt32 GetIndexSID(void) { return IndexSID; }
 ////
 //	public @UInt32 int getIndexSID() {
-//		
+//
 //		return indexSID;
 //	}
 ////
@@ -483,13 +470,13 @@
 ////
 //	public void setState(
 //			State state) {
-//		
+//
 //		this.state = state;
 //	}
 ////
 ////		//! Get the current state
 ////
-////		StateType GetState(void) 
+////		StateType GetState(void)
 ////
 ////		{
 ////
@@ -500,10 +487,10 @@
 ////		}
 ////
 //	public State getState() {
-//		
+//
 //		if (state == State.Start)
 //			getNextState();
-//		
+//
 //		return state;
 //	}
 ////
@@ -518,7 +505,7 @@
 ////		StateType GetNextState(void);
 ////
 //	public State getNextState() {
-//		
+//
 //		// TODO
 //		return null;
 //	}
@@ -526,11 +513,11 @@
 ////		//! Add the specified index type(s)
 ////
 ////		void AddIndexType(IndexType NewIndexType) { StreamIndex = (IndexType) (StreamIndex | NewIndexType); }
-////	
+////
 //	public void addIndexType(
 //			IndexType indexType) {
-//		
-//		streamIndex = streamIndex | indexType.getBitFieldValue(); 
+//
+//		streamIndex = streamIndex | indexType.getBitFieldValue();
 //	}
 ////
 ////		//! Set the index type(s) to the desired value
@@ -543,7 +530,7 @@
 ////
 //	public void setIndexType(
 //			IndexType indexType) {
-//		
+//
 //		streamIndex = indexType.getBitFieldValue();
 //	}
 ////
@@ -552,7 +539,7 @@
 ////		IndexType GetIndexType(void) { return StreamIndex; }
 ////
 //	public int getIndexType() {
-//		
+//
 //		return streamIndex;
 //	}
 ////
@@ -566,7 +553,7 @@
 ////
 //	public void setFooterIndex(
 //			IndexType indexType) {
-//		
+//
 //		footerIndexFlags = indexType;
 //	}
 ////
@@ -575,7 +562,7 @@
 ////		IndexType GetFooterIndex(void) { return FooterIndexFlags; }
 ////
 //	public IndexType getFooIndexType() {
-//		
+//
 //		return footerIndexFlags;
 //	}
 ////
@@ -585,19 +572,19 @@
 ////
 //	public void setWrapType(
 //			Wrap wrapType) {
-//		
+//
 //		streamWrap = wrapType;
 //	}
 ////
 ////		//! Set the wrapping type for this stream
 ////
-////		void SetWrapType(WrappingOption::WrapType NewWrapType) 
+////		void SetWrapType(WrappingOption::WrapType NewWrapType)
 ////
-////		{ 
+////		{
 ////
-////			if(NewWrapType == WrappingOption::Frame) StreamWrap = StreamWrapFrame; 
+////			if(NewWrapType == WrappingOption::Frame) StreamWrap = StreamWrapFrame;
 ////
-////			else if(NewWrapType == WrappingOption::Clip) StreamWrap = StreamWrapClip; 
+////			else if(NewWrapType == WrappingOption::Clip) StreamWrap = StreamWrapClip;
 ////
 ////			else StreamWrap = StreamWrapOther;
 ////
@@ -605,7 +592,7 @@
 ////
 //	public void setWrapType(
 //			WrappingOption.WrapType wrapType) {
-//		
+//
 //		if (wrapType == WrappingOption.WrapType.Frame)
 //			streamWrap = Wrap.Frame;
 //		else if (wrapType == WrappingOption.WrapType.Clip)
@@ -619,7 +606,7 @@
 ////		WrapType GetWrapType(void) { return StreamWrap; }
 //
 //	public Wrap getWrapType() {
-//		
+//
 //		return streamWrap;
 //	}
 ////
@@ -629,27 +616,27 @@
 ////
 //	public void setWriter(
 //			GenericContainerWriter writer) {
-//		
+//
 //		// TODO
 //	}
 ////
 ////		//! Get the current index manager
 ////
-////		IndexManagerPtr &GetIndexManager(void) 
+////		IndexManagerPtr &GetIndexManager(void)
 ////
-////		{ 
+////		{
 ////
 ////			if(!IndexMan) InitIndexManager();
 ////
-////			return IndexMan; 
+////			return IndexMan;
 ////
 ////		}
 ////
 ////	public IndexManager getIndexManager() {
-////		
+////
 ////		if (indexManager == null)
 ////			initializeIndexManager();
-////		
+////
 ////		return indexManager;
 ////	}
 ////
@@ -658,15 +645,15 @@
 ////		GCWriterPtr &GetWriter(void) { return StreamWriter; }
 ////
 //	public GenericContainerWriter getWriter() {
-//		
+//
 //		return streamWriter;
 //	}
 ////
 ////		//! Get the track number associated with this stream
 ////
-////		UInt32 GetTrackNumber(void) 
+////		UInt32 GetTrackNumber(void)
 ////
-////		{ 
+////		{
 ////
 ////			if(!Source) return 0;
 ////
@@ -675,10 +662,10 @@
 ////		}
 ////
 //	public @UInt32 int getTrackNumber() {
-//		
+//
 //		if (source == null)
 //			return 0;
-//		
+//
 //		return streamWriter.getTrackNumber(source.getStreamID());
 //	}
 //
@@ -686,7 +673,7 @@
 ////
 ////		Uint32 GetTrackNumber(GCStreamID ID)
 ////
-////		{ 
+////		{
 ////
 ////			if(!Source) return 0;
 ////
@@ -696,13 +683,13 @@
 ////
 //	public @UInt32 int getTrackNumber(
 //			@GCStreamID int streamID) {
-//		
+//
 //		if (source == null)
 //			return 0;
-//		
+//
 //		return streamWriter.getTrackNumber(streamID);
 //	}
-//	
+//
 ////
 ////		//! Set the pending essence data flag
 ////
@@ -710,22 +697,22 @@
 ////
 //	public void setPendingData(
 //			boolean essencePendingData) {
-//		
+//
 //		this.essencePendingData = essencePendingData;
 //	}
-//	
+//
 //	public void setPendingData() {
-//		
+//
 //		this.essencePendingData = true;
 //	}
-//	
+//
 ////
 ////		//! Find out if there is any essence data stored in the GCWriter pending a write
 ////
 ////		bool HasPendingData(void) { return EssencePendingData; }
 ////
 //	public boolean hasPendingData() {
-//		
+//
 //		return essencePendingData;
 //	}
 ////
@@ -735,12 +722,12 @@
 ////
 //	public void setEndOfStream(
 //			boolean endOfStream) {
-//		
+//
 //		this.endOfStream = endOfStream;
 //	}
-//	
+//
 //	public void setEndOfStream() {
-//		
+//
 //		this.endOfStream = true;
 //	}
 //
@@ -750,7 +737,7 @@
 ////		bool GetEndOfStream(void) { return EndOfStream; }
 ////
 //	public boolean getEndOfStream() {
-//		
+//
 //		return endOfStream;
 //	}
 ////
@@ -760,7 +747,7 @@
 ////
 //	public void setNextSprinkled(
 //			@MXFPosition long nextSprinked) {
-//		
+//
 //		this.nextSprinkled = nextSprinked;
 //	}
 ////
@@ -769,7 +756,7 @@
 ////		Position GetNextSprinkled(void) { return NextSprinkled; }
 ////
 //	public @MXFPosition long getNextSprinked() {
-//		
+//
 //		return nextSprinkled;
 //	}
 ////
@@ -781,7 +768,7 @@
 ////
 //	public void setKAG(
 //			@UInt32 int kag) {
-//		
+//
 //		this.kag = kag;
 //	}
 ////
@@ -790,7 +777,7 @@
 ////		UInt32 GetKAG(void) { return KAG; }
 ////
 //	public @UInt32 int getKAG() {
-//		
+//
 //		return kag;
 //	}
 ////
@@ -800,7 +787,7 @@
 ////
 //	public void setForceBER4(
 //			boolean forceBER4) {
-//		
+//
 //		this.forceBER4 = forceBER4;
 //	}
 ////
@@ -809,7 +796,7 @@
 ////		bool GetForceBER4(void) { return ForceBER4; }
 ////
 //	public boolean getForceBER4() {
-//		
+//
 //		return forceBER4;
 //	}
 ////
@@ -819,7 +806,7 @@
 ////
 //	public void setEditAlign(
 //			boolean editAlign) {
-//		
+//
 //		this.editAlign = editAlign;
 //	}
 ////
@@ -828,7 +815,7 @@
 ////		bool GetEditAlign(void) { return EditAlign; }
 ////
 //	public boolean getEditAlign() {
-//		
+//
 //		return editAlign;
 //	}
 ////
@@ -840,7 +827,7 @@
 ////
 //	public void setFreeSpaceIndex(
 //			boolean freeSpaceIndex) {
-//		
+//
 //		this.freeSpaceIndex = freeSpaceIndex;
 //	}
 ////
@@ -849,23 +836,23 @@
 ////		bool GetFreeSpaceIndex(void) { return FreeSpaceIndex; }
 ////
 //	public boolean getFreeSpaceIndex() {
-//		
+//
 //		return freeSpaceIndex;
 //	}
 ////
 ////		//! Set value-relative indexing flag
 ////
-////		/*! Value-relative indexing will produce index tables that count from the first byte of the KLV 
+////		/*! Value-relative indexing will produce index tables that count from the first byte of the KLV
 ////
 ////		 *  of clip-wrapped essence rather than the key. These tables can be used internally but must not
 ////
 ////		 *  be written to a file as they are not 377M complient */
 ////
-////		void SetValueRelativeIndexing(bool Val) 
+////		void SetValueRelativeIndexing(bool Val)
 ////
-////		{ 
+////		{
 ////
-////			ValueRelativeIndexing = Val; 
+////			ValueRelativeIndexing = Val;
 ////
 ////			if(IndexMan) IndexMan->SetValueRelativeIndexing(Val);
 ////
@@ -873,16 +860,16 @@
 ////
 //	public void setValueRelativeIndexing(
 //			boolean valueRelativeIndexing) {
-//		
+//
 //		this.valueRelativeIndexing = valueRelativeIndexing;
-//		
+//
 ////		if (indexManager != null)
 ////			indexManager.setValueRelativeIndexing(valueRelativeIndexing);
 //	}
 ////
 ////		//! Get value-relative indexing flag
 ////
-////		/*! Value-relative indexing will produce index tables that count from the first byte of the KLV 
+////		/*! Value-relative indexing will produce index tables that count from the first byte of the KLV
 ////
 ////		 *  of clip-wrapped essence rather than the key. These tables can be used internally but must not
 ////
@@ -891,7 +878,7 @@
 ////		bool GetValueRelativeIndexing(void) { return ValueRelativeIndexing; }
 ////
 //	public boolean getValueRelativeIndexing() {
-//		
+//
 //		return valueRelativeIndexing;
 //	}
 ////
@@ -900,7 +887,7 @@
 ////		Length GetPrechargeSize(void) const { return PrechargeSize; }
 ////
 //	public @MXFLength long getPrechargeSize() {
-//		
+//
 //		return prechargeSize;
 //	}
 ////
@@ -909,7 +896,7 @@
 ////		void DecrementPrecharge(void) { if(PrechargeSize) PrechargeSize--; }
 ////
 //	public void decrementPrecharge() {
-//		
+//
 //		if (prechargeSize > 0) prechargeSize--;
 //	}
 ////
@@ -918,19 +905,19 @@
 ////		void InitIndexManager(void);
 //
 //	public void initializeIndexManager() {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 //	public boolean add(EssenceSource o) {
 //
 //		return essenceSources.add(o);
 //	}
 //
 //	public void add(
-//			int index, 
+//			int index,
 //			EssenceSource element) {
-//		
+//
 //		essenceSources.add(index, element);
 //	}
 //
@@ -941,14 +928,14 @@
 //	}
 //
 //	public boolean addAll(
-//			int index, 
+//			int index,
 //			Collection<? extends EssenceSource> c) {
 //
 //		return essenceSources.addAll(index, c);
 //	}
 //
 //	public void clear() {
-//		
+//
 //		essenceSources.clear();
 //	}
 //
@@ -959,7 +946,7 @@
 //
 //	public boolean containsAll(
 //				Collection<?> c) {
-//		
+//
 //		return essenceSources.containsAll(c);
 //	}
 //
@@ -1027,7 +1014,7 @@
 //	}
 //
 //	public EssenceSource set(
-//			int index, 
+//			int index,
 //			EssenceSource element) {
 //
 //		return essenceSources.set(index, element);
@@ -1039,7 +1026,7 @@
 //	}
 //
 //	public List<EssenceSource> subList(
-//			int fromIndex, 
+//			int fromIndex,
 //			int toIndex) {
 //
 //		return essenceSources.subList(fromIndex, toIndex);
@@ -1055,5 +1042,5 @@
 //
 //		return essenceSources.toArray(a);
 //	}
-//	
+//
 //}

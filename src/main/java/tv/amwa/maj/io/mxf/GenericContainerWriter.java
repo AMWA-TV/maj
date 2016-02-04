@@ -1,31 +1,18 @@
-///* 
-// **********************************************************************
-// *
-// * $Id: GenericContainerWriter.java,v 1.5 2010/01/19 14:44:22 vizigoth Exp $
-// *
-// * The contents of this file are subject to the AAF SDK Public
-// * Source License Agreement (the "License"); You may not use this file
-// * except in compliance with the License.  The License is available in
-// * AAFSDKPSL.TXT, or you may obtain a copy of the License from the AAF
-// * Association or its successor.
-// *
-// * Software distributed under the License is distributed on an "AS IS"
-// * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.  See
-// * the License for the specific language governing rights and 
-// * limitations under the License.
-// *
-// * The Original Code of this file is Copyright 2007, Licensor of the
-// * AAF Association.
-// *
-// * The Initial Developer of the Original Code of this file and the 
-// * Licensor of the AAF Association is Richard Cartwright.
-// * All rights reserved.
-// *
-// * Contributors and Additional Licensors of the AAF Association:
-// * Matt Beard, Metaglue Corporation
-// *
-// **********************************************************************
-// */
+/*
+ * Copyright 2016 Advanced Media Workflow Assocation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 ///*
 // * $Log: GenericContainerWriter.java,v $
@@ -64,7 +51,7 @@
 //
 ///**
 // * <p>Manages the writing of generic container essence.</p>
-// * 
+// *
 // * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 // *
 // */
@@ -72,64 +59,64 @@
 //
 //	/**
 //	 * <p>Describes a stream of data within a generic container.</p>
-//	 * 
+//	 *
 //	 * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
 //	 *
 //	 */
 //	class GenericContainerStreamData {
-//		
+//
 ////		DataChunkPtr SpecifiedKey;			//!< Non standard key to use, or NULL to use a standard key
 //
 //		public ByteBuffer specifiedKey;
-//		
+//
 ////		bool NonGC;							//!< True if the track number bytes are <b>not</b> to be set automatically
 //
 //		public boolean nonGenericContainer;
-//		
+//
 ////		UInt8 Type;							//!< Item type
 //
 //		public @UInt8 byte type;
-//		
+//
 ////		UInt8 SchemeOrCount;				//!< Scheme if system or element count if essence
 //
 //		public @UInt8 byte schemeOrCount;
-//		
+//
 ////		UInt8 Element;						//!< Element identifier or type
 //
 //		public @UInt8 byte element;
-//		
+//
 ////		UInt8 SubOrNumber;					//!< Sub ID if system or element number if essence
 //
 //		public @UInt8 byte subOrNumber;
-//		
+//
 ////		UInt8 RegDes;						//!< The registry designator if this is a system item
 //
 //		public @UInt8 byte registryDesignator;
-//		
+//
 ////		UInt8 RegVer;						//!< The registry version number for the item key
 //
 //		public @UInt8 byte registryVersion;
-//		
+//
 ////		int LenSize;						//!< The KLV length size to use for this stream (0 for auto)
 //
 //		public int klvLengthSize;
-//		
+//
 ////		IndexManagerPtr IndexMan;			//!< If indexing this stream a pointer to the index manager, else NULL
 //
 //		public IndexManager indexManager;
-//		
+//
 ////		int IndexSubStream;					//!< If indexing this stream the sub stream number, else undefined
 //
 //		public int indexSubStream;
-//		
+//
 ////		bool IndexFiller;					//!< If indexing this stream true if filler <b>preceeding</b> this stream is to be indexed, else undefined
 //
 //		public boolean indexFiller;
-//		
+//
 ////		bool IndexClip;						//!< True if indexing clip-wrapped essence
 //
 //		public boolean indexClip;
-//		
+//
 ////		bool CountFixed;					//!< True once the essence element count has been fixed
 ////
 ////											/*!< The count is fixed the first time either a key is written
@@ -137,7 +124,7 @@
 ////											 *   or a track number is reported */
 //
 //		public boolean countFixed;
-//		
+//
 ////		UInt32 WriteOrder;					//!< The (default) write order for this stream
 ////
 ////											/*!< Elements with a lower WriteOrder are written first when the
@@ -145,68 +132,68 @@
 ////											 *   content package is written */
 //		public @UInt32 int writeOrder;
 //	}
-//	
+//
 //	class WriteBlock {
-//		
+//
 ////		UInt64 Size;				//!< Number of bytes of data to write
-//		
+//
 //		public @UInt64 long size;
-//		
+//
 ////		UInt8 *Buffer;				//!< Pointer to bytes to write
 //
 //		public @UInt8Array byte[] buffer;
-//		
+//
 ////		EssenceSourcePtr Source;	//!< Smart pointer to an EssenceSource object or NULL
 //
 //		public EssenceSource source;
-//		
+//
 ////		KLVObjectPtr KLVSource;		//!< Pointer to a KLVObject as source - or NULL
 //
 //		public KLVObject klvSource;
-//		
+//
 ////		int LenSize;				//!< The KLV length size to use for this item (0 for auto)
 //
 //		public int lengthSize;
-//		
+//
 ////		IndexManagerPtr IndexMan;	//!< Index manager that wants to know about this data
 //
 //		public IndexManager indexManager;
-//		
+//
 ////		int IndexSubStream;			//!< Sub-stream ID of data for indexing
 //
 //		public int indexSubStream;
-//		
+//
 ////		bool IndexFiller;			//!< If true filler will also be indexed with SubStream -1
 //
 //		public boolean indexFiller;
-//		
+//
 ////		bool IndexClip;				//!< True if indexing clip-wrapped essence
 //
 //		public boolean indexClip;
-//		
+//
 ////		bool WriteEncrypted;		//!< True if the data is to be written as encrypted data (via a KLVEObject)
 //
 //		public boolean writeEncrypted;
-//		
+//
 ////		bool FastClipWrap;			//!< True if this KLV is to be "FastClipWrapped"
 //
 //		public boolean fastClipWrap;
 //	}
-//	
+//
 ////	protected:
 ////
 ////		MXFFilePtr LinkedFile;				//!< File that will be written to
 //
 //	private MXFFileImpl linkedFile;
-//	
+//
 ////		UInt32 TheBodySID;					//!< Body SID for this Essence Container
-////	
+////
 //	private @UInt32 int bodySID;
 ////
 ////		int	StreamTableSize;				//!< Size of StreamTable
 //
 ////	private int streamTableSize;  Using Java array instead.
-//	
+//
 ////		int	StreamCount;					//!< Number of entries in use in StreamTable
 ////
 //	private int streamCount;
@@ -222,7 +209,7 @@
 ////		UInt32 KAGSize;						//!< KAGSize for this Essence Container
 //
 //	private @UInt32 int kagSize;
-//	
+//
 ////		bool ForceFillerBER4;				//!< True if filler items must have BER lengths forced to 4-byte BER
 ////
 //	private boolean forceFillerBER4;
@@ -261,13 +248,13 @@
 //			MXFFileImpl file,
 //			int bodySID,
 //			int base) {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 //	public GenericContainerWriter(
 //			MXFFileImpl file) {
-//		
+//
 //		// TODO same as above with bodySID = 0 and base = 0
 //	}
 //
@@ -278,12 +265,12 @@
 ////
 //	public void setKAG(
 //			@UInt32 int kag,
-//			boolean forceFillerBER4) 
+//			boolean forceFillerBER4)
 //		throws IllegalArgumentException {
-//		
+//
 //		if (kag < 0)
 //			throw new IllegalArgumentException("Cannot set the KAG size to a negative value.");
-//		
+//
 //		this.kagSize = kag;
 //		this.forceFillerBER4 = forceFillerBER4;
 //	}
@@ -293,7 +280,7 @@
 ////		UInt32 GetKAG(void) { return KAGSize; }
 ////
 //	public @UInt32 int getKAG() {
-//		
+//
 //		return kagSize;
 //	}
 ////
@@ -306,19 +293,19 @@
 //			@UInt32 int schemeID,
 //			@UInt32 int elementID,
 //			@UInt32 int subID) {
-//		
+//
 //		return addSystemElement(false, registryDesignator, schemeID, elementID, subID);
 //	}
-//	
+//
 //	public @GCStreamID int addSystemElement(
 //			@UInt32 int registryDesignator,
 //			@UInt32 int schemeID,
 //			@UInt32 int elementID) {
-//		
+//
 //		return addSystemElement(false, registryDesignator, schemeID, elementID, 0);
 //	}
 //
-//	
+//
 ////
 ////		//! Define a new CP-compatible system element for this container
 ////
@@ -329,7 +316,7 @@
 //			@UInt32 int schemeID,
 //			@UInt32 int elementID,
 //			@UInt32 int subID) {
-//		
+//
 //		return addSystemElement(true, registryDesignator, schemeID, elementID, subID);
 //	}
 //
@@ -337,7 +324,7 @@
 //			@UInt32 int registryDesignator,
 //			@UInt32 int schemeID,
 //			@UInt32 int elementID) {
-//		
+//
 //		return addSystemElement(true, registryDesignator, schemeID, elementID, 0);
 //	}
 //
@@ -352,7 +339,7 @@
 //			@UInt32 int schemeID,
 //			@UInt32 int elementID,
 //			@UInt32 int subID) {
-//	
+//
 //		// TODO
 //		return 0;
 //	}
@@ -362,7 +349,7 @@
 //			@UInt32 int registryDesignator,
 //			@UInt32 int schemeID,
 //			@UInt32 int elementID) {
-//	
+//
 //		return addSystemElement(cpCompatible, registryDesignator, schemeID, elementID, 0);
 //	}
 ////
@@ -372,7 +359,7 @@
 ////
 //	public @GCStreamID int addPictureELement(
 //			@UInt32 int elementType) {
-//		
+//
 //		return addPictureElement(false, elementType);
 //	}
 ////
@@ -382,7 +369,7 @@
 ////
 //	public @GCStreamID int addCPPictureElement(
 //			@UInt32 int elementType) {
-//		
+//
 //		return addPictureElement(true, elementType);
 //	}
 ////
@@ -393,7 +380,7 @@
 //	public @GCStreamID int addPictureElement(
 //			boolean cpCompatible,
 //			@UInt32 int elementType) {
-//		
+//
 //		return addEssenceElement(cpCompatible ? 0x05 : 0x15, elementType);
 //	}
 ////
@@ -403,7 +390,7 @@
 ////
 //	public @GCStreamID int addSoundElement(
 //			@UInt32 int elementType) {
-//		
+//
 //		return addSoundElement(false, elementType);
 //	}
 ////
@@ -413,10 +400,10 @@
 ////
 //	public @GCStreamID int addCPSoundElement(
 //			@UInt32 int elementType) {
-//		
+//
 //		return addSoundElement(true, elementType);
 //	}
-//	
+//
 ////
 ////		//! Define a new sound element for this container
 ////
@@ -425,7 +412,7 @@
 //	public @GCStreamID int addSoundElement(
 //			boolean cpCompatible,
 //			@UInt32 int elementType) {
-//		
+//
 //		return addEssenceElement(cpCompatible ? 0x06 : 0x16, elementType);
 //	}
 ////
@@ -435,7 +422,7 @@
 ////
 //	public @GCStreamID int addDataElement(
 //			@UInt32 int elementType) {
-//		
+//
 //		return addDataElement(false, elementType);
 //	}
 ////
@@ -445,7 +432,7 @@
 ////
 //	public @GCStreamID int addContentPDataElement(
 //			@UInt32 int elementType) {
-//		
+//
 //		return addDataElement(true, elementType);
 //	}
 //
@@ -457,7 +444,7 @@
 //	public @GCStreamID int addDataElement(
 //			boolean cpCompatible,
 //			@UInt32 int elementType) {
-//		
+//
 //		return addEssenceElement(cpCompatible ? 0x07 : 0x17, elementType);
 //	}
 ////
@@ -467,7 +454,7 @@
 ////
 //	public @GCStreamID int addCompoundELement(
 //			@UInt32 int elementType) {
-//		
+//
 //		return addEssenceElement(0x18, elementType);
 //	}
 ////
@@ -479,7 +466,7 @@
 //			@UInt32 int essenceType,
 //			@UInt32 int elementType,
 //			int lengthSize) {
-//		
+//
 //		// TODO
 //		return 0;
 //	}
@@ -487,7 +474,7 @@
 //	public @GCStreamID int addEssenceElement(
 //			@UInt32 int essenceType,
 //			@UInt32 int elementType) {
-//		
+//
 //		return addEssenceElement(essenceType, elementType, 0);
 //	}
 //
@@ -500,24 +487,24 @@
 //			ByteBuffer key,
 //			int lengthSize,
 //			boolean nonGenericContainer) {
-//		
+//
 //		// TODO
 //		return 0;
 //	}
-//	
+//
 //	public @GCStreamID int addEssenceElement(
 //			ByteBuffer key,
 //			int lengthSize) {
-//		
+//
 //		return addEssenceElement(key, lengthSize, false);
 //	}
 //
 //	public @GCStreamID int addEssenceElement(
 //			ByteBuffer key) {
-//		
+//
 //		return addEssenceElement(key, 0, false);
 //	}
-//	
+//
 ////
 ////		//! Define a new essence element for this container, with a specified key
 ////
@@ -535,24 +522,24 @@
 //			@UInt8Array byte[] keyData,
 //			int lengthSize,
 //			boolean nonGenericContainer) {
-//		
+//
 //		ByteBuffer key = ByteBuffer.wrap(keyData);
 //		return addEssenceElement(key, lengthSize, nonGenericContainer);
 //	}
-//	
+//
 //	public @GCStreamID int addEssenceElement(
 //			@UInt8Array byte[] keyData,
 //			int lengthSize) {
-//		
+//
 //		return addEssenceElement(keyData, lengthSize, false);
 //	}
 //
 //	public @GCStreamID int addEssenceElement(
 //			@UInt8Array byte[] keyData) {
-//		
+//
 //		return addEssenceElement(keyData, 0, false);
 //	}
-//	
+//
 ////
 ////		//! Allow this data stream to be indexed and set the index manager
 ////
@@ -563,14 +550,14 @@
 //			IndexManager indexManager,
 //			boolean indexFiller,
 //			boolean indexClip) {
-//		
+//
 //		// TODO
 //	}
 //
 //	public void addStreamIndex(
 //			@GCStreamID int streamID,
 //			IndexManager indexManager) {
-//		
+//
 //		addStreamIndex(streamID, indexManager, false, false);
 //	}
 //
@@ -581,7 +568,7 @@
 ////
 //	public @UInt32 int getTrackNumber(
 //			@GCStreamID int streamID) {
-//		
+//
 //		// TODO
 //		return 0;
 //	}
@@ -593,7 +580,7 @@
 //	public void assignEssenceUL(
 //			@GCStreamID int streamID,
 //			UL essenceUL) {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -602,17 +589,17 @@
 ////		void StartNewCP(void);
 ////
 //	public void startNewContentPackage() {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 ////
 ////		//! Calculate how much data will be written if "Flush" is called now
 ////
 ////		UInt64 CalcWriteSize(void);
 ////
 //	public @UInt64 long calculateWriteSize() {
-//	
+//
 //		// TODO
 //		return 0l;
 //	}
@@ -622,7 +609,7 @@
 ////		void Flush(void);
 ////
 //	public void flush() {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -631,7 +618,7 @@
 ////		Int64 GetStreamOffset(void) { return StreamOffset; }
 ////
 //	public @Int64 long getStreamOffset() {
-//		
+//
 //		return streamOffset;
 //	}
 ////
@@ -641,7 +628,7 @@
 ////
 //	public void setIndexEditUnit(
 //			@MXFPosition long editUnit) {
-//		
+//
 //		this.indexEditUnit = editUnit;
 //	}
 ////
@@ -650,7 +637,7 @@
 ////		Position GetIndexEditUnit(void) { return IndexEditUnit; }
 ////
 //	public @MXFPosition long getIndexEditUnit() {
-//		
+//
 //		return indexEditUnit;
 //	}
 ////
@@ -661,7 +648,7 @@
 //	public void addSystemData(
 //			@GCStreamID int streamID,
 //			@UInt8Array byte[] data) {
-//		
+//
 //		// TODO is this the right way around?
 //	}
 ////
@@ -672,7 +659,7 @@
 //	public void addSystemData(
 //			@GCStreamID int streamID,
 //			ByteBuffer chunk) {
-//		
+//
 //		byte[] data = new byte[chunk.capacity()];
 //		chunk.get(data);
 //		addSystemData(streamID, data);
@@ -687,15 +674,15 @@
 //			@UInt8Array byte[] data,
 //			UUID contextID,
 //			@MXFLength long plainTextOffset) {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 //	public void addSystemData(
 //			@GCStreamID int streamID,
 //			@UInt8Array byte[] data,
 //			UUID contextID) {
-//		
+//
 //		addSystemData(streamID, data, contextID, 0);
 //	}
 //
@@ -709,13 +696,13 @@
 //			ByteBuffer chunk,
 //			UUID contextID,
 //			@MXFLength long plainTextOffset) {
-//		
+//
 //		byte[] data = new byte[chunk.capacity()];
 //		chunk.get(data);
-//		
+//
 //		addSystemData(streamID, data, contextID, plainTextOffset);
 //	}
-//			
+//
 ////
 ////		//! Add essence data to the current CP
 ////
@@ -724,7 +711,7 @@
 //	public void addEssenceData(
 //			@GCStreamID int streamID,
 //			@UInt8Array byte[] data) {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -735,10 +722,10 @@
 //	public void addEssenceData(
 //			@GCStreamID int streamID,
 //			ByteBuffer chunk) {
-//		
+//
 //		byte[] data = new byte[chunk.capacity()];
 //		chunk.get(data);
-//		
+//
 //		addEssenceData(streamID, data);
 //	}
 //
@@ -751,17 +738,17 @@
 //			@GCStreamID int streamID,
 //			EssenceSource source,
 //			boolean fastClipWrap) {
-//		
+//
 //		// TODO
 //	}
 //
 //	public void addEssenceData(
 //			@GCStreamID int streamID,
 //			EssenceSource source) {
-//		
+//
 //		addEssenceData(streamID, source, false);
 //	}
-//	
+//
 //	//
 //
 ////
@@ -773,14 +760,14 @@
 //			@GCStreamID int streamID,
 //			KLVObject source,
 //			boolean fastClipWrap) {
-//		
+//
 //		// TODO
 //	}
-//	
+//
 //	public void addEssenceData(
 //			@GCStreamID int streamID,
 //			KLVObject source) {
-//		
+//
 //		addEssenceData(streamID, source, false);
 //	}
 //
@@ -790,7 +777,7 @@
 ////
 //	public @MXFLength long calculateRowSize(
 //			KLVObject klvObject) {
-//		
+//
 //		// TODO
 //		return 0l;
 //	}
@@ -801,7 +788,7 @@
 ////
 //	public void writeRaw(
 //			KLVObject klvObject) {
-//		
+//
 //		// TODO
 //	}
 //
@@ -822,17 +809,17 @@
 //			@GCStreamID int streamID,
 //			@Int32 int writeOrder,
 //			int type) {
-//		
+//
 //		// TODO
 //	}
 //
 //	public void setWriteOrder(
 //			@GCStreamID int streamID) {
-//		
+//
 //		setWriteOrder(streamID, -1, -1);
 //	}
-//	
-//	
+//
+//
 ////		//! Set a write-order relative to all items of a specified type
 ////
 ////		void SetRelativeWriteOrder(GCStreamID ID, int Type, Int32 Position);
@@ -841,7 +828,7 @@
 //			@GCStreamID int streamID,
 //			int type,
 //			@Int32 int position) {
-//		
+//
 //		// TODO
 //	}
 ////
@@ -851,7 +838,7 @@
 ////
 //	public @Int32 int getWriteOrder(
 //			@GCStreamID int streamID) {
-//		
+//
 //		// TODO
 //		return 0;
 //	}
@@ -861,7 +848,7 @@
 ////		int GetStreamCount(void) { return StreamCount; };
 ////
 //	public int getStreamCount() {
-//		
+//
 //		return streamCount;
 //	}
 //}
