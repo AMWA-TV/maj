@@ -11,7 +11,7 @@ import tv.amwa.maj.integer.UInt8;
  * <p>AVC-specific properties that provide additional description of AVC-encoded material over that contained in
  * a {@linkplain RGBADescriptor RGBA descriptor} or a {@linkplain CDCIDescriptor CDCI descriptor}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface AVCSubDescriptor 
 	extends SubDescriptor {

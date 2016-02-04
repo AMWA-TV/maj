@@ -88,7 +88,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * <p>Implements the description of video content data formatted either using RGBA or
  * luminance/chrominance formatting.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

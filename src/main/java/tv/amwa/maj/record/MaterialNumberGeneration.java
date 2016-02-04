@@ -62,7 +62,7 @@ package tv.amwa.maj.record;
  * @see tv.amwa.maj.industry.Forge#generatePackageID(tv.amwa.maj.enumeration.MaterialType, InstanceNumberGeneration, MaterialNumberGeneration, AUID)
  * @see tv.amwa.maj.industry.Forge#generatePackageID(tv.amwa.maj.enumeration.MaterialType, InstanceNumberGeneration, MaterialNumberGeneration, byte[])
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public enum MaterialNumberGeneration {

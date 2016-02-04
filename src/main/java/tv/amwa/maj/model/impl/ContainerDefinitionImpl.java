@@ -75,7 +75,7 @@ import tv.amwa.maj.record.AUID;
  * be either a kind of file, such as an {@linkplain AAFFile AAF file}, or it can be another mechanism for storing essence 
  * data.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#ContainerDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ContainerDefinitionStrongReference

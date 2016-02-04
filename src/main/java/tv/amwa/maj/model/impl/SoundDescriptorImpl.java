@@ -65,7 +65,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * <p>Implements the description of a file {@linkplain tv.amwa.maj.model.SourcePackage source package} that 
  * is associated with audio essence.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

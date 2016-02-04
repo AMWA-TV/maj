@@ -65,7 +65,7 @@ import tv.amwa.maj.record.AUID;
  * not exposed through this interface. This property will be maintained
  * automatically by the MAJ API.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.enumeration.TypeCategory#WeakObjRef
  * @see TypeDefinitionWeakObjectReference

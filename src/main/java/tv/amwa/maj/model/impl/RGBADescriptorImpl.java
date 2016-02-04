@@ -76,7 +76,7 @@ import tv.amwa.maj.record.impl.RGBAComponentImpl;
  * <p>Implements the description of a file of video essence formatted with three color components 
  * or with three color components and an alpha component.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */ 
 

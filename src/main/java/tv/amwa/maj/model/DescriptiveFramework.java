@@ -54,7 +54,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Note that in the current implementation of the MAJ API, no descriptive schemes
  * have been implemented.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Preface#getDescriptiveSchemes()
  * @see DescriptiveObject

@@ -50,7 +50,7 @@ import tv.amwa.maj.model.Filler;
  * <p>Implements an unspecified value for the duration of a 
  * {@linkplain tv.amwa.maj.model.Component component}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

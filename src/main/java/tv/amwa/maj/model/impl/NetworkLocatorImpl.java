@@ -65,7 +65,7 @@ import tv.amwa.maj.model.NetworkLocator;
  * uniform resource identifier (URI). The current URI specification is 
  * <a href="http://tools.ietf.org/html/rfc3986">RFC&nbsp;3986</a>.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

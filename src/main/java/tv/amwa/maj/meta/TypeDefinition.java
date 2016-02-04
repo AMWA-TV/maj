@@ -93,7 +93,7 @@ import tv.amwa.maj.record.AUID;
  * 
  * <p>All other data types have similar methods.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see PropertyDefinition#getTypeDefinition()
  * @see PropertyValue#getType()

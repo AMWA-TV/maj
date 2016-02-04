@@ -51,7 +51,7 @@ import tv.amwa.maj.model.RecordingDescriptor;
  * 
  * <p>THE COMMENTS FOR THIS CLASS ARE INCOMPLETE.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

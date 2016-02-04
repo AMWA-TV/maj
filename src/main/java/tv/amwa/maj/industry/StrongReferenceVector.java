@@ -46,7 +46,7 @@ import tv.amwa.maj.meta.TypeDefinitionVariableArray;
  * the order of the array is preserved when it is persisted through an object relational
  * mapping that does not support automatic index columns.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see StrongReferenceSet
  * @see WeakReferenceVector

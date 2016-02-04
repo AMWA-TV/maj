@@ -85,7 +85,7 @@ import tv.amwa.maj.model.Segment;
  * <p>Implements a scope and has an ordered set of {@linkplain tv.amwa.maj.model.Segment segments}. 
  * Typically, nested scopes are used within {@linkplain tv.amwa.maj.model.CompositionPackage composition packages}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

@@ -198,7 +198,7 @@ import tv.amwa.maj.record.AUID;
  *    <p>The factory also contains methods to create and parse values of the extension record types.</p></li>
  *  <ul>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class AutoGeneration 

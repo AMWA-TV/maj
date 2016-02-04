@@ -88,7 +88,7 @@ import tv.amwa.maj.model.Preface;
 /**
  * <p>Data relating to a single MXF partition.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public abstract class PartitionImpl 

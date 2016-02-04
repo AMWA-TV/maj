@@ -49,7 +49,7 @@ import tv.amwa.maj.meta.TypeDefinitionVariableArray;
  * <p><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;prepend</code>&lt;<em>propertyName</em>&gt;<code>(</code><br>
  * <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&lt;<em>arrayElementType</em>&gt;<code>&nbsp;value)</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TypeDefinitionVariableArray
  * @see tv.amwa.maj.model.BWFImportDescriptor#prependUnknownBWFChunk(tv.amwa.maj.model.RIFFChunk)

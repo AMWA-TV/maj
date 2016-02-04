@@ -56,7 +56,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * <p>Implements the description of film media. A {@linkplain tv.amwa.maj.model.SourcePackage}
  * described by a film descriptor is known as a <em>film source package</em>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

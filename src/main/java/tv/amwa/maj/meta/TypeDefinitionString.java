@@ -76,7 +76,7 @@ import tv.amwa.maj.integer.UInt32;
  * <p>Property values containing <code>null</code> as the value for a string are
  * acceptable.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.enumeration.TypeCategory#String
  * @see java.lang.String

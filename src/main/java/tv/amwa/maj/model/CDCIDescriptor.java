@@ -56,7 +56,7 @@ import tv.amwa.maj.misctype.Bool;
  * {@linkplain #getColorRange() color range} properties depend on the required {@linkplain #getComponentDepth() component
  * width} property. Therefore, the default values of these properties should be computed at runtime.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.constant.CodecConstant#CDCI
  */

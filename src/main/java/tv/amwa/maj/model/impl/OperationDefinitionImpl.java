@@ -101,7 +101,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * 
  * <p>THE COMMENTS FOR THIS CLASS ARE INCOMPLETE.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#OperationDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#OperationDefinitionStrongReference

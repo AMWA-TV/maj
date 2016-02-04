@@ -55,7 +55,7 @@ import tv.amwa.maj.exception.PropertyNotPresentException;
  * the referenced text. The begin anchor tag shall precede the end anchor tag. If the begin anchor and end
  * anchor properties are omitted, the HTML clip references all the HTML text in the essence data object.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see HTMLDescriptor
  */

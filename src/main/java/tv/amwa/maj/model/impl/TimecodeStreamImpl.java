@@ -79,7 +79,7 @@ import tv.amwa.maj.record.impl.TimecodeValueImpl;
 /** 
  * <p>Implements a representation of a stream of timecode data.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

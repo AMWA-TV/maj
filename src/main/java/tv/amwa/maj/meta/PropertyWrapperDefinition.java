@@ -4,7 +4,7 @@ package tv.amwa.maj.meta;
  * <p>Specifies a globally unique alias for a property that was originally defined to be used in another 
  * class. This allows the property to be used unambiguously in more than one class.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface PropertyWrapperDefinition 

@@ -39,7 +39,7 @@ import tv.amwa.maj.util.Utilities;
  * <p>Class identifier to use as storage class identifiers on <em>folders</em> representing
  * AAF classes within structured storage files. <p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class AAFClassID 

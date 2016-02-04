@@ -56,7 +56,7 @@ import tv.amwa.maj.integer.Int32;
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#Rational
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 
 public interface Rational { 

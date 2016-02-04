@@ -80,7 +80,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
 /** 
  * <p>Implements a changing data value for an effect control value.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

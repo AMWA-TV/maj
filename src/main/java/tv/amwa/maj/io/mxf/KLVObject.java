@@ -49,7 +49,7 @@ import tv.amwa.maj.io.mxf.impl.MXFFileImpl;
 /**
  * <p>Implementation of a KLV triple value.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class KLVObject {

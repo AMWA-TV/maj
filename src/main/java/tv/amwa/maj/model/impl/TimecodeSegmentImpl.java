@@ -63,7 +63,7 @@ import tv.amwa.maj.record.impl.TimecodeValueImpl;
 /** 
  * <p>Implements the storage of video tape or audio tape timecode information.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

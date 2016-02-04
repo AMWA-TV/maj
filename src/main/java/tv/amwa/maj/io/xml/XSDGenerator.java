@@ -67,7 +67,7 @@ import tv.amwa.maj.meta.TypeDefinitionWeakObjectReference;
  * <p>Generate an XML schema for validating a Reg-XML document. The schema may be generated
  * just for the baseline model or for extension data models.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see MetaDictionaryGenerator
  */

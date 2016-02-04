@@ -47,7 +47,7 @@ import tv.amwa.maj.model.InterchangeObject;
  * <p>In the MAJ API implementation of the AAF classes, all {@linkplain InterchangeObject interchange 
  * objects} and {@linkplain MetaDefinition meta definitions} are metadata objects.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Forge#make(Class, Object...)
  * @see MediaClass

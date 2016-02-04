@@ -7,7 +7,7 @@ import tv.amwa.maj.record.DateStruct;
 /**
  * <p>Person who makes and/or contributes a resource.</p>
  *
- * @author Auto generation.
+ *
  */
 public interface Person
     extends

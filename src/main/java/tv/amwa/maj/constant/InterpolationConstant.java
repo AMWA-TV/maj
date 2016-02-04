@@ -59,7 +59,7 @@ import tv.amwa.maj.record.AUID;
  * @see tv.amwa.maj.industry.TypeDefinitions#InterpolationDefinitionStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#InterpolationDefinitionStrongReferenceSet
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface InterpolationConstant {
 

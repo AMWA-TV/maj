@@ -41,7 +41,7 @@ import tv.amwa.maj.integer.Int64;
  * 
  * <p>Original C name: <code>aafColorSpace_e</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum ColorSpace 

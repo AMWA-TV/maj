@@ -52,7 +52,7 @@
 // * Sub-streams will be written in the same generic container as this stream. This stream's essence source will
 // * appear as the first <em>child</em> when the essence source list is scanned.</p>
 // *
-// * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+// *
 // *
 // * @see BodyWriter
 // */

@@ -202,7 +202,7 @@ import tv.amwa.maj.util.Utilities;
  *  {@link #makeVersion(byte, byte)} or a zero version type value with {@link #zeroVersion()}.</li>
  * </ul>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

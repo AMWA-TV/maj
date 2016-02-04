@@ -51,7 +51,7 @@ import java.lang.annotation.Target;
  * Java base type: <code>long</code>
  * </p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Int64Array
  * @see tv.amwa.maj.industry.TypeDefinitions#Int64

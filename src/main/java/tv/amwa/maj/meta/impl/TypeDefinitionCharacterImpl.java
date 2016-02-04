@@ -83,7 +83,7 @@ import tv.amwa.maj.record.AUID;
 /** 
  * <p>Implements the definition of a property type that has a value of a single 2-byte character.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

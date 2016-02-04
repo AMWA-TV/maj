@@ -86,7 +86,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implements the definition of a kind of {@linkplain tv.amwa.maj.model.Parameter parameter} for 
  * an effect.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#ParameterDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ParameterDefinitionStrongReference

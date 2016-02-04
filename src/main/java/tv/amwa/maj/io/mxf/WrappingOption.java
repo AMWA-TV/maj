@@ -44,7 +44,7 @@
 ///**
 // * <p>Description of how essence is wrapped into an MXF file.</p>
 // *
-// * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+// *
 // *
 // */
 //public class WrappingOption {

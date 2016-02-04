@@ -86,7 +86,7 @@ import tv.amwa.maj.util.Utilities;
  * @see tv.amwa.maj.model.impl.EdgeCodeSegmentImpl
  * @see tv.amwa.maj.misctype.EdgecodeHeader
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public final class EdgeCodeValueImpl 

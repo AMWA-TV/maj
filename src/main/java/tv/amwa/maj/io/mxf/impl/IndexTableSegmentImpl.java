@@ -85,7 +85,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * <p>Index tables are represented as index table segments, where a complete index table may
  * comprise one or more index table segments.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see IndexTable
  */

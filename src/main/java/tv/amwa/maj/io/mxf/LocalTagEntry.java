@@ -8,7 +8,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Represents a single entry of the tag-to-key lookup table of a primer pack, mapping a 
  * 2&nbsp;byte tag to a 16&nbsp;byte key.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see PrimerPack#addLocalTagEntry(LocalTagEntry)
  * @see PrimerPack#getLocalTagEntryBatch()

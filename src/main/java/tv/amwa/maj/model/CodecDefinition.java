@@ -65,7 +65,7 @@ import tv.amwa.maj.misctype.Bool;
  * encoding and decoding on a digital data stream, which is often the case for the data streams represented 
  * by {@linkplain tv.amwa.maj.model.EssenceData essence data} in the MAJ API.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.constant.CodecConstant
  * @see tv.amwa.maj.constant.CodecFlavour

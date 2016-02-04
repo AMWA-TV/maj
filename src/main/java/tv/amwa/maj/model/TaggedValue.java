@@ -60,7 +60,7 @@ import tv.amwa.maj.misctype.AAFString;
  * shortcut methods to create string comments and attributes. For example, {@link Package#appendPackageUserComment(String, String)}
  * and {@link Component#appendComponentAttribute(String, String)}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TaggedValueDefinition
  * @see Dictionary#getTaggedValueDefinitions()

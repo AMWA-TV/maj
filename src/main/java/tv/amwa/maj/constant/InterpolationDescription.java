@@ -46,7 +46,7 @@ import java.lang.annotation.Target;
  * 
  * @see InterpolationConstant
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

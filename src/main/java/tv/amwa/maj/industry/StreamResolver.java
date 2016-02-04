@@ -21,7 +21,7 @@ import java.net.URI;
  * files. These are often the same MXF or AAF files that wrap the stream data with 
  * its associated metadata.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Stream
  * @see MemoryResidentStream

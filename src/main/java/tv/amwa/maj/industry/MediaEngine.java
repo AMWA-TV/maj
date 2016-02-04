@@ -132,7 +132,7 @@ import tv.amwa.maj.record.AUID;
  * 
  * <p>All the methods of this class are static.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Forge
  * @see MediaClass

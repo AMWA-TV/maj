@@ -84,7 +84,7 @@ import tv.amwa.maj.integer.UInt8;
  * @see tv.amwa.maj.industry.TypeDefinitions#RGBALayout
  * @see tv.amwa.maj.model.RGBADescriptor
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a> 
+ *
  */
 
 public interface RGBAComponent 

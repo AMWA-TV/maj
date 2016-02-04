@@ -8,7 +8,7 @@ import tv.amwa.maj.record.AUID;
  * {@linkplain ApplicationPluginObject application plugin object}, whether 
  * directly or indirectly.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface ApplicationReferencedObject 

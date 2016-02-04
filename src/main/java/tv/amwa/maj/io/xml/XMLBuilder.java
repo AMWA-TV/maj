@@ -161,7 +161,7 @@ import tv.amwa.maj.util.Utilities;
  * "<code>entityCount</code>" and each stream is stored with the key "<code>stream_</code><em>i</em>"
  * where <em>i</em> is the zero-based index of the stream.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public final class XMLBuilder {

@@ -45,7 +45,7 @@ import tv.amwa.maj.misctype.AAFString;
  * help find the physical media. A text locator is not intended for applications 
  * to use without user intervention.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 

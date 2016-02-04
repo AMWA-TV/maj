@@ -45,7 +45,7 @@ import tv.amwa.maj.integer.UInt32;
  * 
  * @see tv.amwa.maj.model.EssenceMultiAccess
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface MultiResultItem { 

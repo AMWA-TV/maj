@@ -53,7 +53,7 @@ import tv.amwa.maj.industry.MediaEnumerationValue;
  * @see tv.amwa.maj.industry.TypeDefinitions#Boolean
  * @see tv.amwa.maj.misctype.Bool
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public enum Boolean 

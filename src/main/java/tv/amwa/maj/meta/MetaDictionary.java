@@ -67,7 +67,7 @@ import tv.amwa.maj.record.AUID;
  *  dictionary into a dynamic one, call {@link #makeDynamic(tv.amwa.maj.model.Preface)}.</li>
  * </ul>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.model.Dictionary
  * @see MetaDefinition

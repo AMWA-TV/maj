@@ -59,7 +59,7 @@ import tv.amwa.maj.model.SourceReferenceSegment;
  * have a {@linkplain SourceReferenceSegment source reference} that specifies a text 
  * or audio annotation.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

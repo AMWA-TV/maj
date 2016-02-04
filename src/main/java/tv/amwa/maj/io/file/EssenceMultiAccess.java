@@ -41,7 +41,7 @@ import tv.amwa.maj.exception.InvalidParameterException;
 /** TODO implementation, comments and tests
  * <p></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

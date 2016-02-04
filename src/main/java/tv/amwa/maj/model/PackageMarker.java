@@ -7,7 +7,7 @@ import tv.amwa.maj.misctype.TrackID;
 /**
  * <p>Provides mark-in and mark-out properties on {@linkplain material packages}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see MaterialPackage#getPackageMarker()
  */

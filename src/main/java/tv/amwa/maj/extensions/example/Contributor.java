@@ -6,7 +6,7 @@ import tv.amwa.maj.model.DescriptiveObject;
 /**
  * <p>Entity that creates or contributes to a resource.</p>
  *
- * @author Auto generation.
+ *
  */
 public interface Contributor
     extends

@@ -51,7 +51,7 @@ import tv.amwa.maj.model.ImportDescriptor;
  * {@linkplain tv.amwa.maj.model.SourcePackage source package}, where an application had imported a file by 
  * application-specific means.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

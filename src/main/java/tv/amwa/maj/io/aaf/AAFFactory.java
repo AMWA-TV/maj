@@ -75,7 +75,7 @@ import tv.amwa.maj.model.Preface;
  * <p>Note that MAJ uses an extended version of the Apache POIFS library. MAJ can read big and little endian
  * byte order files but only writes back in big endian.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

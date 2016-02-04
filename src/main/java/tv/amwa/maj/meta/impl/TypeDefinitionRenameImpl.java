@@ -97,7 +97,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implements the definition of a property type that has the same structure and representation as 
  * its underlying type but has a different meaning.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

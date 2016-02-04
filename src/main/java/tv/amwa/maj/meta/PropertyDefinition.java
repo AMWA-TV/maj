@@ -78,7 +78,7 @@ import tv.amwa.maj.record.AUID;
  * or {@link ClassDefinition#registerOptionalPropertyDefinition(AUID, String, String[], String, String)
  * registerOptionalPropertyDefinition()}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see ClassDefinition#registerNewPropertyDefinition(AUID, String, String[], String, String, boolean, boolean, Short)
  * @see ClassDefinition#registerOptionalPropertyDefinition(AUID, String, String[], String, String)

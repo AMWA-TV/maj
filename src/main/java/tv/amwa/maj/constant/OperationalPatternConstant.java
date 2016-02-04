@@ -44,7 +44,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implement this interface to access unique identifiers for operational patterns or AAF protocols, such as 
  * as the AAF edit protocol. An operational pattern constraints levels of file complexity.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see OperationalPatternDescription
  * @see tv.amwa.maj.model.Preface#getOperationalPattern()

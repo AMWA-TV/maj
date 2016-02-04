@@ -39,7 +39,7 @@ import tv.amwa.maj.integer.Int64;
  * 
  * <p>Original C name aafAppendOption_e.<br>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum AppendOption 

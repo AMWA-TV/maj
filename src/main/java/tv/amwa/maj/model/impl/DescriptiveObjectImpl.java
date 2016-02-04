@@ -57,7 +57,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implements an item of descriptive metadata in a {@linkplain tv.amwa.maj.model.DescriptiveFramework
  * descriptive framework}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#DescriptiveObjectStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#DescriptiveObjectStrongReferenceSet

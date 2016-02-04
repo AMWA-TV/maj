@@ -64,7 +64,7 @@ import tv.amwa.maj.model.Locator;
  * <p>Implements the representation of information to help find a file that contains the essence or to help 
  * find the physical media.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#LocatorStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#LocatorStrongReferenceVector

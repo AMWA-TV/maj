@@ -102,7 +102,7 @@ import tv.amwa.maj.union.SourceReferenceValue;
  * @see tv.amwa.maj.model.SourceReferenceSegment
  * @see tv.amwa.maj.record.PackageID
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public class SourceReferenceValueImpl 

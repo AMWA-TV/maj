@@ -48,7 +48,7 @@ import tv.amwa.maj.industry.MediaProperty;
  * ongoing maintenance, the details of a property are now only defined within its class definition.
  * This should enable each AAF class to be managed as if a loosely-coupled component.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

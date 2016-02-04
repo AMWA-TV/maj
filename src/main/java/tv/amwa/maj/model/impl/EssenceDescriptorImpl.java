@@ -82,7 +82,7 @@ import tv.amwa.maj.model.SubDescriptor;
  * {@linkplain tv.amwa.maj.model.SourcePackage source package} or of the media associated with a physical 
  * {@linkplain tv.amwa.maj.model.SourcePackage source package}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#EssenceDescriptorStrongReference
  */

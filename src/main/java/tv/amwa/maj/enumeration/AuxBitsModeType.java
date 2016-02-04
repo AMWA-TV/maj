@@ -59,7 +59,7 @@ import tv.amwa.maj.industry.MediaEnumerationValue;
  * @see tv.amwa.maj.model.AES3PCMDescriptor#getAuxBitsMode()
  * @see tv.amwa.maj.enumeration.UserDataModeType
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public enum AuxBitsModeType 

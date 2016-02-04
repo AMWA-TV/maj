@@ -60,7 +60,7 @@ import tv.amwa.maj.record.AUID;
  * as the name of the tagged value it documents. The {@linkplain tv.amwa.maj.model.DefinitionObject#getDescription() 
  * description of the definition} provides the documentation.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#TaggedValueDefinitionStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#TaggedValueDefinitionStrongReferenceSet

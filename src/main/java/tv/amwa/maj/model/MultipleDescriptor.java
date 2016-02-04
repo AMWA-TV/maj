@@ -50,7 +50,7 @@ import tv.amwa.maj.integer.UInt32;
  * that contains multiple tracks of essence. Each file descriptor within a multiple descriptor should
  * set the linked track property that links it to the source track that it describes.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see AAFFileDescriptor#getLinkedTrackID()
  * @see AAFFileDescriptor#setLinkedTrackID(Integer)

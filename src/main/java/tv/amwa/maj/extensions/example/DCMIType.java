@@ -8,7 +8,7 @@ import tv.amwa.maj.integer.Int64;
  *
  * @see TypeDefinitions#DCMIType
  *
- * @author Auto generation
+ *
  */
 public enum DCMIType
     implements MediaEnumerationValue {

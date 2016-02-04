@@ -55,7 +55,7 @@ import tv.amwa.maj.record.Rational;
  * of audio or video data into a single essence stream.</p>
  *
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface MultiCreateItem { 

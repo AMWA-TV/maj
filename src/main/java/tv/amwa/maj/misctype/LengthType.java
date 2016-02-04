@@ -62,7 +62,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.industry.Forge#calculateDuration(tv.amwa.maj.record.TimecodeValue, tv.amwa.maj.record.TimecodeValue)
  * @see tv.amwa.maj.industry.TypeDefinitions#LengthType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

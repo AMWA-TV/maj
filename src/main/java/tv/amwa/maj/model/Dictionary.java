@@ -68,7 +68,7 @@ import tv.amwa.maj.record.AUID;
  * has a dictionary within its {@linkplain Preface preface} and contains a representation of the 
  * {@linkplain MetaDictionary meta dictionary}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.meta.MetaDictionary
  * @see DefinitionObject

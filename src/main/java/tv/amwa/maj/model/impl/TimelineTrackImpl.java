@@ -66,7 +66,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
 /** 
  * <p>Implements the representation of a track that describes time-varying timeline essence.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

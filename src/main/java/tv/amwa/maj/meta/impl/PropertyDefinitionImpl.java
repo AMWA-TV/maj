@@ -129,7 +129,7 @@ import tv.amwa.maj.util.Utilities;
  * @see tv.amwa.maj.industry.TypeDefinitions#PropertyDefinitionStrongReferenceSet
  * @see tv.amwa.maj.industry.TypeDefinitions#PropertyDefinitionWeakReferenceSet
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

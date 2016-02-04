@@ -68,7 +68,7 @@ import tv.amwa.maj.model.CDCIDescriptor;
  * <a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object specification v1.1</a>. This format
  * is also known as "YCbCr".</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

@@ -38,7 +38,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implement this interface to access some standard constants used to define
  * {@linkplain tv.amwa.maj.model.PluginDefinition plugins}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see PluginCategoryType
  * @see tv.amwa.maj.model.PluginDefinition

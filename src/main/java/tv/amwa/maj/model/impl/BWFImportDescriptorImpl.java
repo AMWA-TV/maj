@@ -74,7 +74,7 @@ import tv.amwa.maj.model.RIFFChunk;
  * <a href="http://www.ebu.ch/en/technical/publications/userguides/bwf_user_guide.php">Broadcast Wave Format</a>
  * specifications, which is a file essence source that is not directly manipulated by an AAF application.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x5000,

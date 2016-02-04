@@ -85,7 +85,7 @@ import tv.amwa.maj.record.impl.PackageIDImpl;
  * However, in rare cases direct access to the data is required, the {@linkplain #read(int) read}
  * and {@linkplain #write(ByteBuffer) write} methods of this interface are provided.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#EssenceDataStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#EssenceDataStrongReferenceSet

@@ -44,7 +44,7 @@ import tv.amwa.maj.io.mxf.MXFPosition;
  * <p>Holds {@linkplain RandomIndexPackImpl random index pack} data relating to a single
  * {@linkplain PartitionImpl partition}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see RandomIndexPackImpl
  * @see PartitionImpl

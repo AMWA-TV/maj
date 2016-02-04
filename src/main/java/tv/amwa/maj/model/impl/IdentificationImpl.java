@@ -75,7 +75,7 @@ import tv.amwa.maj.record.impl.TimeStampImpl;
  * <p>Implements a representation of identity information about the application that created or 
  * modified a file.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#IdentificationStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#IdentificationStrongReferenceVector

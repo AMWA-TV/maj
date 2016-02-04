@@ -66,7 +66,7 @@ import tv.amwa.maj.record.Rational;
  *  </li>
  * </ul>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Segment
  * @see Sequence

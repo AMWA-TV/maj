@@ -41,7 +41,7 @@ import tv.amwa.maj.record.AUID;
  * allows. All the flavours listed here relate to the {@linkplain CodecConstant#CDCI DV family}
  * of codecs (CDCI) using DCT block-based compression.</p>
  * 
- * @author @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface CodecFlavour {

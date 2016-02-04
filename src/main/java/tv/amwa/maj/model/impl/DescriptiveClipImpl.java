@@ -70,7 +70,7 @@ import tv.amwa.maj.union.SourceReferenceValue;
  * section of descriptive metadata in the track of another package. Typically, the referenced track would contain
  * {@linkplain tv.amwa.maj.model.DescriptiveMarker descriptive markers}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x4500,

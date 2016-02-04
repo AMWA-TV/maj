@@ -65,7 +65,7 @@ import tv.amwa.maj.integer.UInt8;
  * @see TimeStamp
  * @see TimeStruct
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 
 public interface DateStruct { 

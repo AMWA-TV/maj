@@ -53,7 +53,7 @@ import tv.amwa.maj.model.WAVEDescriptor;
  * <p>Implements the description of a file of audio essence formatted according to the RIFF 
  * Waveform Audio File Format (WAVE).</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

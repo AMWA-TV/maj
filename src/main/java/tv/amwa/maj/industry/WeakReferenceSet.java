@@ -47,7 +47,7 @@ import tv.amwa.maj.exception.PropertyNotPresentException;
  * them at runtime. The class provides a consistent set of delegate add, contains and remove methods
  * for weak reference set type properties.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @param <T> Type of the target of all the references in the set.
  * 

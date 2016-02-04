@@ -68,7 +68,7 @@ import tv.amwa.maj.record.AUID;
  * <p>If a descriptive marker refers to a {@linkplain StaticTrack static track}, the extent of the description 
  * is for the entire {@linkplain Package package}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see DescriptiveFramework
  * @see DescriptiveClip

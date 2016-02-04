@@ -41,7 +41,7 @@ package tv.amwa.maj.model;
  * that it does not represent a source that physically existed. It is used to provide a timecode reference 
  * to file source material.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 

@@ -46,7 +46,7 @@ import java.lang.annotation.Target;
  * @see CompArray
  * @see tv.amwa.maj.model.RGBADescriptor
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

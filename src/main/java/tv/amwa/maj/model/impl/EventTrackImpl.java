@@ -74,7 +74,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * <p>Implements a container for a {@linkplain tv.amwa.maj.model.Sequence sequence} of 
  * {@linkplain tv.amwa.maj.model.Event events}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

@@ -43,7 +43,7 @@ import tv.amwa.maj.model.HTMLDescriptor;
 /** 
  * <p>Implements a description of essence data that is in HTML text format.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x2A00,

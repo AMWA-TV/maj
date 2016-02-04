@@ -68,7 +68,7 @@ import tv.amwa.maj.model.impl.IdentificationImpl;
  * 
  * <p>THE DOCUMENTATION FOR THIS CLASS IS INCOMPLETE.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class XMLFactory {
 	

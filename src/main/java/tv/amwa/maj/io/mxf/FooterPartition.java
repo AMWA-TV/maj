@@ -6,7 +6,7 @@ package tv.amwa.maj.io.mxf;
  * should not contain any parts of a {@linkplain BodyStream body stream}. If present, the optional footer partition
  * is the last partition in an MXF file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see BodyPartition
  * @see HeaderPartition

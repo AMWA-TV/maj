@@ -96,7 +96,7 @@ import tv.amwa.maj.model.TaggedValue;
 /** 
  * <p>Implements an essence element.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#ComponentStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ComponentStrongReferenceVector

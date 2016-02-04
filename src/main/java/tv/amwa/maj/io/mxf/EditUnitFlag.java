@@ -10,7 +10,7 @@ import tv.amwa.maj.io.mxf.impl.IndexEntryImpl;
  * <p>Represents a flag used in an {@linkplain IndexEntryImpl index entry} to indicate the nature 
  * of the indexed edit unit.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @Documented

@@ -54,7 +54,7 @@ import tv.amwa.maj.model.GPITrigger;
 /** 
  * <p>Implements a trigger action that should be taken when the GPI trigger is reached.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

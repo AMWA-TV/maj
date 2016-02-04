@@ -54,7 +54,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * <p>Objects that supply large quantities of essence data. An essence source is used when 
  * clip-wrapping to prevent large quantities of data being loaded into memory.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see WrappingOption
  *

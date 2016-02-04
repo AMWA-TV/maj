@@ -46,7 +46,7 @@ import tv.amwa.maj.record.AUID;
 /**
  * <p>Specifies a definition to be referenced.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Dictionary
  *

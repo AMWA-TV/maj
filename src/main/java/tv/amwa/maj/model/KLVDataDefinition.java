@@ -64,7 +64,7 @@ import tv.amwa.maj.integer.UInt32; */
  * {@linkplain tv.amwa.maj.record.AUID AUID} that is used for the key of instances of the 
  * {@linkplain KLVData KLV data} being documented.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Dictionary#getKLVDataDefinitions()
  * @see tv.amwa.maj.industry.TypeDefinitions#KLVDataDefinitionStrongReference

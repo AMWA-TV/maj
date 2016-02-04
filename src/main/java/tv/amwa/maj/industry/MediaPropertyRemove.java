@@ -52,7 +52,7 @@ import tv.amwa.maj.meta.TypeDefinitionSet;
  * <p><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;remove</code>&lt;<em>propertyName</em>&gt;<code>(</code><br>
  * <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&lt;<em>elementType</em>&gt;<code>&nbsp;value)</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TypeDefinitionSet
  * @see tv.amwa.maj.model.Preface#removeDescriptiveScheme(tv.amwa.maj.record.AUID)

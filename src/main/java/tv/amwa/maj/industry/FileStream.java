@@ -12,7 +12,7 @@ import tv.amwa.maj.exception.EndOfDataException;
  * assumed to be {@linkplain tv.amwa.maj.constant.ContainerConstant#External external}
  * essence that is not wrapped in any way.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see MemoryResidentStream
  * @see StreamResolver

@@ -63,7 +63,7 @@ import tv.amwa.maj.record.AUID;
  * from vocabularies of descriptive metadata, such as DMS-1, known as <em>descriptive
  * metadata schemes</em>.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

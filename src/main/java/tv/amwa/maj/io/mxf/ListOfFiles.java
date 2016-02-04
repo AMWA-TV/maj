@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * <p>Handles a list of files.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 public abstract class ListOfFiles {

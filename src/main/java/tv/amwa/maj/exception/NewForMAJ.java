@@ -31,7 +31,7 @@ package tv.amwa.maj.exception;
  * the AAF class model. An exception implementing this interface does not have an 
  * <code>AAF_RESULT</code> code with a similar sounding name in the C-based AAF SDK.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface NewForMAJ {

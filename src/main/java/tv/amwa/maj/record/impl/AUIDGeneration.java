@@ -43,7 +43,7 @@ package tv.amwa.maj.record.impl;
  * the ones specified in <a href="http://www.faqs.org/rfcs/rfc4122.html" alt="RFC 4122">rfc&nbsp;4122</a>
  * that are supported by the MAJ API.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see AUIDImpl#auidFactory(AUIDGeneration, byte[])
  * @see java.util.UUID

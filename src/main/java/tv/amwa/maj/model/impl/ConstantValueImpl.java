@@ -67,7 +67,7 @@ import tv.amwa.maj.model.VaryingValue;
  * values} and one or more {@linkplain ControlPoint control points} for parameters which change in value 
  * during the operation group.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

@@ -68,7 +68,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * the {@linkplain AutoGeneration extension generator} and the {@linkplain TestGeneration test
  * generator}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class GenerationCore {

@@ -12,7 +12,7 @@ import tv.amwa.maj.model.Package;
 /**
  * <p>Data relating to a single {@linkplain PartitionImpl partition}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class Metadata {

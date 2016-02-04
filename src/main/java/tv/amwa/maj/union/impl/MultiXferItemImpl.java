@@ -51,7 +51,7 @@ import tv.amwa.maj.record.AUID;
  * @see tv.amwa.maj.model.EssenceMultiAccess#readMultiSamples(tv.amwa.maj.union.MultiXferItem[])
  * @see tv.amwa.maj.model.EssenceMultiAccess#writeMultiSamples(tv.amwa.maj.union.MultiXferItem[])
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class MultiXferItemImpl 
 	implements tv.amwa.maj.union.MultiXferItem,

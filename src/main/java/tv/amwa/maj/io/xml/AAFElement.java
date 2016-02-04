@@ -77,7 +77,7 @@ import tv.amwa.maj.model.Preface;
  * 
  * <p>DOCUMENTATION FOR THIS CLASS IS INCOMPLETE.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

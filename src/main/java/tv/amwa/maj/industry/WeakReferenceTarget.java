@@ -55,7 +55,7 @@ import tv.amwa.maj.record.AUID;
  * {@link tv.amwa.maj.industry.Warehouse#lookForType(String)} and
  * {@link tv.amwa.maj.industry.Warehouse#lookup(Class, String)}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see WeakReference
  * @see WeakReference#getTarget()

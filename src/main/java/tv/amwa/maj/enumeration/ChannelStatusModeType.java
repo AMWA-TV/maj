@@ -49,7 +49,7 @@ import tv.amwa.maj.industry.MediaEnumerationValue;
  * @see tv.amwa.maj.model.AES3PCMDescriptor#getChannelStatusMode()
  * @see tv.amwa.maj.industry.TypeDefinitions#ChannelStatusModeType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public enum ChannelStatusModeType 

@@ -50,7 +50,7 @@ import tv.amwa.maj.model.StaticTrack;
  * as a static image. As a static track has not relationship with time, it does
  * not specify an edit rate.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x0101, uuid3 = 0x3a00,

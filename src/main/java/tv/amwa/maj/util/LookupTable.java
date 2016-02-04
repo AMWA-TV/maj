@@ -74,7 +74,7 @@ import java.util.Hashtable;
  * href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF object
  * specification version&nbsp;1.1</a> are included.
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 @Deprecated

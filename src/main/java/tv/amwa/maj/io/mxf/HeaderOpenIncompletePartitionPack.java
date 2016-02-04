@@ -15,7 +15,7 @@ import tv.amwa.maj.industry.MetadataObject;
  * some best effort metadata properties have been flagged as unknown, by setting to the appropriate 
  * distinguished value.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see BodyOpenIncompletePartitionPack
  * @see HeaderOpenCompletePartitionPack

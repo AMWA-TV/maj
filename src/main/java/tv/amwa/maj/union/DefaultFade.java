@@ -62,7 +62,7 @@ import tv.amwa.maj.record.Rational;
  * @see tv.amwa.maj.model.SourceClip
  * @see Fade
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 

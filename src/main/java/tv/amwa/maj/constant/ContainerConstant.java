@@ -76,7 +76,7 @@ import tv.amwa.maj.record.AUID;
  * @see tv.amwa.maj.industry.TypeDefinitions#ContainerDefinitionStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ContainerDefinitionStrongReferenceSet
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

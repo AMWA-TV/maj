@@ -123,7 +123,7 @@ import tv.amwa.maj.util.Utilities;
  * <p>Implements the definition of a property type that has a varying number of values of 
  * the underlying type. The order of the values is meaningful.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

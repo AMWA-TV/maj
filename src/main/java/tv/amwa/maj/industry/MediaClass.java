@@ -104,7 +104,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.industry.TypeDefinitions#ClassDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ClassDefinitionStrongReference
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

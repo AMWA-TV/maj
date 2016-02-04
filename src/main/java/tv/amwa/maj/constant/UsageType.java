@@ -63,7 +63,7 @@ import tv.amwa.maj.industry.ExtendibleEnumerationItem;
  * @see tv.amwa.maj.industry.Warehouse#lookupExtendibleEnumeration(String)
  * @see tv.amwa.maj.industry.TypeDefinitions#UsageType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface UsageType {

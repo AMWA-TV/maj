@@ -55,7 +55,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.model.TIFFDescriptor#getJPEGTableID()
  * @see tv.amwa.maj.industry.TypeDefinitions#JPEGTableIDType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

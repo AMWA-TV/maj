@@ -6,7 +6,7 @@ import tv.amwa.maj.integer.Int64;
 /**
  * <p>Picture type and coding type, as used in {@linkplain tv.amwa.maj.model.AVCSubDescriptor AVC sub descriptors}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.model.AVCSubDescriptor#getAVCCodedContentKind()
  * @see tv.amwa.maj.model.AVCSubDescriptor#setAVCCodedContentKind(AVCCodedContentKind)

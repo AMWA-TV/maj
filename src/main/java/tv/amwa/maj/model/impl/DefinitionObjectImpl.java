@@ -69,7 +69,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
 /** 
  * <p>Implements a definition to be referenced.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

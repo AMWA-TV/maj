@@ -59,7 +59,7 @@ import tv.amwa.maj.meta.PropertyDefinition;
  * 
  * <p>This class provides no public methods.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @HiddenClass

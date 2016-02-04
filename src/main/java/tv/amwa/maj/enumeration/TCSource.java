@@ -53,7 +53,7 @@ import tv.amwa.maj.integer.Int64;
  * @see tv.amwa.maj.model.TimecodeStream#getTimecodeSource()
  * @see tv.amwa.maj.record.TimecodeValue
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum TCSource 

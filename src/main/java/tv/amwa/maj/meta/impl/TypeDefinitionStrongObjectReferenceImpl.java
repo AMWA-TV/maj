@@ -84,7 +84,7 @@ import tv.amwa.maj.model.NetworkLocator;
  * <p>Implements the definition of a property type that defines an object relationship where the target of the strong 
  * reference is owned by the object with a property of the TypeDefinitionStrongObjectReference type.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

@@ -45,7 +45,7 @@ import java.lang.annotation.Target;
  * @see Int64
  * @see tv.amwa.maj.industry.TypeDefinitions#Int64Array
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

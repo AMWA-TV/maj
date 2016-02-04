@@ -68,7 +68,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Generate a Reg-XML compliant meta dictionary for either the baseline AAF model or an extension
  * data model.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see XSDGenerator
  */

@@ -63,7 +63,7 @@ import tv.amwa.maj.misctype.FrameOffset;
  * 
  * @see tv.amwa.maj.model.EdgeCodeSegment
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface EdgeCodeValue { 

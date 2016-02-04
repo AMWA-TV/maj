@@ -56,7 +56,7 @@ import tv.amwa.maj.integer.UInt32;
  * <p>Specifies the description of multiple digital representations of the same original 
  * content source. The essence type and length of all choices must be the same.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 public interface EssenceGroup 

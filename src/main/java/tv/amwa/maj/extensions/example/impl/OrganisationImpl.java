@@ -15,7 +15,7 @@ import tv.amwa.maj.io.xml.XMLSerializable;
 /**
  * <p>Organisation that makes or contributes a resource. Implementation.</p>
  *
- * @author Auto generation.
+ *
  */
 @MediaClass(
     definedName = "Organisation",

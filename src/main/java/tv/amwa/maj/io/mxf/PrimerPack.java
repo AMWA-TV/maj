@@ -14,7 +14,7 @@ import tv.amwa.maj.record.AUID;
  * to full 16-byte keys. The primer pack is the table that allows for that resolution to 
  * take place.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see HeaderMetadata#getPrimerPack()
  * @see MXFBuilder#readLocalSet(UL, java.nio.ByteBuffer, PrimerPack, java.util.Map, java.util.List)

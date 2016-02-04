@@ -8,7 +8,7 @@ import tv.amwa.maj.record.DateStruct;
 /**
  * <p>Very basic description of an item, based on a few Dublin Core terms.</p>
  *
- * @author Auto generation.
+ *
  */
 public interface SimpleDescription
     extends

@@ -73,7 +73,7 @@ import tv.amwa.maj.model.SourceClip;
  * This interface uses the {@linkplain tv.amwa.maj.union.SourceReferenceValue source reference values} to
  * manage the properties of a source clip.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#SourceClipStrongReference
  */

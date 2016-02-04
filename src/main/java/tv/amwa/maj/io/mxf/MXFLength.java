@@ -43,7 +43,7 @@ import tv.amwa.maj.model.Component;
  * represents the length of an {@linkplain Component AAF component} measured in edit
  * units rather than the number of bytes taken up by an item in an AAF file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.integer.Int64
  * @see tv.amwa.maj.misctype.LengthType

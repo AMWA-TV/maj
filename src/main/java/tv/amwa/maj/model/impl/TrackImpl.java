@@ -72,7 +72,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * A track describes the relationship between essence and time. In a {@linkplain tv.amwa.maj.model.MaterialPackage material package}, 
  * tracks describe the desired relationship between stored essence and the output timeline.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#TrackStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#TrackStrongReferenceVector

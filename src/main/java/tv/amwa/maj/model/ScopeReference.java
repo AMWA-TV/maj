@@ -49,7 +49,7 @@ import tv.amwa.maj.integer.UInt32;
  * in terms of a relative track offset, and the number of scopes to skip 
  * outward.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see NestedScope
  */

@@ -91,7 +91,7 @@ import tv.amwa.maj.util.Utilities;
  * <p>Implements the definition of a property type that is stored in a stream and has a 
  * value that consists of a varying number of the bytes.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x020c, uuid3 = 0x0000,

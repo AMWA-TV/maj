@@ -38,7 +38,7 @@ package tv.amwa.maj.enumeration;
  * <p>Specifies the kind of {@linkplain tv.amwa.maj.model.EssenceData essence data} in terms 
  * of its relationship with time.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public enum EssenceType {

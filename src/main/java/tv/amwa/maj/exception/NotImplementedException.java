@@ -33,7 +33,7 @@ package tv.amwa.maj.exception;
  * existing reference implementation and the documentation of the method will
  * provide a suitable alternative.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class NotImplementedException 

@@ -58,7 +58,7 @@ import tv.amwa.maj.integer.UInt32;
  * <a href="http://www.ebu.ch/en/technical/publications/userguides/bwf_user_guide.php">Broadcast Wave Format</a>
  * specifications, which is a file essence source that is not directly manipulated by an AAF application.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface BWFImportDescriptor
 	extends ImportDescriptor {

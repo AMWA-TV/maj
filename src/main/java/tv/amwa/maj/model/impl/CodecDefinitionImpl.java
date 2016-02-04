@@ -106,7 +106,7 @@ import tv.amwa.maj.record.AUID;
  * encoding and decoding on a digital data stream, which is often the case for the data streams represented 
  * by {@linkplain tv.amwa.maj.model.EssenceData essence data} in the MAJ API.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#CodecDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#CodecDefinitionStrongReference

@@ -49,7 +49,7 @@ import tv.amwa.maj.misctype.AAFString;
  * <a href="http://www.iana.org/assignments/media-types/index.html">IANA register of media
  * types</a>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see SourcePackage#getEssenceDescriptor()
  */

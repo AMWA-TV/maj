@@ -12,7 +12,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Represents the logical association of the definitions of the extensions used in 
  * a file with the structural and descriptive metadata in the file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see ExtensionScheme
  * @see tv.amwa.maj.model.Preface

@@ -67,7 +67,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * <p>Implements an effect control value. Effect control values are parameters to operations
  * specified by {@linkplain tv.amwa.maj.model.OperationGroup operation groups}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#ParameterStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ParameterStrongReferenceVector

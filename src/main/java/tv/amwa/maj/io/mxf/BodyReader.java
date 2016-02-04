@@ -40,7 +40,7 @@ import tv.amwa.maj.io.mxf.impl.MXFFileImpl;
 /**
  * <p>Reads data from the body of a {@linkplain MXFFileImpl MXF file}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class BodyReader {

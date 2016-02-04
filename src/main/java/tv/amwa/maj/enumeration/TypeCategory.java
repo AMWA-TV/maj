@@ -55,7 +55,7 @@ import tv.amwa.maj.integer.Int64;
  * @see tv.amwa.maj.meta.TypeDefinition
  * @see tv.amwa.maj.industry.PropertyValue
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum TypeCategory 

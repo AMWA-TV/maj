@@ -58,7 +58,7 @@ import tv.amwa.maj.model.impl.SourceClipImpl;
  * @see tv.amwa.maj.model.SourceClip#getFade()
  * @see tv.amwa.maj.enumeration.FadeType
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public class FadeImpl

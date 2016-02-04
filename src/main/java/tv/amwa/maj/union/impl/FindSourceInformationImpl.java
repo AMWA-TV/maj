@@ -55,7 +55,7 @@ import tv.amwa.maj.record.impl.PackageIDImpl;
  * type value could return a <code>null</code> pointer to indicate that a value 
  * is not present.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 // TODO work out what to do with this and associated methods

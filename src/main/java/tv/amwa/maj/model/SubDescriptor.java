@@ -42,7 +42,7 @@ package tv.amwa.maj.model;
  * <p>Specifies additional descriptor metadata that is not provided in the specified
  * {@linkplain EssenceDescriptor essence descriptor} class hierarchy.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see EssenceDescriptor#getSubDescriptors()
  * @see tv.amwa.maj.industry.TypeDefinitions#SubDescriptorStrongReference

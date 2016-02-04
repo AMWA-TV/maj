@@ -103,7 +103,7 @@ import tv.amwa.maj.record.AUID;
 /** 
  * <p>Implements the definition of a property type that is an integer with the specified number of bytes.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x0204, uuid3 = 0x0000,

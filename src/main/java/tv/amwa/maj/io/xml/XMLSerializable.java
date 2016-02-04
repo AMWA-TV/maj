@@ -51,7 +51,7 @@ import org.w3c.dom.Node;
  * @see tv.amwa.maj.meta.ClassDefinition#getSymbol()
  * @see tv.amwa.maj.meta.PropertyDefinition#getSymbol()
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface XMLSerializable {

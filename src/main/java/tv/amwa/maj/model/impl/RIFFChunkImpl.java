@@ -65,7 +65,7 @@ import tv.amwa.maj.model.RIFFChunk;
  * <p>Implements the representation of a chunk of resource interchange file format (RIFF) data, identified by
  * a 4-byte tag and variable size field.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#RIFFChunkStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#RIFFChunkStrongReferenceVector

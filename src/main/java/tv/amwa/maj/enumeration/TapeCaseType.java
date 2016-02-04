@@ -51,7 +51,7 @@ import tv.amwa.maj.integer.Int64;
  * @see tv.amwa.maj.industry.TypeDefinitions#TapeCaseType
  * @see tv.amwa.maj.model.TapeDescriptor#getTapeFormFactor()
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum TapeCaseType 

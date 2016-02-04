@@ -65,7 +65,7 @@ import tv.amwa.maj.industry.Forge;
  * @see tv.amwa.maj.industry.Warehouse#lookupExtendibleEnumeration(String)
  * @see tv.amwa.maj.industry.TypeDefinitions#OperationCategoryType
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface OperationCategoryType {

@@ -209,7 +209,7 @@ import tv.amwa.maj.model.impl.WAVEPCMDescriptorImpl;
  * lists to {@linkplain MediaEngine#initializeAAF() initialize} an application ready 
  * to use AAF classes and data types.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Warehouse#lookForClass(Class)
  * @see MediaClass

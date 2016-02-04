@@ -70,7 +70,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * {@linkplain java.nio.ByteBuffer byte buffer} passed to initialize or set the
  * value.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#KLVDataStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#KLVDataStrongReferenceVector

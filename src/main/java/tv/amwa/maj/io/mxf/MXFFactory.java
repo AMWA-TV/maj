@@ -20,7 +20,7 @@ import tv.amwa.maj.meta.impl.TypeDefinitionRecordImpl;
  * by the {@link #dumpFile(String)} static method. Alternatively, run this class as a
  * {@linkplain #main(String[]) Java application}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class MXFFactory {

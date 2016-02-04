@@ -39,7 +39,7 @@ import tv.amwa.maj.union.IdentificationCriteriaType;
 /** 
  * <p>Implementation of a criteria for matching an {@linkplain tv.amwa.maj.model.Identification identification}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public abstract class IdentificationCriteriaImpl 
 	implements tv.amwa.maj.union.IdentificationCriteria,

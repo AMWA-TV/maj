@@ -61,7 +61,7 @@ import java.util.Calendar;
  * @see DateStruct
  * @see tv.amwa.maj.industry.TypeDefinitions#TimeStamp
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 
 public interface TimeStamp { 

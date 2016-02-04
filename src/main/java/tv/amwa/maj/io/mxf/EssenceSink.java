@@ -34,7 +34,7 @@ import tv.amwa.maj.integer.UInt8;
 /**
  * <p>Objects that receive large quantities of essence data.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public abstract class EssenceSink {

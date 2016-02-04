@@ -47,7 +47,7 @@ import tv.amwa.maj.integer.UInt8;
  * <p>Specifies the description of picture essence that is encoded according to the 
  * MPEG specifications.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see SourcePackage#getEssenceDescriptor()
  */

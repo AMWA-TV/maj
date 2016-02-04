@@ -6,7 +6,7 @@ package tv.amwa.maj.io.mxf;
  * {@linkplain IndexTableSegment index table segments} and parts of a {@linkplain BodyStream body stream}.
  * The header partition is always that first partition in an MXF file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see FooterPartition
  * @see BodyPartition 

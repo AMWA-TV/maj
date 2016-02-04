@@ -66,7 +66,7 @@ import tv.amwa.maj.record.impl.PackageIDImpl;
  * <p>Implements the representation of essence or other data described 
  * by a {@linkplain tv.amwa.maj.model.Track track} in a {@linkplain tv.amwa.maj.model.Package package}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#SourceReferenceStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#SourceReferenceStrongReferenceVector

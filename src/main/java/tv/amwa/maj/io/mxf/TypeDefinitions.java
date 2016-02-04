@@ -20,7 +20,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * KLV format. The additional types represent values for {@linkplain IndexTable index tables}, 
  * {@linkplain PrimerPack primer packs} and {@linkplain RandomIndexPack random index packs}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface TypeDefinitions 

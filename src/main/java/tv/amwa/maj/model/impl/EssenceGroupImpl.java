@@ -105,7 +105,7 @@ import tv.amwa.maj.union.impl.SourceReferenceValueImpl;
  * <p>Implements the description of multiple digital representations of the same original 
  * content source. The essence type and length of all choices must be the same.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

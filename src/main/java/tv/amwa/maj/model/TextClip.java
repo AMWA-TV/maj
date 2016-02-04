@@ -34,7 +34,7 @@ package tv.amwa.maj.model;
 /** 
  * <p>Specifies a reference to text essence.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface TextClip

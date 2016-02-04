@@ -13,7 +13,7 @@ package tv.amwa.maj.io.mxf;
  * some best effort metadata properties have been flagged as unknown, by setting to the appropriate 
  * distinguished value.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see HeaderOpenIncompletePartitionPack
  * @see BodyClosedIncompletePartitionPack

@@ -123,7 +123,7 @@ import tv.amwa.maj.misctype.AAFString;
 /** 
  * <p>Implements the definition of a property type that can have one of a set of integer values.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x0207, uuid3 = 0x0000,

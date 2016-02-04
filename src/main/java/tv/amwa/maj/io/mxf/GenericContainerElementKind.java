@@ -43,7 +43,7 @@ import tv.amwa.maj.integer.UInt8;
 /**
  * <p>Information about each stream in a generic container.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public final class GenericContainerElementKind {

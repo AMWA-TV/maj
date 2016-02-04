@@ -52,7 +52,7 @@ import tv.amwa.maj.model.SubDescriptor;
  * <p>Implements the representation of additional descriptor metadata that is not provided in the specified
  * {@linkplain tv.amwa.maj.model.EssenceDescriptor essence descriptor} class hierarchy.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#SubDescriptorStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#SubDescriptorStrongReferenceVector

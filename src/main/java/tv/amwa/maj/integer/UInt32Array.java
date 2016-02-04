@@ -45,7 +45,7 @@ import java.lang.annotation.Target;
  * @see UInt32
  * @see tv.amwa.maj.industry.TypeDefinitions#UInt32Array
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

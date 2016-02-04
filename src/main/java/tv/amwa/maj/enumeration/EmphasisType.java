@@ -51,7 +51,7 @@ import tv.amwa.maj.industry.MediaEnumerationValue;
  * @see tv.amwa.maj.model.AES3PCMDescriptor#getEmphasis()
  * @see tv.amwa.maj.industry.TypeDefinitions#EmphasisType
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public enum EmphasisType 

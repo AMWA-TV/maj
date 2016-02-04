@@ -53,7 +53,7 @@
 // * <p>Manages the parsing of essence through a collection of {@linkplain EssenceSubParser essence
 // * sub parsers}.</p>
 // *
-// * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+// *
 // *
 // * @see EssenceSubParser
 // *

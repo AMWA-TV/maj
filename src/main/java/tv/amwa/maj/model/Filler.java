@@ -47,7 +47,7 @@ package tv.amwa.maj.model;
  * Typically, a video filler segment would be played as a black section, and an audio filler segment 
  * would be played as a silent section.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Component#getComponentLength()
  */

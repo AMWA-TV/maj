@@ -56,7 +56,7 @@ import tv.amwa.maj.misctype.TrackID;
  * metadata in the track of another package. Typically, the referenced track would contain
  * {@linkplain DescriptiveMarker descriptive markers}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.misctype.TrackID
  * @see tv.amwa.maj.model.Track

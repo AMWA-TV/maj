@@ -52,7 +52,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.model.Package
  * @see tv.amwa.maj.model.ContentStorage
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

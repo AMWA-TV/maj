@@ -6,7 +6,7 @@ import tv.amwa.maj.record.AUID;
 /**
  * <p>Constant values, including the XML namespace, for package <code>tv.amwa.maj.extensions.example</code>.</p>
  *
- * @author Auto generation
+ *
  */
 public interface Constants {
     

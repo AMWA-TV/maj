@@ -51,7 +51,7 @@
 ///**
 // * <p>Base class for all essence parsers.</p>
 // *
-// * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+// *
 // *
 // */
 //public abstract class EssenceSubParser {

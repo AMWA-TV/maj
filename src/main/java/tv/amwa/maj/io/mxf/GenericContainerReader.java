@@ -38,7 +38,7 @@ import tv.amwa.maj.io.mxf.impl.MXFFileImpl;
 /**
  * <p>Reads data from an MXF file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class GenericContainerReader {

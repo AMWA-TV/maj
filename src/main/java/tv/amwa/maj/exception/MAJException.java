@@ -30,7 +30,7 @@ import java.io.Serializable;
  * For more in depth discussion, see the <a href="package-summary.html#aafSpecificExceptions">the
  * package description section on design philosophy</a>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface MAJException  

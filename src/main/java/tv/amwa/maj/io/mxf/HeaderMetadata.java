@@ -14,7 +14,7 @@ import tv.amwa.maj.model.Preface;
  * The primer pack is used as a means of reducing the number of bytes required to
  * serialize the metadata in an MXF file as a local set.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see MXFBuilder#readLocalSet(UL, java.nio.ByteBuffer, PrimerPack, java.util.Map, java.util.List)
  */

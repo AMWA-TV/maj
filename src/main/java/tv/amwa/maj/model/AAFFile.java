@@ -55,7 +55,7 @@ import tv.amwa.maj.exception.WrongOpenModeException;
  * provided as part of a skeleton implementation of an interface similar to that provided in the existing 
  * C-based reference implementation COM interface definitions (file "<code>AAF.idl</code>").</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public interface AAFFile {
 

@@ -66,7 +66,7 @@ import tv.amwa.maj.record.Rational;
  * and {@link #doubleValue()}. Numerical comparison with other numbers can take place using the
  * {@link #compareToNumber(Number)} method.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#Rational
  * @see tv.amwa.maj.model.TimelineTrack#getEditRate()

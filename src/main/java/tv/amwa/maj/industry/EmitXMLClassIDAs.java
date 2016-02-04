@@ -50,7 +50,7 @@ import tv.amwa.maj.model.InterchangeObject;
  * media class} annotation. If the optional annotation property is omitted from a class,
  * the default is {@link #Parent}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see MediaClass#emitXMLClassID()
  * @see MediaEngine#getClassDefinition(MetadataObject)

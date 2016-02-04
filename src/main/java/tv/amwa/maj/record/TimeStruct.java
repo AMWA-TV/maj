@@ -66,7 +66,7 @@ import tv.amwa.maj.integer.UInt8;
  * @see DateStruct
  * @see tv.amwa.maj.industry.TypeDefinitions#TimeStruct
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 public interface TimeStruct { 
 

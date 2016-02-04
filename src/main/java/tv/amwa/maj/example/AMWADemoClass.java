@@ -69,7 +69,7 @@ import tv.amwa.maj.model.*;
  * using the <code>toString()</code> method. This is also the representation returned when using 
  * a debugging tool.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class AMWADemoClass 

@@ -57,7 +57,7 @@ import tv.amwa.maj.misctype.PositionType;
  * <p>See the <a href="http://en.wikipedia.org/wiki/RIFF">description of the RIFF file
  * format on Wikipedia</a>.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see BWFImportDescriptor#getUnknownBWFChunks()
  * @see tv.amwa.maj.industry.TypeDefinitions#RIFFChunkStrongReference

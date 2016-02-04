@@ -45,7 +45,7 @@
 ///**
 // * <p>Manages the multiplexing of essence when writing an MXF file.</p>
 // *
-// * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+// *
 // *
 // */
 //public class BodyWriter {

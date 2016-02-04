@@ -70,7 +70,7 @@ import tv.amwa.maj.union.impl.SourceReferenceValueImpl;
  * to and from video and film rates and describe the mechanism that was used to convert the 
  * essence.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

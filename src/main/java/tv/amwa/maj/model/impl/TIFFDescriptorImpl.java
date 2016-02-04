@@ -57,7 +57,7 @@ import tv.amwa.maj.model.TIFFDescriptor;
  * <p>Implements the description of a file of video essence formatted according to the 
  * Tagged Image File Format (TIFF) specification.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

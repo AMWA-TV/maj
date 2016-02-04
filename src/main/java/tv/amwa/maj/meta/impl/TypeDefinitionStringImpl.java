@@ -113,7 +113,7 @@ import tv.amwa.maj.record.AUID;
  * effectively, of an array of the underlying character or integer type. In the
  * MAJ API, all strings are represented as {@linkplain java.lang.String Java strings}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

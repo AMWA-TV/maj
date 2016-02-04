@@ -53,7 +53,7 @@ import tv.amwa.maj.meta.TypeDefinitionVariableArray;
  * 
  * <p><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;clear</code>&lt;<em>propertyName</em>&gt;<code>()</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.meta.TypeDefinitionSet
  * @see tv.amwa.maj.meta.TypeDefinitionVariableArray

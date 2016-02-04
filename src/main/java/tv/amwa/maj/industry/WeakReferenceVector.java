@@ -55,7 +55,7 @@ import tv.amwa.maj.io.xml.XMLBuilder;
  * <p>If the array of references is persisted via an object relational mapping,
  * the methods of this class ensure the order of that array is preserved.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @param <T> Type of the target of all elements of the array (vector).
  * 

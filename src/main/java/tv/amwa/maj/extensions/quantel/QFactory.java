@@ -12,7 +12,7 @@ import tv.amwa.maj.model.ParameterDefinition;
  *
  * <p>Quantel extension metadata</p>
  *
- * @author Auto generation
+ *
  *
  * @see TypeDefinitions
  * @see tv.amwa.maj.industry.MediaEngine

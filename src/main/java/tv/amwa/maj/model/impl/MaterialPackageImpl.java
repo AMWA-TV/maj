@@ -87,7 +87,7 @@ import tv.amwa.maj.record.impl.TimeStampImpl;
  * <p>Implements a material object that provides access to {@linkplain tv.amwa.maj.model.SourcePackage source packages} 
  * and {@linkplain tv.amwa.maj.model.EssenceData essence data}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

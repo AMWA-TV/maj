@@ -10,7 +10,7 @@ import tv.amwa.maj.exception.EndOfDataException;
 /**
  * <p>Read and write access to {@linkplain TypeDefinitions#Stream stream type} data.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.model.EssenceData#getEssenceStream()
  * @see tv.amwa.maj.meta.TypeDefinitionStream

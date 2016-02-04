@@ -89,7 +89,7 @@ import tv.amwa.maj.util.Utilities;
  * 
  * @see tv.amwa.maj.industry.Warehouse#lookForClass(Class)
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class MetadataObjectHandler 
 	extends MasterContentHandler

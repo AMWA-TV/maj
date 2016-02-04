@@ -11,7 +11,7 @@ import tv.amwa.maj.industry.Warehouse;
  *
  * <p>A simple example of how to write an extension metadata set.</p>
  *
- * @author Auto generation
+ *
  *
  * @see TypeDefinitions
  * @see tv.amwa.maj.industry.MediaEngine

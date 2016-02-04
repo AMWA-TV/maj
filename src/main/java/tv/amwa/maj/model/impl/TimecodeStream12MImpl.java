@@ -101,7 +101,7 @@ import java.nio.ByteBuffer;
  *
  * <p>Timecode streams are useful to store user bits that were specified in the timecode on the videotape.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

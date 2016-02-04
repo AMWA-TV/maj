@@ -75,7 +75,7 @@ import tv.amwa.maj.union.DefaultFade;
  * 
  * @see tv.amwa.maj.model.CompositionPackage#getDefaultFade()
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class DefaultFadeImpl 
 	implements 

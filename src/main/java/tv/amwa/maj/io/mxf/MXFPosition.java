@@ -46,7 +46,7 @@ import tv.amwa.maj.model.Component;
  * represents the offset into an {@linkplain Component AAF component} measured in edit units 
  * rather than a position in a file measured in bytes.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.integer.Int64
  * @see tv.amwa.maj.misctype.PositionType

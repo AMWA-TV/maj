@@ -54,7 +54,7 @@ import tv.amwa.maj.record.InstanceNumberGeneration;
  * 
  * @see tv.amwa.maj.record.PackageID#nextInstance()
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class InstanceOverflowException 

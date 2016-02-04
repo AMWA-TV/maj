@@ -77,7 +77,7 @@ import tv.amwa.maj.misctype.LengthType;
  *  is not related to time and so the length property shall be omitted.</li>
  * </ul>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Track#getTrackSegment()
  * @see Sequence#getComponentObjects()

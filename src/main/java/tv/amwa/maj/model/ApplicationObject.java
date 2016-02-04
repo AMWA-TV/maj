@@ -17,7 +17,7 @@ import tv.amwa.maj.record.AUID;
  * mechanism to decorate {@linkplain InterchangeObject interchange objects} with application-specific
  * extension metadata.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.meta.ExtensionScheme
  */

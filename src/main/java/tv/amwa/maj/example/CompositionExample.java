@@ -60,7 +60,7 @@ import tv.amwa.maj.model.Transition;
  * <a href="http://poi.apache.org/poifs/index.html">POIFS library from
  * Apache</a> on the classpath.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class CompositionExample {

@@ -53,7 +53,7 @@ import tv.amwa.maj.model.PhysicalDescriptor;
  * <p>Implements the description of an essence source that is not directly manipulated 
  * by an AAF application.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

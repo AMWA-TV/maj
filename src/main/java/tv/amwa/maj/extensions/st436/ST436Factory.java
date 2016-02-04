@@ -9,7 +9,7 @@ import tv.amwa.maj.industry.Warehouse;
  * Contains methods to initialize the MAJ media engine and warehouses with the types
  * of this symbol space.</p>
  *
- * @author <a href="mailto:Richard.Cartwright@quantel.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.MediaEngine
  */

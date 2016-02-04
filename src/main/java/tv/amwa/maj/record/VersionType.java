@@ -56,7 +56,7 @@ import tv.amwa.maj.integer.Int8;
  * @see tv.amwa.maj.industry.TypeDefinitions#VersionType
  * @see ProductVersion
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 public interface VersionType
 	extends Comparable<VersionType> { 

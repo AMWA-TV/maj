@@ -13,7 +13,7 @@ import tv.amwa.maj.model.impl.DescriptiveObjectImpl;
 /**
  * <p>Entity that creates or contributes to a resource. Implementation.</p>
  *
- * @author Auto generation.
+ *
  */
 @MediaClass(
     definedName = "Contributor",

@@ -14,7 +14,7 @@ import tv.amwa.maj.io.xml.XMLBuilder;
 /**
  * <p>Implementation of a stream as memory-resident byte buffer.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class MemoryResidentStream 

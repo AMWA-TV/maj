@@ -92,7 +92,7 @@ import tv.amwa.maj.record.AUID;
  * of the weak reference is referenced by the object with the property with the TypeDefinitionWeakObjectReference 
  * type.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

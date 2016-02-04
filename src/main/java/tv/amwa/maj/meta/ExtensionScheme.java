@@ -19,7 +19,7 @@ import tv.amwa.maj.record.AUID;
  * <p>An extension scheme may be used as part of an application metadata plugin or 
  * {@linkplain DescriptiveFramework descriptive framework}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see MetaDefinition
  * @see tv.amwa.maj.model.ApplicationPluginObject

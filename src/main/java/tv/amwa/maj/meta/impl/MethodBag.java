@@ -14,7 +14,7 @@ import tv.amwa.maj.industry.MetadataObject;
  * ({@link MediaPropertySetter}, {@link MediaSetAdd} etc.). If they are, methods of this class allow
  * invocation of those methods.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public abstract class MethodBag {

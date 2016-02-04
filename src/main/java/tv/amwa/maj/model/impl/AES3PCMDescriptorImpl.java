@@ -79,7 +79,7 @@ import tv.amwa.maj.model.AES3PCMDescriptor;
  * audio file format, as defined in <a href="http://www.ebu.ch/CMSimages/en/tec_AES-EBU_eg_tcm6-11890.pdf">
  * the EBU/AES digital audio interface specification</a>.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x4700,

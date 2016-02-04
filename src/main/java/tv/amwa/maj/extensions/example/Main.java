@@ -5,7 +5,7 @@ import tv.amwa.maj.industry.Forge;
 /**
  * <p>Test of the example extension.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class Main {
 

@@ -85,7 +85,7 @@ import tv.amwa.maj.record.TimecodeValue;
  * <code>00:00:21:135</code> represents the 135th frame of the frame 21&nbsp;seconds into a 300&nbsp;
  * fps item, frame&nbsp;6435.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.model.TimecodeSegment#getTimecode()
  * @see tv.amwa.maj.model.TimecodeSegment

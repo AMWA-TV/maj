@@ -56,7 +56,7 @@ import tv.amwa.maj.meta.impl.TypeDefinitionRecordImpl;
  * <p>Defines a byte offset value along an incrementing timeline as part of a delta entry
  * array in an {@linkplain IndexTableSegmentImpl index table segment}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 public class DeltaEntryImpl 

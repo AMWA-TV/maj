@@ -48,7 +48,7 @@ import tv.amwa.maj.misctype.TrackID;
  * between essence and time. In a {@linkplain MaterialPackage material package}, tracks describe the 
  * desired relationship between stored essence and the output timeline.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see Package#appendPackageTrack(Track)
  * @see Package#getPackageTracks()

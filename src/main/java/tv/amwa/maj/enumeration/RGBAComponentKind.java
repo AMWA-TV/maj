@@ -63,7 +63,7 @@ import tv.amwa.maj.integer.Int64;
  * @see tv.amwa.maj.industry.TypeDefinitions#RGBALayout
  * @see tv.amwa.maj.misctype.CompArray
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public enum RGBAComponentKind 
 	implements MediaEnumerationValue {

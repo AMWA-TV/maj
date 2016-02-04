@@ -123,7 +123,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implements the definition of a property type that has a collection of object references to 
  * uniquely identified objects. The order of the objects has no meaning.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see MediaSetAdd
  * @see MediaPropertyRemove

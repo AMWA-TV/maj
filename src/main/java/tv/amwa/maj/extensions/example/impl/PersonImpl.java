@@ -14,7 +14,7 @@ import tv.amwa.maj.record.DateStruct;
 /**
  * <p>Person who makes and/or contributes a resource. Implementation.</p>
  *
- * @author Auto generation.
+ *
  */
 @MediaClass(
     definedName = "Person",

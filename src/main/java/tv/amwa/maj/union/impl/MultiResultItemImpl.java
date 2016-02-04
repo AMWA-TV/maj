@@ -45,7 +45,7 @@ import tv.amwa.maj.integer.UInt32;
  * @see tv.amwa.maj.model.EssenceMultiAccess#readMultiSamples(tv.amwa.maj.record.MultiXferItem[])
  * @see tv.amwa.maj.model.EssenceMultiAccess#writeMultiSamples(tv.amwa.maj.record.MultiXferItem[])
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public class MultiResultItemImpl 
 	implements tv.amwa.maj.union.MultiResultItem,

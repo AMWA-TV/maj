@@ -74,7 +74,7 @@ import tv.amwa.maj.record.AUID;
  * {@linkplain tv.amwa.maj.model.VaryingValue varying value} using the specified 
  * {@linkplain tv.amwa.maj.model.ControlPoint control points}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#InterpolationDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#InterpolationDefinitionStrongReference

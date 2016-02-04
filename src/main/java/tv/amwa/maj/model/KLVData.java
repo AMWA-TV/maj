@@ -59,7 +59,7 @@ import tv.amwa.maj.record.AUID;
  * {@linkplain java.nio.ByteBuffer byte buffer} passed to initialize or set the
  * value.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see KLVDataDefinition
  * @see Component#getComponentKLVData()

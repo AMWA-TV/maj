@@ -95,7 +95,7 @@ import tv.amwa.maj.util.Utilities;
  *     `Date` date
  * </pre>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.record.TimeStamp
  * @see tv.amwa.maj.record.impl.DateStructImpl

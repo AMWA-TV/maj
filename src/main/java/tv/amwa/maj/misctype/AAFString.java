@@ -60,7 +60,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.meta.TypeDefinitionString
  * @see tv.amwa.maj.industry.TypeDefinitions#UTF16String
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

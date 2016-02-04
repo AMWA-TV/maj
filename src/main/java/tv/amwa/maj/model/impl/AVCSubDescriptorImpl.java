@@ -18,7 +18,7 @@ import tv.amwa.maj.model.AVCSubDescriptor;
  * AVC-encoded material over that contained in a {@linkplain tv.amwa.maj.model.RGBADescriptor RGBA descriptor} or a 
  * {@linkplain tv.amwa.maj.model.CDCIDescriptor CDCI descriptor}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x6e00,

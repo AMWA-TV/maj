@@ -81,7 +81,7 @@ import tv.amwa.maj.record.PackageID;
  * @see PackageID
  * @see tv.amwa.maj.model.SourceClip
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public interface SourceReferenceValue { 

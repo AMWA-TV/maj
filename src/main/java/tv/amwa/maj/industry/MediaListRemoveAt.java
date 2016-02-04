@@ -49,7 +49,7 @@ import tv.amwa.maj.meta.TypeDefinitionVariableArray;
  * <p><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;remove</code>&lt;<em>propertyName</em>&gt;<code>At(</code><br>
  * <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;index)</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TypeDefinitionVariableArray
  * @see tv.amwa.maj.model.BWFImportDescriptor#removeUnknownBWFChunkAt(int)

@@ -6,7 +6,7 @@ import tv.amwa.maj.model.AAFFileDescriptor;
 /**
  * <p>null</p>
  *
- * @author Auto generation.
+ *
  */
 public interface PolyFileDescriptor
     extends

@@ -51,7 +51,7 @@ import tv.amwa.maj.model.TextClip;
 /** 
  * <p>Implements a reference to text essence.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x1200,

@@ -100,7 +100,7 @@ import tv.amwa.maj.model.Transition;
  * {@linkplain tv.amwa.maj.model.Segment segment} followed by another {@linkplain tv.amwa.maj.model.Segment segment}, after the 
  * first {@linkplain tv.amwa.maj.model.Segment segment} is played, the following one begins immediately.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

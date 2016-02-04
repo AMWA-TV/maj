@@ -86,7 +86,7 @@ import tv.amwa.maj.model.Selector;
  * of the same essence that the application can choose from, based on the most appropriate or efficient 
  * essence format among the alternatives.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

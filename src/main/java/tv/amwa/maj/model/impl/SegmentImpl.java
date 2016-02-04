@@ -74,7 +74,7 @@ import tv.amwa.maj.union.impl.TimecodeClipImpl;
  * object. Contrast this to a {@linkplain tv.amwa.maj.model.Transition transition} which is a component that
  * depends on other components to establish its value.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#SegmentStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#SegmentStrongReferenceVector

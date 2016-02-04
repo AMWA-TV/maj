@@ -46,7 +46,7 @@ import tv.amwa.maj.record.AUID;
  * mappings for MPEG (SMPTE&nbsp;381M), DV (SMPTE&nbsp;383M), D10 and D11 (SMPTE&nbsp;386M).
  * Data essence often refers to time-varying data, such as subtitles (closed captions).</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface DataEssenceDescriptor

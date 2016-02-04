@@ -41,7 +41,7 @@ import tv.amwa.maj.integer.UInt8;
  * <p>Elements of an array defining byte offset values along an incrementing timeline,
  * mapping indexed elements into slices.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see IndexTableSegment#getDeltaEntryArray()
  * @see TypeDefinitions#DeltaEntry

@@ -68,7 +68,7 @@ import tv.amwa.maj.model.Event;
  * <p>Implements a text comment, a trigger, or an area in the image that has an associated interactive
  * action.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

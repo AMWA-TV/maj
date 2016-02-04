@@ -87,7 +87,7 @@ import tv.amwa.maj.record.RGBAComponent;
  * @see tv.amwa.maj.enumeration.RGBAComponentKind
  * @see tv.amwa.maj.misctype.RGBALayout
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public final class RGBAComponentImpl

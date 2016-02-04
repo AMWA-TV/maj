@@ -164,7 +164,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
 
  * </ul>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see TypeDefinitions
  * @see tv.amwa.maj.model.Dictionary

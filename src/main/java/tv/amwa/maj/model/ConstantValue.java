@@ -55,7 +55,7 @@ import tv.amwa.maj.meta.TypeDefinitionIndirect;
  * should be convertible to an {@linkplain PropertyValue AAF property value} using 
  * {@link TypeDefinition#createValue(Object)} for the type specified for this parameter.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see ParameterDefinition
  * @see TypeDefinitionIndirect

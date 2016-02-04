@@ -33,7 +33,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * at the end of the partition pack plus the {@linkplain #getHeaderByteCount() size of any 
  * header metadata}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see Partition#getPartitionPack()
  */

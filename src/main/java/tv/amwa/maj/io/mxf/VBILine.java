@@ -41,7 +41,7 @@ import tv.amwa.maj.integer.UInt8Array;
 /**
  * <p>A single line of VBI data.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see VBISource
  *

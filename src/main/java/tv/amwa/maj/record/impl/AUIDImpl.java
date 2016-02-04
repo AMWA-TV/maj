@@ -126,7 +126,7 @@ import tv.amwa.maj.util.Utilities;
  * @see tv.amwa.maj.industry.TypeDefinitions#AUIDArray
  * @see tv.amwa.maj.industry.TypeDefinitions#AUIDSet
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public final class AUIDImpl 

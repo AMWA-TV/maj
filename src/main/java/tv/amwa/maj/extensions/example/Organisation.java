@@ -7,7 +7,7 @@ import tv.amwa.maj.integer.UInt64;
 /**
  * <p>Organisation that makes or contributes a resource.</p>
  *
- * @author Auto generation.
+ *
  */
 public interface Organisation
     extends

@@ -73,7 +73,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
 /**
  * <p>Random index pack data for an {@linkplain MXFFileImpl MXF file}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see PartitionImpl
  * @see PartitionInformation

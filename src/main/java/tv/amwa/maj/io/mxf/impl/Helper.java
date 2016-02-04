@@ -41,7 +41,7 @@ import tv.amwa.maj.integer.UInt64;
 /**
  * <p>Common helper static methods used in MXF operations.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class Helper {

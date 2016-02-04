@@ -53,7 +53,7 @@ import tv.amwa.maj.model.impl.PrefaceImpl;
 /** TODO implemenetation, head scratching, comments and tests
  * <p></p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

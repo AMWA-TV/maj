@@ -7,7 +7,7 @@ package tv.amwa.maj.io.mxf;
  * middle of an MXF file, between the mandatory {@linkplain HeaderPartition header partition} at the start
  * and optional {@linkplain FooterPartition footer partition} at the end.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see HeaderPartition
  * @see FooterPartition

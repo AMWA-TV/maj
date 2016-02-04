@@ -148,7 +148,7 @@ import org.xml.sax.SAXException;
  * available in this AAF implementation to other classes while providing an efficient event-driven 
  * XML parser.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public abstract class LocalHandler
 	extends MasterContentHandler

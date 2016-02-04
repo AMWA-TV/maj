@@ -17,7 +17,7 @@ import tv.amwa.maj.record.DateStruct;
 /**
  * <p>Very basic description of an item, based on a few Dublin Core terms. Implementation.</p>
  *
- * @author Auto generation.
+ *
  */
 @MediaClass(
     definedName = "SimpleDescription",

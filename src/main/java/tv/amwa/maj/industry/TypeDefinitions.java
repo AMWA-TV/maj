@@ -177,7 +177,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * <p>All AAF-specified type definitions as static constants in an interface. Implement or 
  * reference this interface to gain access to the constants that it defines.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.meta.TypeDefinition
  * @see Warehouse#lookForType(String)

@@ -54,7 +54,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.model.Pulldown#getPhaseFrame()
  * @see tv.amwa.maj.industry.TypeDefinitions#PhaseFrameType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

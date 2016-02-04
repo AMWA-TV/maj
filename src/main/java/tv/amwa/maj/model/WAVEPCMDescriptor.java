@@ -72,7 +72,7 @@ import tv.amwa.maj.record.TimeStamp;
  * <p>See section&nbsp;13.2 of the <a href="http://www.amwa.tv/html/specs/aafobjectspec-v1.1.pdf">AAF
  * object specification v1.1</a> for details of mapping BWF file metadata to the AAF object model.</a>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.constant.CodecConstant#PCM
  * @see AES3PCMDescriptor

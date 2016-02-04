@@ -57,7 +57,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.industry.Warehouse#lookup(Class, String)
  * @see tv.amwa.maj.industry.Warehouse#lookup(Class, tv.amwa.maj.record.AUID)
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

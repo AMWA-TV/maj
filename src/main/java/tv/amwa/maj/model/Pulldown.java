@@ -58,7 +58,7 @@ import tv.amwa.maj.misctype.PhaseFrameType;
  *  rates.</li>
  * </ol>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 

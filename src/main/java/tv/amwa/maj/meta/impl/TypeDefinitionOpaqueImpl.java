@@ -104,7 +104,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * <p>Implements the definition of a property type that has a value whose type is specified in each 
  * instance.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

@@ -72,7 +72,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implements a definition for the kind of data that can be stored in a 
  * {@linkplain tv.amwa.maj.model.Component component}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#DataDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#DataDefinitionStrongReference

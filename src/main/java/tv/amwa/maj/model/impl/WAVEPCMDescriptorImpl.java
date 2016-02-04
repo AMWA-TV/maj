@@ -77,7 +77,7 @@ import tv.amwa.maj.record.impl.TimeStampImpl;
  * <p>Implements the description of a file {@linkplain tv.amwa.maj.model.SourcePackage source package} that is associated with 
  * audio essence formatted according to the BWF file format.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see BWFImportDescriptorImpl
  *

@@ -108,7 +108,7 @@ import tv.amwa.maj.industry.AAFSpecifiedClasses;
  * <p>More information on how to do this is provided in the documentation for the {@link LocalHandler}
  * class.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class MasterContentHandler

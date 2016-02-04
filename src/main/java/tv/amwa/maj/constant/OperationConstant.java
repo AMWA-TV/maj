@@ -59,7 +59,7 @@ import tv.amwa.maj.record.AUID;
  * @see tv.amwa.maj.industry.TypeDefinitions#OperationDefinitionStrongReferenceSet
  * @see tv.amwa.maj.industry.TypeDefinitions#OperationDefinitionWeakReferenceVector
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface OperationConstant {

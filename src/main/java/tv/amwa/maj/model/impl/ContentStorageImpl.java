@@ -97,7 +97,7 @@ import tv.amwa.maj.union.impl.SearchByPackageKindImpl;
  * {@linkplain tv.amwa.maj.model.EssenceData essence data} within it. An 
  * {@linkplain tv.amwa.maj.model.AAFFile AAF file} shall have exactly one content storage.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#ContentStorageStrongReference
  */

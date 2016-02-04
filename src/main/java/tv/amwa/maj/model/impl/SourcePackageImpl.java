@@ -125,7 +125,7 @@ import tv.amwa.maj.union.impl.TimecodeClipImpl;
  * file descriptor}, {@linkplain tv.amwa.maj.model.FilmDescriptor film descriptor}, or some
  * extended descriptor.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

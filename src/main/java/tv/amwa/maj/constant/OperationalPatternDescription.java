@@ -36,7 +36,7 @@ import java.lang.annotation.Target;
  * <p>Labels an {@linkplain tv.amwa.maj.record.AUID AUID} that is a unqiue identifier for an
  * operational pattern. An operational pattern constraints levels of file complexity.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see OperationalPatternConstant
  */

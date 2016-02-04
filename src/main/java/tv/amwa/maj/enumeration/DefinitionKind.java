@@ -53,7 +53,7 @@ import tv.amwa.maj.integer.Int64;
  * @see tv.amwa.maj.union.DefinitionCriteriaByKind
  * @see tv.amwa.maj.model.DefinitionObject
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum DefinitionKind 

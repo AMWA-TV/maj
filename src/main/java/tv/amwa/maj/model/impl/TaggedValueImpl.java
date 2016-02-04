@@ -98,7 +98,7 @@ import tv.amwa.maj.record.AUID;
 /** 
  * <p>Implements a user defined tag and value pair.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#TaggedValueStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#TaggedValueStrongReferenceVector

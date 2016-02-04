@@ -97,7 +97,7 @@ import tv.amwa.maj.union.SourceReferenceValue;
  * @see tv.amwa.maj.misctype.PackageIDType
  * @see AUID
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 
 public interface PackageID { 

@@ -82,7 +82,7 @@ import java.util.Hashtable;
  * convert timezone offsets, generate sort of unique host identifiers and for the truncation and extension 
  * of byte arrays.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public final class Utilities {

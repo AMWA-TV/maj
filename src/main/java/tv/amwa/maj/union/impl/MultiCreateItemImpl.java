@@ -56,7 +56,7 @@ import tv.amwa.maj.record.Rational;
  * @see tv.amwa.maj.model.MaterialPackage#extendMultiEssence(AUIDImpl, tv.amwa.maj.union.MultiCreateItem[], tv.amwa.maj.enumeration.CompressEnable, tv.amwa.maj.model.Locator, AUIDImpl)
  * @see tv.amwa.maj.model.EssenceData
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public class MultiCreateItemImpl 

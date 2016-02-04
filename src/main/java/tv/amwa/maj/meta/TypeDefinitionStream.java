@@ -65,7 +65,7 @@ import tv.amwa.maj.misctype.DataBuffer;
  * 
  * <p>Note that all reads and writes advance the current position of a stream.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.enumeration.TypeCategory#Stream
  * @see tv.amwa.maj.misctype.DataBuffer

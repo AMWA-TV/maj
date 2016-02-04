@@ -50,7 +50,7 @@ import tv.amwa.maj.meta.PropertyDefinition;
  * <p><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;set</code>&lt;<em>propertyName</em>&gt;<code>(</code><br>
  * <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&lt;<em>elementType</em>&gt;<code>&nbsp;value)</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.meta.TypeDefinitionInteger
  * @see tv.amwa.maj.model.Track#setTrackID(int)

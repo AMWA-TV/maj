@@ -49,7 +49,7 @@ import tv.amwa.maj.industry.PropertyValue;
  * 
  * <p>THE COMMENTS FOR THIS CLASS ARE INCOMPLETE.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TypeDefinitionStrongObjectReference
  * @see TypeDefinitionWeakObjectReference

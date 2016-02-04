@@ -49,7 +49,7 @@ import tv.amwa.maj.industry.MediaEnumerationValue;
  * @see tv.amwa.maj.model.MPEGVideoDescriptor#getCodedContentScanning()
  * @see tv.amwa.maj.industry.TypeDefinitions#ContentScanningType
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 public enum ContentScanningType 
 	implements MediaEnumerationValue {

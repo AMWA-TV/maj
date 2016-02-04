@@ -61,7 +61,7 @@ import tv.amwa.maj.record.Rational;
  * <p>For {@linkplain Parameter parameters} that are a constant value for an operation group, 
  * use a {@linkplain ConstantValue constant value}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see VaryingValue#getControlPoints()
  * @see tv.amwa.maj.industry.TypeDefinitions#ControlPointStrongReference

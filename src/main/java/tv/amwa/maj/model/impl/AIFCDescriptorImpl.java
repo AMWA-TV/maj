@@ -57,7 +57,7 @@ import tv.amwa.maj.model.AIFCDescriptor;
  * <p>Implements the description of a file of audio essence formatted according to the Audio Interchange 
  * File Format with Compression (AIFC).</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x0101, uuid3 = 0x2600,

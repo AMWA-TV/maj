@@ -93,7 +93,7 @@ import tv.amwa.maj.record.impl.VersionTypeImpl;
  * {@linkplain tv.amwa.maj.meta.MetaDefinition meta definition}, such as a 
  * {@linkplain tv.amwa.maj.meta.ClassDefinition class definition}.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#PluginDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#PluginDefinitionStrongReference

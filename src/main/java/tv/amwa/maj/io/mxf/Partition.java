@@ -14,7 +14,7 @@ import tv.amwa.maj.model.Preface;
  * may contain {@linkplain HeaderMetadata header metadata}, {@linkplain essence stream data} and
  * {@linkplain IndexTableSegment index table segments}.</p> 
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see MXFFile#buildPartitionsTable()
  * @see PartitionPack

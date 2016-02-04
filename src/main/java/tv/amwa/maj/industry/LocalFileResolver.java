@@ -29,7 +29,7 @@ import tv.amwa.maj.io.xml.XMLStream;
  * pays little attention to accept criteria, except as noted in 
  * {@link #resolveStream(URI, String)}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see MediaEngine#getStreamResolver()
  * @see MediaEngine#changeStreamResolver(StreamResolver)

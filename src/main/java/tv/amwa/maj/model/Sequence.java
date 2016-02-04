@@ -99,7 +99,7 @@ import tv.amwa.maj.integer.UInt32;
  *  following {@linkplain Segment segments} that are overlapped.</li>
  * </ol>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see OperationGroup#isValidTransitionOperation()
  */

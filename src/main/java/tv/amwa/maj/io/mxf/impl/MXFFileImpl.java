@@ -120,7 +120,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
 /**
  * <p>Description of an MXF file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class MXFFileImpl 

@@ -42,7 +42,7 @@ import tv.amwa.maj.meta.TypeDefinitionObjectReference;
  * classes}, but not part of a registered hierarchy. Such a class contains shared methods for its children but
  * does not have any {@linkplain MediaProperty media properties} exposed.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TypeDefinitionObjectReference
  * @see Warehouse#lookForClass(Class)

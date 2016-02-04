@@ -61,7 +61,7 @@ import tv.amwa.maj.record.EdgeCodeValue;
  * <p>See the <a href="package-summary.html#namingConflicts">section on naming conflicts in the package 
  * documentation</a>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.record.EdgeCodeValue
  * @see tv.amwa.maj.industry.Forge#makeEdgeCode()

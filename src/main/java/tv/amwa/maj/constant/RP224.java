@@ -9,7 +9,7 @@ import tv.amwa.maj.industry.Forge;
  * source of the registry is avaialble at the <a href="http://www.smpte-ra.org/>SMPTE
  * Registration Authority</a>.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface RP224 

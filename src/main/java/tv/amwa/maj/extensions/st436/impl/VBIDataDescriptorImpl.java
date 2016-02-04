@@ -10,7 +10,7 @@ import tv.amwa.maj.model.impl.DataEssenceDescriptorImpl;
 /**
  * <p>Implements the description of VBI frame elements.</p>
  *
- * @author <a href="mailto:Richard.Cartwright@quantel.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x5b00,

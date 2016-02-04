@@ -56,7 +56,7 @@ import tv.amwa.maj.industry.MediaEnumerationValue;
  * @see tv.amwa.maj.record.PackageID
  * @see tv.amwa.maj.misctype.PackageIDType
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum MaterialType 

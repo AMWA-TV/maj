@@ -59,7 +59,7 @@ import tv.amwa.maj.integer.UInt32;
  * audio file format, as defined in <a href="http://www.ebu.ch/CMSimages/en/tec_AES-EBU_eg_tcm6-11890.pdf">
  * the EBU/AES digital audio interface specification</a>.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 public interface AES3PCMDescriptor

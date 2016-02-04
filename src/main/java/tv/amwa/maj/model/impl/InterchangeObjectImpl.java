@@ -103,7 +103,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * defined in an AAF file shall be sub-classes of interchange object with the exception 
  * of the {@linkplain MetaDefinition meta definition} classes.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x0101, uuid3 = 0x0100,
 		 uuid4 = {0x06, 0x0e, 0x2b, 0x34, 0x02, 0x06, 0x01, 0x01},

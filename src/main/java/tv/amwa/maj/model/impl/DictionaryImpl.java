@@ -103,7 +103,7 @@ import tv.amwa.maj.record.AUID;
  * an AAF <em>Dictionary</em> and an AAF <em>MetaDictionary</em>. Every {@linkplain tv.amwa.maj.model.AAFFile AAF file} has a dictionary 
  * within its {@linkplain tv.amwa.maj.model.Preface preface} and contains a representation of the meta dictionary.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#DictionaryStrongReference
  */

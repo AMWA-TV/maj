@@ -86,7 +86,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * Control points must be added to a {@linkplain tv.amwa.maj.model.VaryingValue varying value} that is then added 
  * to the {@linkplain tv.amwa.maj.model.OperationGroup operation group} describing the effect.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#ControlPointStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ControlPointStrongReferenceVector

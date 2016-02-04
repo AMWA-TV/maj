@@ -111,7 +111,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * 
  * <p>Implementation of property values whose type is specified in each instance.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x0221, uuid3 = 0x0000,

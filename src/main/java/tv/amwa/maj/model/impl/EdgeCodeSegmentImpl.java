@@ -66,7 +66,7 @@ import tv.amwa.maj.record.impl.EdgeCodeValueImpl;
 /** 
  * <p>Implements the storage of film edge code information.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

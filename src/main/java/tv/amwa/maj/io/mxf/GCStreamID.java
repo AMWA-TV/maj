@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
 /**
  * <p>Labels an <code>int</code> value as a generic container stream identifier.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see EssenceSource
  */

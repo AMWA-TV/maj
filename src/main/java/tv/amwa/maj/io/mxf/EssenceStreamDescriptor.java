@@ -47,7 +47,7 @@ import tv.amwa.maj.model.impl.EssenceDescriptorImpl;
 /**
  * <p>Description of an essence stream.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see BodyStream
  */

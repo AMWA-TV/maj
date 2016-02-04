@@ -68,7 +68,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * as a field of an implementing class. Weak references can be safely persisted 
  * through object relational mapping and will resolve themselves at runtime as required.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @param <T> Type of the target of the weak reference.
  * 

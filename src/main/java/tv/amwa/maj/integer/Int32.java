@@ -51,7 +51,7 @@ import java.lang.annotation.Target;
  * Java base type: <code>int</code>
  * </p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#Int32
  * @see tv.amwa.maj.industry.TypeDefinitions#Int32Array

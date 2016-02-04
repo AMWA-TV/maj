@@ -16,7 +16,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * A index segment provides details of stream offsets that map an edit unit to its position
  * within an essence container.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see IndexEntry
  * @see DeltaEntry

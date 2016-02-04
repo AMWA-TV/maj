@@ -49,7 +49,7 @@ import tv.amwa.maj.misctype.Bool;
  * be either a kind of file, such as an {@linkplain AAFFile AAF file}, or it can be another mechanism for storing essence 
  * data.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.constant.ContainerConstant
  * @see tv.amwa.maj.industry.Warehouse#lookup(Class, String)

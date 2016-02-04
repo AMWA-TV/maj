@@ -54,7 +54,7 @@ import tv.amwa.maj.model.ScopeReference;
  * in terms of a relative track offset, and the number of scopes to skip 
  * outward.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

@@ -50,7 +50,7 @@ import tv.amwa.maj.model.NetworkLocator;
  * to return a strong reference type definition from the factory function 
  * {@link tv.amwa.maj.industry.Warehouse#lookForType(String)}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.enumeration.TypeCategory#StrongObjRef
  * @see TypeDefinitionWeakObjectReference

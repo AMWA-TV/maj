@@ -71,7 +71,7 @@ import tv.amwa.maj.record.VersionType;
  * @see tv.amwa.maj.model.Preface#getFormatVersion()
  * @see tv.amwa.maj.model.PluginDefinition
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

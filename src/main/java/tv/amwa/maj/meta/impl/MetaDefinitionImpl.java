@@ -88,7 +88,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * to describe extensions in the main AAF object model. Therefore, the registration of classes is 
  * restricted to this package only.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

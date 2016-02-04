@@ -71,7 +71,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.meta.TypeDefinitionExtendibleEnumeration
  * @see tv.amwa.maj.constant.ColorPrimariesType
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 @Documented

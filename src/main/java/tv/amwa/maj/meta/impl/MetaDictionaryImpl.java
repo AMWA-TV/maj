@@ -95,7 +95,7 @@ import tv.amwa.maj.record.AUID;
 /**
  * <p>Contains definitions of meta classes and types.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(definedName = "MetaDictionary",

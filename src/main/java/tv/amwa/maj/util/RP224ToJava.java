@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 /**
  * <p>Convert a CSV export of the RP224 SMPTE Labels Registry spreadsheet to a Java interface.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.constant.RP224
  */

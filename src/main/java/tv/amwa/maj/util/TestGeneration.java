@@ -80,7 +80,7 @@ import tv.amwa.maj.record.TimeStamp;
  * <p>Generates JUnit tests from a meta dictionary file, designed to exercise all aspects of a Java
  * implementation of the elements defined in that dictionary.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class TestGeneration 

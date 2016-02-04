@@ -52,7 +52,7 @@ import tv.amwa.maj.io.mxf.UL;
 /**
  * <p>Mapping of local tags to metadata definitions.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class Primer 

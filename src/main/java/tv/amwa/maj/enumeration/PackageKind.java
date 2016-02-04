@@ -50,7 +50,7 @@ import tv.amwa.maj.integer.Int64;
  * @see tv.amwa.maj.model.Package
  * @see tv.amwa.maj.model.ContentStorage#countPackages(PackageKind)
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 public enum PackageKind 

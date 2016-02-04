@@ -36,7 +36,7 @@ import tv.amwa.maj.exception.PropertyNotPresentException;
  * are identified by a {@linkplain tv.amwa.maj.record.AUID AUID}, have a name and an optional
  * description.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public interface DefinitionType {

@@ -100,7 +100,7 @@ import tv.amwa.maj.union.DefaultFade;
  * into a sequence, how to modify content data elements, and how to synchronize content
  * data elements.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

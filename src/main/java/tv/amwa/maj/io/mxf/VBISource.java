@@ -52,7 +52,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
 /**
  * <p>VBI data for a frame, supplied as an {@linkplain EssenceSource essence source}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see VBILine
  */

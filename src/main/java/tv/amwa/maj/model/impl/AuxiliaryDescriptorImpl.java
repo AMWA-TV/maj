@@ -59,7 +59,7 @@ import tv.amwa.maj.model.AuxiliaryDescriptor;
  * <a href="http://www.iana.org/assignments/media-types/index.html">IANA register of media
  * types</a>.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x0101, uuid3 = 0x4e00,

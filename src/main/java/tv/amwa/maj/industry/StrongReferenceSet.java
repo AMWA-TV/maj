@@ -41,7 +41,7 @@ import tv.amwa.maj.meta.TypeDefinitionStrongObjectReference;
  * a consistent approach to managing elements of a set through add, remove and contains 
  * operations.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see StrongReferenceVector
  * @see WeakReferenceSet

@@ -53,7 +53,7 @@ import java.lang.annotation.Target;
  * Java base type: <code>byte</code>
  * </p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#UInt8
  * @see tv.amwa.maj.industry.TypeDefinitions#UInt8Array

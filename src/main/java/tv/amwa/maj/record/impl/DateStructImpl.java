@@ -95,7 +95,7 @@ import tv.amwa.maj.util.Utilities;
  * @see TimeStructImpl
  * @see tv.amwa.maj.industry.TypeDefinitions#DateStruct
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

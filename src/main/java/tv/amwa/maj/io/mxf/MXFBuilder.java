@@ -71,7 +71,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * <p>When reading an MXF file, all methods report an error on bad data and try to skip over it and
  * move on.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see MXFFile
  *

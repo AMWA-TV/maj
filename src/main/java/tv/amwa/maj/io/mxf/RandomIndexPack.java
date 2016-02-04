@@ -12,7 +12,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * <p>Represents a random index pack at the end of an MXF file that lists
  * the byte offsets of all the {@linkplain Partition partitions}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see RandomIndexItem
  * @see MXFFile#buildPartitionsTable()

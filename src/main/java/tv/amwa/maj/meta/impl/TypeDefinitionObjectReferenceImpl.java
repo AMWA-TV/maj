@@ -86,7 +86,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
  * <p>Implements the definition of a property type that defines an object 
  * relationship.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @HiddenClass

@@ -27,7 +27,7 @@ package tv.amwa.maj.io.mxf;
 /**
  * <p>VBI wrapping type enumeration, as per SMPTE-436M.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see VBILine
  * @see VBISource

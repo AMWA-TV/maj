@@ -56,7 +56,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.model.SourceClip#getStartPosition()
  * @see tv.amwa.maj.industry.TypeDefinitions#PositionType
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

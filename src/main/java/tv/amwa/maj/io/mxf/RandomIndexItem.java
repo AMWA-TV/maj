@@ -8,7 +8,7 @@ import tv.amwa.maj.integer.UInt64;
  * byte offset of a {@linkplain Partition partition} in a file. The random
  * index pack is the last data set in an MXF file.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see RandomIndexPack#getPartitionIndex()
  * @see RandomIndexPack#addRandomIndexItem(RandomIndexItem)

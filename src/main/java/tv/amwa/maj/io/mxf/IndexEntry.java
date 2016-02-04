@@ -11,7 +11,7 @@ import tv.amwa.maj.record.Rational;
  * <p>Element of an array that provides stream offsets and other description of an 
  * edit unit along an incrementing timeline.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see IndexTableSegment#getIndexEntryArray()
  * @see TypeDefinitions#IndexEntry

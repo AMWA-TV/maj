@@ -104,7 +104,7 @@ import tv.amwa.maj.record.ProductVersion;
  *     'ProductVersion_PatchLevel' smallint(6) NOT NULL
  * </pre>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.enumeration.ProductReleaseType
  * @see VersionTypeImpl

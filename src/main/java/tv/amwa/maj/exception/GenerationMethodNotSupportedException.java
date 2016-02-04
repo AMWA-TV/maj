@@ -55,7 +55,7 @@ package tv.amwa.maj.exception;
  * @see tv.amwa.maj.industry.Forge#generatePackageID(tv.amwa.maj.enumeration.MaterialType, tv.amwa.maj.record.InstanceNumberGeneration, tv.amwa.maj.record.MaterialNumberGeneration, tv.amwa.maj.record.AUID)
  * @see tv.amwa.maj.industry.Forge#generatePackageID(tv.amwa.maj.enumeration.MaterialType, tv.amwa.maj.record.InstanceNumberGeneration, tv.amwa.maj.record.MaterialNumberGeneration, byte[])
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 public class GenerationMethodNotSupportedException 

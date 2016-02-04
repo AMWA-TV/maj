@@ -76,7 +76,7 @@ import tv.amwa.maj.record.impl.RationalImpl;
  * <p>Implements a file descriptor that describes an essence source that is directly 
  * manipulated by an AAF application.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#FileDescriptorStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#FileDescriptorStrongReferenceVector

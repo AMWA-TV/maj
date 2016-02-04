@@ -68,7 +68,7 @@ import tv.amwa.maj.record.AUID;
  * an attempt is made to resolve the type of the opaque data using the assumption that the first
  * 16&nbsp;bytes  represent a key to the data type. </p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.enumeration.TypeCategory#Opaque
  * @see KLVData

@@ -51,7 +51,7 @@ import tv.amwa.maj.misctype.DataValue;
  * are compressed according to various defined codecs. For more information, see the description of
  * <a href="http://en.wikipedia.org/wiki/AIFF">AIFF on Wikipedia</a>. 
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.constant.CodecConstant#AIFC
  * @see SourcePackage#getEssenceDescriptor()

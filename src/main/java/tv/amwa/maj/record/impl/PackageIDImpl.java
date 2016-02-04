@@ -164,7 +164,7 @@ import tv.amwa.maj.util.Utilities;
  * <p><em>Package ids</em> were previously known as <em>package ids</em>  and may still be referred to as
  * such in AAF-specific documentation.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see AUIDImpl
  * @see tv.amwa.maj.industry.TypeDefinitions#PackageIDType

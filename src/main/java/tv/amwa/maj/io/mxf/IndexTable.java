@@ -15,7 +15,7 @@ import tv.amwa.maj.misctype.PositionType;
  * be created by joining together all the segments with the same index stream
  * identifier.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see IndexTableSegment
  * @see IndexEntry

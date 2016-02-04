@@ -56,7 +56,7 @@ import java.lang.annotation.Target;
  * @see tv.amwa.maj.enumeration.Boolean
  * @see tv.amwa.maj.industry.TypeDefinitions#Boolean
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  */
 @Documented
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})

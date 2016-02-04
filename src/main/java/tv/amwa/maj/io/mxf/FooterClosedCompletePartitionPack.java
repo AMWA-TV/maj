@@ -12,7 +12,7 @@ package tv.amwa.maj.io.mxf;
  * in this partition or where the header metadata exists and all best effort metadata properties have 
  * been correctly completed.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see HeaderClosedCompletePartitionPack
  * @see BodyClosedCompletePartitionPack

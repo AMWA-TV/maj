@@ -31,7 +31,7 @@
  * <p>Specifies a class that can create a new {@linkplain EssenceSubParser essence sub-parser} 
  * instance.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see EssenceSubParser
  * @see EssenceParser

@@ -60,7 +60,7 @@ import tv.amwa.maj.integer.UInt32;
  * more than one place, in a similar way to subexpressions within mathematical 
  * expressions.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see ScopeReference
  * @see CompositionPackage

@@ -10,7 +10,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Enables application-specific extensions to be associated
  * with any {@linkplain InterchangeObject interchange object}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see InterchangeObject#getApplicationPlugins()
  *

@@ -53,7 +53,7 @@ import tv.amwa.maj.integer.UInt32;
  * {@linkplain SourcePackage source package} or of the media associated with a physical 
  * {@linkplain SourcePackage source package}.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see SourcePackage#getEssenceDescriptor()
  * @see tv.amwa.maj.industry.TypeDefinitions#EssenceDescriptorStrongReference

@@ -69,7 +69,7 @@ import tv.amwa.maj.misctype.FrameOffset;
  * 
  * @see tv.amwa.maj.model.TimecodeSegment
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
 */
 public interface TimecodeValue 
 	extends Comparable<TimecodeValue> { 

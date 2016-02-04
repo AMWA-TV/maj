@@ -11,7 +11,7 @@ import tv.amwa.maj.model.impl.AAFFileDescriptorImpl;
 /**
  * <p>PolyFileDescriptor Implementation.</p>
  *
- * @author Auto generation.
+ *
  */
 @MediaClass(
     definedName = "PolyFileDescriptor",

@@ -93,7 +93,7 @@ import tv.amwa.maj.record.AUID;
  * and {@link tv.amwa.maj.industry.MediaProperty} annotations. In this way, AAF class specification data and
  * the MAJ API implementation methods can be managed alongside one another.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.MediaClass
  * @see tv.amwa.maj.industry.Warehouse#lookForClass(Class)

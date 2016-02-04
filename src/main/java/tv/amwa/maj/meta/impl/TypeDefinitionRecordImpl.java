@@ -107,7 +107,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implements the definition of a property type that consists of an ordered set of fields, where each 
  * field has a name and type.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0d010101, uuid2 = 0x020d, uuid3 = 0x0000,

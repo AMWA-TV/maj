@@ -44,7 +44,7 @@ import tv.amwa.maj.model.TimecodeSegment;
  * <p>Note that the value of timecode segment calculations in the MAJ API is still being determined. At the
  * current time, this class is only used by non-public methods.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.model.SourcePackage#specifyValidCodeRange(tv.amwa.maj.model.DataDefinition, int, tv.amwa.maj.record.Rational, long, long)
  *

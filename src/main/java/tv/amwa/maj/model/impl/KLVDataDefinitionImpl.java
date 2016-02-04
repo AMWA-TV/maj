@@ -60,7 +60,7 @@ import tv.amwa.maj.record.AUID;
  * {@linkplain tv.amwa.maj.model.KLVData KLV data} objects 
  * used in a file.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#KLVDataDefinitionStrongReference
  * @see tv.amwa.maj.industry.TypeDefinitions#KLVDataDefinitionStrongReferenceSet

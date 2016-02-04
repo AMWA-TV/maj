@@ -46,7 +46,7 @@ import tv.amwa.maj.integer.Int64;
  * 
  * <p>Original C name: <code>aafDepend_e</code></p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.model.Package#cloneExternal(Depend, IncludedMedia, tv.amwa.maj.model.AAFFile)
  */

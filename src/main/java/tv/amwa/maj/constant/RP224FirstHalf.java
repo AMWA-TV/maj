@@ -8,7 +8,7 @@ import tv.amwa.maj.record.AUID;
  * 
  * <p>Splitting into two is required due to Java initialiser limits.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see RP224
  */

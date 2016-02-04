@@ -79,7 +79,7 @@ import tv.amwa.maj.record.AUID;
  * descriptive marker may contain a {@linkplain tv.amwa.maj.model.DescriptiveFramework descriptive framework} 
  * that specifies the metadata.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 

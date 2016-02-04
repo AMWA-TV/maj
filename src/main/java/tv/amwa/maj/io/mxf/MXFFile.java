@@ -16,7 +16,7 @@ import tv.amwa.maj.integer.UInt32;
  * <p>To open an MXF file and to start reading it, call static method {@link MXFFactory#readPartitions(String)}
  * and then access the data it contains using the methods of this class.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see MXFFactory#readPartitions(String)
  */

@@ -118,7 +118,7 @@ import tv.amwa.maj.union.SourceReferenceValue;
  * to show that video exists and was not derived from anything else on 
  * record.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  */
 

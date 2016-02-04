@@ -55,7 +55,7 @@ import tv.amwa.maj.meta.TypeDefinitionSet;
  * <p>Note that sometimes these methods are called <em>is ... present</em> rather than <em>contains</em>,
  * but the effect is the same.</p>
  * 
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TypeDefinitionSet
  * @see tv.amwa.maj.model.Preface#isDescriptiveSchemePresent(tv.amwa.maj.record.AUID)

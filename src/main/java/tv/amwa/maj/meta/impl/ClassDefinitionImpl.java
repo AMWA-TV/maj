@@ -136,7 +136,7 @@ import tv.amwa.maj.record.impl.AUIDImpl;
 /** 
  * <p>Implementation of the definition of an AAF class.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see tv.amwa.maj.industry.TypeDefinitions#ClassDefinitionWeakReference
  * @see tv.amwa.maj.industry.TypeDefinitions#ClassDefinitionStrongReference

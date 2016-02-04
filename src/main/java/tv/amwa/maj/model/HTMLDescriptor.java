@@ -37,7 +37,7 @@ package tv.amwa.maj.model;
 /**  
  * <p>Specifies a description of essence data that is in HTML text format.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see HTMLClip
  */

@@ -57,7 +57,7 @@ import tv.amwa.maj.meta.TypeDefinitionInteger;
  * {@linkplain TypeDefinition type definition} allow access to the data value held in the property
  * value object.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  * 
  * @see TypeDefinition#createValue(Object)
  * @see PropertyDefinition

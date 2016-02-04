@@ -99,7 +99,7 @@ import tv.amwa.maj.record.AUID;
  * <p>Implements a container with an ordered set of {@linkplain tv.amwa.maj.model.Segment segments} and an 
  * {@linkplain tv.amwa.maj.model.OperationDefinition operation} that is performed on these segments.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  * @see tv.amwa.maj.industry.TypeDefinitions#OperationGroupStrongReference
  */

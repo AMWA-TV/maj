@@ -55,7 +55,7 @@ import tv.amwa.maj.model.MPEGVideoDescriptor;
  * <p>Implements the description of picture essence that is encoded according to the 
  * MPEG specifications.</p>
  *
- * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+ *
  *
  */
 @MediaClass(uuid1 = 0x0D010101, uuid2 = 0x0101, uuid3 = 0x5100,

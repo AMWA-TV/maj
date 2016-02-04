@@ -52,7 +52,7 @@
 ///**
 // * <p>Manages the writing of generic container essence.</p>
 // *
-// * @author <a href="mailto:richard@portability4media.com">Richard Cartwright</a>
+// *
 // *
 // */
 //public class GenericContainerWriter {
