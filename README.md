@@ -46,7 +46,7 @@ _To follow_.
 
 ## License
 
-The MAJ API is released under an Apache 2 license. Please see the (LICENSE)[./LICENSE] file for more details.
+The MAJ API is released under an Apache 2 license. Please see the [LICENSE](./LICENSE) file for more details.
 
 ## Author
 
