@@ -39,11 +39,11 @@ These topics are covered below.
 
 ### Manipulating AAF data
 
-An application can be written using the AAF data model from scratch without the need to read or write files. One difference between MAJ and the AAF SDK is that you can write code that uses classes of the AAF model without the need to contain them within a virtual file at runtime. For more details, see the documentation of the [industry package](./apidocs/tv/amwa/maj/industry/package-summary.html)>.
+An application can be written using the AAF data model from scratch without the need to read or write files. One difference between MAJ and the AAF SDK is that you can write code that uses classes of the AAF model without the need to contain them within a virtual file at runtime. For more details, see the documentation of the [industry package](./apidocs/tv/amwa/maj/industry/package-summary.html).
 
 The starting point is to initialize the local Java virtual machine so that it supports processing the AAF data model with `MediaEngine.initializeAAF()`. You can then start creating objects of the AAF data model, including *packages*, *tracks*, *sequences* and *source clips*, using the `make...` *forge* forge, for example:
 
-    Forge.make(Class, Object...) make(Class, Object...)}
+    Forge.make(Class, Object...)
 
 Every class in MAJ provides a registered XML representation as its `toString()` output, which in turn is created by `MediaEngine.toString()`. This makes debugging fairly easy as you can query a value in the debugger and see a human-readable XML format.
 
