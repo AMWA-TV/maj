@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+	 http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
 <MXFDictionary>
 	<MXFClasses>
-		<SimpleDescription base="DM_Framework" 
+		<SimpleDescription base="DM_Framework"
 				detail="Very basic description of an item, based on a few Dublin Core terms."
 				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 01 00 00">
 			<Title detail="A name given to the resource." use="required" type="UTF16String"
 					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 01 00"/>
 			<DateAccepted detail="Date of acceptance of the resource." use="optional" type="DateStruct"
 					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 02 00"/>
-			<Identifier detail="An unambiguous reference to the resource within a given context." 
-					type="UTF16String" use="required" 
+			<Identifier detail="An unambiguous reference to the resource within a given context."
+					type="UTF16String" use="required"
 					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 03 00"/>
 			<Type detail="Identity of the genre of the resource" use="optional"
 					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 04 00"/>
@@ -17,13 +32,13 @@
 					type="UUID" ref="strong" target="Contributor" minLength="16" maxLength="16"
 					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 01 05 00"/>
 		</SimpleDescription>
-		
+
 		<Contributor base="DM_Set" detail="Entity that creates or contributes to a resource."
 				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 02 00 00">
 			<Name detail="Name of the contributor." use="required" type="UTF16String"
 					key="00 00" globalSet="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 02 01 00"/>
 		</Contributor>
-		
+
 		<Person base="Contributor" detail="Person who makes and/or contributes a resource."
 				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 03 00 00">
 			<Email detail="Contact e-mail address for the person." use="optional" type="UTF16String"
@@ -33,7 +48,7 @@
 		</Person>
 		<Organisation base="Contributor" detail="Organisation that makes or contributes a resource."
 				globalKey="06 0e 2b 34 02 53 01 01  0f 20 11 01 01 04 00 00">
-			<CompanyNo detail="Registered company number for the organisation." 
+			<CompanyNo detail="Registered company number for the organisation."
 					use="required" type="UInt64"
 					key="00 00" globalKey="06 0e 2b 34 01 01 01 01  0f 20 11 01 01 04 01 00"/>
 			<Contact detail="Contact person at the organisation responsible for the contributed resource."

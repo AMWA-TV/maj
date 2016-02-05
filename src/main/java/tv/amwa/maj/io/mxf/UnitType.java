@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.io.mxf;
 
 public enum UnitType {
@@ -27,33 +43,33 @@ public enum UnitType {
 	ContentPackageSound,
 	ContentPackageData,
 	RandomIndexPack, ;
-	
+
 	final static byte[] smpteKeyStart = new byte[] {
 		0x06, 0x0e, 0x2b, 0x34, 0x02, 0x00, 0x01, 0x00, 0x0d, 0x01, 0x00, 0x01
 	};
-	
+
 	final static int[] constantBytes = new int[] {
 		0, 1, 2, 3, 6, 8, 9, 11
 	};
-	
+
 	public final static UnitType typeFromKey(
 			UL key) {
-		
+
 		byte[] keyBytes = key.getUniversalLabel();
-		
+
 		for ( int constantIndex : constantBytes ) {
-			if (smpteKeyStart[constantIndex] != keyBytes[constantIndex]) 
+			if (smpteKeyStart[constantIndex] != keyBytes[constantIndex])
 				return Unknown;
 		}
-		
+
 		switch (keyBytes[10]) {
-		
+
 		case 0x02:
 			switch (keyBytes[13]) {
-			
+
 			case 0x02:
 				switch (keyBytes[14]) {
-				
+
 				case 0x01:
 					return HeaderOpenIncompletePartitionPack;
 				case 0x02:
@@ -65,10 +81,10 @@ public enum UnitType {
 				default:
 					return Unknown;
 				}
-				
+
 			case 0x03:
 				switch (keyBytes[14]) {
-				
+
 				case 0x01:
 					return BodyOpenIncompletePartitionPack;
 				case 0x02:
@@ -82,7 +98,7 @@ public enum UnitType {
 				}
 			case 0x04:
 				switch (keyBytes[14]) {
-				
+
 				case 0x02:
 					return FooterClosedIncompletePartitionPack;
 				case 0x04:
@@ -99,10 +115,10 @@ public enum UnitType {
 			default:
 				return Unknown;
 			}
-			
+
 		case 0x03:
 			switch (keyBytes[12]) {
-			case 0x04: 
+			case 0x04:
 				return ContentPackageSystemItem;
 			case 0x05:
 				return ContentPackagePicture;
@@ -123,7 +139,7 @@ public enum UnitType {
 			default:
 				return Unknown;
 			}
-			
+
 		default:
 			return Unknown;
 		}

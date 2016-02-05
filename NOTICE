@@ -1,0 +1,16 @@
+Media Authoring with Java API (MAJ)
+Copyright 2007-2016 Richard Cartwright
+
+This API includes software developed with the support of Snell Advanced
+Media (http://www.s-a-m.com/).
+
+Portions of this software were developed with reference to the AAF SDK. Any
+similarities between this API and the AAF SDK are not intentional although may
+occur where structures are similar between the languages.
+(http://sourceforge.net/projects/aaf/)
+
+Bug fixes and the maven build process were made possible with the help of
+Guillaume Belrose and Fang Ren.
+
+The author is thankful for the help and support he received from staff at the BBC,
+AMWA and Metaglue Corporation.

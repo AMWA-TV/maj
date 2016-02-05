@@ -1,0 +1,429 @@
+<!--
+Copyright 2016 Richard Cartwright
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+ $Log: overview.html,v $
+ Revision 1.9  2011/08/16 14:13:37  vizigoth
+ Updated to link to POI 3.7.
+
+ Revision 1.8  2011/07/27 17:34:24  vizigoth
+ Improvements to the description of using XML with the API.
+
+ Revision 1.7  2011/02/14 22:33:03  vizigoth
+ First commit after major sourceforge outage.
+
+ Revision 1.6  2011/01/13 17:44:31  vizigoth
+ Major refactor of the industrial area and improved front-end documentation.
+
+ Revision 1.5  2009/12/18 17:55:59  vizigoth
+ Interim check in to help with some training activities. Early support for reading Preface objects from MXF files.
+
+ Revision 1.4  2009/03/30 09:05:08  vizigoth
+ Refactor to use SMPTE harmonized names and add early KLV file support.
+
+ Revision 1.3  2008/10/16 16:52:01  vizigoth
+ First early release 0.1.
+
+ Revision 1.2  2007/12/04 09:46:53  vizigoth
+ Minor comment updates.
+
+ Revision 1.1  2007/11/23 15:06:25  vizigoth
+ Created javadoc overview file.
+
+
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+<title>MAJ API Overview</title>
+</head>
+<body bgcolor="white">
+
+<p>This documentation describes the <em>Media Authoring with Java API</em>
+(MAJ API), some generic <em>media industry</em> and an implementation of the classes of the Advanced Authoring Format
+specification in Java. The media industry is a general purpose library code for making and manipulating structures
+defined according to <a href="http://www.smpte-ra.org">SMPTE registers</a>. The AAF classes are implemented
+as plain old Java objects (POJOs) and that can be mapped to EJB3-style persistent entities.</p>
+
+<p>This API provides the basis for applications that capture. edit, manage and distribute media
+according to professional standards. The API provides support for AAF, MXF and Reg-XML file formats.
+It provides extensions mechanism to allow implementors to extend the core classes to meet new
+standards or represent private data. This API is being developed as a project of the
+<a href="http://www.amwa.tv">Advanced Media Workflow Association</a> and is licensed
+under the Apache 2.0 License. Note, however, that support for manipulating essence
+with MAJ is currently very limited.</p>
+
+<p>This is a developer's release&nbsp;1.1.4, a number chosen to indicate the level of object model
+support similar to the <a href="http://sourceforge.net/projects/aaf/">AAF SDK reference implementation</a>.
+The documentation of all the packages is rich and complete, so worthwhile exploring for a technical person. In
+particular, {@linkplain tv.amwa.maj.industry.MediaEngine media engine},
+{@linkplain tv.amwa.maj.industry.Forge forge}, and {@linkplain tv.amwa.maj.industry.Warehouse warehouse}
+are at the heart of the API's capabilities, so it is a good place to start exploring.</p>
+
+<p>This page provides some getting started topics:</p>
+
+<ul>
+ <li><a href="#scratch">Writing code from scratch</a>;</li>
+ <li><a href="#aaf-klc">Reading and writing MXF files (AAF-KLV)</a>;</li>
+ <li><a href="#aaf-ss">Reading and writing AAF files (AAF-SS)</a>;</li>
+ <li><a href="#aaf-xml">Reading and writing Reg-XML files (AAF-XML)</a>;</li>
+ <li><a href="#extensions">Working with extensions, including auto-generating your own extensions</a>;</li>
+ <li><a href="#advanced">Advanced features of the API, including database persistence</a>;</li>
+ <li><a href="#resources">Resources to help you</a>.</li>
+</ul>
+
+<h2 id="scratch">Writing code from scratch</h2>
+
+<p>An application can be written using the AAF data model from scratch without the need to read
+or write files. One difference between MAJ and the AAF SDK is that you can write code that uses
+classes of the AAF model without the need to contain them within a virtual file at runtime. For more
+details, see the documentation of the <a href="tv/amwa/maj/industry/package-summary.html">industry
+package</a>.</p>
+
+<p>The starting point is to initialize the local Java virtual machine so that it supports
+processing the AAF data model with {@link tv.amwa.maj.industry.MediaEngine#initializeAAF() MediaEngine.initializeAAF()}.
+You can then start creating objects of the AAF data model, including
+{@linkplain tv.amwa.maj.model.Package packages}, {@linkplain tv.amwa.maj.model.Track tracks},
+{@linkplain tv.amwa.maj.model.Sequence sequences} and {@linkplain tv.amwa.maj.model.SourceClip source clips},
+using the <em>make...</em> methods of the @linkplain tv.amwa.maj.industry.Forge forge}, for example
+{@link tv.amwa.maj.industry.Forge#make(Class, Object...) make(Class, Object...)}.</p>
+
+<p>Every class in MAJ provides a registered XML representation as its <code>toString()</code>
+output, which in turn is created by
+{@link tv.amwa.maj.industry.MediaEngine#toString(tv.amwa.maj.industry.MetadataObject) MediaEngine.toString(MetadataObject)}.
+This make debugging fairly easy as you can query a value in the debugger and see a human-readable XML format.</p>
+
+<p>To help you get started, here is a {@linkplain tv.amwa.maj.example.AMWADemoClass code example}:</p>
+
+<pre>
+package tv.amwa.maj.example;
+
+import tv.amwa.maj.industry.Forge;
+import tv.amwa.maj.industry.MediaEngine;
+import tv.amwa.maj.model.*;
+
+public class AMWADemoClass
+    implements tv.amwa.maj.constant.CommonConstants {
+
+    public static void main(String[] args) throws Exception {
+
+        MediaEngine.initializeAAF(); // Required to initialize AAF specified classes
+
+        MaterialPackage amwaPackage = Forge.makeByName(
+                AAF_XML_NAMESPACE, "MaterialPackage",
+                "PackageID", Forge.randomUMID(), // Randomly generated
+                "Name", "AMWADemoPackage",
+                "PackageLastModified", Forge.now(),
+                "CreationTime", Forge.now());
+
+        Sequence amwaVideoSequence = Forge.makeByName(
+                AAF_XML_NAMESPACE, "Sequence",
+                "ComponentDataDefinition", "Picture");
+
+        amwaVideoSequence.appendComponentObject(
+                Forge.make(
+                        SourceClip.class,
+                        "ComponentDataDefinition", "Picture",
+                        "ComponentLength", 60l,
+                        "SourcePackageID", "urn:smpte:umid:060c2b34.02051101.01001000.13000000.11ee08d4.040311d4.8e3d0090.27dfca7c",
+                        "SourceTrackID", 1,
+                        "StartPosition", 10l));
+
+        TimelineTrack amwaVideoTrack = Forge.make(
+                TimelineTrack.class,
+                "TrackID", 1,
+                "TrackSegment", amwaVideoSequence,
+                "EditRate", "25/1",
+                "Origin", 0l);
+
+        amwaVideoTrack.setTrackName("AMWA VIDEO TRACK");
+
+        amwaPackage.appendPackageTrack(amwaVideoTrack);
+        amwaPackage.appendPackageUserComment("company", "portability 4 media");
+
+        System.out.println(amwaPackage.toString());
+    }
+}
+</pre>
+
+<p>For a more complex example, see the source for the {@linkplain tv.amwa.maj.example.CompositionExample composition
+example} that is part of the AMWA training course.</p>
+
+<h2 id="aaf-klv">MXF files - AAF-KLV</h2>
+
+<p>MXF files, also known as AAF-KLV files, consist of sequence of partitions. Partitions contain
+a partition header and may contain metadata, index tables and/or essence data. Support for reading
+and writing MXF files is provided in package
+<code><a href="tv/amwa/maj/io/mxf/package-summary.html">tv.amwa.maj.io.mxf</a></code>.</p>
+
+<h3>Reading MXF partitions</h3>
+
+<p>MXF files contain one or more partitions. The first step in reading an MXF file is to build an
+in memory cache of the structure of those partitions. To do this:</p>
+
+<pre>
+import tv.amwa.maj.industry.MediaEngine;
+import tv.amwa.maj.io.mxf.MXFFactory;
+import tv.amwa.maj.io.mxf.MXFFile;
+
+...
+
+  MXFFile mxfFile = MXFFactory.readPartitions("filename.mxf");
+</pre>
+
+<p>All MXF files contain a header partition. Most also contain a footer partition. To access these:</p>
+
+<pre>
+import tv.amwa.maj.io.mxf.HeaderPartition;
+import tv.amwa.maj.io.mxf.FooterPartition;
+
+...
+
+  HeaderPartition header = mxfFile.getHeaderPartition();
+  FooterPartition footer = mxfFile.getFooterPartition();
+</pre>
+
+<h3>Reading header metadata</h3>
+
+<p>Partitions can contain header metadata and this is split into a primer pack and a preface.
+The metadata can be read into memory from file using the readHeaderMetadata() method.</p>
+
+<p>If a footer partition is present in an MXF file and it contains header metadata, this version
+is often the most trusted source for metadata about the file as it was written once the rest of the
+file is complete. If the footer partition is not present or does not contain header metadata, read
+the header partition's header metadata.</p>
+
+<pre>
+import tv.amwa.maj.model.Preface;
+import tv.amwa.maj.io.mxf.HeaderMetadata;
+
+...
+
+  HeaderMetadata headerMD = null;
+  if ((footer != null) && (footer.hasHeaderMetadata())
+    headerMD = footer.readHeaderMetadata();
+  else
+    headerMD = header.readHeaderMetadata();
+
+  Preface preface = headerMD.getPreface();
+</pre>
+
+<p>Methods from the preface interface can be used to interrogate what is in the MXF file, or you
+can call <code>toString()</code> on the preface to get an XML representation.</p>
+
+<h3>Writing header metadata</h3>
+
+<p>This code is still in development, but it will take the form of an application altering an
+existing preface, setting it to replace that within existing header metadata and calling a write method.
+Well structured MXF should have padding at the end of the existing metadata, allowing the existing
+metadata to be overwritten and extended. Writing will fail if insufficient padding space is available.</p>
+
+<h3>Reading the index table</h3>
+
+<p>An index table maps edit unit indexes to stream offsets in essence containers. This enables the data
+representing a specific frame of video or audio sample to be located in the file, for example to generate
+a still frame or carry out a partial restore. Any <em>long GOP</em> structure used to store the essence can also be
+interrogated to work out a safe point to break a file, e.g. don't forget the previous I-frame!</p>
+
+<p>Any partition may have an index table. To read the index table and find the stream offset to the 10th
+frame 2nd element, measured in bytes from the beginning of its essence container, use ...</p>
+
+<pre>
+import tv.amwa.maj.io.mxf.IndexTable;
+
+...
+
+  IndexTable index = footer.readIndexTable();
+  long tenthFrameOffset = index.streamOffset(10, 2);
+</pre>
+
+<p>Note that in interleaved streams, the element number determines whether it is an edit unit worth of
+video, audio or data track being referred to. You need to know your stream layout to insert the correct
+element number.</p>
+
+<h2 id="aaf-ss">AAF files - AAF-SS</h2>
+
+<p>AAF files, also known as AAF-SS or AAF structured storage files, store AAF structured data in a Microsoft
+structured storage container. To read and write these files, MAJ uses the
+<a href="http://poi.apache.org/download.html#POI-3.7">Apache POI library version 3.7</a>.</p>
+
+<p>Support for reading
+and writing AAF files is provided in package
+<code><a href="tv/amwa/maj/io/aaf/package-summary.html">tv.amwa.maj.io.aaf</a></code>. MAJ provides a
+helper class {@link tv.amwa.maj.io.aaf.AAFFactory AAFFactory} as a starting point for reading and writing
+AAF files.</p>
+
+<h3>Reading a preface from an AAF file</h3>
+
+<p>To read a preface from an AAF file, such as those generated by Avid, use the
+{@link tv.amwa.maj.io.aaf.AAFFactory AAFFactory#readPreface(java.lang.String) readPreface()} method
+of the {@link tv.amwa.maj.io.aaf.AAFFactory AAFFactory} class. For example:</p>
+
+<pre>
+import tv.amwa.maj.io.aaf.AAFFactory;
+import tv.amwa.maj.iface.Preface;
+import tv.amwa.maj.extensions.avid.AvidFactory;
+...
+
+AvidFactory.registerAvidExtensions();
+Preface fromAAF = AAFFactory.readPreface("filename.aaf");
+</pre>
+
+<p>Some warning messages will be printed if extensions are unknown. These can be ignored unless the extension
+data is important to your application.</p>
+
+<h3>Writing a metadata-only AAF file</h3>
+
+<p>MAJ supports writing metadata-only AAF files, files that do not contain any essence data.
+AAF is commonly used as a metadata-only representation so this limitation means MAJ still works in many
+use cases.</p>
+
+<p>To write an existing preface to an AAF file, make sure the Avid extensions are registered (as for
+reading) and use the
+{@link tv.amwa.maj.io.aaf.AAFFactory AAFFactory#writePreface(tv.amwa.maj.model.Preface, java.lang.String) writePreface()}
+method of the {@link tv.amwa.maj.io.aaf.AAFFactory AAFFactory} class.</p>
+
+<pre>
+import tv.amwa.maj.io.AAFFactory;
+import tv.amwa.maj.iface.Preface;
+...
+
+Preface prefaceToWrite = ...;
+AAFFactory.writePreface(prefaceToWrite, "filename.aaf");
+</pre>
+
+<p>MAJ will create a dynamic meta dictionary and, if the preface does not contain a valid dictionary
+already, add in all the required definitions to make the file valid.</p>
+
+<h2 id="aaf-xml">Reg-XML files - AAF-XML</h2>
+
+<p>AAF XML files are also known as registered data XML files (SMPTE draft standard 2001). MAJ uses
+this format for the return value of <code>toString()</code> methods almost everywhere, so it is easy to get to learn
+this format. When you use a debugger and hover over a variable that is a MAJ type, you will see the same XML format.</p>
+
+<p>Support for reading
+and writing XML files is provided in package
+<code><a href="tv/amwa/maj/io/xml/package-summary.html">tv.amwa.maj.io.xml</a></code>. MAJ provides a helper
+class {@link tv.amwa.maj.io.xml.XMLBuilder XMLBuilder} as a starting point for reading and writing
+AAF fragments to and from XML.</p>
+
+<p>The methods the serialize objects to and from XML are useful for providing RESTful and web service
+interfaces to an AAF-based repository. Reading and writing complete files allows XML to be used in
+file-based workflows in place of the harder-to-analyse MXF and AAF formats.</p>
+
+<h3>Serializing an object to XML fragments</h3>
+
+<p>To convert a single object and any of its contained strong referenced objects to XML, use method
+{@link tv.amwa.maj.io.xml.XMLBuilder#toXML(tv.amwa.maj.industry.MetadataObject) toXML()} methods
+of the {@linkplain tv.amwa.maj.io.xml.XMLBuilder XML builder}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLBuilder;
+import tv.amwa.maj.iface.MaterialPackage;
+...
+
+MaterialPackage material = ...;
+String packageAsXML = XMLBuilder.toXML(material);
+</pre>
+
+<p>Any objects that implement {@link tv.amwa.maj.io.xml.XMLSerializable XMLSerializable} or
+{@link tv.amwa.maj.industry.MetadataObject MetadataObject} can be serialized to XML fragments.</p>
+
+<h3>Creating objects from an XML fragment</h3>
+
+<p>To read the XML representation of an object in XML and create an instance in memory,
+use either the {@link tv.amwa.maj.io.xml.XMLBuilder#createFromXML(InputSource) createFromXML()} or
+{@link tv.amwa.maj.io.xml.XMLBuilder#createFromXMLString(String) createFromXMLString()} methods of the
+{@linkplain tv.amwa.maj.io.xml.XMLBuilder XML builder}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLBuilder;
+import tv.amwa.maj.iface.MaterialPackage;
+...
+
+MaterialPackage material =
+        (MaterialPackage) XMLBulder.createFromXMLString(packageAsXML);
+</pre>
+
+<h3>Reading complete Reg XML files with MAJ</h3>
+
+<p>Complete XML files have a root <code>&lt;AAF&gt;</code> root element.
+To read a preface from an XML file, register all the required data types and then
+use the {@link tv.amwa.maj.io.xml.XMLFactory#readPreface(String) readPreface()}
+static method of the {@linkplain tv.amwa.maj.io.xml.XMLFactory XML factory}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLFactory;
+import tv.amwa.maj.model.Preface;
+....
+
+Preface preface = XMLFactory.readPreface("input_file.xml");
+</pre>
+
+<p>Catch {@linkplain java.io.IOException IO exceptions} to find out about any problems
+parsing the XML.</p>
+
+<p>Note that the automatic processing of extension metadata that is not registered
+with MAJ is not supported in the current version of the MAJ API.</p>
+
+<h3>Writing complete Reg XML files with MAJ</h3>
+
+<p>Complete XML files have a root <code>&lt;AAF&gt;</code> root element.
+To write a complete Reg XML file, use the
+{@link tv.amwa.maj.io.xml.XMLFactory#writePreface(tv.amwa.maj.model.Preface, String) writePreface()} static method
+of the {@linkplain tv.amwa.maj.io.xml.XMLFactory XML factory}.</p>
+
+<pre>
+import tv.amwa.maj.io.xml.XMLFactory;
+....
+
+XMLFactory.writePreface(preface, "output_file.xml");
+</pre>
+
+<p>The {@linkplain tv.amwa.maj.model.Preface preface} will be automatically updated with a correct
+{@linkplain tv.amwa.maj.model.Dictionary dictionary} and any extensions classes will
+be added to the output. Note that an application is expected to have added an appropriate
+{@linkplain tv.amwa.maj.model.Identification identification} to the preface to identify the
+current version of the file before calling this method.</p>
+
+<h2 id="extensions">Extensions</h2>
+
+<p>Writing extensions, for example to represent your companies descriptive metadata scheme, can be
+achieved by writing Java interfaces and classes that represent those extensions. How to do this
+is described in the <a href="tv/amwa/maj/industry/package-summary.html">industry package</a> and
+in particular in the description of the {@link tv.amwa.maj.industry.MediaClass MediaClass} and
+{@link tv.amwa.maj.industry.MediaProperty MediaProperty} annotations. In fact, if you have some
+existing Java beans, annotating them to work as media classes with MAJ may be quite simple.</p>
+
+<p>If writing all that Java is a scary thought, MAJ provides an
+{@linkplain tv.amwa.maj.util.AutoGeneration auto generator} that can take
+an XML description of metadata extensions and create Java package sourcecode that can be
+compiled and used with MAJ.</p>
+
+<p>Some Avid Media Composer extensions are provided in package
+<code><a href="tv/amwa/maj/extensions/avid/package-summary.html">tv.amwa.maj.extensions.avid</a></code>.</p>
+
+<h2 id="advanced">Advanced features</h2>
+
+<p>MAJ provides a means for {@linkplain tv.amwa.maj.industry.JPAGenerator generating Java Persistence API
+compatible object-relational mappings} from its own internal representation of media classes.</p>
+
+<p>MAJ can generate an XML representation of classes, properties and types that it knows about
+using static method MediaEngine.generateMetaDictionary().</p> <!-- TODO add a link in this comment -->
+
+</body>
+</html>

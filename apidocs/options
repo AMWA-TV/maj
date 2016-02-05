@@ -1,0 +1,31 @@
+-classpath
+'/Users/vizigoth2/.m2/repository/org/apache/poi/poi/3.7/poi-3.7.jar:/Users/vizigoth2/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar'
+-encoding
+'UTF-8'
+-overview
+'/Users/vizigoth2/Documents/workspace/maj/src/main/resources/overview.html'
+-public
+-sourcepath
+'/Users/vizigoth2/Documents/workspace/maj/src/main/java'
+-author
+-bottom
+'(c)2007-2016 Richard Cartwright, all rights reserved. Licensed 						under Apache 2 license and subject to the AMWA IPR policy.'
+-charset
+'UTF-8'
+-d
+'/Users/vizigoth2/Documents/workspace/maj/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'MAJ API Overview'
+-footer
+'Media Authoring with Java API (MAJ)'
+-header
+'Media Authoring with Java API (MAJ)'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' '/Users/vizigoth2/Documents/workspace/maj/target/javadoc-bundle-options'
+-nohelp
+-splitindex
+-version
+-windowtitle
+'Media Authoring with Java API'

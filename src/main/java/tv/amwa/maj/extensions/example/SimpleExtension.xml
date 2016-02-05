@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2016 Advanced Media Workflow Assocation
 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+	 http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
 <Extension xmlns="http://www.smpte-ra.org/schemas/2001-1/2007/metadict"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.smpte-ra.org/schemas/2001-1/2007/metadict metadict.xsd">
-	
+
 	<Identification>urn:smpte:ul:060e2b34.01040101.0f201101.00000000</Identification>
 	<Symbolspace>http://amwa.tv/maj/extensions/example</Symbolspace>
 	<PreferredPrefix>eg</PreferredPrefix>
 	<Description>A simple example of how to write an extension metadata set.</Description>
-	
+
 	<Definitions>
-	
+
 		<!-- SimpleDescription -->
 		<ClassDefinition>
 			<Symbol>SimpleDescription</Symbol>
@@ -88,7 +102,7 @@
 			<MemberOf>Contributor</MemberOf>
 			<Type>UTF16String</Type>
 			<IsOptional>false</IsOptional>
-			<LocalIdentification>0</LocalIdentification>		
+			<LocalIdentification>0</LocalIdentification>
 		</PropertyDefinition>
 
 		<!-- Person -->
@@ -108,7 +122,7 @@
 			<MemberOf>Person</MemberOf>
 			<Type>UTF16String</Type>
 			<IsOptional>true</IsOptional>
-			<LocalIdentification>0</LocalIdentification>		
+			<LocalIdentification>0</LocalIdentification>
 		</PropertyDefinition>
 		<PropertyDefinition>
 			<Symbol>DOB</Symbol>
@@ -118,9 +132,9 @@
 			<MemberOf>Person</MemberOf>
 			<Type>DateStruct</Type>
 			<IsOptional>true</IsOptional>
-			<LocalIdentification>0</LocalIdentification>		
+			<LocalIdentification>0</LocalIdentification>
 		</PropertyDefinition>
-		
+
 		<!-- Organisation -->
 		<ClassDefinition>
 			<Symbol>Organisation</Symbol>
@@ -138,7 +152,7 @@
 			<MemberOf>Organisation</MemberOf>
 			<Type>UInt64</Type>
 			<IsOptional>false</IsOptional>
-			<LocalIdentification>0</LocalIdentification>		
+			<LocalIdentification>0</LocalIdentification>
 		</PropertyDefinition>
 		<PropertyDefinition>
 			<Symbol>Contact</Symbol>
@@ -148,9 +162,9 @@
 			<MemberOf>Organisation</MemberOf>
 			<Type>PersonStrongReference</Type>
 			<IsOptional>true</IsOptional>
-			<LocalIdentification>0</LocalIdentification>		
+			<LocalIdentification>0</LocalIdentification>
 		</PropertyDefinition>
-		
+
 		<!-- Type definitions -->
 		<TypeDefinitionEnumeration>
 			<Symbol>DCMIType</Symbol>
@@ -158,7 +172,7 @@
 			<Identification>urn:smpte:ul:060e2b34.01040101.0f201101.01000000</Identification>
 			<Description>Different genres of resource.</Description>
 			<ElementType>UInt8</ElementType>
-			<Elements> 
+			<Elements>
 				<Name>MovingImage</Name>
 				<Value>1</Value>
 				<Name>StillImage</Name>
@@ -169,7 +183,7 @@
 				<Value>4</Value>
 			</Elements>
 		</TypeDefinitionEnumeration>
-		
+
 		<TypeDefinitionStrongObjectReference>
 			<Symbol>ContributorStrongReference</Symbol>
 			<Name>ContributorStrongReference</Name>
@@ -177,7 +191,7 @@
 			<Description>Strong reference to the value of a contributor.</Description>
 			<ReferencedType>Contributor</ReferencedType>
 		</TypeDefinitionStrongObjectReference>
-		
+
 		<TypeDefinitionStrongObjectReference>
 			<Symbol>PersonStrongReference</Symbol>
 			<Name>PersonStrongReference</Name>
@@ -186,5 +200,5 @@
 			<ReferencedType>Person</ReferencedType>
 		</TypeDefinitionStrongObjectReference>
 	</Definitions>
-	
+
 </Extension>

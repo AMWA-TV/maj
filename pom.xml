@@ -69,6 +69,28 @@
 					</archive>
 				</configuration>
 			</plugin>
+
+      <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.3</version>
+        <configuration>
+					<reportOutputDirectory>${basedir}</reportOutputDirectory>
+					<destDir>apidocs</destDir>
+					<show>public</show>
+					<use>false</use>
+					<windowtitle>Media Authoring with Java API</windowtitle>
+					<doctitle>MAJ API Overview</doctitle>
+					<bottom>(c)2007-2016 Richard Cartwright, all rights reserved. Licensed
+						under Apache 2 license and subject to the AMWA IPR policy.</bottom>
+					<header>Media Authoring with Java API (MAJ)</header>
+					<footer>Media Authoring with Java API (MAJ)</footer>
+					<nohelp>true</nohelp>
+					<splitindex>true</splitindex>
+					<overview>${basedir}/src/main/resources/overview.html</overview>
+        </configuration>
+      </plugin>
+
 		</plugins>
 	</build>
 </project>

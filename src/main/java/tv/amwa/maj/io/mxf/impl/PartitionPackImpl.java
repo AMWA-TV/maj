@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.io.mxf.impl;
 
 import java.nio.ByteBuffer;
@@ -33,15 +49,15 @@ import tv.amwa.maj.record.impl.AUIDImpl;
 		namespace = MXFConstants.RP210_NAMESPACE,
 		prefix = MXFConstants.RP210_PREFIX,
 		symbol = "PartitionPack")
-public abstract class PartitionPackImpl 
-	implements 
+public abstract class PartitionPackImpl
+	implements
 		MetadataObject,
 		FixedLengthPack,
 		PartitionPack,
 		Cloneable,
 		Padded {
-	
-	
+
+
 	private short majorVersion = MAJORVERSION_DEFAULT;
 	private short minorVersion = MINORVERSION_DEFAULT;
 	private int kagSize = 1;
@@ -55,9 +71,9 @@ public abstract class PartitionPackImpl
 	private int bodySID = BODYSID_DEFAULT;
 	private AUID operationalPattern;
 	private Set<AUID> essenceContainers = new HashSet<AUID>();
-	
+
 	private long paddingBytes = 0l;
-	
+
 	public final static String[] packOrder = {
 		"Major Version", "Minor Version", "KAGSize", "ThisPartition",
 		"PreviousPartition", "FooterPartition", "HeaderByteCount",
@@ -68,7 +84,7 @@ public abstract class PartitionPackImpl
 	static {
 		initializePackClasses();
 	}
-	
+
 	public final static void initializePackClasses() {
 		Warehouse.lookForClass(HeaderClosedCompletePartitionPackImpl.class);
 		Warehouse.lookForClass(HeaderClosedIncompletePartitionPackImpl.class);
@@ -79,23 +95,23 @@ public abstract class PartitionPackImpl
 		Warehouse.lookForClass(BodyOpenCompletePartitionPackImpl.class);
 		Warehouse.lookForClass(BodyOpenIncompletePartitionPackImpl.class);
 		Warehouse.lookForClass(FooterClosedCompletePartitionPackImpl.class);
-		Warehouse.lookForClass(FooterClosedIncompletePartitionPackImpl.class);	
+		Warehouse.lookForClass(FooterClosedIncompletePartitionPackImpl.class);
 	}
 
 	public PartitionPackImpl() { }
-	
+
 	public PartitionPackImpl(
 			@UInt32 int kagSize,
 			@UInt64 long thisPartition,
 			@UInt64 long bodyOffset,
 			tv.amwa.maj.record.AUID operationalPattern) {
-		
+
 		this.kagSize = kagSize;
 		this.thisPartition = thisPartition;
 		this.bodyOffset = bodyOffset;
 		this.operationalPattern = operationalPattern.clone();
 	}
-	
+
 	@MediaProperty(uuid1 = 0x03010201, uuid2 = 0x0600, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "Major Version",
@@ -107,13 +123,13 @@ public abstract class PartitionPackImpl
 	public @UInt16 short getMajorVersion() {
 		return majorVersion;
 	}
-	
+
 	@MediaPropertySetter("Major Version")
 	public void setMajorVersion(
 			@UInt16 short majorVersion) {
 		this.majorVersion = majorVersion;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x03010201, uuid2 = 0x0700, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "Minor Version",
@@ -121,11 +137,11 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "MinorVersion")	
+			symbol = "MinorVersion")
 	public @UInt16 short getMinorVersion() {
 		return minorVersion;
 	}
-	
+
 	@MediaPropertySetter("Minor Version")
 	public void setMinorVersion(
 			@UInt16 short minorVersion) {
@@ -140,19 +156,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "KAGSize")	
+			symbol = "KAGSize")
 	public @UInt32 int getKagSize() {
-		
+
 		return kagSize;
 	}
-	
+
 	@MediaPropertySetter("KAGSize")
 	public void setKagSize(
 			@UInt32 int kagSize) {
-		
+
 		this.kagSize = kagSize;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x06101003, uuid2 = 0x0100, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "ThisPartition",
@@ -161,19 +177,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "ThisPartition")		
+			symbol = "ThisPartition")
 	public @UInt64 long getThisPartition() {
-		
+
 		return thisPartition;
 	}
-	
+
 	@MediaPropertySetter("ThisPartition")
 	public void setThisPartition(
 			@UInt64 long thisPartition) {
-		
+
 		this.thisPartition = thisPartition;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x06101002, uuid2 = 0x0100, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "PreviousPartition",
@@ -182,19 +198,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "PreviousPartition")		
+			symbol = "PreviousPartition")
 	public @UInt64 long getPreviousPartition() {
-		
+
 		return previousPartition;
 	}
-	
+
 	@MediaPropertySetter("PreviousPartition")
 	public void setPreviousPartition(
 			@UInt64 long previousPartition) {
-		
+
 		this.previousPartition = previousPartition;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x06101005, uuid2 = 0x0100, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "FooterPartition",
@@ -203,19 +219,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "FooterPartition")		
+			symbol = "FooterPartition")
 	public @UInt64 long getFooterPartition() {
-		
+
 		return footerPartition;
 	}
-	
+
 	@MediaPropertySetter("FooterPartition")
 	public void setFooterPartition(
 			@UInt64 long footerPartition) {
-		
+
 		this.footerPartition = footerPartition;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x04060901, uuid2 = 0x0000, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "HeaderByteCount",
@@ -224,19 +240,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "HeaderByteCount")			
+			symbol = "HeaderByteCount")
 	public @UInt64 long getHeaderByteCount() {
-		
+
 		return headerByteCount;
 	}
-	
+
 	@MediaPropertySetter("HeaderByteCount")
 	public void setHeaderByteCount(
 			@UInt64 long headerByteCount) {
-		
+
 		this.headerByteCount = headerByteCount;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x04060902, uuid2 = 0x0000, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "IndexByteCount",
@@ -245,19 +261,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "IndexByteCount")			
+			symbol = "IndexByteCount")
 	public @UInt64 long getIndexByteCount() {
-		
+
 		return indexByteCount;
 	}
-	
+
 	@MediaPropertySetter("IndexByteCount")
 	public void setIndexByteCount(
 			@UInt64 long indexByteCount) {
-		
+
 		this.indexByteCount = indexByteCount;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x01030405, uuid2 = 0x0000, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "IndexSID",
@@ -266,16 +282,16 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "IndexSID")			
+			symbol = "IndexSID")
 	public @UInt32 int getIndexSID() {
-		
+
 		return indexSID;
 	}
-	
+
 	@MediaPropertySetter("IndexSID")
 	public void setIndexSID(
 			int indexSID) {
-		
+
 		this.indexSID = indexSID;
 	}
 
@@ -287,19 +303,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "BodyOffset")			
+			symbol = "BodyOffset")
 	public @UInt64 long getBodyOffset() {
-		
+
 		return bodyOffset;
 	}
-	
+
 	@MediaPropertySetter("BodyOffset")
 	public void setBodyOffset(
 			@UInt64 long bodyOffset) {
-		
+
 		this.bodyOffset = bodyOffset;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x01030404, uuid2 = 0x0000, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x04 },
 			definedName = "BodySID",
@@ -308,19 +324,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "BodySID")			
+			symbol = "BodySID")
 	public @UInt32 int getBodySID() {
-		
+
 		return bodySID;
 	}
-	
+
 	@MediaPropertySetter("BodySID")
 	public void setBodySID(
 			@UInt32 int bodySID) {
-		
+
 		this.bodySID = bodySID;
 	}
-	
+
 	// UL copied from Preface.OperationalPattern
 	@MediaProperty(uuid1 = 0x01020203, uuid2 = 0x0000, uuid3 = 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x05 },
@@ -329,19 +345,19 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "OperationalPattern")			
+			symbol = "OperationalPattern")
 	public AUID getOperationalPattern() {
-		
+
 		return operationalPattern;
 	}
-	
+
 	@MediaPropertySetter("Operational Pattern")
 	public void setOperationalPattern(
 			AUID operationalPattern) {
-		
+
 		this.operationalPattern = operationalPattern;
 	}
-	
+
 	// UL copied from Preface.EssenceContainers
 	@MediaProperty(uuid1 = 0x01020210, uuid2 = (short) 0x0201, uuid3 = (short) 0x0000,
 			uuid4 = {0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x05},
@@ -350,62 +366,62 @@ public abstract class PartitionPackImpl
 			optional = false,
 			uniqueIdentifier = false,
 			pid = 0x0000,
-			symbol = "EssenceContainers")			
+			symbol = "EssenceContainers")
 	public Set<AUID> getEssenceContainers() {
 		return essenceContainers;
 	}
-	
+
 	@MediaPropertySetter("EssenceContainers")
 	public void setEssenceContainers(
 			Set<AUID> essenceContainers) {
-		
+
 		this.essenceContainers = essenceContainers;
 	}
-	
+
 	@MediaSetAdd("EssenceContainer")
 	public void addEssenceContainer(
-			AUID essenceContainerID) 
+			AUID essenceContainerID)
 		throws NullPointerException {
-		
+
 		if (essenceContainerID == null)
 			throw new NullPointerException("Cannot add a null essence container to the set of essence containers for this partition pack.");
-		
+
 		essenceContainers.add(essenceContainerID);
 	}
-	
+
 	public String[] getPackOrder() {
-		
+
 		return packOrder;
 	}
-	
+
 	public long getPaddingFillSize() {
-		
+
 		return paddingBytes;
 	}
-	
+
 	public int getEncodedSize() {
-		
+
 		return 88 + essenceContainers.size() * 16;
 	}
-	
+
 	public void setPaddingFillSize(
 			long paddingFillSize)
 		throws IllegalArgumentException {
-		
+
 		// TODO consider if this should be a length greater than 16 bytes and a BER length.
 		if (paddingFillSize < 0)
 			throw new IllegalArgumentException("Number of padding bytes must be greater than 0.");
-		
+
 		this.paddingBytes = paddingFillSize;
 	}
-	
+
 	public String toString() {
-		
+
 		return MediaEngine.toString(this);
 	}
-	
+
 	public PartitionPack clone() {
-		
+
 		try {
 			return (PartitionPack) super.clone();
 		}
@@ -417,58 +433,58 @@ public abstract class PartitionPackImpl
 
 	public final static PartitionPack readPartitionPack(
 			MXFFileImpl material) throws EndOfDataException {
-		
+
 		UL key = material.readKey();
 		long length = material.readBER();
 		ByteBuffer buffer = material.read((int) length);
 		buffer.rewind();
-		
+
 		return
 			(PartitionPack) MXFBuilder.readFixedLengthPack((AUIDImpl) key, buffer);
 	}
-	
+
 	public final static short initializeMajorVersion() {
-		
+
 		return MAJORVERSION_DEFAULT;
 	}
-	
+
 	public final static short initializeMinorVersion() {
-		
+
 		return MINORVERSION_DEFAULT;
 	}
 
 	public final static int initializeKAGSize() {
-		
+
 		return 1;
 	}
 
 	public final static long initializeThisPartition() {
-		
+
 		return 0;
 	}
-	
+
 	public final static long initializePreviousPartition() {
-		
+
 		return PREVIOUSPARTITION_DEFAULT;
 	}
 
 	public final static long initializeFooterPartition() {
-		
+
 		return FOOTERPARTITION_DEFAULT;
 	}
-	
+
 	public final static long initializeHeaderByteCount() {
-		
+
 		return HEADERBYTECOUNT_DEFAULT;
 	}
-	
+
 	public final static long initializeIndexByteCount() {
-		
+
 		return INDEXBYTECOUNT_DEFAULT;
 	}
 
 	public final static int initializeIndexSID() {
-		
+
 		return 0;
 	}
 
@@ -476,19 +492,19 @@ public abstract class PartitionPackImpl
 
 		return 0l;
 	}
-	
+
 	public final static int initializeBodySID() {
-		
+
 		return BODYSID_DEFAULT;
 	}
 
 	public final static AUID initializeOperationalPattern() {
-		
+
 		return RP224.MXF_OP1a_SingleItem_SinglePackage_UniTrack_Stream_Internal;
 	}
 
 	public final static Set<AUID> initializeEssenceContainers() {
-		
+
 		return new HashSet<AUID>();
 	}
 }

@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.meta.impl;
 
 import java.io.Serializable;
@@ -28,13 +44,13 @@ import tv.amwa.maj.record.AUID;
 		uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x02, 0x06, 0x01, 0x01 },
 		definedName = "ExtensionScheme",
 		symbol = "ExtensionScheme",
-		description = "Groups together a collection of meta definitions for an " + 
+		description = "Groups together a collection of meta definitions for an " +
 				"extension to a file and provides a globally unique identifier for the collection.",
 		namespace = CommonConstants.AAF_XML_NAMESPACE,
 		prefix = CommonConstants.AAF_XML_PREFIX)
-public class ExtensionSchemeImpl 
-	implements 
-		ExtensionScheme, 
+public class ExtensionSchemeImpl
+	implements
+		ExtensionScheme,
 		Cloneable,
 		Serializable,
 		MetadataObject,
@@ -50,9 +66,9 @@ public class ExtensionSchemeImpl
 		Collections.synchronizedMap(new HashMap<AUID, MetaDefinition>());
 	private Map<String, AUID> metaDefinitionNames =
 		Collections.synchronizedMap(new HashMap<String, AUID>());
-	
+
 	public ExtensionSchemeImpl() { }
-	
+
 	@MediaProperty(uuid1 = 0x06010107, uuid2 = (short) 0x1b00, uuid3 = (short) 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x0d },
 			definedName = "SchemeID",
@@ -75,15 +91,15 @@ public class ExtensionSchemeImpl
 
 		if (schemeID == null)
 			throw new NullPointerException("Cannot set the scheme identifier using a null value.");
-		
+
 		this.schemeID = schemeID.clone();
 	}
 
 	public AUID getAUID() {
-		
+
 		return schemeID.clone();
 	}
-	
+
 	@MediaProperty(uuid1 = 0x06010107, uuid2 = (short) 0x1c00, uuid3 = (short) 0x0000,
 			uuid4 = { 0x06, 0x0e, 0x2b, 0x34, 0x01, 0x01, 0x01, 0x0d },
 			definedName = "SchemeURI",
@@ -101,12 +117,12 @@ public class ExtensionSchemeImpl
 
 	@MediaPropertySetter("SchemeURI")
 	public void setSchemeURI(
-			String schemeURI) 
+			String schemeURI)
 		throws NullPointerException {
 
 		if (schemeURI == null)
 			throw new NullPointerException("Cannot set the scheme URI using a null value.");
-		
+
 		this.schemeURI = schemeURI;
 	}
 
@@ -119,12 +135,12 @@ public class ExtensionSchemeImpl
 			pid = 0x0026,
 			symbol = "PreferredPrefix",
 			description = "Preferred namespace tag when SMPTE Reg-XML encoding is used.")
-	public String getPreferredPrefix() 
+	public String getPreferredPrefix()
 		throws PropertyNotPresentException {
 
 		if (preferredPrefix == null)
 			throw new PropertyNotPresentException("The optional preferred prefix property is not present for this extension scheme.");
-		
+
 		return preferredPrefix;
 	}
 
@@ -145,12 +161,12 @@ public class ExtensionSchemeImpl
 			pid = 0x0027,
 			symbol = "ExtensionDescription",
 			description = "Description of the extension scheme.")
-	public String getExtensionDescription() 
+	public String getExtensionDescription()
 		throws PropertyNotPresentException {
 
 		if (extensionDescription == null)
 			throw new PropertyNotPresentException("The optional extension description property is not present for this extension scheme.");
-		
+
 		return extensionDescription;
 	}
 
@@ -169,8 +185,8 @@ public class ExtensionSchemeImpl
 			uniqueIdentifier = false,
 			pid = 0x0028,
 			symbol = "MetaDefinitions",
-			description = "Set of meta definitions that form the extensions scheme. " + 
-					"The meta definitions are the class definitions, property definitions and type definitions} " + 
+			description = "Set of meta definitions that form the extensions scheme. " +
+					"The meta definitions are the class definitions, property definitions and type definitions} " +
 					"that define extensions classes and properties for use in descriptive frameworks, descriptive objects, " +
 					"application plugin objects and application referenced objects.")
 	public Set<MetaDefinition> getMetaDefinitions()
@@ -178,7 +194,7 @@ public class ExtensionSchemeImpl
 
 		if (metaDefinitions.size() == 0)
 			throw new NullPointerException("The optional meta definitions property is not present for this extension scheme.");
-		
+
 		return new HashSet<MetaDefinition>(metaDefinitions.values());
 	}
 
@@ -189,7 +205,7 @@ public class ExtensionSchemeImpl
 
 		if (metaDefinition == null)
 			throw new NullPointerException("Cannot add a null meta definition to the set of meta definitions.");
-		
+
 		metaDefinitions.put(metaDefinition.getAUID(), metaDefinition);
 		metaDefinitionNames.put(metaDefinition.getName(), metaDefinition.getAUID());
 	}
@@ -207,19 +223,19 @@ public class ExtensionSchemeImpl
 
 		if (metaDefinition == null)
 			throw new NullPointerException("Cannot check for a meta definition using a null value.");
-		
+
 		return metaDefinitions.containsKey(metaDefinition.getAUID());
 	}
-	
+
 	public boolean containsMetaDefinition(
 			AUID metaDefinitionID)
 		throws NullPointerException {
-		
+
 		if (metaDefinitionID == null)
 			throw new NullPointerException("Cannot check for a meta definition using a null identifier.");
 
 		return metaDefinitions.containsKey(metaDefinitionID);
-	}		
+	}
 
 	public boolean containsMetaDefinition(
 			String metaDefinitionName)
@@ -237,7 +253,7 @@ public class ExtensionSchemeImpl
 
 		if (metaDefinitionID == null)
 			throw new NullPointerException("Cannot lookup a meta definition using a null identifier.");
-		
+
 		return metaDefinitions.get(metaDefinitionID);
 	}
 
@@ -247,7 +263,7 @@ public class ExtensionSchemeImpl
 
 		if (metaDefinitionName == null)
 			throw new NullPointerException("Cannot lookup a meta definition using a null name.");
-		
+
 		if (!metaDefinitionNames.containsKey(metaDefinitionName)) return null;
 		return metaDefinitions.get(metaDefinitionNames.get(metaDefinitionName));
 	}
@@ -258,7 +274,7 @@ public class ExtensionSchemeImpl
 
 		if (metaDefinitionName == null)
 			throw new NullPointerException("Cannot lookup a meta definition using a null name.");
-		
+
 		return metaDefinitionNames.get(metaDefinitionName).clone();
 	}
 
@@ -275,49 +291,49 @@ public class ExtensionSchemeImpl
 
 		if (metaDefinition == null)
 			throw new NullPointerException("Cannot remove a meta definition using a null value.");
-		
+
 		return (metaDefinitions.remove(metaDefinition.getAUID()) != null);
 	}
-	
+
 	public boolean removeMetaDefinition(
 			AUID metaDefinitionID)
 		throws NullPointerException {
-		
+
 		if (metaDefinitionID == null)
 			throw new NullPointerException("Cannot remove a meta definition using a null value.");
-		
-		return (metaDefinitions.remove(metaDefinitionID) != null);		
+
+		return (metaDefinitions.remove(metaDefinitionID) != null);
 	}
 
 	public String getWeakTargetReference() {
 
 		return schemeID.toString();
 	}
-	
+
 	public int hashCode() {
-		
+
 		return MediaEngine.hashCode(this);
 	}
-	
+
 	public String toString() {
-		
+
 		return MediaEngine.toString(this);
 	}
-	
+
 	public boolean equals(
 			Object o) {
-		
+
 		return MediaEngine.equals(this, o);
 	}
-	
+
 	public boolean deepEquals(
 			Object o) {
-		
+
 		return MediaEngine.deepEquals(this, o);
 	}
-	
+
 	public ExtensionScheme clone() {
-		
+
 		try {
 			return (ExtensionScheme) super.clone();
 		}

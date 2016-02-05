@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.io.mxf.impl;
 
 import java.nio.ByteBuffer;
@@ -51,39 +67,39 @@ import tv.amwa.maj.record.impl.AUIDImpl;
 		symbol = "PrimerPack",
 		namespace = MXFConstants.RP210_NAMESPACE,
 		prefix = MXFConstants.RP210_PREFIX)
-public class PrimerPackImpl 
-	implements 
+public class PrimerPackImpl
+	implements
 		MetadataObject,
-		FixedLengthPack, 
+		FixedLengthPack,
 		PrimerPack {
-	
+
 	public final static String[] packOrder = { "LocalTagEntry Batch" };
-	
-	private Map<Short, LocalTagEntry> localTagBatch = 
+
+	private Map<Short, LocalTagEntry> localTagBatch =
 		Collections.synchronizedMap(new HashMap<Short, LocalTagEntry>(100));
-	private Map<AUID, Short> reverseMap = 
+	private Map<AUID, Short> reverseMap =
 		Collections.synchronizedMap(new HashMap<AUID, Short>());
-	
+
 	private short localCounter = 0;
-	
-	private long primerPackPadding = 0; 
-	
+
+	private long primerPackPadding = 0;
+
 	static {
 		Warehouse.registerTypes(TypeDefinitions.class, MXFConstants.RP210_NAMESPACE, MXFConstants.RP210_PREFIX);
 		Warehouse.lookForClass(LocalTagEntryImpl.class);
 		Warehouse.lookForClass(PrimerPackImpl.class);
 	}
-	
+
 	public PrimerPackImpl() {
 
 	}
-	
+
 	void setPrimerPackPadding(
 			long primerPackPadding) {
-		
+
 		this.primerPackPadding = primerPackPadding;
 	}
-	
+
 	/**
 	 * <p>Create a cloned copy of this PrimerPackImpl.</p>
 	 *
@@ -99,10 +115,10 @@ public class PrimerPackImpl
 			pid = 0x0000,
 			symbol = "LocalTagEntryBatch")
 	public Set<LocalTagEntry> getLocalTagEntryBatch() {
-		
+
 		return new HashSet<LocalTagEntry>(localTagBatch.values());
 	}
-			
+
 	/**
 	 * <p>Create a cloned copy of this PrimerPackImpl.</p>
 	 *
@@ -110,16 +126,16 @@ public class PrimerPackImpl
 	 */
 	@MediaSetAdd("LocalTagEntry Batch")
 	public void addLocalTagEntry(
-			LocalTagEntry localTagEntry) 
+			LocalTagEntry localTagEntry)
 		throws NullPointerException {
-		
+
 		if (localTagEntry == null)
 			throw new NullPointerException("Cannot add a new local tag entry to this batch with a null value.");
-		
+
 		localTagBatch.put(localTagEntry.getLocalTag(), localTagEntry);
 		reverseMap.put(localTagEntry.getUID(), localTagEntry.getLocalTag());
 	}
-	
+
 	/**
 	 * <p>Create a cloned copy of this PrimerPackImpl.</p>
 	 *
@@ -128,11 +144,11 @@ public class PrimerPackImpl
 	public void addLocalTagEntry(
 			@UInt16 short localTag, // Allow negative for dynamic tags > 0x8000
 			tv.amwa.maj.record.AUID uid) {
-		
+
 		addLocalTagEntry(new LocalTagEntryImpl(localTag, uid));
 		reverseMap.put(uid, localTag);
 	}
-	
+
 	/**
 	 * <p>Create a cloned copy of this PrimerPackImpl.</p>
 	 *
@@ -140,10 +156,10 @@ public class PrimerPackImpl
 	 */
 	@MediaPropertyCount("LocalTagEntry Batch")
 	public int countLocalTagEntries() {
-		
+
 		return localTagBatch.size();
 	}
-	
+
 	/**
 	 * <p>Create a cloned copy of this PrimerPackImpl.</p>
 	 *
@@ -151,20 +167,20 @@ public class PrimerPackImpl
 	 */
 	@MediaPropertyClear("LocalTagEntry Batch")
 	public void clearLocalTagEntries() {
-		
+
 		localTagBatch.clear();
 	}
 
 	public AUID lookupUID(
 			@UInt16 short localTag) {
-		
+
 		if (!(localTagBatch.containsKey(localTag))) {
 			System.err.println("Could not find tag 0x" + Integer.toHexString(localTag) + " in this primer pack.");
 			return null;
 		}
 		return localTagBatch.get(localTag).getUID();
 	}
-			
+
 	/**
 	 * <p>Create a cloned copy of this PrimerPackImpl.</p>
 	 *
@@ -173,31 +189,31 @@ public class PrimerPackImpl
 	@MediaPropertyContains("LocalTagEntry Batch")
 	public boolean isLocalTagEntryPresent(
 			LocalTagEntry localTagEntry) {
-		
+
 		return localTagBatch.containsKey(localTagEntry.getLocalTag());
 	}
-	
+
 	public String[] getPackOrder() {
 
 		return packOrder;
 	}
 
 	public String toString() {
-		
+
 		return XMLBuilder.toXML(this);
 	}
-	
+
 	public synchronized short getNextLocalCounter() {
-		
+
 		// TODO add roll over capability
 		localCounter--;
 		return localCounter;
 	}
-	
+
 	public void addLocalTagEntry(
 			PropertyDefinition propertyDefinition)
 		throws NullPointerException {
-		
+
 		if (propertyDefinition == null)
 			throw new NullPointerException("Cannot add a null property definition to a primer pack.");
 		AUID uid = propertyDefinition.getAUID();
@@ -209,14 +225,14 @@ public class PrimerPackImpl
 			addLocalTagEntry(localTag, propertyDefinition.getAUID());
 		}
 	}
-	
+
 	public Short lookupLocalTag(
-			AUID uid) 
+			AUID uid)
 		throws NullPointerException {
-		
+
 		if (uid == null)
 			throw new NullPointerException("Cannot look up a property reference to find a local tag from a null value.");
-		
+
 		Short localTag = reverseMap.get(uid);
 		if (localTag == null) {
 			System.err.println("Cannot map the given identifier for a property " + uid.toString() + " to a tag.");
@@ -225,19 +241,19 @@ public class PrimerPackImpl
 		else
 			return localTag;
 	}
-	
+
 	public Short lookupLocalTag(
-			PropertyDefinition propertyDefinition) 
+			PropertyDefinition propertyDefinition)
 		throws NullPointerException {
-		
+
 		if (propertyDefinition == null)
 			throw new NullPointerException("Cannot look up a property to find its local tag using a null value.");
-		
+
 		AUID propertyID = propertyDefinition.getAUID();
-		
+
 //		if (!(reverseMap.containsKey(propertyID)))
 //			addLocalTagEntry(propertyDefinition);
-		
+
 		Short localTag = reverseMap.get(propertyID);
 		if (localTag == null) {
 			System.err.println("Cannot map the given property " + propertyDefinition.getMemberOf().getName() + "." +
@@ -247,9 +263,9 @@ public class PrimerPackImpl
 		else
 			return localTag;
 	}
-	
+
 	public PrimerPack clone() {
-		
+
 		try {
 			return (PrimerPack) super.clone();
 		}
@@ -258,9 +274,9 @@ public class PrimerPackImpl
 			throw new InternalError(cnse.getMessage());
 		}
 	}
-	
+
 	public final static PrimerPack createFromBytes(
-			ByteBuffer buffer) 
+			ByteBuffer buffer)
 		throws EndOfDataException {
 
 		UL key = MXFBuilder.readKey(buffer);
@@ -275,95 +291,95 @@ public class PrimerPackImpl
 		finally {
 			buffer.limit(preserveLimit);
 		}
-		
+
 		return primerPack;
 	}
-	
+
 	public final static int lengthAsBytes(
 			PrimerPack primerPack)
 		throws NullPointerException {
-		
+
 		if (primerPack == null)
 			throw new NullPointerException("Cannot calculate the byte length of a null primer pack.");
-		
+
 		return 16 + 4 + 8 + 18 * primerPack.countLocalTagEntries();
 	}
-	
+
 	public final static void writeAsBytes(
 			PrimerPack primerPack,
 			ByteBuffer buffer)
 		throws NullPointerException,
 			InsufficientSpaceException {
-	
+
 		if (primerPack == null)
 			throw new NullPointerException("Cannot write a null primer pack to a buffer.");
 		if (buffer == null)
 			throw new NullPointerException("Cannot write a primer pack into a null buffer.");
-		
+
 		if (buffer.remaining() < lengthAsBytes(primerPack))
 			throw new InsufficientSpaceException("Insufficient space remaining to write primer pack into given buffer.");
-		
+
 		UL key = (UL) Forge.makeAUID(0x0d010201, (short) 0x0105, (short) 0x0100,
 				new byte[] { 0x06, 0x0e, 0x2b, 0x34, 0x02, 0x05, 0x01, 0x01} );
 		MXFBuilder.writeKey(key, buffer);
 		MXFBuilder.writeBERLength(18 * primerPack.countLocalTagEntries() + 8, 4, buffer);
-		
+
 		buffer.putInt(primerPack.countLocalTagEntries());
 		buffer.putInt(18);
-		
+
 		for ( LocalTagEntry entry : primerPack.getLocalTagEntryBatch() ) {
 			buffer.putShort(entry.getLocalTag());
 			MXFBuilder.writeKey((UL) entry.getUID(), buffer);
 		}
 	}
-	
+
 	public final static PrimerPack createFromPreface(
 			Preface preface)
 		throws NullPointerException {
-		
+
 		if (preface == null)
 			throw new NullPointerException("Cannot create a primer pack from a null preface.");
-		
+
 		PrimerPack pack = new PrimerPackImpl();
-		
+
 		pack.addLocalTagEntry(MXFConstants.InstanceTag, MXFConstants.InstanceUID);
 		addPropertiesForObject(pack, preface);
 		return pack;
 	}
-	
+
 	public final static long addPropertiesForObject(
 			PrimerPack primerPack,
-			MetadataObject mdObject) 
+			MetadataObject mdObject)
 		throws NullPointerException {
-		
+
 		if (primerPack == null)
 			throw new NullPointerException("Cannot add local tag entries to a null primer pack.");
 		if (mdObject == null)
 			throw new NullPointerException("Cannot add local tag entries to a primer pack using a null metadata object.");
-		
+
 		ClassDefinition objectsClass = MediaEngine.getClassDefinition(mdObject);
 		long setLength = MXFBuilder.lengthOfLocalSet(mdObject) + 20l; // Bytes in value plus initial class ID and 4-byte length
-		
+
 		for ( PropertyDefinition propertyDefinition : objectsClass.getAllPropertyDefinitions() ) {
-			
+
 			PropertyValue propertyValue = null;
 			try {
 				if (propertyDefinition.getIsOptional())
 					propertyDefinition.getPropertyValue(mdObject);
 			}
-			catch (IllegalArgumentException iae) { 
+			catch (IllegalArgumentException iae) {
 				continue;
 			}
 			catch (PropertyNotPresentException pnpe) {
 				continue;
 			}
-			
+
 			primerPack.addLocalTagEntry(propertyDefinition);
-			
+
 			TypeDefinition propertyType = propertyDefinition.getTypeDefinition();
-			
+
 			switch (propertyType.getTypeCategory()) {
-			
+
 			case StrongObjRef:
 				if (propertyValue == null)
 					propertyValue = propertyDefinition.getPropertyValue(mdObject);
@@ -374,7 +390,7 @@ public class PrimerPackImpl
 				if (propertyValue == null)
 					propertyValue = propertyDefinition.getPropertyValue(mdObject);
 				TypeDefinition setElementType = ((TypeDefinitionSet) propertyType).getElementType();
-				
+
 				if (setElementType instanceof TypeDefinitionStrongObjectReference) {
 					Set<?> setValues = (Set<?>) propertyValue.getValue();
 					for ( Object value : setValues )
@@ -385,7 +401,7 @@ public class PrimerPackImpl
 				if (propertyValue == null)
 					propertyValue = propertyDefinition.getPropertyValue(mdObject);
 				TypeDefinition arrayElementType = ((TypeDefinitionVariableArray) propertyType).getType();
-				
+
 				if (arrayElementType instanceof TypeDefinitionStrongObjectReference) {
 					List<?> arrayValues = (List<?>) propertyValue.getValue();
 					for ( Object value : arrayValues )
@@ -396,26 +412,26 @@ public class PrimerPackImpl
 				break;
 			}
 		}
-		
+
 		//Add local tags defined in the index packs
 		PrimerPack indexPrimerPack = new IndexPrimerPackImpl();
 		for(LocalTagEntry tagEntry : indexPrimerPack.getLocalTagEntryBatch()){
 			primerPack.addLocalTagEntry(tagEntry);
 		}
-		
+
 		return setLength;
 	}
-	
+
 	public final static void main(
 			String args[]) {
-		
+
 		if (args.length < 1) {
 			System.err.println("Please provide the name of an MXF file to reflect.");
 			System.exit(1);
 		}
-		
+
 		String fileName = args[0];
-		
+
 		MXFFile mxfFile = MXFFactory.readPartitions(fileName);
 
 		HeaderMetadata fromTheFooter = null;
@@ -427,20 +443,20 @@ public class PrimerPackImpl
 //		}
 		System.out.println(fromTheFooter.getPrimerPack().toString());
 		//System.out.println(fromTheFooter.getPreface().toString());
-		
+
 //		System.out.println("Header partition has an index: " + mxfFile.getHeaderPartition().hasIndexTable());
 //		IndexTable headerIndex = mxfFile.getHeaderPartition().readIndexTable();
 //		System.out.println(headerIndex.toString());
-//		
+//
 //		System.out.println("Footer partition has an index: " + mxfFile.getFooterPartition().hasIndexTable());
 //		IndexTable footerIndex = mxfFile.getFooterPartition().readIndexTable();
 //		System.out.println(footerIndex.toString());
-//		
+//
 //		for ( int x = 0 ; x < 10 ; x++ )
 //			System.out.println("Edit unit " + x + " has offset " + Integer.toHexString((int) (0x8000 + footerIndex.streamOffset(x, 2))));
-//		
+//
 		mxfFile.close();
-		
+
 		PrimerPack generatedPrimer = createFromPreface(fromTheFooter.getPreface());
 		System.out.println(generatedPrimer.toString());
 	}

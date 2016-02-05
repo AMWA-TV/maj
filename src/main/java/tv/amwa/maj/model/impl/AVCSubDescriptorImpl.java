@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.model.impl;
 
 import java.io.Serializable;
@@ -14,10 +30,10 @@ import tv.amwa.maj.io.xml.XMLSerializable;
 import tv.amwa.maj.model.AVCSubDescriptor;
 
 /**
- * <p>Implements an AVC sub descriptor that provides AVC-specific properties that provide additional description of 
- * AVC-encoded material over that contained in a {@linkplain tv.amwa.maj.model.RGBADescriptor RGBA descriptor} or a 
+ * <p>Implements an AVC sub descriptor that provides AVC-specific properties that provide additional description of
+ * AVC-encoded material over that contained in a {@linkplain tv.amwa.maj.model.RGBADescriptor RGBA descriptor} or a
  * {@linkplain tv.amwa.maj.model.CDCIDescriptor CDCI descriptor}.</p>
- * 
+ *
  *
  */
 
@@ -26,8 +42,8 @@ import tv.amwa.maj.model.AVCSubDescriptor;
 		definedName = "AVCSubDescriptor",
 		description = "AVC-specific properties that provide additional description of AVC-encoded material.",
 		symbol = "AVCSubDescriptor")
-public class AVCSubDescriptorImpl 
-  extends SubDescriptorImpl 
+public class AVCSubDescriptorImpl
+  extends SubDescriptorImpl
   implements
 		AVCSubDescriptor,
 		Serializable,
@@ -49,7 +65,7 @@ public class AVCSubDescriptorImpl
 	private Byte avcMaximumRefFrames = null;
 	private Byte avcSequenceParameterSetFlag = null;
 	private Byte avcPictureParameterSetFlag = null;
-	
+
 	private static final long serialVersionUID = -4823795093498901279L;
 
 	@MediaProperty(uuid1 = 0x04010606, uuid2 = 0x010e, uuid3 = 0x0000,
@@ -62,7 +78,7 @@ public class AVCSubDescriptorImpl
     		symbol = "AVCDecodingDelay")
 	@Override
 	public @UInt8 byte getAVCDecodingDelay() {
-		
+
 		return avcDecodingDelay;
 	}
 
@@ -74,10 +90,10 @@ public class AVCSubDescriptorImpl
 
 		if (avcDecodingDelay < 0)
 			throw new IllegalArgumentException("Cannot set the AVC decoding delay to a negative value.");
-		
+
 		this.avcDecodingDelay = avcDecodingDelay;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x04010606, uuid2 = 0x0103, uuid3 = 0x0000,
 		     uuid4 = {0x06, 0x0E, 0x2B, 0x34, 0x01, 0x01, 0x01, 0x0e},
 		     definedName = "AVCConstantBPictureFlag",
@@ -111,7 +127,7 @@ public class AVCSubDescriptorImpl
 		     symbol = "AVCCodedContentKind")
 	@Override
 	public AVCCodedContentKind getAVCCodedContentKind() {
-		
+
 		if (avcCodedContentKind == null) return AVCCODECCONTENTKIND_DEFAULT;
 		else return avcCodedContentKind;
 	}
@@ -120,7 +136,7 @@ public class AVCSubDescriptorImpl
 	@Override
 	public void setAVCCodedContentKind(
 			AVCCodedContentKind avcCodedContentKind) {
-		
+
 		this.avcCodedContentKind = avcCodedContentKind;
 	}
 
@@ -143,7 +159,7 @@ public class AVCSubDescriptorImpl
 	@Override
 	public void setAVCClosedGOPIndicator(
 			Boolean avcClosedGOPIndicator) {
-		
+
 		this.avcClosedGOPIndicator = avcClosedGOPIndicator;
 	}
 
@@ -157,7 +173,7 @@ public class AVCSubDescriptorImpl
 		     symbol = "AVCIdenticalGOPIndicator")
 	@Override
 	public boolean getAVCIdenticalGOPIndicator() {
-		
+
 		if (avcIdenticalGOPIndicator == null) return AVCIDENTICALGOPINDICATOR_DEFAULT;
 		else return avcIdenticalGOPIndicator;
 	}
@@ -179,12 +195,12 @@ public class AVCSubDescriptorImpl
 		     pid = 0x0000,
 		     symbol = "AVCMaximumGOPSize")
 	@Override
-	public @UInt16 short getAVCMaximumGOPSize() 
+	public @UInt16 short getAVCMaximumGOPSize()
 			throws PropertyNotPresentException {
 
 		if (avcMaximumGOPSize == null)
 			throw new PropertyNotPresentException("The optional maximum GOP size property is not present for this AVC sub descriptor.");
-		
+
 		return avcMaximumGOPSize;
 	}
 
@@ -193,17 +209,17 @@ public class AVCSubDescriptorImpl
 	public void setAVCMaximumGOPSize(
 			@UInt16 Short avcMaximumGOPSize)
 		throws IllegalArgumentException {
-		
+
 		if (avcMaximumGOPSize == null) {
 			this.avcMaximumGOPSize = null;
 			return;
 		}
-		
-		if (avcMaximumGOPSize < 0) 
+
+		if (avcMaximumGOPSize < 0)
 			throw new IllegalArgumentException("Cannot set the maximum GOP size property to a negative value.");
 		this.avcMaximumGOPSize = avcMaximumGOPSize;
 	}
-	
+
 	@MediaProperty(uuid1 = 0x04010606, uuid2 = 0x0109, uuid3 = 0x0000,
 		     uuid4 = {0x06, 0x0E, 0x2B, 0x34, 0x01, 0x01, 0x01, 0x0e},
 		     definedName = "AVCMaximumBPictureCount",
@@ -215,10 +231,10 @@ public class AVCSubDescriptorImpl
 	@Override
 	public @UInt16 short getAVCMaximumBPictureCount()
 			throws PropertyNotPresentException {
-		
+
 		if (avcMaximumBPictureCount == null)
 			throw new PropertyNotPresentException("The optional maximum B picture count property is not present.");
-		
+
 		return avcMaximumBPictureCount;
 	}
 
@@ -227,12 +243,12 @@ public class AVCSubDescriptorImpl
 	public void setAVCMaximumBPictureCount(
 			@UInt16 Short avcMaximumBPictureCount)
 		throws IllegalArgumentException {
-		
+
 		if (avcMaximumBPictureCount == null) {
 			this.avcMaximumBPictureCount = null;
 			return;
 		}
-		
+
 		if (avcMaximumBPictureCount < 0)
 			throw new IllegalArgumentException("Cannot set the maximum B picture count property to a negative value.");
 		this.avcMaximumBPictureCount = avcMaximumBPictureCount;
@@ -247,9 +263,9 @@ public class AVCSubDescriptorImpl
 		     pid = 0x0000,
 		     symbol = "AVCMaximumBitrate")
 	@Override
-	public @UInt32 int getAVCMaximumBitrate() 
+	public @UInt32 int getAVCMaximumBitrate()
 			throws PropertyNotPresentException {
-		
+
 		if (avcMaximumBitrate == null)
 			throw new PropertyNotPresentException("The optional maximum bit rate property is not present for this AVC sub descriptor.");
 		return avcMaximumBitrate;
@@ -265,7 +281,7 @@ public class AVCSubDescriptorImpl
 			this.avcMaximumBitrate = null;
 			return;
 		}
-		
+
 		if (avcMaximumBitrate < 0)
 			throw new IllegalArgumentException("Cannot set the maximum bit rate property to a negative value.");
 		this.avcMaximumBitrate = avcMaximumBitrate;
@@ -280,12 +296,12 @@ public class AVCSubDescriptorImpl
 		     pid = 0x0000,
 		     symbol = "AVCAverageBitrate")
 	@Override
-	public @UInt32 int getAVCAverageBitrate() 
+	public @UInt32 int getAVCAverageBitrate()
 			throws PropertyNotPresentException {
 
 		if (avcAverageBitrate == null)
 			throw new PropertyNotPresentException("The optional average bit rate property is not present for this AVC sub descriptor.");
-		
+
 		return avcAverageBitrate;
 	}
 
@@ -294,7 +310,7 @@ public class AVCSubDescriptorImpl
 	public void setAVCAverageBitrate(
 			@UInt32 Integer avcAverageBitrate)
 		throws IllegalArgumentException {
-		
+
 		if (avcAverageBitrate == null) {
 			this.avcAverageBitrate = null;
 			return;
@@ -313,12 +329,12 @@ public class AVCSubDescriptorImpl
 		     pid = 0x0000,
 		     symbol = "AVCProfile")
 	@Override
-	public @UInt8 byte getAVCProfile() 
+	public @UInt8 byte getAVCProfile()
 			throws PropertyNotPresentException {
-		
+
 		if (avcProfile == null)
 			throw new PropertyNotPresentException("The optional AVC profile property is not present for this AVC sub descriptor.");
-		
+
 		return avcProfile;
 	}
 
@@ -326,7 +342,7 @@ public class AVCSubDescriptorImpl
 	@Override
 	public void setAVCProfile(
 			@UInt8 Byte avcProfile) {
-		
+
 		this.avcProfile = avcProfile;
 	}
 
@@ -339,12 +355,12 @@ public class AVCSubDescriptorImpl
 		     pid = 0x0000,
 		     symbol = "AVCProfileConstraint")
 	@Override
-	public @UInt8 byte getAVCProfileConstraint() 
+	public @UInt8 byte getAVCProfileConstraint()
 			throws PropertyNotPresentException {
 
 		if (avcProfileConstraint == null)
 			throw new PropertyNotPresentException("The optional AVC profile constraint property is not present for this AVC sub descriptor.");
-		
+
 		return avcProfileConstraint;
 	}
 
@@ -352,7 +368,7 @@ public class AVCSubDescriptorImpl
 	@Override
 	public void setAVCProfileConstraint(
 			@UInt8 Byte avcProfileConstraint) {
-		
+
 		this.avcProfileConstraint = avcProfileConstraint;
 	}
 
@@ -364,7 +380,7 @@ public class AVCSubDescriptorImpl
 			boolean constraint_set3_flag,
 			boolean constraint_set4_flag,
 			boolean constraint_set5_flag) {
-		
+
 		this.avcProfileConstraint = (byte) ((constraint_set0_flag ? 0x80 : 0x00) |
 				(constraint_set1_flag ? 0x40 : 0x00) |
 				(constraint_set2_flag ? 0x20 : 0x00) |
@@ -382,26 +398,26 @@ public class AVCSubDescriptorImpl
 		     pid = 0x0000,
 		     symbol = "AVCLevel")
 	@Override
-	public @UInt8 byte getAVCLevel() 
+	public @UInt8 byte getAVCLevel()
 		throws PropertyNotPresentException {
 
 		if (avcLevel == null)
 			throw new PropertyNotPresentException("The optional AVC level property is not present for this AVC sub descriptor.");
-		
+
 		return this.avcLevel;
 	}
 
 	@MediaPropertySetter("AVCLevel")
 	@Override
 	public void setAVCLevel(
-			@UInt8 Byte avcLevel) 
+			@UInt8 Byte avcLevel)
 		throws IllegalArgumentException {
 
 		if (avcLevel == null) {
 			this.avcLevel = null;
 			return;
 		}
-		
+
 		if (avcLevel < 0)
 			throw new IllegalArgumentException("The AVC level property cannot be set to a negative value.");
 		this.avcLevel = avcLevel;
@@ -416,12 +432,12 @@ public class AVCSubDescriptorImpl
 		     pid = 0x0000,
 		     symbol = "AVCMaximumRefFrames")
 	@Override
-	public @UInt8 byte getAVCMaximumRefFrames() 
+	public @UInt8 byte getAVCMaximumRefFrames()
 			throws PropertyNotPresentException {
 
 		if (avcMaximumRefFrames == null)
 			throw new PropertyNotPresentException("The optional maximum reference frames property is not present for this AVC sub descriptor.");
-		
+
 		return avcMaximumRefFrames;
 	}
 
@@ -430,12 +446,12 @@ public class AVCSubDescriptorImpl
 	public void setAVCMaximumRefFrames(
 			@UInt8 Byte avcMaximumRefFrames)
 		throws IllegalArgumentException {
-		
+
 		if (avcMaximumRefFrames == null) {
 			this.avcMaximumRefFrames = null;
 			return;
 		}
-		
+
 		if (avcMaximumRefFrames < 0)
 			throw new IllegalArgumentException("The number of maximum reference frames cannot be negative.");
 		this.avcMaximumRefFrames = avcMaximumRefFrames;
@@ -474,7 +490,7 @@ public class AVCSubDescriptorImpl
 		     symbol = "AVCPictureParameterSetFlag")
 	@Override
 	public @UInt8 byte getAVCPictureParameterSetFlag() {
-		
+
 		if (avcPictureParameterSetFlag == null) return AVCPICTUREPARAMETERSETFLAG_DEFAULT;
 		else return avcPictureParameterSetFlag;
 	}
@@ -483,12 +499,12 @@ public class AVCSubDescriptorImpl
 	@Override
 	public void setAVCPictureParameterSetFlag(
 			@UInt8 Byte avcPictureParaemterSetFlag) {
-		
+
 		this.avcPictureParameterSetFlag = avcPictureParaemterSetFlag;
 	}
 
 	public AVCSubDescriptor clone() {
-		
+
 		return (AVCSubDescriptor) super.clone();
 	}
 }

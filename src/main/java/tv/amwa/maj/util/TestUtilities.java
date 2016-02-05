@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.util;
 
 import java.lang.reflect.Method;
@@ -13,7 +29,7 @@ public class TestUtilities {
 	public static Method propertyGetMethod(
 			Class<? extends MetadataObject> mediaClass,
 			String propertyName) {
-		
+
 		for ( Method method : mediaClass.getMethods() ) {
 			MediaProperty property = method.getAnnotation(MediaProperty.class);
 			if ((property != null) && (property.definedName().equals(propertyName)))
@@ -25,7 +41,7 @@ public class TestUtilities {
 	public static Method propertyGetMethod(
 			Class<? extends MetadataObject> mediaClass,
 			AUID propertyID) {
-		
+
 		for ( Method method : mediaClass.getMethods() ) {
 			MediaProperty property = method.getAnnotation(MediaProperty.class);
 			if (property != null) {
@@ -42,19 +58,19 @@ public class TestUtilities {
 	public static MediaProperty propertyAnnotation(
 			Class<? extends MetadataObject> mediaClass,
 			String propertyName) {
-		
+
 		for ( Method method : mediaClass.getMethods() ) {
 			MediaProperty property = method.getAnnotation(MediaProperty.class);
 			if ((property != null) && (property.definedName().equals(propertyName)))
 				return property;
 		}
-		return null;	
+		return null;
 	}
 
 	public static MediaProperty propertyAnnotation(
 			Class<? extends MetadataObject> mediaClass,
 			AUID propertyID) {
-		
+
 		for ( Method method : mediaClass.getMethods() ) {
 			MediaProperty property = method.getAnnotation(MediaProperty.class);
 			if (property != null) {
@@ -71,15 +87,15 @@ public class TestUtilities {
 	public final static boolean objectEqualityTest(
 			Object o1,
 			Object o2) {
-		
+
 		if ((o1 instanceof ByteOrder) && (o2 instanceof Short)) {
 			return (((ByteOrder) o1).getAAFByteOrderCode() == (Short) o2);
 		}
-		
+
 		if ((o1.getClass().isArray()) && (o2.getClass().isArray())) {
 			Class<?> elementType1 = o1.getClass().getComponentType();
 			Class<?> elementType2 = o2.getClass().getComponentType();
-			
+
 			if ((elementType1.isPrimitive()) && (elementType2.isPrimitive())) {
 				if (!elementType1.equals(elementType2)) return false;
 
@@ -100,13 +116,13 @@ public class TestUtilities {
 				if (elementType1.equals(Character.TYPE))
 					return Arrays.equals((char[]) o1, (char[]) o2);
 			}
-			
+
 			if ((!elementType1.isPrimitive()) || (!elementType2.isPrimitive())) {
-				
-				return Arrays.equals((Object[]) o1, (Object[]) o2); 
+
+				return Arrays.equals((Object[]) o1, (Object[]) o2);
 			}
 		}
-		
+
 		return o1.equals(o2);
 	}
 }

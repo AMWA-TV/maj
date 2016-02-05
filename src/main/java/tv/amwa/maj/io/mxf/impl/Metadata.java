@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.io.mxf.impl;
 
 import java.util.List;
@@ -11,7 +27,7 @@ import tv.amwa.maj.model.Package;
 
 /**
  * <p>Data relating to a single {@linkplain PartitionImpl partition}.</p>
- * 
+ *
  *
  *
  */
@@ -35,7 +51,7 @@ public class Metadata {
 //
 	Metadata(
 			MetadataObject baseObject) {
-		
+
 		// TODO
 	}
 //
@@ -44,18 +60,18 @@ public class Metadata {
 //	Metadata();
 	//
 	public Metadata() {
-		
+
 		// TODO
 	}
-	
+
 //		Metadata(std::string TimeStamp);
 
 	public Metadata(
 			String timeStamp) {
-		
+
 		// TODO
 	}
-	
+
 //		void Init(void);
 //
 // TODO do we need this?
@@ -65,15 +81,15 @@ public class Metadata {
 //		void SetTime(void) { ModificationTime = Now2String(); }
 
 	public void setModificationTime() {
-		
+
 		// TODO
 	}
-	
+
 //		void SetTime(std::string TimeStamp) { ModificationTime = TimeStamp; }
 //
 	public void setModificationTime(
 			String timestamp) {
-		
+
 		// TODO
 	}
 //
@@ -119,7 +135,7 @@ public class Metadata {
 //
 	public void addDMScheme(
 			UL dmScheme) {
-		
+
 		// TODO
 	}
 //
@@ -131,7 +147,7 @@ public class Metadata {
 //
 	public void addEssenceType(
 			UL essenceContainerType) {
-		
+
 		// TODO see next C comment
 	}
 //
@@ -193,7 +209,7 @@ public class Metadata {
 //
 	public void setOperationalPattern(
 			UL operationalPattern) {
-		
+
 		// TODO
 	}
 //
@@ -205,26 +221,26 @@ public class Metadata {
 //		// Add a material package to the metadata
 //
 //		PackagePtr AddMaterialPackage(UMIDPtr PackageUMID) { return AddPackage(MaterialPackage_UL, "", PackageUMID); }
-	
+
 	public Package addMaterialPackage(
 			UMID packageUMID) {
-		
+
 		// TODO
 		return null;
 	}
-	
+
 //		PackagePtr AddMaterialPackage(std::string PackageName = "", UMIDPtr PackageUMID = NULL) { return AddPackage(MaterialPackage_UL, PackageName, PackageUMID); }
 //
 	public Package addMaterialPackage(
 			String packageName,
 			UMID pacakageUMID) {
-		
+
 		// TODO
 		return null;
 	}
-	
+
 	public Package addMaterialPackage() {
-		
+
 		return addMaterialPackage("", null);
 	}
 //
@@ -235,28 +251,28 @@ public class Metadata {
 	public Package addFilePackage(
 			@UInt32 int bodySID,
 			UMID packageUMID) {
-		
+
 		// TODO
 		return null;
 	}
-	
+
 //		PackagePtr AddFilePackage(UInt32 BodySID, std::string PackageName = "", UMIDPtr PackageUMID = NULL) { return AddPackage(SourcePackage_UL, PackageName, PackageUMID, BodySID); }
 //
 	public Package addFilePackage(
 			@UInt32 int bodySID,
 			String packageName,
 			UMID packageUMID) {
-		
+
 		// TODO
 		return null;
 	}
-	
+
 	public Package addFilePackage(
 			@UInt32 int bodySID) {
-		
+
 		return addFilePackage(bodySID, "", null);
 	}
-	
+
 //
 //		// Add a lower-level source package to the metadata
 //
@@ -265,29 +281,29 @@ public class Metadata {
 	public Package addSourcePackage(
 			@UInt32 int bodySID,
 			UMID packageUMID) {
-		
+
 		// TODO
 		return null;
 	}
-	
+
 //		PackagePtr AddSourcePackage(UInt32 BodySID, std::string PackageName = "", UMIDPtr PackageUMID = NULL) { return AddPackage(SourcePackage_UL, PackageName, PackageUMID, BodySID); }
 //
 	public Package addSourcePackage(
 			@UInt32 int bodySID,
 			String packageName,
 			UMID packageUMID) {
-		
+
 		// TODO
 		return null;
 	}
 
 	public Package addSourcePackage(
 			@UInt32 int bodySID) {
-		
+
 		return addSourcePackage(bodySID, "", null);
 	}
 
-	
+
 //		//! Add an entry into the essence container data set for a given essence stream
 //
 //		bool AddEssenceContainerData(UMIDPtr TheUMID, UInt32 BodySID, UInt32 IndexSID = 0);
@@ -296,7 +312,7 @@ public class Metadata {
 			UMID umid,
 			@UInt32 int bodySID,
 			@UInt32 int indexSID) {
-		
+
 		// TODO
 		return false;
 	}
@@ -314,7 +330,7 @@ public class Metadata {
 //
 	public void setPrimaryPackage(
 			Package primaryPackage) {
-		
+
 		// TODO
 	}
 //
@@ -334,7 +350,7 @@ public class Metadata {
 //
 	public void setPrimaryPackage(
 			MetadataObject primaryPackage) {
-		
+
 		// TODO
 	}
 //
@@ -343,7 +359,7 @@ public class Metadata {
 //		PackagePtr GetPrimaryPackage(void);
 //
 	public Package getPrimaryPackage() {
-		
+
 		// TODO
 		return null;
 	}
@@ -355,18 +371,18 @@ public class Metadata {
 	public boolean updateGenerations(
 			MetadataObject identifier,
 			String updateTime) {
-		
+
 		// TODO
 		return false;
 	}
-	
+
 	public boolean updateGenerations(
 			MetadataObject identifier) {
 
 		return updateGenerations(identifier, "");
 	}
-	
-	
+
+
 //
 //		//! Return the containing "Metadata" object for this MDObject
 //
@@ -378,7 +394,7 @@ public class Metadata {
 //
 	public final static Metadata getMetadata(
 			MetadataObject metadataObject) {
-		
+
 		// TODO
 		return null;
 	}
@@ -389,7 +405,7 @@ public class Metadata {
 //
 	public final static Metadata parse(
 			MetadataObject baseObject) {
-		
+
 		// TODO
 		return null;
 	}
@@ -405,7 +421,7 @@ public class Metadata {
 			String packageName,
 			UMID packageUMID,
 			@UInt32 int bodySID) {
-		
+
 		// TODO probably call out to the AAF factory
 		return null;
 	}
@@ -417,7 +433,7 @@ public class Metadata {
 	private boolean updateGenerationsInternal(
 			MetadataObject metadataObject,
 			UUID generation) {
-		
+
 		// TODO
 		return false;
 	}
@@ -428,12 +444,12 @@ public class Metadata {
 
 	private void clearModifiedInternal(
 			MetadataObject metadataObject) {
-		
+
 		// TODO
 	}
-	
+
 //	};
 //
 
-	
+
 }

@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Cartwright
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package tv.amwa.maj.extensions.st436;
 
 import tv.amwa.maj.industry.Forge;
@@ -25,7 +41,7 @@ public class ST436Factory {
     public final static Class<?>[] CLASSES = new Class<?>[] {
             tv.amwa.maj.extensions.st436.impl.ANCDataDescriptorImpl.class,
             tv.amwa.maj.extensions.st436.impl.VBIDataDescriptorImpl.class };
-    
+
     /**
      * <p>Initialize all the types of this symbol space and make them available through
      * the MAJ {@linkplain tv.amwa.maj.industry.MediaEngine media engine}. The media engine
@@ -36,7 +52,7 @@ public class ST436Factory {
      * @see #CLASSES
      */
     public final static void initialize() {
-        
+
         if (initialized) return;
 
         // Register all of the symbolspace classes
