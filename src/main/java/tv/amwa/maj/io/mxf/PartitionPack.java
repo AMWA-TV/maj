@@ -302,7 +302,7 @@ public interface PartitionPack
 	 * <p>Note that the presence of absence of index table data is determined from the
 	 * {@linkplain #getIndexSID() index SID value}.</p>
 	 *
-	 * @return Number of bytes used for {@linkplain HeaderMetadata header metadata}
+	 * @return Number of bytes used for {@linkplain IndexTableSegment index table segments}
 	 * in this partition.
 	 *
 	 * @see #INDEXBYTECOUNT_DEFAULT
@@ -319,7 +319,7 @@ public interface PartitionPack
 	 * <p>Note that the presence of absence of index table data is determined from the
 	 * {@linkplain #getIndexSID() index SID value}.</p>
 	 *
-	 * @param indexByteCount Number of bytes used for {@linkplain HeaderMetadata header metadata}
+	 * @param indexByteCount Number of bytes used for {@linkplain IndexTableSegment index table segments}
 	 * in this partition.
 	 *
 	 * @see #INDEXBYTECOUNT_DEFAULT
