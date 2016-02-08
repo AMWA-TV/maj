@@ -43,12 +43,15 @@ An application can be written using the AAF data model from scratch without the 
 
 The starting point is to initialize the local Java virtual machine so that it supports processing the AAF data model with `MediaEngine.initializeAAF()`. You can then start creating objects of the AAF data model, including *packages*, *tracks*, *sequences* and *source clips*, using the `make...` *forge* forge, for example:
 
-    Forge.make(Class, Object...)
+```java
+Forge.make(Class, Object...)
+```
 
 Every class in MAJ provides a registered XML representation as its `toString()` output, which in turn is created by `MediaEngine.toString()`. This makes debugging fairly easy as you can query a value in the debugger and see a human-readable XML format.
 
 To help you get started, here is an `AMWADemoClass` code example:
 
+```java
     package tv.amwa.maj.example;
 
     import tv.amwa.maj.industry.Forge;
@@ -97,6 +100,7 @@ To help you get started, here is an `AMWADemoClass` code example:
             System.out.println(amwaPackage.toString());
         }
     }
+```
 
 For a more complex example, see the source for the [composition example](./src/main/tv/amwa/maj/example/CompositionExample.java).
 
