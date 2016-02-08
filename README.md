@@ -41,7 +41,7 @@ These topics are covered below.
 
 An application can be written using the AAF data model from scratch without the need to read or write files. One difference between MAJ and the AAF SDK is that you can write code that uses classes of the AAF model without the need to contain them within a virtual file at runtime. For more details, see the documentation of the [industry package](./apidocs/tv/amwa/maj/industry/package-summary.html).
 
-The starting point is to initialize the local Java virtual machine so that it supports processing the AAF data model with `MediaEngine.initializeAAF()`. You can then start creating objects of the AAF data model, including *packages*, *tracks*, *sequences* and *source clips*, using the `make...` *forge* forge, for example:
+The starting point is to initialize the local Java virtual machine so that it supports processing the AAF data model with `MediaEngine.initializeAAF()`. You can then start creating objects of the AAF data model, including *packages*, *tracks*, *sequences* and *source clips*, using the `make...` *forge*, for example:
 
 ```java
 Forge.make(Class, Object...)
@@ -52,63 +52,113 @@ Every class in MAJ provides a registered XML representation as its `toString()` 
 To help you get started, here is an `AMWADemoClass` code example:
 
 ```java
-    package tv.amwa.maj.example;
+package tv.amwa.maj.example;
 
-    import tv.amwa.maj.industry.Forge;
-    import tv.amwa.maj.industry.MediaEngine;
-    import tv.amwa.maj.model.*;
+import tv.amwa.maj.industry.Forge;
+import tv.amwa.maj.industry.MediaEngine;
+import tv.amwa.maj.model.*;
 
-    public class AMWADemoClass
-        implements tv.amwa.maj.constant.CommonConstants {
+public class AMWADemoClass
+  implements tv.amwa.maj.constant.CommonConstants {
 
-        public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
 
-            MediaEngine.initializeAAF(); // Required to initialize AAF specified classes
+    MediaEngine.initializeAAF(); // Required to initialize AAF specified classes
 
-            MaterialPackage amwaPackage = Forge.makeByName(
-                    AAF_XML_NAMESPACE, "MaterialPackage",
-                    "PackageID", Forge.randomUMID(), // Randomly generated
-                    "Name", "AMWADemoPackage",
-                    "PackageLastModified", Forge.now(),
-                    "CreationTime", Forge.now());
+    MaterialPackage amwaPackage = Forge.makeByName(
+      AAF_XML_NAMESPACE, "MaterialPackage",
+      "PackageID", Forge.randomUMID(), // Randomly generated
+      "Name", "AMWADemoPackage",
+      "PackageLastModified", Forge.now(),
+      "CreationTime", Forge.now());
 
-            Sequence amwaVideoSequence = Forge.makeByName(
-                    AAF_XML_NAMESPACE, "Sequence",
-                    "ComponentDataDefinition", "Picture");
+    Sequence amwaVideoSequence = Forge.makeByName(
+      AAF_XML_NAMESPACE, "Sequence",
+      "ComponentDataDefinition", "Picture");
 
-            amwaVideoSequence.appendComponentObject(
-                    Forge.make(
-                            SourceClip.class,
-                            "ComponentDataDefinition", "Picture",
-                            "ComponentLength", 60l,
-                            "SourcePackageID", "urn:smpte:umid:060c2b34.02051101.01001000.13000000.11ee08d4.040311d4.8e3d0090.27dfca7c",
-                            "SourceTrackID", 1,
-                            "StartPosition", 10l));
+    amwaVideoSequence.appendComponentObject(
+      Forge.make(
+        SourceClip.class,
+        "ComponentDataDefinition", "Picture",
+        "ComponentLength", 60l,
+        "SourcePackageID", "urn:smpte:umid:060c2b34.02051101.01001000.13000000.11ee08d4.040311d4.8e3d0090.27dfca7c",
+        "SourceTrackID", 1,
+        "StartPosition", 10l));
 
-            TimelineTrack amwaVideoTrack = Forge.make(
-                    TimelineTrack.class,
-                    "TrackID", 1,
-                    "TrackSegment", amwaVideoSequence,
-                    "EditRate", "25/1",
-                    "Origin", 0l);
+    TimelineTrack amwaVideoTrack = Forge.make(
+      TimelineTrack.class,
+      "TrackID", 1,
+      "TrackSegment", amwaVideoSequence,
+      "EditRate", "25/1",
+      "Origin", 0l);
 
-            amwaVideoTrack.setTrackName("AMWA VIDEO TRACK");
+    amwaVideoTrack.setTrackName("AMWA VIDEO TRACK");
 
-            amwaPackage.appendPackageTrack(amwaVideoTrack);
-            amwaPackage.appendPackageUserComment("company", "portability 4 media");
+    amwaPackage.appendPackageTrack(amwaVideoTrack);
+    amwaPackage.appendPackageUserComment("company", "portability 4 media");
 
-            System.out.println(amwaPackage.toString());
-        }
-    }
+    System.out.println(amwaPackage.toString());
+  }
+}
 ```
 
 For a more complex example, see the source for the [composition example](./src/main/tv/amwa/maj/example/CompositionExample.java).
 
 ### MXF files
 
+Material eXchange Format (MXF) files, also known as AAF-KLV files, consist of sequence of partitions. Partitions contain a partition header and may contain metadata, index tables and/or essence data. Support for reading and writing MXF files is provided in package `tv.amwa.maj.io.mxf`.
+
+To register all MXF data types with MAJ, start by calling `MXFBuilder.registerMXF()`. Alternatively, use static methods in the `MXFFactory` class that call this method for you.
+
+MXF files can be processed as static entities of are streams, as described in the following sections.
+
 #### Static
 
-_To follow_.
+MXF files contain one or more partitions. The first step in reading an MXF file is to build an in memory cache of the structure of those partitions. To do this:
+
+```java
+import tv.amwa.maj.industry.MediaEngine;
+import tv.amwa.maj.io.mxf.MXFFactory;
+import tv.amwa.maj.io.mxf.MXFFile;
+
+...
+
+  MXFFile mxfFile = MXFFactory.readPartitions("filename.mxf");
+```
+
+All MXF files contain a *header partition*. Most also contain a *footer partition*. To access these:
+
+```java
+import tv.amwa.maj.io.mxf.HeaderPartition;
+import tv.amwa.maj.io.mxf.FooterPartition;
+
+...
+
+  HeaderPartition header = mxfFile.getHeaderPartition();
+  FooterPartition footer = mxfFile.getFooterPartition();
+```
+
+Partitions can contain header metadata and this is split into a primer pack and a preface. The metadata can be read into memory from file using the `readHeaderMetadata()` method.
+
+If a footer partition is present in an MXF file and it contains header metadata, this version is often the best source for metadata about the file as it was written once the rest of the file is complete. If the footer partition is not present or does not contain header metadata, read the header partition's header metadata.
+
+```java
+import tv.amwa.maj.model.Preface;
+import tv.amwa.maj.io.mxf.HeaderMetadata;
+
+...
+
+  HeaderMetadata headerMD = null;
+  if ((footer != null) && (footer.hasHeaderMetadata())
+    headerMD = footer.readHeaderMetadata();
+  else
+    headerMD = header.readHeaderMetadata();
+
+  Preface preface = headerMD.getPreface();
+
+```
+
+Methods from the preface interface can be used to interrogate what is in the MXF file, or you can call `toString()` on the preface to get an XML representation.
 
 #### Streaming
 

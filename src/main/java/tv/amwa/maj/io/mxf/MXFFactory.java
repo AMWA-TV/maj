@@ -42,12 +42,7 @@ import tv.amwa.maj.meta.impl.TypeDefinitionRecordImpl;
 public class MXFFactory {
 
 	static {
-		MediaEngine.initializeAAF();
-		Warehouse.registerTypes(tv.amwa.maj.io.mxf.TypeDefinitions.class, MXFConstants.RP210_NAMESPACE, MXFConstants.RP210_PREFIX);
-		Warehouse.lookForClass(IndexTableSegmentImpl.class);
-		Warehouse.lookForClass(HeaderOpenIncompletePartitionPackImpl.class);
-
-		TypeDefinitionRecordImpl.registerInterfaceMapping(DeltaEntry.class, DeltaEntryImpl.class);
+    MXFBuilder.registerMXF();
 	}
 
 	public final static boolean logging = true;
