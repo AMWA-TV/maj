@@ -179,48 +179,50 @@ To read the next MXF unit in the stream, call `MXFStream.readNextUnit(*stream*, 
 Reading through all the units in an MXF stream or file in a linear fashion using `readNextUnit()` is a valid and efficient strategy to dump or play an MXF file. For other use cases, such as to read a single frame of video, partial access or a clip or to extract specific items of metadata from a random access MXF file, the streaming API offers directed access to specific types. For example. here is an example of a strategy for extracting a single frame (`desiredFrame`) from a closed complete MXF file:
 
 1. Read the random index pack with `MXFStream.readRandomIndexPack(*stream*, *size*)`, where stream is an input      stream and *size* is the length of the stream. The stream is closed by this operation.
-```java
-  RandomIndexPack rip = MXFStream.readRandomIndexPack(stream, streamLength);
-```
+  ```java
+    RandomIndexPack rip = MXFStream.readRandomIndexPack(stream, streamLength);
+  ```
+
 2. Create a new input stream looking at the same data. Use the partition offsets to read index table segments and partition packs (for header body offset properties and pack sizes) from the stream, skipping over essence and metadata, until a the index offset of the required frame is found.
-```java
-  List<PartitionPack> packs = new List<PartitionPack>();
-  List<IndexTableSegment> index = new List<IndexTableSegment>();
-  long readBytes = 0;
-  for ( RandomIndexItem item : rip.getPartitionIndex() ) {
-    MXFStream.skipForwards(stream, item.getByteOffset() - readBytes);
-    PartitionPack pack = MXFStream.readPartitionPack(stream);
-    packs.add(pack);
-    readBytes += 20 + pack.getEncodedSize();
-    if (pack.getIndexSID() > 0) { // Assuming no mixed header and index partitions
-      IndexTableSegment segment = MXFStream.readIndexTableSegment(stream);
-      index.add(segment);
-      readBytes += 20 + segment.getEncodedSize();
-      if (segment.getIndexStartPosition() > desiredFrame) break;
-    }    
-  }
-```
-3. Use the index table segments and body offsets properties to locate the required frame as a total byte offset in the file, jump to that offset and read the essence element.
-```java
-  IndexTableSegment indexOfFrame;
-  for ( IndexTableSegment its : index ) {
-    if ((desiredFrame >= its.getIndexStartPosition()) &&
-        (desiredFrame < its.getIndexStartPosition() + its.getIndexDuration())) {
-      indexOfFrame = its; break;  
+  ```java
+    List<PartitionPack> packs = new List<PartitionPack>();
+    List<IndexTableSegment> index = new List<IndexTableSegment>();
+    long readBytes = 0;
+    for ( RandomIndexItem item : rip.getPartitionIndex() ) {
+      MXFStream.skipForwards(stream, item.getByteOffset() - readBytes);
+      PartitionPack pack = MXFStream.readPartitionPack(stream);
+      packs.add(pack);
+      readBytes += 20 + pack.getEncodedSize();
+      if (pack.getIndexSID() > 0) { // Assuming no mixed header and index partitions
+        IndexTableSegment segment = MXFStream.readIndexTableSegment(stream);
+        index.add(segment);
+        readBytes += 20 + segment.getEncodedSize();
+        if (segment.getIndexStartPosition() > desiredFrame) break;
+      }    
     }
-  }
-  int desiredIndex = desiredFrame - indexOfFrame.getIndexStartPosition();
-  long bodyByteOffset = indexOfFrame.getIndexEntryArray()[desiredIndex];
-  PartitionPack framePack;
-  for ( PartitionPack pp : packs ) {
-    if (pp.getBodyOffset() > bodyByteOffset) break;
-    framePack = pp;
-  }
-  MXFStream.skipForward(stream, framePack.getThisPartition() + 20 +
-      MXFBuilder.lengthOfFixedLengthPack(framePack) +
-      (bodyByteOffset - framePack.getBodyOffset())); // Assumes reset stream
-  EssenceElement frameData = MXFStream.readEssenceElement(stream);
-```
+  ```
+  
+3. Use the index table segments and body offsets properties to locate the required frame as a total byte offset in the file, jump to that offset and read the essence element.
+  ```java
+    IndexTableSegment indexOfFrame;
+    for ( IndexTableSegment its : index ) {
+      if ((desiredFrame >= its.getIndexStartPosition()) &&
+          (desiredFrame < its.getIndexStartPosition() + its.getIndexDuration())) {
+        indexOfFrame = its; break;  
+      }
+    }
+    int desiredIndex = desiredFrame - indexOfFrame.getIndexStartPosition();
+    long bodyByteOffset = indexOfFrame.getIndexEntryArray()[desiredIndex];
+    PartitionPack framePack;
+    for ( PartitionPack pp : packs ) {
+      if (pp.getBodyOffset() > bodyByteOffset) break;
+      framePack = pp;
+    }
+    MXFStream.skipForward(stream, framePack.getThisPartition() + 20 +
+        MXFBuilder.lengthOfFixedLengthPack(framePack) +
+        (bodyByteOffset - framePack.getBodyOffset())); // Assumes reset stream
+    EssenceElement frameData = MXFStream.readEssenceElement(stream);
+  ```
 
 Writing MXF data to a file uses the write methods of the `MXFStream` class with `java.io.OutputStream`. The user of the API has to work out the relative sizes of partitions and set partition pack metadata sizes etc.. For example:
 
