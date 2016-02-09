@@ -1,6 +1,6 @@
 # Media Authoring with Java API (MAJ)
 
-The MAJ API (pronounced *madge*) is a pure Java API for creating, reading, manipulating and writing MXF (SMPTE 0377), [AAF](http://www.amwa.tv/projects/MS-01.shtml) structured storage and Reg-XML (SMPTE 2001) files. MXF files are commonly used are a container for professional media file formats and AAF is supported by a number of professional video editing packages. MXF and Reg-XML are used as part of the [Interoperable Mastering Format](http://www.imfforum.com/IMF_Forum/index.html) suite of specifications.
+The MAJ API (pronounced *madge*) is a pure Java API for creating, reading, manipulating and writing MXF (SMPTE ST 377), [AAF](http://www.amwa.tv/projects/MS-01.shtml) structured storage and Reg-XML (SMPTE ST 2001) files. MXF files are commonly used are a container for professional media file formats and AAF is supported by a number of professional video editing packages. MXF and Reg-XML are used as part of the [Interoperable Mastering Format](http://www.imfforum.com/IMF_Forum/index.html) suite of specifications.
 
 As well as supporting the published metadata dictionaries for AAF and MXF, MAJ includes mechanisms that support extension namespaces and the auto-generation of Java code from Reg-XML meta-dictionaries.
 
@@ -280,7 +280,7 @@ MAJ will create a dynamic meta dictionary and, if the preface does not contain a
 
 ### Reg-XML files
 
-AAF XML files are also known as *Registered Data XML* (Reg-XML) files (SMPTE standards 2001-1 and 2001-2). MAJ uses this format for the return value of `toString()` methods almost everywhere, so it is easy to get to learn this format by just working with MAJ. When you use a debugger and hover over a variable that is a MAJ type, you will see the same XML format. Useful for RESTful and web service interfaces, Reg-XML provides an easier to analyse and process representation of AAF/MXF data stored in an AAF-based repository.
+AAF XML files are also known as *Registered Data XML* (Reg-XML) files (SMPTE standards ST 2001-1 and ST 2001-2). MAJ uses this format for the return value of `toString()` methods almost everywhere, so it is easy to get to learn this format by just working with MAJ. When you use a debugger and hover over a variable that is a MAJ type, you will see the same XML format. Useful for RESTful and web service interfaces, Reg-XML provides an easier to analyse and process representation of AAF/MXF data stored in an AAF-based repository.
 
 Support for reading and writing XML files is provided in package `tv.amwa.maj.io.xml`. MAJ provides a helper class `XMLBuilder` as a starting point with static methods for reading and writing AAF fragments to and from XML. To convert a single object and any of its contained strong referenced objects to XML, use `toXML()` methods.
 
@@ -334,7 +334,7 @@ The preface will be automatically updated with a correct dictionary and any exte
 
 MAJ has implementations of some media-specialist data types that may be useful in other applications independently from whether they use AAF data. These can be found in the `tv.amwa.maj.record` package and include:
 
-* `TimecodeValue` - representation of SMPTE 12 timecode values, including static methods for parsing, converting to real time, drop frame calculations and timecode maths.
+* `TimecodeValue` - representation of SMPTE ST 12 timecode values, including static methods for parsing, converting to real time, drop frame calculations and timecode maths.
 * `AUID` - AAF unique identifier that is either a SMPTE Universal Label or a UUID. Includes methods for generating values.
 * `PackageID` - Representation, generation and manipulation of 32-byte SMPTE UMID values.
 * `DateStruct` and `TimeStruct` - AAF and MXF data and time representations with conversions to and from Java equivalent values.
@@ -350,6 +350,23 @@ The core mechanisms of MAJ are found in the `tv.amwa.maj.industry` package, whic
 * A `Warehouse` where AAF definitions (container, codec, operation etc.) are kept alongside details of the current meta-dictionary that represents the current data model (registered AAF classes, properties and types).
 * A toolkit for constructing extension data types with minimal amounts of boilerplate, including annotations and generic types for AAF *sets* and *vectors*.
 
+Dictionary constants and enumerations that are registered with the Warehouse can be found in package `tv.amwa.maj.constants`. These were chosen to match those used with the AAF SDK. Further useful idenfiers can be found in interface `RP224`. For example, to register an ANC data mapping:
+
+```java
+import tv.amwa.maj.model.ConstainerDefinition
+import tv.amwa.maj.industry.Forge
+import tv.amwa.maj.constant.RP224
+import tv.amwa.maj.industry.Warehouse
+
+...
+
+  ContainerDefinition ancDataMapping = Forge.make(ContainerDefinition.class,
+    "AUID", RP224.MXFGC_Generic_VBI_Data_Mapping_Undefined_Payload,
+    "Name", "MXFGC_Generic_VBI_Data_Mapping_Undefined_Payload",
+    "Description", "Identifier for the MXF-GC frame wrapped Generic VBI data mapping with an undefined payload.");
+  Warehouse.register(ancDataMapping);
+```
+
 #### Vendor-specific metadata
 
 Vendors of products that use AAF sometimes emit extensions metadata as a matter of course. AAF is designed for this, with structured storage files, some MXF files and Reg-XML files all containing details of these extensions in the dictionary and meta-dictionary. MAJ has pre-built support for extensions data types found in files generated and read by Avid and Quantel (now Snell Advanced Media) products. Specifically:
@@ -359,13 +376,19 @@ Vendors of products that use AAF sometimes emit extensions metadata as a matter 
 
 It is not recommended to mix different vendor's extensions in the same file.
 
-Support for SMPTE 436 that is in common use for the carriage of ancillary data in MXF files is also implemented as an extension:
+Support for SMPTE ST 436 that is in common use for the carriage of ancillary data in MXF files is also implemented as an extension:
 
-* SMPTE 436 extensions in package `tv.amwa.maj.extensions.st436` and registered with `ST436Factory.initialize()`.
+* SMPTE ST 436 extensions in package `tv.amwa.maj.extensions.st436` and registered with `ST436Factory.initialize()`.
 
 #### Auto-generation
 
-.
+Utilities are provided to automatically generated files to and from different representations of AAF data models, including Java classes that can be used as extensions. These include:
+
+* `MetaDictionaryGenerator` in package `tv.amwa.maj.io.mxf` can be used to generate a SMPTE 2001-1 meta-dictionary from a given list of classes. Pass in the AAF base classes and you get the model published as SMPTE 2001-2.
+* `XSDGenerator`, also in package `tv.amwa.maj.io.mxf` is used to generate an XML Schema (XSD) that can be used to validate a Reg-XML document.
+* `AutoGeneration` in package `tv.amwa.maj.util` can take a meta-dictionary in the format specified for Reg-XML and create a set of Java classes that can be registered with MAJ.
+* `TestGeneration` takes a meta-dictionary file and creates a set of JUnit tests for classes that represent that meta-dictionary.
+* `RP224ToJava` converts a CSV file representation of SMPTE RP 224 metadata registry into Java static values that helps with the process of registering with the warehouse.
 
 ## License
 
