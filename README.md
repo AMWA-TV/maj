@@ -28,12 +28,12 @@ HTML documentation is built in the `apidocs` folder.
 
 The MAJ API has a number of different starting points, depending on how you intend to use it. These include:
 
-* Writing an AAF file from scratch based on an existing internal data structure.
-* Reading data from or writing to an MXF file.
-* Reading data from or writing to an AAF file.
-* Dumping the contents of a file.
-* Streaming MXF data in or out of the API.
-* Adding a library to support metadata extensions.
+* [Working with AAF data with the provided data model](#Manipulating_AAF_data).
+* [Reading data from or writing to an MXF file](#MXF_files).
+* [Reading data from or writing to an AAF file](#AAF_files).
+* [Reading and writing Reg-XML documents and extensions](#Reg-XML_files).
+* [Media-specialist datatypes, such as timecode](#Media-specialist_data_types).
+* [Dealing with extension metadata](#Dealing_with_extension_metadata).
 
 These topics are covered below.
 
