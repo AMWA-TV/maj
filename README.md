@@ -1,6 +1,6 @@
 # Media Authoring with Java API (MAJ)
 
-The MAJ API (pronounced *madge*) is a pure Java API for creating, reading, manipulating and writing MXF (SMPTE ST 377), [AAF](http://www.amwa.tv/projects/MS-01.shtml) structured storage and Reg-XML (SMPTE ST 2001) files. MXF files are commonly used are a container for professional media file formats and AAF is supported by a number of professional video editing packages. MXF and Reg-XML are used as part of the [Interoperable Mastering Format](http://www.imfforum.com/IMF_Forum/index.html) suite of specifications.
+The MAJ API (pronounced *madge*) is a pure Java API for creating, reading, manipulating and writing MXF (SMPTE ST 377), [AAF](http://www.amwa.tv/projects/MS-01.shtml) structured storage and Reg-XML (SMPTE ST 2001) files. MXF files are commonly used as a container for professional media file formats and AAF is supported by a number of professional video editing packages. MXF and Reg-XML are used as part of the [Interoperable Mastering Format](http://www.imfforum.com/IMF_Forum/index.html) suite of specifications.
 
 As well as supporting the published metadata dictionaries for AAF and MXF, MAJ includes mechanisms that support extension namespaces and the auto-generation of Java code from Reg-XML meta-dictionaries.
 
@@ -26,7 +26,7 @@ HTML documentation is built in the `apidocs` folder.
 
 ## Using MAJ
 
-The MAJ API has a number of different starting points, depending on how you intend to use it. These may included:
+The MAJ API has a number of different starting points, depending on how you intend to use it. These include:
 
 * Writing an AAF file from scratch based on an existing internal data structure.
 * Reading data from or writing to an MXF file.
@@ -106,11 +106,11 @@ For a more complex example, see the source for the [composition example](./src/m
 
 ### MXF files
 
-Material eXchange Format (MXF) files, also known as AAF-KLV files, consist of sequence of partitions. Partitions contain a partition header and may contain metadata, index tables and/or essence data. Support for reading and writing MXF files is provided in package `tv.amwa.maj.io.mxf`.
+Material eXchange Format (MXF) files, also known as AAF-KLV files, consist of a sequence of partitions. Partitions contain a partition header and may contain metadata, index tables and/or essence data. Support for reading and writing MXF files is provided in package `tv.amwa.maj.io.mxf`.
 
 To register all MXF data types with MAJ, start by calling `MXFBuilder.registerMXF()`. Alternatively, use static methods in the `MXFFactory` class that call this method for you.
 
-MXF files can be processed as static entities of are streams, as described in the following sections.
+MXF files can be processed as complete static entities (files) or as streams, as described in the following sections.
 
 #### Static
 
@@ -164,7 +164,7 @@ Due to the wide variety of different styles of MXF file, writing MXF files is be
 
 #### Streaming
 
-MXF files can be very large, especially when the contain video data. The best approach for the management of  efficiently reading and writing MXF files is to use the streaming API. This requires some knowledge of the structure of both an MXF file - the expected order of partitions and local sets - and the nature of the container in use - for example an interleaved MXF OP1a file containing video and audio vs a mono-essence OP-Atom file with only audio.
+MXF files can be very large, especially when the contain video data. The best approach for efficiently reading and writing MXF files is to use the streaming API. This requires some knowledge of the structure of both an MXF file - the expected order of partitions and local sets - and the nature of the container in use - for example an interleaved MXF OP1a file containing video and audio vs a mono-essence OP-Atom file with only audio.
 
 The streaming API takes the form a static methods in class `tv.amwa.maj.io.mxf.MXFStream`. The methods provide a means to read one or more KLV (key-length-value) item(s) as *MXF units* from a `java.io.InputStream` and write the same structures back to a `java.io.OutputStream`. The MXF units are:
 
@@ -174,16 +174,16 @@ The streaming API takes the form a static methods in class `tv.amwa.maj.io.mxf.M
 * index table segments;
 * random index packs.
 
-To read the next MXF unit in the stream, call `MXFStream.readNextUnit(*stream*, *sizeLimit*)`, where *stream* as a Java input stream to read from and *sizeLimit* is the maximum number of bytes to read before finding the next key. Introspect the type of the `MXFUnit` value returned.
+To read the next MXF unit in the stream, call `MXFStream.readNextUnit(*stream*, *sizeLimit*)`, where *stream* is a Java input stream to read from and *sizeLimit* is the maximum number of bytes to read before finding the next key. Introspect the type of the `MXFUnit` value returned using `instanceof` methods or Java reflection APIs.
 
-Reading through all the units in an MXF stream or file in a linear fashion using `readNextUnit()` is a valid and efficient strategy to dump or play an MXF file. For other use cases, such as to read a single frame of video, partial access or a clip or to extract specific items of metadata from a random access MXF file, the streaming API offers directed access to specific types. For example. here is an example of a strategy for extracting a single frame (`desiredFrame`) from a closed complete MXF file:
+Reading through all the units in an MXF stream or file in a linear fashion using `readNextUnit()` is a valid and efficient strategy to dump or play an MXF file. For other use cases, such as to read a single frame of video, partial access to a clip or to extract specific items of metadata from a random access MXF file, the streaming API offers directed access to specific types. For example. here is an example of a strategy for extracting a single frame (`desiredFrame`) from a closed complete MXF file:
 
 1. Read the random index pack with `MXFStream.readRandomIndexPack(*stream*, *size*)`, where stream is an input      stream and *size* is the length of the stream. The stream is closed by this operation.
   ```java
     RandomIndexPack rip = MXFStream.readRandomIndexPack(stream, streamLength);
   ```
 
-2. Create a new input stream looking at the same data. Use the partition offsets to read index table segments and partition packs (for header body offset properties and pack sizes) from the stream, skipping over essence and metadata, until a the index offset of the required frame is found.
+2. Create a new input stream looking at the same data. Use the partition offsets to read index table segments and partition packs (for header body offset properties and pack sizes) from the stream, skipping over essence and metadata, until the index offset of the required frame is found.
   ```java
     List<PartitionPack> packs = new List<PartitionPack>();
     List<IndexTableSegment> index = new List<IndexTableSegment>();
@@ -319,7 +319,7 @@ Preface preface = XMLFactory.readPreface("input_file.xml");
 
 Catch IO exceptions (`java.io.IOException`) to find out about any problems parsing the XML.
 
-To write a complete Reg-XML file, the `writePreface()` static method.
+To write a complete Reg-XML file, use the `writePreface()` static method.
 
 ```java
 import tv.amwa.maj.io.xml.XMLFactory;
@@ -343,7 +343,7 @@ MAJ has implementations of some media-specialist data types that may be useful i
 
 The MAJ API uses reflection to establish the data model it is working with. The data model must be loaded and extended at runtime. The data model is expressed by annotating Java classes with the additional information required to serialize the class to the various supported formats, such as SMPTE Universal Label identifiers, XML names with namespaces etc.. MAJ reads these annotations at runtime to be able to process AAF data. This approach was chosen to combine the efficiency of compiled Java classes with the ability to extend the data model on the fly.
 
-The core mechanisms of MAJ are found in the `tv.amwa.maj.industry` package, which includes:
+The core mechanics of MAJ are found in the `tv.amwa.maj.industry` package, which includes:
 
 * A `MediaEngine` provides the core functions of the generic `MetadataObject`, such as hash code generation and equality testing.
 * A `Forge` that can be used to make new instances of metadata objects as well as values of the core data types, including `TimecodeValue` and `AUID` (AAF unique identifier - either a SMPTE Universal Label or a UUID).
@@ -394,7 +394,7 @@ Utilities are provided to automatically generated files to and from different re
 
 The MAJ API is released under an Apache 2 license. Please see the [LICENSE](./LICENSE) file for more details.
 
-An older and now deprecated version of this API was previously published on SourceForge (http://sourceforge.net/projects/majapi/) under the now legacy AAF Public Source SDK license.
+An older and now deprecated version of this API was previously published on SourceForge (http://sourceforge.net/projects/majapi/) under the legacy AAF Public Source SDK license.
 
 ## Author
 
