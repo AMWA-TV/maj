@@ -107,10 +107,11 @@ public class MXFBuilder {
 		Warehouse.lookForClass(PrimerPackImpl.class);
 		Warehouse.lookForClass(RandomIndexPackImpl.class);
 		Warehouse.lookForClass(IndexTableSegmentImpl.class);
-		Warehouse.registerTypes(TypeDefinitions.class, MXFConstants.RP210_NAMESPACE, MXFConstants.RP210_PREFIX);
-
+		
 		TypeDefinitionRecordImpl.registerInterfaceMapping(DeltaEntry.class, DeltaEntryImpl.class);
 		TypeDefinitionRecordImpl.registerInterfaceMapping(IndexEntry.class, IndexEntryImpl.class);
+		
+		Warehouse.registerTypes(TypeDefinitions.class, MXFConstants.RP210_NAMESPACE, MXFConstants.RP210_PREFIX);
 
 		mxfRegistration = true;
 	}
