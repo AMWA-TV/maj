@@ -24,6 +24,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import tv.amwa.maj.exception.EndOfDataException;
+import tv.amwa.maj.exception.InsufficientSpaceException;
 import tv.amwa.maj.exception.PropertyNotPresentException;
 import tv.amwa.maj.integer.Int8;
 import tv.amwa.maj.integer.UInt32Array;
@@ -400,6 +401,44 @@ public class IndexEntryImpl
 		}
 
 		return new IndexEntryImpl(temporalOffset, keyFrameOffset, flags, streamOffset, unresolvedBytes);
+	}
+	
+	public final static void writeToBuffer(
+			IndexEntry entry,
+			ByteBuffer buffer)
+		throws NullPointerException,
+			InsufficientSpaceException {
+		
+		if (entry == null)
+			throw new NullPointerException("Cannot write a null index entry to a buffer.");
+		if (buffer == null)
+			throw new NullPointerException("Cannot write an index entry to a null buffer.");
+		
+		if (buffer.remaining() < lengthAsBuffer(entry))
+			throw new InsufficientSpaceException("Insufficient space in the given buffer to write an index entry value.");
+		
+		buffer.put(entry.getTemporalOffset());
+		buffer.put(entry.getKeyFrameOffset());
+		buffer.put(entry.getFlags());
+		buffer.putLong(entry.getStreamOffset());
+		for (int offset : entry.getSliceOffset()) {
+			buffer.putInt(offset);
+		}
+		for (Rational pos : entry.getPosTable()) {
+			buffer.putInt(pos.getNumerator());
+			buffer.putInt(pos.getDenominator());
+		}
+		
+	}
+	
+	public final static long lengthAsBuffer(
+			IndexEntry value) {
+		
+		long length = 11l;
+		length += 4*value.getSliceOffset().length;
+		length += 8*value.getPosTable().length;
+		
+		return length;
 	}
 
 }

@@ -746,7 +746,7 @@ public class MXFBuilder {
 		throws NullPointerException {
 
 		if (toWrite == null)
-			throw new NullPointerException("Cannot calculat the length as a local set value for a null metadata object.");
+			throw new NullPointerException("Cannot calculate the length as a local set value for a null metadata object.");
 
 		ClassDefinition classOfMetadata = MediaEngine.getClassDefinition(toWrite);
 		SortedMap<? extends PropertyDefinition,? extends PropertyValue> properties = classOfMetadata.getProperties(toWrite);
