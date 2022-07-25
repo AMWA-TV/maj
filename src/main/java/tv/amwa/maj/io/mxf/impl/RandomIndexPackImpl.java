@@ -271,13 +271,7 @@ public class RandomIndexPackImpl
 			ByteBuffer ripBytes) 
 		throws BufferUnderflowException {
 
-		UL ripKey = MXFBuilder.readKey(ripBytes);
-		if (ripKey == null)
-			return null;
-		if (!ripKeyValue.equals(ripKey))
-			return null;
-		
-		long ripLength = MXFBuilder.readBERLength(ripBytes);
+		long ripLength = ripBytes.array().length;
 		int ripItemCount = (int) (ripLength - 4) / 12;
 		// If remainder, the random index pack is corrupt in some way.
 		if (((ripLength - 4) % 12) != 0) return null;

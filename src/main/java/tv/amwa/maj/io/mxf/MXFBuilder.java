@@ -107,10 +107,11 @@ public class MXFBuilder {
 		Warehouse.lookForClass(PrimerPackImpl.class);
 		Warehouse.lookForClass(RandomIndexPackImpl.class);
 		Warehouse.lookForClass(IndexTableSegmentImpl.class);
-		Warehouse.registerTypes(TypeDefinitions.class, MXFConstants.RP210_NAMESPACE, MXFConstants.RP210_PREFIX);
-
+		
 		TypeDefinitionRecordImpl.registerInterfaceMapping(DeltaEntry.class, DeltaEntryImpl.class);
 		TypeDefinitionRecordImpl.registerInterfaceMapping(IndexEntry.class, IndexEntryImpl.class);
+		
+		Warehouse.registerTypes(TypeDefinitions.class, MXFConstants.RP210_NAMESPACE, MXFConstants.RP210_PREFIX);
 
 		mxfRegistration = true;
 	}
@@ -745,7 +746,7 @@ public class MXFBuilder {
 		throws NullPointerException {
 
 		if (toWrite == null)
-			throw new NullPointerException("Cannot calculat the length as a local set value for a null metadata object.");
+			throw new NullPointerException("Cannot calculate the length as a local set value for a null metadata object.");
 
 		ClassDefinition classOfMetadata = MediaEngine.getClassDefinition(toWrite);
 		SortedMap<? extends PropertyDefinition,? extends PropertyValue> properties = classOfMetadata.getProperties(toWrite);
