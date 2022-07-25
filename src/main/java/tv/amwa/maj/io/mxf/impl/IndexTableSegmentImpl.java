@@ -389,7 +389,11 @@ public class IndexTableSegmentImpl
 			optional = true,
 			uniqueIdentifier = false,
 			pid = 0x3f0a,
-			symbol = "IndexEntryArray")
+			symbol = "IndexEntryArray",
+			// Make this come last in the local set, since it depends on sliceCount and posTableCount values
+			// As per the MXF spec this ordering should not be needed, but if we don't do this
+			// Adobe PremierPro 2022 can't import the files - Adobe pls fix your product!
+			weight = 2147483647)  
 	public IndexEntry[] getIndexEntryArray() 
 		throws PropertyNotPresentException {
 		
